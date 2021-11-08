@@ -28,7 +28,11 @@ class CreateUsersTable extends Migration
             $table->string('ph_no')->nullable();
             $table->string('position');
             $table->string('role');
+            $table->foreignId('created_user_id')->references('id')->on('users');
+            $table->foreignId('updated_user_id')->references('id')->on('users');
+            $table->foreignId('deleted_user_id')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes('deleted_at');
         });
     }
 

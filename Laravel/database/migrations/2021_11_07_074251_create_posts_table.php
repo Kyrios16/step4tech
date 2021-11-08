@@ -19,7 +19,8 @@ class CreatePostsTable extends Migration
             $table->string('content');
             $table->string('photo');
             $table->foreignId('created_user_id')->references('id')->on('users');
-            $table->integer('liked_count');
+            $table->foreignId('updated_user_id')->references('id')->on('users');
+            $table->foreignId('deleted_user_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes('deleted_at');
         });
