@@ -16,9 +16,11 @@ class CreateFeedbacksTable extends Migration
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('post_id')->references('id')->on('posts');
-            $table->foreignId('upload_user_id')->references('id')->on('users');
-            $table->string('content');
-            $table->string('photo');
+            $table->text('content');
+            $table->string('photo', 255);
+            $table->foreignId('created_user_id')->references('id')->on('users');
+            $table->foreignId('updated_user_id')->references('id')->on('users');
+            $table->foreignId('deleted_user_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes('deleted_at');
         });

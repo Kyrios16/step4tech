@@ -15,20 +15,24 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('name', 255);
+            $table->string('email', 255)->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('profile_img');
-            $table->string('cover_img');
-            $table->string('github')->nullable();;
-            $table->string('linkedin')->nullable();;
-            $table->string('bio');
+            $table->string('password', 255);
+            $table->string('profile_img', 255);
+            $table->string('cover_img', 255);
+            $table->string('github', 255)->nullable();;
+            $table->string('linkedin', 255)->nullable();;
+            $table->string('bio', 255);
             $table->date('date_of_birth');
-            $table->string('ph_no')->nullable();
-            $table->string('position');
-            $table->string('role');
+            $table->string('ph_no', 255)->nullable();
+            $table->string('position', 255);
+            $table->string('role', 255);
+            $table->foreignId('created_user_id')->references('id')->on('users');
+            $table->foreignId('updated_user_id')->references('id')->on('users');
+            $table->foreignId('deleted_user_id')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes('deleted_at');
         });
     }
 
