@@ -1,7 +1,4 @@
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
-<link rel="stylesheet" href="{{ asset('css/common/nav.css') }}">
-
 <nav id="nav-bar">
     <div class="nav-wrapper">
         <div class="nav-list">
@@ -31,5 +28,3 @@
         </div>             
     </div>
 </nav>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{{ asset('js/common/nav.js') }}"></script>

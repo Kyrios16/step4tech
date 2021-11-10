@@ -1,15 +1,5 @@
-@extends('layouts.app')
 
-@section('sidebar')
-<!-- Styles -->
-<link href="{{ asset('css/common/sidebar.css') }}" rel="stylesheet">
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/fontawesome.min.css">
-
-<!-- Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/js/all.min.js" integrity="sha512-KAubXJ25Ga0L3yytUtDzBpDbP2usQw1dtfmph2QkpIGxFYkdLaXg90k5KVagC7WDZdxwdVzfps9XUrNPnrA++A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="{{ asset('js/common/sidebar.js') }}"></script>
-<div class="main-container">
+{{-- <div class="main-container"> --}}
     <div class="sidebar-container">
         <div class="sidebar-content">
             <div class="sidebar-items">
@@ -86,4 +76,4 @@
 
         </div>
     </div>
-</div>
+{{-- </div> --}}

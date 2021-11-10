@@ -8,6 +8,7 @@
     height: 100%;
     color: #000000;
     border-radius: 10px;
+    float: left;
 }
 .sidebar-items {
  padding: 2% 0%;
