@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('common.nav');
+    return view('post.index');
+});
+
+Route::get('/post/create', function () {
+    return view('post.create');
 });
