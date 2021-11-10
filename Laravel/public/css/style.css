@@ -1,0 +1,258 @@
+/* basic stepup */
+:root {
+    --color-main: #34c85b;
+    --bg: #e4e4e4;
+    --main-accent: #e9eefd;
+    --main-text: #4b5876;
+    --shadow: rgba(17, 17, 26, 0.1) 2px 2px 16px;
+}
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    font-size: 18px;
+    background: var(--bg);
+    overflow-x: hidden;
+}
+
+.clear-fix {
+    zoom: 1;
+}
+
+.clear-fix::after {
+    content: ".";
+    display: block;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
+.container {
+    margin: 1rem;
+}
+
+.sidebar {
+    width: 345px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding: 1rem;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+.sidebar-container {
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 1.2rem;
+}
+
+.brand {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar-avartar {
+    display: grid;
+    grid-template-columns: 70px auto;
+    align-items: center;
+    border: 2px solid var(--main-accent);
+    padding: 0.5rem 0.7rem;
+    border-radius: 7px;
+    margin: 2.5rem 0rem;
+}
+
+.sidebar-avartar img {
+    width: 60%;
+    height: auto;
+}
+
+.avartar-text small {
+    font-size: 0.7rem;
+}
+
+.sidebar-menu li {
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-menu a {
+    color: var(--main-text);
+    display: flex;
+    flex-direction: row;
+    padding: 0.6rem 0rems;
+}
+
+.sidebar-menu a.active {
+    background: var(--main-accent);
+    padding: 0.8rem;
+    border-radius: 7px;
+}
+
+.icon-small {
+    display: inline-block;
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+    color: var(--color-main);
+}
+
+.sidebar-card {
+    background: var(--bg);
+    box-shadow: var(--shadow);
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-radius: 7px;
+    margin-top: 3rem;
+}
+
+.sidebar-card img {
+    width: 50%;
+    height: auto;
+}
+.main-content {
+    margin-left: 345px;
+    width: calc(98vw - 345px);
+    height: 100%;
+    padding: 1.2rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    position: fixed;
+    overflow-y: auto;
+}
+
+.header-title-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-title-container label {
+    display: inline-block;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    color: var(--color-main);
+}
+
+.header-title {
+    color: var(--main-text);
+    font-weight: 600;
+}
+
+main {
+    padding-top: 2.5rem;
+}
+
+.analytics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0rem 2.5rem;
+}
+
+.analytic-card {
+    box-shadow: var(--shadow);
+    padding: 0.8rem;
+    border-radius: 10px;
+    display: flex;
+    padding-left: 2rem;
+}
+
+.analytic-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin-right: 0.8rem;
+}
+
+.icon-first {
+    background: #dce5ff;
+    color: #6883db;
+}
+
+.icon-sec {
+    background: #ebf7f5;
+    color: #db2727;
+}
+
+.icon-third {
+    background: #dce5ff;
+    color: #2ec3a3;
+}
+
+.icon-fourth {
+    background: var(--main-accent);
+    color: var(--color-main);
+}
+
+.analytic-info small {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 300;
+    margin-bottom: 0.8rem;
+}
+
+.analytic-info h2 {
+    color: var(--main-text);
+    font-weight: 600;
+}
+
+.users-table-container,
+.deleted-users-table-container {
+    margin: 2.5rem auto;
+}
+
+.users-table,
+.deleted-users-table {
+    margin: 1.5rem auto;
+}
+
+table {
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+thead {
+    margin-bottom: 0.5rem;
+}
+
+th {
+    padding: 0 10px;
+}
+
+td {
+    padding: 1.2rem 1rem;
+    border-bottom: 1px solid #2ec3a3;
+}
+
+.btn {
+    display: inline-block;
+    font-size: 1rem;
+    border: none;
+    background: none;
+}
+
+.btn-info {
+    color: #34c85b;
+}
+
+.btn-warning {
+    color: #fd7e14;
+}
+
+.btn-danger {
+    color: #dc3545;
+}
