@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('role', 255);
             $table->foreignId('created_user_id')->references('id')->on('users');
             $table->foreignId('updated_user_id')->references('id')->on('users');
-            $table->foreignId('deleted_user_id')->references('id')->on('users');
+            $table->foreignId('deleted_user_id')->nullable()->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes('deleted_at');
         });

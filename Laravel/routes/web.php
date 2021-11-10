@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Post\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('post.index');
-});
+Route::get('/', [PostController::class, 'showPostListByDate']);
 
 Route::get('/post/create', function () {
     return view('post.create');
