@@ -1,4 +1,4 @@
-@extends('Layouts.app')
+@extends('admin.Layouts.app')
 
 @section('content')
 <div class="container clearfix">
