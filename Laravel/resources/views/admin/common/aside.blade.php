@@ -39,7 +39,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/categories">
+                    <a href="/admin/categories/list">
                         <span class="fas fa-list-alt icon-small"></span>
                         <span>Categories Management</span>
                     </a>

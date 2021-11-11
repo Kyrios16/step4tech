@@ -21,6 +21,18 @@ class CategoriesController extends Controller
     }
 
     /**
+     * To get categories list
+     * 
+     * @param Request $request
+     * @return categories-manage blade with categories list
+     */
+    public function getCateList(Request $request)
+    {
+        $categories = $this->cateInterface->getCateList($request);
+        return view('admin.categories-manage',  compact('categories'));
+    }
+
+    /**
      * To create category
      * 
      * @param Request $request
@@ -34,22 +46,18 @@ class CategoriesController extends Controller
         if ($validated->fails()) {
             return back()->withErrors($validated)->withInput();
         }
-
-        $cate = $this->cateInterface->getCateCreate($request);
-
-        return redirect('/admin/categories')->with('message', 'You successfully created new category!');
+        $this->cateInterface->getCateCreate($request);
+        return redirect('/admin/categories/list');
     }
 
     /**
-     * To get categories list
-     * 
-     * @param Request $request
-     * @return categories-management blade with categories list
+     * To delete category by id
+     * @param $id
+     * @return View task list
      */
-    public function getCateList(Request $request)
+    public function deleteCate($id)
     {
-        $cate = $this->cateInterface->getCateCreate($request);
-
-        return view('admin.categories-management', ['cates' => $cate]);
+        $this->cateInterface->deleteCate($id);
+        return redirect('/admin/categories/list');
     }
 }

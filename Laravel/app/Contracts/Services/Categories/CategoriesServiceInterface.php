@@ -24,7 +24,7 @@ interface CategoriesServiceInterface
      * 
      * @param $id category id
      */
-    public function cateEdit($id);
+    public function editCate($id);
 
     /**
      * To update category
@@ -32,12 +32,12 @@ interface CategoriesServiceInterface
      * @param $request
      * @param $id found category id
      */
-    public function cateUpdate($request, $id);
+    public function updateCate($request, $id);
 
     /**
      * To delete category
      * 
      * @param $id 
      */
-    public function cateDelete($id);
+    public function deleteCate($id);
 }

@@ -39,6 +39,11 @@ body {
 .header-title {
     color: var(--main-text);
     font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.delete-btn {
+    display: inline;
 }
 
 .btn {
@@ -160,7 +165,7 @@ input:focus::placeholder {
 .sidebar-menu a:active,
 .sidebar-menu a:hover {
     background: var(--btn-bg);
-    border-radius: 15px;
+    border-radius: 10px;
     color: var(--color-main);
 }
 
@@ -283,13 +288,10 @@ main {
 }
 
 .users-table,
-.deleted-users-table,
 .posts-table,
-.deleted-posts-table,
-.cate-table,
-.deleted-cate-table {
+.cate-table {
     margin: 1.5rem auto;
-    height: 200px;
+    height: 250px;
     overflow-y: scroll;
 }
 
@@ -303,11 +305,11 @@ thead {
 }
 
 th {
-    padding: 0 10px;
+    padding: 0 0.5rem;
 }
 
 td {
-    padding: 1.2rem 1rem;
+    padding: 1.2rem 0.5rem;
     border-bottom: 1px solid #2ec3a3;
 }
 

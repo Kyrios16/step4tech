@@ -28,9 +28,7 @@ Route::get('/admin/posts', function () {
     return view('admin.posts-manage');
 });
 
-Route::get('/admin/categories', function () {
-    return view('admin.categories-manage');
-});
 
-Route::get('/admin/categories/list', [CategoriesController::class, 'getCateList'])->name('show.cates');
-Route::post('/admin/categories/create', [CategoriesController::class, 'getCateCreate'])->name('add.cate');
+Route::get('/admin/categories/list', [CategoriesController::class, 'getCateList'])->name('show.categories');
+Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
+Route::delete('/admin/categories/{categories}',  [CategoriesController::class, 'deleteCate'])->name('delete.categories');

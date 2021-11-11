@@ -61,7 +61,7 @@
                     <div class="table-header clearfix">
                         <h3 class="header-title">Categories Table</h3>
                         <div class="new-cate">
-                            <form action="{{ route('add.cate') }}" method="POST">
+                            <form action="{{ route('add.categories') }}" method="POST">
                                 {{ csrf_field() }}
                                 <input type="text" name="name" class="@error ('name') is-invalid @enderror" placeholder="add new category">
                                 @error('name')
@@ -91,81 +91,26 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($categories as $cate)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Laravel</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>-</td>
-                                    <td>11/9/2021</td>
-                                    <td>11/9/2021</td>
-                                    <td>-</td>
+                                    <td>{{ $cate->id }}</td>
+                                    <td>{{ $cate->name }}</td>
+                                    <td>{{ $cate->created_user_id }}</td>
+                                    <td>{{ $cate->updated_user_id }}</td>
+                                    <td>{{ $cate->deleted_user_id }}</td>
+                                    <td>{{ $cate->created_at }}</td>
+                                    <td>{{ $cate->updated_at }}</td>
+                                    <td>{{ $cate->deleted_at }}</td>
                                     <td>
-                                        <a href="" class="icon-btn-info"><i class="far fa-eye"></i></a> |
                                         <a href="" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
-                                        <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                        <form action="{{ url('/admin/categories/'.$cate->id) }}" method="POST" class="delete-btn">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <button type="submit" class="icon-btn-danger" onclick="return confirm('Are you sure want to delete?')"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>PHP</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>-</td>
-                                    <td>11/9/2021</td>
-                                    <td>11/9/2021</td>
-                                    <td>-</td>
-                                    <td>
-                                        <a href="" class="icon-btn-info"><i class="far fa-eye"></i></a> |
-                                        <a href="" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
-                                        <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Javascript</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>-</td>
-                                    <td>11/9/2021</td>
-                                    <td>11/9/2021</td>
-                                    <td>-</td>
-                                    <td>
-                                        <a href="" class="icon-btn-info"><i class="far fa-eye"></i></a> |
-                                        <a href="" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
-                                        <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>HTML</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>-</td>
-                                    <td>11/9/2021</td>
-                                    <td>11/9/2021</td>
-                                    <td>-</td>
-                                    <td>
-                                        <a href="" class="icon-btn-info"><i class="far fa-eye"></i></a> |
-                                        <a href="" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
-                                        <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>CSS</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>-</td>
-                                    <td>11/9/2021</td>
-                                    <td>11/9/2021</td>
-                                    <td>-</td>
-                                    <td>
-                                        <a href="" class="icon-btn-info"><i class="far fa-eye"></i></a> |
-                                        <a href="" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
-                                        <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

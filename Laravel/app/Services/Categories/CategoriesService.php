@@ -47,9 +47,9 @@ class CategoriesService implements CategoriesServiceInterface
      * @param $id category id
      * @return $cate found category
      */
-    public function cateEdit($id)
+    public function editCate($id)
     {
-        return $this->cateDao->cateEdit($id);
+        return $this->cateDao->editCate($id);
     }
 
     /**
@@ -59,9 +59,9 @@ class CategoriesService implements CategoriesServiceInterface
      * @param $id found category id
      * @return updated category
      */
-    public function cateUpdate($request, $id)
+    public function updateCate($request, $id)
     {
-        return $this->cateDao->cateUpdate($request, $id);
+        return $this->cateDao->updateCate($request, $id);
     }
 
     /**
@@ -70,8 +70,8 @@ class CategoriesService implements CategoriesServiceInterface
      * @param $id 
      * @return 
      */
-    public function cateDelete($id)
+    public function deleteCate($id)
     {
-        return $this->cateDao->cateDelete($id);
+        return $this->cateDao->deleteCate($id);
     }
 }
