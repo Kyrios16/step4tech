@@ -1,0 +1,41 @@
+.postCreate-container {
+    width: 78%;
+    float: right;
+}
+.postCreate {
+    height: 200px;
+    width: 95%;
+    margin: 0 auto;   
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+.user-info {
+    display: flex;
+    padding: 3.5% 2%;
+    align-items: center;
+}
+.user-profile {
+    background: #000; 
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 100%;
+}
+.user-name {
+    font-size: 1rem;
+    color: #000000;
+    padding-left: 3%;
+}
+.create-form {
+    display: flex;
+    justify-content: center;
+}
+.title {
+    width: 95%;
+    padding: 1.6% 2%;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #737373;
+    /* background-color: #737373; */
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
