@@ -14,13 +14,6 @@ use App\Http\Controllers\CategoriesController;
 |
 */
 
-Route::get('/', function () {
-    return view('post.index');
-});
-
-Route::get('/post/create', function () {
-    return view('post.create');
-});
 
 
 // admin dashboard routes
