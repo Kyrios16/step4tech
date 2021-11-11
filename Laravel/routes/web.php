@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+// admin dashboard routes
 Route::get('/admin', function () {
     return view('admin.dashboard');
 });
@@ -32,3 +35,6 @@ Route::get('/admin/posts', function () {
 Route::get('/admin/categories', function () {
     return view('admin.categories-manage');
 });
+
+Route::get('/admin/categories/list', [CategoriesController::class, 'getCateList'])->name('show.cates');
+Route::post('/admin/categories/create', [CategoriesController::class, 'getCateCreate'])->name('add.cate');

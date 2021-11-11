@@ -61,8 +61,16 @@
                     <div class="table-header clearfix">
                         <h3 class="header-title">Categories Table</h3>
                         <div class="new-cate">
-                            <input type="text" name="category" placeholder="add new category">
-                            <input type="submit" class="btn btn-success" value="Add Category">
+                            <form action="{{ route('add.cate') }}" method="POST">
+                                {{ csrf_field() }}
+                                <input type="text" name="name" class="@error ('name') is-invalid @enderror" placeholder="add new category">
+                                @error('name')
+                                <div class="invalid-feedback">
+                                    <strong>{{$message}}</strong>
+                                </div>
+                                @enderror
+                                <input type="submit" class="btn btn-success" value="Add Category">
+                            </form>
                         </div>
                         <!-- new-cate -->
                     </div>
