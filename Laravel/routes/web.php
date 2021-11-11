@@ -15,7 +15,6 @@ use App\Http\Controllers\CategoriesController;
 */
 
 
-
 // admin dashboard routes
 Route::get('/admin', function () {
     return view('admin.dashboard');
