@@ -14,7 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PostController::class, 'showPostListByDate']);
+/**
+ * Display All Posts ordered by date
+ */
+Route::get('/', function () {
+    return view('post.index', [
+        'title' => 'Home'
+    ]);
+});
+
 
 Route::get('/post/create', function () {
     return view('post.create');

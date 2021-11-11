@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Post;
+namespace App\Http\Controllers\API\Post;
 
 use App\Contracts\Services\Post\PostServiceInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 /**
- * This is Post controller.
+ * This is Post API controller.
  */
-class PostController extends Controller
+class PostAPIController extends Controller
 {
     /**
      * post service interface
@@ -24,5 +24,15 @@ class PostController extends Controller
     public function __construct(PostServiceInterface $postServiceInterface)
     {
         $this->postServiceInterface = $postServiceInterface;
+    }
+
+    /**
+     * To show post list for intial view
+     * @return Response json with post list
+     */
+    public function showPostListForInitial()
+    {
+        $postList = $this->postServiceInterface->getPostListForInitial();
+        return response()->json($postList);
     }
 }

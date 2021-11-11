@@ -25,10 +25,10 @@ class PostService implements PostServiceInterface
     }
 
     /**
-     * To get post list order by date
+     * To get post list for intial view
      * @return postList
      */
-    public function getPostListByDate() {
-        return $this->postDao->getPostListByDate();
+    public function getPostListForInitial() {
+        return $this->postDao->getPostListForInitial();
     }
 }

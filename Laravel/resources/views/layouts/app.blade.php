@@ -21,7 +21,8 @@
     @yield('style')
 
     <!-- Script -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/lib/moment.js') }}"></script>
     <script src="{{ asset('js/common/sidebar.js') }}"></script>
     <script src="{{ asset('js/common/nav.js') }}"></script>
     @yield('script')

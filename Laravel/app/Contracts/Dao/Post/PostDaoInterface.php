@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 interface PostDaoInterface
 {
     /**
-     * To get post list order by date
+     * To get post list for intial view
      * @return postList
      */
-    public function getPostListByDate();
+    public function getPostListForInitial();
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\Post\PostAPIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/**
+ * To Show All Posts ordered by date
+ */
+Route::get('/post-list', [PostAPIController::class, 'showPostListForInitial']);
