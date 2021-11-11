@@ -21,9 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('password', 255);
             $table->string('profile_img', 255);
             $table->string('cover_img', 255);
-            $table->string('github', 255)->nullable();;
-            $table->string('linkedin', 255)->nullable();;
-            $table->string('bio', 255);
+            $table->string('github', 255)->nullable();
+            $table->string('linkedin', 255)->nullable();
+            $table->string('bio', 255)->nullable();
             $table->date('date_of_birth');
             $table->string('ph_no', 255)->nullable();
             $table->string('position', 255);
