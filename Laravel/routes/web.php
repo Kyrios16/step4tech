@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/user/create', function () {
     return view('users.create-user');
+});
+
+Route::get('/', function () {
+    return view('post.index');
+});
+
+Route::get('/post/create', function () {
+    return view('post.create');
 });
