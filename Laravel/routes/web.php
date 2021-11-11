@@ -18,5 +18,17 @@ Route::get('/', function () {
 });
 
 Route::get('/admin', function () {
-    return view('admin.user-manage');
+    return view('admin.dashboard');
+});
+
+Route::get('/admin/users', function () {
+    return view('admin.users-manage');
+});
+
+Route::get('/admin/posts', function () {
+    return view('admin.posts-manage');
+});
+
+Route::get('/admin/categories', function () {
+    return view('admin.categories-manage');
 });

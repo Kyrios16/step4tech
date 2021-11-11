@@ -10,7 +10,7 @@
     <!-- style -->
     <link rel="stylesheet" href="{{ asset('css/common/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common/grid.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin-style.css') }}">
 
     <!-- fonts -->
     <link rel="stylesheet" href="{{ asset('css/library/fontawesome.css') }}">

@@ -1,10 +1,12 @@
-/* basic stepup */
+@charset "UTF-8";
+/* basic stepup and reusable components */
 :root {
     --color-main: #34c85b;
-    --bg: #e4e4e4;
+    --bg: #f5f5f5;
     --main-accent: #e9eefd;
-    --main-text: #4b5876;
+    --main-text: #000000;
     --shadow: rgba(17, 17, 26, 0.1) 2px 2px 16px;
+    --btn-bg: #737373;
 }
 * {
     margin: 0;
@@ -17,35 +19,93 @@
 
 body {
     font-size: 18px;
-    background: var(--bg);
+    background: #e4e4e4;
     overflow-x: hidden;
 }
 
-.clear-fix {
-    zoom: 1;
-}
-
-.clear-fix::after {
-    content: ".";
-    display: block;
-    width: 0;
-    height: 0;
-    visibility: hidden;
+.clearfix::after {
+    content: "";
     clear: both;
+    display: block;
+    visibility: hidden;
+    font-size: 0%;
 }
 
 .container {
-    margin: 1rem;
+    width: 98%;
+    margin: 1rem auto;
 }
 
+.header-title {
+    color: var(--main-text);
+    font-weight: 600;
+}
+
+.btn {
+    display: inline-block;
+    font-size: 1rem;
+    padding: 0.5rem 1.2rem;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    color: var(--main-accent);
+}
+
+.btn-info {
+    background-color: #6883db;
+}
+
+.btn-warning {
+    background-color: #fd7e14;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-success {
+    background-color: var(--color-main);
+}
+
+.btn-success:hover {
+    background-color: #42af5f;
+}
+
+.icon-btn-info {
+    color: #6883db;
+}
+
+.icon-btn-warning {
+    color: #fd7e14;
+}
+
+.icon-btn-danger {
+    color: #dc3545;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+input[type="text"] {
+    border: 2px solid var(--main-accent);
+    padding: 0.5rem 0.7rem;
+    border-radius: 7px;
+}
+
+input:focus::placeholder {
+    color: transparent;
+}
+
+/* users management */
 .sidebar {
-    width: 345px;
+    width: 25%;
     height: 100%;
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     padding: 1rem;
+    float: left;
 }
 
 #menu-toggle {
@@ -86,26 +146,33 @@ body {
 }
 
 .sidebar-menu li {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
-.sidebar-menu a {
+.sidebar-menu a:link,
+.sidebar-menu a:visited {
     color: var(--main-text);
     display: flex;
     flex-direction: row;
-    padding: 0.6rem 0rems;
+    padding: 1rem 0.5rem;
 }
 
-.sidebar-menu a.active {
-    background: var(--main-accent);
-    padding: 0.8rem;
-    border-radius: 7px;
+.sidebar-menu a:active,
+.sidebar-menu a:hover {
+    background: var(--btn-bg);
+    border-radius: 15px;
+    color: var(--color-main);
 }
 
 .icon-small {
     display: inline-block;
     margin-right: 0.5rem;
     font-size: 1.2rem;
+    color: var(--main-text);
+}
+
+.sidebar-menu a:active .icon-small,
+.sidebar-menu a:hover .icon-small {
     color: var(--color-main);
 }
 
@@ -121,16 +188,22 @@ body {
 .sidebar-card img {
     width: 50%;
     height: auto;
+    float: right;
 }
-.main-content {
-    margin-left: 345px;
-    width: calc(98vw - 345px);
+
+.main-container {
+    width: 75%;
     height: 100%;
+    float: right;
+}
+
+.main-content {
+    width: 100%;
+    height: auto;
     padding: 1.2rem;
     background: #fff;
     border-radius: 10px;
     box-shadow: var(--shadow);
-    position: fixed;
     overflow-y: auto;
 }
 
@@ -144,11 +217,6 @@ body {
     margin-right: 1rem;
     font-size: 1.5rem;
     color: var(--color-main);
-}
-
-.header-title {
-    color: var(--main-text);
-    font-weight: 600;
 }
 
 main {
@@ -210,14 +278,19 @@ main {
     font-weight: 600;
 }
 
-.users-table-container,
-.deleted-users-table-container {
+.table-container {
     margin: 2.5rem auto;
 }
 
 .users-table,
-.deleted-users-table {
+.deleted-users-table,
+.posts-table,
+.deleted-posts-table,
+.cate-table,
+.deleted-cate-table {
     margin: 1.5rem auto;
+    height: 200px;
+    overflow-y: scroll;
 }
 
 table {
@@ -238,21 +311,6 @@ td {
     border-bottom: 1px solid #2ec3a3;
 }
 
-.btn {
-    display: inline-block;
-    font-size: 1rem;
-    border: none;
-    background: none;
-}
-
-.btn-info {
-    color: #34c85b;
-}
-
-.btn-warning {
-    color: #fd7e14;
-}
-
-.btn-danger {
-    color: #dc3545;
+.new-cate {
+    float: right;
 }
