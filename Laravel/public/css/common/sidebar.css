@@ -1,5 +1,5 @@
 .sidebar-container {
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
     width: 22%;
     height: 100%;
     color: #000000;
@@ -7,8 +7,8 @@
     float: left;
 }
 .sidebar-items {
- padding: 2% 0%;
- border-bottom: 1px solid;
+    padding: 2% 0%;
+    border-bottom: 1px solid;
 }
 .sidebar-items span,
 .sidebar-categories span {
@@ -21,12 +21,12 @@
 
 .sidebar-items span:hover {
     background-color: #707070;
-    color: #53DB77;
+    color: #34c85b;
     border-radius: 12px;
 }
 .sidebar-categories span:hover {
     background-color: #707070;
-    color: #53DB77;
+    color: #34c85b;
     border-radius: 12px;
 }
 .sidebar-content {
@@ -53,11 +53,11 @@
     align-items: center;
 }
 .categories-item:hover {
-    color: #53DB77;
+    color: #34c85b;
     background-color: #707070;
 }
 .active {
-    color: #53DB77;
+    color: #34c85b;
     background-color: #8b8b8b;
     border-radius: 12px;
 }
@@ -69,7 +69,7 @@
     display: none;
 }
 .menu-items span {
-   margin: 0% 5%;
+    margin: 0% 5%;
 }
 .menu-title {
     font-size: 0.9375rem;
@@ -89,9 +89,11 @@
 }
 
 .add {
-    color: #53DB77;
+    color: #34c85b;
 }
 .add:hover {
     color: #000;
 }
-.show {display:block;}
+.show {
+    display: block;
+}

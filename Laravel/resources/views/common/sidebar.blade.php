@@ -32,7 +32,7 @@
             </div>
             <div class="sidebar-items">
                 <span>
-                    <span class="icon"><i class="far fa-thumbs-up"></i></span>
+                    <span class="icon"><i class="fa fa-thumbs-up"></i></span>
                     <h2 class="sidebar-title">Liked Posts</h2>
                 </span>
 
