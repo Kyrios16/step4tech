@@ -13,4 +13,10 @@ interface PostServiceInterface
      * @return postList
      */
     public function getPostListForInitial();
+
+    /**
+     * To search post list
+     * @return postList searched post list
+     */
+    public function searchPost($searchValue);
 }

@@ -31,4 +31,12 @@ class PostService implements PostServiceInterface
     public function getPostListForInitial() {
         return $this->postDao->getPostListForInitial();
     }
+
+    /**
+     * To search post list
+     * @return postList searched post list
+     */
+    public function searchPost($searchValue) {
+        return $this->postDao->searchPost($searchValue);
+    }
 }

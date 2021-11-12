@@ -16,16 +16,21 @@ function showPostListByDate() {
                     "YYYY-MM-DD HH:mm:ss"
                 ).format("MMM Do, YYYY");
                 var categories = post.post_categories;
-                var categoriesArray = categories.split(',');
-                var categoriesHtml = '';    
+                var categoriesArray = categories.split(",");
+                var categoriesHtml = "";
                 categoriesArray.forEach((categoryName) => {
-                    categoriesHtml += '<span class="post-category">#' + categoryName + '</span>';
-                });                
+                    categoriesHtml +=
+                        '<span class="post-category">#' +
+                        categoryName +
+                        "</span>";
+                });
+                var getUrl = window.location;
+                var baseUrl = getUrl.protocol + "//" + getUrl.host + "/img/";
                 $(".postlist-container").append(
                     `<div class="post">
                         <div class="clearfix">
                             <div class="img-container">
-                                <img src="img/${post.profile_img}" class="postprofile-ico span-1-of-8" alt="Profile">
+                                <img src="${baseUrl + post.profile_img}" class="postprofile-ico span-1-of-8" alt="Profile">
                             </div>
                             <div class="post-blog">
                                 <p class="post-username">${post.name}</p>

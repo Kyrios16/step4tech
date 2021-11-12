@@ -23,6 +23,11 @@ Route::get('/', function () {
     ]);
 });
 
+/**
+ * Search post
+ */
+Route::get('/post/search/{searchValue}', [PostController::class, 'searchPost']);
+
 
 Route::get('/post/create', function () {
     return view('post.create');

@@ -35,4 +35,14 @@ class PostAPIController extends Controller
         $postList = $this->postServiceInterface->getPostListForInitial();
         return response()->json($postList);
     }
+
+    /**
+     * To search posts
+     * @param string $id beer id
+     * @return View searched post list
+     */
+    public function searchPost($searchValue) {
+        $postList = $this->postServiceInterface->searchPost($searchValue);
+        return response()->json($postList);
+    }
 }

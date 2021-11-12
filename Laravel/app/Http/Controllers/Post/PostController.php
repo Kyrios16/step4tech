@@ -25,4 +25,16 @@ class PostController extends Controller
     {
         $this->postServiceInterface = $postServiceInterface;
     }
+
+    /**
+     * To search posts
+     * @param string $id beer id
+     * @return View searched post list
+     */
+    public function searchPost($searchValue) {
+        return view('post.search', [
+            'title' => "Search - " . $searchValue,
+            'searchValue' => $searchValue
+        ]);
+    }
 }
