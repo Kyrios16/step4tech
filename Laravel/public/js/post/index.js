@@ -25,7 +25,7 @@ function showPostListByDate() {
                         "</span>";
                 });
                 var getUrl = window.location;
-                var baseUrl = getUrl.protocol + "//" + getUrl.host + "/img/";
+                var baseUrl = getUrl.protocol + "//" + getUrl.host + "/images/";
                 $(".postlist-container").append(
                     `<div class="post">
                         <div class="clearfix">

@@ -26,7 +26,7 @@ function searchPost() {
                             "</span>";
                     });
                     var getUrl = window.location;
-                    var baseUrl = getUrl .protocol + '//' + getUrl.host + '/img/';
+                    var baseUrl = getUrl .protocol + '//' + getUrl.host + '/images/';
                     console.log(getUrl);
                     $(".postlist-container").append(
                         `<div class="post">
