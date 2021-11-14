@@ -91,6 +91,6 @@ class CategoriesController extends Controller
     public function deleteCate($id)
     {
         $category = $this->cateInterface->deleteCate($id);
-        return response()->json($category);
+        return response(['message' => $category]);
     }
 }

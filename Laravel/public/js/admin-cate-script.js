@@ -14,7 +14,6 @@ $.ajax({
                         <td>${categories.deleted_user_id}</td>
                         <td>${categories.created_at}</td>
                         <td>${categories.updated_at}</td>
-                        <td>${categories.deleted_at}</td>
                         <td>
                             <button class="icon-btn-warning" onClick="editCategory(${categories.id})"><i class="fas fa-edit"></i></button>
                             <button class="icon-btn-danger" onClick="destroy(${categories.id})"><i class="fas fa-trash-alt"></i></button>
@@ -80,25 +79,6 @@ function updateCategory() {
         },
     });
 }
-
-// $("#editBtn").click(function (e) {
-//     e.preventDefault();
-//     let id = $("#id").val();
-//     let name = $("#name").val();
-
-//     $.ajax({
-//         data: {
-//             id: id,
-//             name: name,
-//         },
-//         url: "{{ route('update.categories') }}",
-//         type: "POST",
-//         dataType: "json",
-//         success: function (data) {
-//             window.location.replace("/admin/categories");
-//         },
-//     });
-// });
 
 function closeBox() {
     document.getElementById("popup-1").classList.remove("active");

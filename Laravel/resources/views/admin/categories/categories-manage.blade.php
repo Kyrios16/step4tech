@@ -83,11 +83,6 @@
               <div class="content">
                 <div class="close-btn" onclick="closeBox()">&times;</div>
                 <h4 class="header-title">Edit Category</h4>
-                <!-- <form id="editForm" name="editForm">
-                  <input type="hidden" id="id" name="id">
-                  <input type="text" id="name" name="name">
-                  <button class="btn btn-success" id="editBtn" type="submit">Edit</button>
-                </form> -->
                 <input type="hidden" id="id" name="id">
                 <input type="text" id="name" name="name">
                 <button class="btn btn-success" id="btnEdit" onclick="updateCategory()">Edit</button>
@@ -103,7 +98,6 @@
                   <th scope="col">Deleted User Id</th>
                   <th scope="col">Created At</th>
                   <th scope="col">Updated At</th>
-                  <th scope="col">Deleted At</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>

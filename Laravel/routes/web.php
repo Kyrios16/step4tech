@@ -35,4 +35,3 @@ Route::get('/admin/categories', function () {
 
 
 Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
-// Route::post('/categories/update/{categories}',  [CategoriesController::class, 'updateCate'])->name('update.categories');
