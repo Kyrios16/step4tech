@@ -75,7 +75,7 @@ class CategoriesDao implements CategoriesDaoInterface
      */
     public function deleteCate($id)
     {
-        $cate = Categories::find($id);
+        $cate = Categories::findOrFail($id);
         $cate->deleted_at = now();
         $cate->save();
 

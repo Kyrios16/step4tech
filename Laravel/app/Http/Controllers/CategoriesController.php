@@ -29,7 +29,8 @@ class CategoriesController extends Controller
     public function getCateList(Request $request)
     {
         $categories = $this->cateInterface->getCateList($request);
-        return view('admin.categories-manage',  compact('categories'));
+
+        return response()->json($categories);
     }
 
     /**
@@ -46,8 +47,40 @@ class CategoriesController extends Controller
         if ($validated->fails()) {
             return back()->withErrors($validated)->withInput();
         }
-        $this->cateInterface->getCateCreate($request);
-        return redirect('/admin/categories/list');
+        $category = $this->cateInterface->getCateCreate($request);
+        return redirect('/admin/categories/');
+    }
+
+    /**
+     * To find id for category edit
+     * 
+     * @param $id category id
+     * @return $cate found category
+     */
+    public function editCate($id)
+    {
+        $category = $this->cateInterface->editCate($id);
+        return response()->json($category);
+    }
+
+
+    /**
+     * To update category
+     * 
+     * @param $request
+     * @param $id found category id
+     */
+    public function updateCate(Request $request, $id)
+    {
+        $validated = validator::make($request->all(), [
+            'name' => 'required|max:255',
+        ]);
+
+        if ($validated->fails()) {
+            return back()->withErrors($validated)->withInput();
+        }
+        $category = $this->cateInterface->updateCate($request, $id);
+        return response()->json($category);
     }
 
     /**
@@ -57,7 +90,7 @@ class CategoriesController extends Controller
      */
     public function deleteCate($id)
     {
-        $this->cateInterface->deleteCate($id);
-        return redirect('/admin/categories/list');
+        $category = $this->cateInterface->deleteCate($id);
+        return response()->json($category);
     }
 }
