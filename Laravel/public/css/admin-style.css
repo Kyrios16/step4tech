@@ -1,44 +1,9 @@
 @charset "UTF-8";
 
 /* categories management */
-
-.main-container {
-    width: 75%;
-    height: 100%;
-    float: right;
-}
-
-.main-content {
-    width: 100%;
-    height: auto;
-    padding: 1.2rem;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    overflow-y: auto;
-}
-
-.header-title-container {
-    display: flex;
-    align-items: center;
-}
-
-.header-title-container label {
-    display: inline-block;
-    margin-right: 1rem;
-    font-size: 1.5rem;
-    color: var(--color-main);
-}
-
-main {
-    padding-top: 2.5rem;
-}
-
 .new-cate {
     float: right;
 }
-
-/* edit popup box model */
 
 .popup .overlay {
     position: fixed;
