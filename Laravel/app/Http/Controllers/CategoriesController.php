@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CategoriesExport;
 use App\Contracts\Services\Categories\CategoriesServiceInterface;
+
 
 class CategoriesController extends Controller
 {
@@ -24,7 +27,7 @@ class CategoriesController extends Controller
      * To get categories list
      * 
      * @param Request $request
-     * @return categories-manage blade with categories list
+     * @return Response categories list
      */
     public function getCateList(Request $request)
     {
@@ -37,6 +40,7 @@ class CategoriesController extends Controller
      * To create category
      * 
      * @param Request $request
+     * @return redirect
      */
     public function getCateCreate(Request $request)
     {
@@ -55,7 +59,7 @@ class CategoriesController extends Controller
      * To find id for category edit
      * 
      * @param $id category id
-     * @return $cate found category
+     * @return Response found category
      */
     public function editCate($id)
     {
@@ -67,8 +71,9 @@ class CategoriesController extends Controller
     /**
      * To update category
      * 
-     * @param $request
+     * @param Request $request
      * @param $id found category id
+     * @return Response updated category
      */
     public function updateCate(Request $request, $id)
     {
@@ -86,11 +91,16 @@ class CategoriesController extends Controller
     /**
      * To delete category by id
      * @param $id
-     * @return View task list
+     * @return Response message
      */
     public function deleteCate($id)
     {
         $category = $this->cateInterface->deleteCate($id);
         return response(['message' => $category]);
+    }
+
+    public function export()
+    {
+        return Excel::download(new CategoriesExport, 'categories.xlsx');
     }
 }

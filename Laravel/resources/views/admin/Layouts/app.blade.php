@@ -10,8 +10,8 @@
 
   <!-- style -->
   <link rel="stylesheet" href="{{ asset('css/common/reset.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/common/grid.css') }}">
   <link rel="stylesheet" href="{{ asset('css/admin-style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/admin-common.css') }}">
   <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"> -->
 
 

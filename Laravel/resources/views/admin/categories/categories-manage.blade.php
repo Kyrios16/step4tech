@@ -22,45 +22,7 @@
         <!-- header-title-container -->
       </header>
       <main>
-        <div class="analytics">
-          <div class="analytic-card">
-            <div class="analytic-icon icon-first">
-              <i class="fas fa-users"></i>
-            </div>
-            <div class="analytic-info">
-              <small>Total Users</small>
-              <h2>20k</h2>
-            </div>
-          </div>
-          <div class="analytic-card">
-            <div class="analytic-icon icon-sec">
-              <i class="fas fa-users"></i>
-            </div>
-            <div class="analytic-info">
-              <small>Total Users</small>
-              <h2>20k</h2>
-            </div>
-          </div>
-          <div class="analytic-card">
-            <div class="analytic-icon icon-third">
-              <i class="fas fa-users"></i>
-            </div>
-            <div class="analytic-info">
-              <small>Total Users</small>
-              <h2>20k</h2>
-            </div>
-          </div>
-          <div class="analytic-card">
-            <div class="analytic-icon icon-fourth">
-              <i class="fas fa-users"></i>
-            </div>
-            <div class="analytic-info">
-              <small>Total Users</small>
-              <h2>20k</h2>
-            </div>
-          </div>
-        </div>
-        <!-- analytics -->
+        @include('admin.common.analytics')
         <div class="table-container">
           <div class="table-header clearfix">
             <h3 class="header-title">Categories Table</h3>
@@ -71,7 +33,7 @@
               <form action="{{ route('add.categories') }}" method="POST">
                 {{ csrf_field() }}
                 <input type="text" name="name" class="@error ('name') is-invalid @enderror" placeholder="add new category">
-                <input type="submit" class="btn btn-success" value="Add Category">
+                <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New</button>
               </form>
             </div>
             <!-- new-cate -->
@@ -106,7 +68,8 @@
             </table>
           </div>
           <!-- cate-table -->
-          <button type="submit" class="btn btn-info">Export</button>
+          <a href="{{ route('export.categories') }}" class="btn btn-info">Export&nbsp;&nbsp;<i class="fas fa-file-export"></i></a>
+          <!-- <button type="submit" class="btn btn-info">Export</button> -->
         </div>
         <!-- table-container -->
       </main>

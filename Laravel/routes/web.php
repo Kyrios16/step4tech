@@ -32,6 +32,6 @@ Route::get('/admin/categories', function () {
     return view('admin.categories.categories-manage');
 });
 
-
-
 Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
+
+Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');

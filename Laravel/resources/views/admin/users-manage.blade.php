@@ -18,45 +18,7 @@
         <!-- header-title-container -->
       </header>
       <main>
-        <div class="analytics">
-          <div class="analytic-card">
-            <div class="analytic-icon icon-first">
-              <i class="fas fa-users"></i>
-            </div>
-            <div class="analytic-info">
-              <small>Total Users</small>
-              <h2>20k</h2>
-            </div>
-          </div>
-          <div class="analytic-card">
-            <div class="analytic-icon icon-sec">
-              <i class="fas fa-users"></i>
-            </div>
-            <div class="analytic-info">
-              <small>Total Users</small>
-              <h2>20k</h2>
-            </div>
-          </div>
-          <div class="analytic-card">
-            <div class="analytic-icon icon-third">
-              <i class="fas fa-users"></i>
-            </div>
-            <div class="analytic-info">
-              <small>Total Users</small>
-              <h2>20k</h2>
-            </div>
-          </div>
-          <div class="analytic-card">
-            <div class="analytic-icon icon-fourth">
-              <i class="fas fa-users"></i>
-            </div>
-            <div class="analytic-info">
-              <small>Total Users</small>
-              <h2>20k</h2>
-            </div>
-          </div>
-        </div>
-        <!-- analytics -->
+        @include('admin.common.analytics')
         <div class="table-container">
           <div class="table-header">
             <h3 class="header-title">Users Table</h3>
