@@ -3,11 +3,11 @@
 /* basic stepup and reusable components */
 :root {
     --color-main: #34c85b;
-    --bg: #e4e4e4;
+    --bg: #f5f5f5;
     --main-accent: #e9eefd;
     --main-text: #000000;
     --shadow: rgba(17, 17, 26, 0.1) 2px 2px 16px;
-    --btn-bg: #f5f5f5;
+    --main-bg: #e4e4e4;
 }
 
 * {
@@ -21,7 +21,7 @@
 
 body {
     font-size: 18px;
-    background: var(--btn-bg);
+    background: var(--main-bg);
     overflow-x: hidden;
 }
 
@@ -178,7 +178,7 @@ input:focus::placeholder {
 
 .active,
 .sidebar-menu a:hover {
-    background: var(--btn-bg);
+    background: var(--main-bg);
     border-radius: 0px 10px 10px 0px;
     color: var(--color-main);
 }
@@ -193,21 +193,6 @@ input:focus::placeholder {
 .sidebar-menu a:active .icon-small,
 .sidebar-menu a:hover .icon-small {
     color: var(--color-main);
-}
-
-.sidebar-card {
-    background: var(--bg);
-    box-shadow: var(--shadow);
-    text-align: center;
-    padding: 1.5rem 1rem;
-    border-radius: 7px;
-    margin-top: 3rem;
-}
-
-.sidebar-card img {
-    width: 50%;
-    height: auto;
-    float: right;
 }
 
 /* main container */
