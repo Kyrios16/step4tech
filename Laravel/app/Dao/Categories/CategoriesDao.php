@@ -6,6 +6,7 @@ use App\Models\Categories;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Contracts\Dao\Categories\CategoriesDaoInterface;
+use App\Models\PostCategory;
 
 class CategoriesDao implements CategoriesDaoInterface
 {
@@ -81,5 +82,16 @@ class CategoriesDao implements CategoriesDaoInterface
         $cate->save();
 
         return $cate;
+    }
+    /**
+     * To get categories list from post_category
+     * 
+     * @param $id Postid
+     * @return $categories categories list
+     */
+    public function getCateListwithPostId($id)
+    {
+        $postCategory = PostCategory::where('post_id', $id)->get();
+        return $postCategory;
     }
 }

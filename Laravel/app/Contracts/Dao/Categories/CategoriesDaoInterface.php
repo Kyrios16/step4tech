@@ -39,4 +39,11 @@ interface CategoriesDaoInterface
      * @param $id 
      */
     public function deleteCate($id);
+    /**
+     * To get categories list from post_category
+     * 
+     * @param $id Postid
+     * @return $categories categories list
+     */
+    public function getCateListwithPostId($id);
 }

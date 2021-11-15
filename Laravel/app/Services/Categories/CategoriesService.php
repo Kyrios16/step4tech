@@ -74,4 +74,14 @@ class CategoriesService implements CategoriesServiceInterface
     {
         return $this->cateDao->deleteCate($id);
     }
+    /**
+     * To get categories list from post_category
+     * 
+     * @param $id Postid
+     * @return $categories categories list
+     */
+    public function getCateListwithPostId($id)
+    {
+        return $this->cateDao->getCateListwithPostId($id);
+    }
 }
