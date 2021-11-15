@@ -1,4 +1,3 @@
-{{-- <div class="main-container"> --}}
 <div class="sidebar-container">
   <div class="sidebar-content">
     <div class="sidebar-items">
@@ -31,7 +30,7 @@
     </div>
     <div class="sidebar-items">
       <span>
-        <span class="icon"><i class="fa fa-thumbs-up"></i></span>
+        <span class="icon"><i class="fas fa-thumbs-up"></i></span>
         <h2 class="sidebar-title">Liked Posts</h2>
       </span>
 
@@ -75,4 +74,3 @@
 
   </div>
 </div>
-{{-- </div> --}}

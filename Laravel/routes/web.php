@@ -28,7 +28,8 @@ Route::get('/', function () {
  */
 Route::get('/post/search/{searchValue}', [PostController::class, 'searchPost']);
 
-
-Route::get('/post/create', function () {
-    return view('post.create');
-});
+Route::get('/post/create', [PostController::class, 'showPostCreateView'])->name('create.post');
+Route::post('/post/create', [PostController::class, 'submitPostCreateView'])->name('create.post');
+Route::get('/post/edit/{id}', [PostController::class, 'showPostEditView'])->name('edit.post');
+Route::post('/post/edit/{id}', [PostController::class, 'submitPostEdit'])->name('edit.post');
+Route::delete('/post/delete/{id}', [PostController::class, 'deletePostById']);

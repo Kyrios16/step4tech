@@ -7,6 +7,10 @@ body {
     padding: 0;   
 }
 
+button {
+    outline: none !important;
+}
+
 .clearfix::after {
     display: block;
     content: "";

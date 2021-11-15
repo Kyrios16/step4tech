@@ -9,4 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
     use SoftDeletes;
+    protected $fillable = [
+        'title',
+        'content',
+        'photo',
+    ];
+
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 }
