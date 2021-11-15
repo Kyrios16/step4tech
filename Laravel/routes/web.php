@@ -31,7 +31,7 @@ Route::get('/post/search/{searchValue}', [PostController::class, 'searchPost']);
 
 // admin dashboard routes
 Route::get('/admin', function () {
-    return view('admin.dashboard');
+    return view('admin.analytics.analytic-manage');
 });
 
 Route::get('/admin/users', function () {
