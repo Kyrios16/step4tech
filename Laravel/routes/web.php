@@ -20,3 +20,6 @@ Route::get('/', function () {
 Route::get('/post/create', function () {
     return view('post.create');
 });
+Route::get('/post/detail', function () {
+    return view('post.post-detail');
+});
