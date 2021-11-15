@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Categories;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\CategoriesExport;
+use App\Http\Controllers\Controller;
 use App\Contracts\Services\Categories\CategoriesServiceInterface;
 
 
