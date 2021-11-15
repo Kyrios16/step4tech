@@ -10,6 +10,6 @@
 @endsection
 
 @section('content')
-<div class="postlist-container">   
+<div class="postlist-container">
 </div>
 @endsection

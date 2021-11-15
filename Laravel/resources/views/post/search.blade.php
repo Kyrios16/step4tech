@@ -12,8 +12,8 @@
 
 @section('content')
 <div class="postlist-container">
-    <div class="search-title-container">
-        <h2>Search results for "<span>{{$searchValue}}</span>"</h2>
-    </div>
+  <div class="search-title-container">
+    <h2>Search results for "<span>{{$searchValue}}</span>"</h2>
+  </div>
 </div>
 @endsection
