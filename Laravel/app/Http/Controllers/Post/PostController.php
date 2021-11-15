@@ -43,7 +43,6 @@ class PostController extends Controller
     public function showPostCreateView(Request $request)
     {
         $categories = $this->categoryServiceInterface->getCateList($request);
-        info($categories);
         return view('post.create',  compact('categories'));
     }
     /**
@@ -67,14 +66,7 @@ class PostController extends Controller
     {
         $categories = $this->categoryServiceInterface->getCateList($request);
         $post = $this->postServiceInterface->getPostById($id);
-        // $postCategory = DB::table('post_category')
-        //     ->where('post_id', '=', $id)
-        //     ->get();
-        // $postCategory = PostCategory::where('post_id', $id)->get();
         $postCategory = $this->categoryServiceInterface->getCateListwithPostId($id);
-        info($postCategory);
-        info($categories);
-        info($post);
         return view('post.edit', compact('post', 'categories', 'postCategory'));
     }
 

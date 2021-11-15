@@ -54,7 +54,6 @@ class PostDao implements PostDaoInterface
         $post->created_user_id = Auth::user()->id ?? 1;
         $post->updated_user_id = Auth::user()->id ?? 1;
         $post->save();
-        info(count($request['category']));
         foreach ($request['category'] as $category) {
             $postCategory = new PostCategory();
             $postCategory->post_id = $postid;
@@ -83,8 +82,6 @@ class PostDao implements PostDaoInterface
     public function updatedPostById(Request $request, $id)
     {
         $post = post::find($id);
-        info("inside post edit");
-        info($post);
         if ($file = $request->hasFile('photo')) {
             $file = $request->file('photo');
             $extension = $file->getClientOriginalExtension();
@@ -98,14 +95,10 @@ class PostDao implements PostDaoInterface
         $post->created_user_id = Auth::user()->id ?? 1;
         $post->updated_user_id = Auth::user()->id ?? 1;
         $post->save();
-        info(count($request['category']));
         $deletedUserId =  Auth::user()->id ?? 1;
         $postCateList = PostCategory::where('post_id', $id)->get();
-        info("inside edit" . $postCateList);
         if ($postCateList) {
             foreach ($postCateList as $postCate) {
-                info($postCate);
-                // $postCate->deleted_user_id = 1;
                 $postCate->save();
                 $postCate->delete();
             }
@@ -113,8 +106,6 @@ class PostDao implements PostDaoInterface
         foreach ($request['category'] as $category) {
             $post_category = DB::insert('INSERT into post_category (post_id, category_id) VALUES (?, ?)', [$id, $category]);
         }
-        info($post);
-        info("inside post edit");
 
         return $post;
     }
