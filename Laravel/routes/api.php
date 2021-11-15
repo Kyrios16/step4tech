@@ -3,6 +3,8 @@
 use App\Http\Controllers\API\Post\PostAPIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoriesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +30,7 @@ Route::get('/post-list', [PostAPIController::class, 'showPostListForInitial']);
  * Search post
  */
 Route::get('/post/search/{searchValue}', [PostAPIController::class, 'searchPost']);
+Route::get('/admin/categories/list', [CategoriesController::class, 'getCateList'])->name('show.categories');
+Route::get('/admin/categories/edit/{categories}',  [CategoriesController::class, 'editCate'])->name('edit.categories');
+Route::post('/categories/update/{categories}',  [CategoriesController::class, 'updateCate'])->name('update.categories');
+Route::delete('/admin/categories/{categories}',  [CategoriesController::class, 'deleteCate'])->name('delete.categories');
