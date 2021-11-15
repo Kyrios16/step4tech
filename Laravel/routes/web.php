@@ -15,6 +15,19 @@ use App\Http\Controllers\CategoriesController;
 |
 */
 
+/**
+ * Display All Posts ordered by date
+ */
+Route::get('/', function () {
+    return view('post.index', [
+        'title' => 'Home'
+    ]);
+});
+
+/**
+ * Search post
+ */
+Route::get('/post/search/{searchValue}', [PostController::class, 'searchPost']);
 
 // admin dashboard routes
 Route::get('/admin', function () {

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Contracts\Services\Post;
-
 use Illuminate\Http\Request;
 
 /**
@@ -14,6 +13,13 @@ interface PostServiceInterface
      * @return postList
      */
     public function getPostListForInitial();
+
+    /**
+     * To search post list
+     * @return postList searched post list
+     */
+    public function searchPost($searchValue);
+
     /**
      * To save post
      * @param Request $request request with inputs

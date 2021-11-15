@@ -23,7 +23,12 @@ class PostController extends Controller
      * post service interface
      */
     private $postServiceInterface;
+
+    /**
+     * post category interface
+     */
     private $categoryServiceInterface;
+
     /**
      * Create a new controller instance.
      *
@@ -36,14 +41,28 @@ class PostController extends Controller
     }
 
     /**
+     * To search posts
+     * @param string $id beer id
+     * @return View searched post list
+     */
+    public function searchPost($searchValue)
+    {
+        return view('post.search', [
+            'title' => "Search - " . $searchValue,
+            'searchValue' => $searchValue
+        ]);
+    }
+
+    /**
      * To show create post view
      * 
      * @return View create post
      */
     public function showPostCreateView(Request $request)
     {
+        $title = "Create Post";
         $categories = $this->categoryServiceInterface->getCateList($request);
-        return view('post.create',  compact('categories'));
+        return view('post.create',  compact('categories', 'title'));
     }
     /**
      * To check post create form and redirect to confirm page.
@@ -55,7 +74,7 @@ class PostController extends Controller
         // validation for request values
         $validated = $request->validated();
         $post = $this->postServiceInterface->savePost($request);
-        return redirect()->route('create.post');
+        return redirect('/');
     }
     /**
      * Show post edit
@@ -64,10 +83,11 @@ class PostController extends Controller
      */
     public function showPostEditView($id, Request $request)
     {
+        $title = "Edit Post";
         $categories = $this->categoryServiceInterface->getCateList($request);
         $post = $this->postServiceInterface->getPostById($id);
         $postCategory = $this->categoryServiceInterface->getCateListwithPostId($id);
-        return view('post.edit', compact('post', 'categories', 'postCategory'));
+        return view('post.edit', compact('post', 'categories', 'postCategory', 'title'));
     }
 
     /**
@@ -80,7 +100,7 @@ class PostController extends Controller
     {
         $request->validated();
         $test = $this->postServiceInterface->updatedPostById($request, $id);
-        return redirect()->route('create.post');
+        return redirect('/');
     }
     /**
      * To delete post by id
