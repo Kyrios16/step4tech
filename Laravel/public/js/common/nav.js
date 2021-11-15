@@ -13,3 +13,14 @@ $(document).on("click", function (event) {
         $(".profile-dropdown-content").css("display", "none");
     }
 });
+
+//Search Function
+$(document).ready(function() {
+    $('.search').keydown(function(event) {
+      // Enter has keyCode = 13
+      if (event.keyCode == 13) {
+        var searchValue = $('.search').val();
+        window.location.href = "/post/search/" + searchValue;
+      }
+    });  
+});

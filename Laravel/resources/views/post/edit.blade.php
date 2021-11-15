@@ -75,7 +75,7 @@
       @enderror
       <div class="submit-btn">
         <button type="submit" class="submit">Submit</button>
-        <button class="cancel">Cancel</button>
+        <a class="cancel" href="/">Cancel</a>
       </div>
     </form>
 
