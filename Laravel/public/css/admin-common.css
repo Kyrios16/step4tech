@@ -3,12 +3,13 @@
 /* basic stepup and reusable components */
 :root {
     --color-main: #34c85b;
-    --bg: #f5f5f5;
+    --bg: #e4e4e4;
     --main-accent: #e9eefd;
     --main-text: #000000;
     --shadow: rgba(17, 17, 26, 0.1) 2px 2px 16px;
-    --btn-bg: #737373;
+    --btn-bg: #f5f5f5;
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +21,7 @@
 
 body {
     font-size: 18px;
-    background: #e4e4e4;
+    background: var(--btn-bg);
     overflow-x: hidden;
 }
 
@@ -133,7 +134,7 @@ input:focus::placeholder {
 .sidebar-container {
     height: 100%;
     width: 100%;
-    background: #fff;
+    background: var(--bg);
     border-radius: 10px;
     box-shadow: var(--shadow);
     padding: 1.2rem;
@@ -148,7 +149,7 @@ input:focus::placeholder {
     display: grid;
     grid-template-columns: 70px auto;
     align-items: center;
-    border: 2px solid var(--main-accent);
+    border: 2px solid var(--color-main);
     padding: 0.5rem 0.7rem;
     border-radius: 7px;
     margin: 2.5rem 0rem;
@@ -175,10 +176,10 @@ input:focus::placeholder {
     padding: 1rem 0.5rem;
 }
 
-.sidebar-menu a:active,
+.active,
 .sidebar-menu a:hover {
     background: var(--btn-bg);
-    border-radius: 10px;
+    border-radius: 0px 10px 10px 0px;
     color: var(--color-main);
 }
 
@@ -220,7 +221,7 @@ input:focus::placeholder {
     width: 100%;
     height: auto;
     padding: 1.2rem;
-    background: #fff;
+    background: var(--bg);
     border-radius: 10px;
     box-shadow: var(--shadow);
     overflow-y: auto;

@@ -25,7 +25,7 @@
   <script src="{{ asset('js/library/fontawesome.js') }}"></script>
   <script src="{{ asset('js/library/jquery.js') }}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <!-- <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> -->
+  <script src="{{ asset('js/admin-common.js') }}"></script>
 </head>
 
 <body>

@@ -21,25 +21,25 @@
     <div class="sidebar-menu">
       <ul>
         <li>
-          <a href="/admin">
+          <a href="/admin" class="menuBtn">
             <span class="fas fa-sliders-h icon-small"></span>
             <span>Dashboard</span>
           </a>
         </li>
         <li>
-          <a href="/admin/users" class="active">
+          <a href="/admin/users" class="menuBtn">
             <span class="fas fa-users-cog icon-small"></span>
             <span>Users Management</span>
           </a>
         </li>
         <li>
-          <a href="/admin/posts">
+          <a href="/admin/posts" class="menuBtn">
             <span class="fas fa-list-alt icon-small"></span>
             <span>Posts Management</span>
           </a>
         </li>
         <li>
-          <a href="/admin/categories">
+          <a href="/admin/categories" class="menuBtn">
             <span class="fas fa-list-alt icon-small"></span>
             <span>Categories Management</span>
           </a>
