@@ -1,0 +1,21 @@
+.search-error-container,
+.search-title-container {
+    background-color: #f5f5f5;
+    margin: 0 auto 1% auto;
+    width: 95%;
+    border-radius: 10px;
+    padding: 1em;
+}
+
+.search-title-container h2 {
+    font-size: 1.35rem;
+}
+
+.search-title-container span {
+    color: #737373;
+}
+
+.search-error-container h2 {
+    font-size: 1.2rem;
+    color: #dc3545;
+}

@@ -2,7 +2,11 @@
   <div class="sidebar-container">
     <div class="brand">
       <h1>
+<<<<<<< HEAD
         <a href="#"><img src="{{ asset ('images/logo.png') }}" alt="Logo"></a>
+=======
+        <a href="/"><img src="{{ asset ('images/logo.png') }}" alt="Logo"></a>
+>>>>>>> develop
       </h1>
     </div>
 

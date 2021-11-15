@@ -2,14 +2,10 @@
 
 @section('style')
 <link rel="stylesheet" href="{{ asset('css/post/post-create.css') }}">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">
 @endsection
 
 @section('script')
 <script src="{{ asset('js/post/post-create.js') }}"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 @endsection
 
 @section('content')
@@ -64,7 +60,7 @@
       @enderror
       <div class="submit-btn">
         <button type="submit" class="submit">Submit</button>
-        <button class="cancel">Cancel</button>
+        <a class="cancel" href="/">Cancel</a>
       </div>
     </form>
 
