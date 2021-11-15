@@ -87,7 +87,7 @@ class PostController extends Controller
     public function submitPostEdit(editPostRequest $request, $id)
     {
         $request->validated();
-        $this->postServiceInterface->updatedPostById($request, $id);
+        $test = $this->postServiceInterface->updatedPostById($request, $id);
         return redirect()->route('create.post');
     }
     /**
