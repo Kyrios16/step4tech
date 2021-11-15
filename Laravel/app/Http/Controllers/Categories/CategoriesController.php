@@ -100,6 +100,11 @@ class CategoriesController extends Controller
         return response(['message' => $category]);
     }
 
+    /**
+     * To export categories data form table
+     * 
+     * @return excel file donwloaded
+     */
     public function export()
     {
         return Excel::download(new CategoriesExport, 'categories.xlsx');

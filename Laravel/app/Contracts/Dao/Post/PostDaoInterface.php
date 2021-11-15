@@ -42,7 +42,7 @@ interface PostDaoInterface
      * @return Object $post post Object
      */
     public function updatedPostById(Request $request, $id);
-    
+
     /**
      * To delete post by id
      * @param string $id post id
@@ -50,4 +50,9 @@ interface PostDaoInterface
      * @return string $message message success or not
      */
     public function deletePostById($id, $deletedUserId);
+
+    /**
+     *  To get all posts list
+     */
+    public function getPostList();
 }
