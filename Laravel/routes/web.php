@@ -3,6 +3,7 @@
 use App\Http\Controllers\Post\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\User\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,46 @@ use App\Http\Controllers\CategoriesController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+//User Route
+Route::get('/user/create',[UserController::class,'userCreateView'])->name('user-create');
+Route::post('/user/create/store',[UserController::class,'storeUserInfo'])->name('user-store');
+Route::get('/user/edit/{id}',[UserController::class,'edit'])->name('edit-user');
+Route::post('/user/edit/{id}',[UserController::class,'update'])->name('update-user');
+Route::get('/user/detail/{id}',[UserController::class,'showProfileDetail'])->name('user-detail');
+Route::get('/user/view/{id}',[UserController::class,'view'])->name('user-view');
+
+Route::get('/admin', function () {
+    return view('admin.dashboard');
 });
+
+// manage users
+Route::get('/admin/users', function () {
+    return view('admin.users-manage');
+});
+
+// manage posts 
+Route::get('/admin/posts', [PostController::class, 'index'])->name('show.postList');
+Route::get('/posts/export', [PostController::class, 'export'])->name('export.posts');
+
+// manage categories 
+Route::get('/admin/categories', function () {
+    return view('admin.categories.categories-manage');
+});
+Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
+Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
+/* admin dashboard routes /
+
+
+/**
+ * Display All Posts ordered by date
+ */
+Route::get('/', function () {
+    return view('post.index', [
+        'title' => 'Home'
+    ]);
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
