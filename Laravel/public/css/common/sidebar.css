@@ -1,14 +1,15 @@
 .sidebar-container {
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
     width: 22%;
     height: 100%;
     color: #000000;
     border-radius: 10px;
     float: left;
+    box-shadow: rgba(17, 17, 26, 0.1) 2px 2px 16px;
 }
 .sidebar-items {
- padding: 2% 0%;
- border-bottom: 1px solid;
+    padding: 2% 0%;
+    border-bottom: 1px solid;
 }
 .sidebar-items span,
 .sidebar-categories span {
@@ -21,13 +22,13 @@
 
 .sidebar-items span:hover {
     background-color: #707070;
-    color: #53DB77;
+    color: #34c85b;
     border-radius: 12px;
 }
 .sidebar-categories span:hover {
-        background-color: #707070;
-        color: #53DB77;
-        border-radius: 12px;
+    background-color: #707070;
+    color: #34c85b;
+    border-radius: 12px;
 }
 .sidebar-content {
     margin: 0 auto;
@@ -53,11 +54,11 @@
     align-items: center;
 }
 .categories-item:hover {
-    color: #53DB77;
+    color: #34c85b;
     background-color: #707070;
 }
 .active {
-    color: #53DB77;
+    color: #34c85b;
     background-color: #8b8b8b;
     border-radius: 12px;
 }
@@ -69,7 +70,7 @@
     display: none;
 }
 .menu-items span {
-   margin: 0% 5%;
+    margin: 0% 5%;
 }
 .menu-title {
     font-size: 0.9375rem;
@@ -89,9 +90,11 @@
 }
 
 .add {
-    color: #53DB77;
+    color: #34c85b;
 }
 .add:hover {
     color: #000;
 }
-.show {display:block;}
+.show {
+    display: block;
+}

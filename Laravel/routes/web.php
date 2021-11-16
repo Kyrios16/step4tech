@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Post\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +15,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**
+ * Display All Posts ordered by date
+ */
 Route::get('/', function () {
-    return view('post.index');
+    return view('post.index', [
+        'title' => 'Home'
+    ]);
 });
 
-// Route::get('/post/create', function () {
-//     return view('post.create');
-// });
+/**
+ * Search post
+ */
+Route::get('/post/search/{searchValue}', [PostController::class, 'searchPost']);
+
+// admin dashboard routes
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+});
+
+Route::get('/admin/users', function () {
+    return view('admin.users-manage');
+});
+
+Route::get('/admin/posts', function () {
+    return view('admin.posts-manage');
+});
+
+Route::get('/admin/categories', function () {
+    return view('admin.categories.categories-manage');
+});
+
+Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
+
+Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
+
+
 Route::get('/post/create', [PostController::class, 'showPostCreateView'])->name('create.post');
 Route::post('/post/create', [PostController::class, 'submitPostCreateView'])->name('create.post');
 Route::get('/post/edit/{id}', [PostController::class, 'showPostEditView'])->name('edit.post');
