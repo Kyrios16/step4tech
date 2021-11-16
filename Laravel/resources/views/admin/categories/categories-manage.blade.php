@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- script -->
-<script src="{{ asset('js/admin-cate-script.js') }}"></script>
+<script src="{{ asset('js/admin/admin-cate-script.js') }}"></script>
 
 
 <div class="container clearfix">
@@ -12,7 +12,7 @@
     <div class="main-content">
       <header>
         <div class="header-title-container">
-          <label for="">
+          <label for="menu-toggle">
             <span class="fas fa-bars"></span>
           </label>
           <div class="header-title">
@@ -69,7 +69,6 @@
           </div>
           <!-- cate-table -->
           <a href="{{ route('export.categories') }}" class="btn btn-info">Export&nbsp;&nbsp;<i class="fas fa-file-export"></i></a>
-          <!-- <button type="submit" class="btn btn-info">Export</button> -->
         </div>
         <!-- table-container -->
       </main>

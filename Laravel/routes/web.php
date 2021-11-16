@@ -18,7 +18,7 @@ use App\Http\Controllers\Categories\CategoriesController;
 
 /** admin dashboard routes */
 Route::get('/admin', function () {
-    return view('admin.dashboard');
+    return view('admin.analytic.analytics-manage');
 });
 
 // manage users
