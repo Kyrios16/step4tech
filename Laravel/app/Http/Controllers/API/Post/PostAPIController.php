@@ -41,7 +41,8 @@ class PostAPIController extends Controller
      * @param string $id beer id
      * @return View searched post list
      */
-    public function searchPost($searchValue) {
+    public function searchPost($searchValue)
+    {
         $postList = $this->postServiceInterface->searchPost($searchValue);
         return response()->json($postList);
     }

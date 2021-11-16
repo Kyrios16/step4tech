@@ -7,6 +7,8 @@ use App\Contracts\Services\Post\PostServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\createPostRequest;
 use App\Http\Requests\editPostRequest;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PostsExport;
 use App\Models\PostCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +40,18 @@ class PostController extends Controller
     {
         $this->postServiceInterface = $postServiceInterface;
         $this->categoryServiceInterface = $categoriesServiceInterface;
+    }
+
+    /**
+     * To show posts list
+     * 
+     * 
+     */
+    public function index()
+    {
+        $posts = $this->postServiceInterface->getPostList();
+
+        return view('admin.post.posts-manage', compact('posts'));
     }
 
     /**
@@ -111,5 +125,15 @@ class PostController extends Controller
         $deletedUserId = Auth::user()->id ?? 1;
         $msg = $this->postServiceInterface->deletePostById($id, $deletedUserId);
         return response($msg, 204);
+    }
+
+    /**
+     * To export posts data form table
+     * 
+     * @return excel file donwloaded
+     */
+    public function export()
+    {
+        return Excel::download(new PostsExport, 'posts.xlsx');
     }
 }
