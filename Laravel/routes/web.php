@@ -54,12 +54,12 @@ Route::get('/', function () {
     return view('post.index', [
         'title' => 'Home'
     ]);
-});
+})->middleware(['auth'])->name('dashboard');
 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+});
 
 require __DIR__.'/auth.php';
 
@@ -84,16 +84,6 @@ Route::get('/admin/categories', function () {
 Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
 Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
 /** admin dashboard routes */
-
-
-/**
- * Display All Posts ordered by date
- */
-Route::get('/', function () {
-    return view('post.index', [
-        'title' => 'Home'
-    ]);
-});
 
 /**
  * Search post
