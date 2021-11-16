@@ -14,6 +14,13 @@ interface PostServiceInterface
      * @return postList
      */
     public function getPostListForInitial();
+
+    /**
+     * To search post list
+     * @return postList searched post list
+     */
+    public function searchPost($searchValue);
+
     /**
      * To save post
      * @param Request $request request with inputs
@@ -40,4 +47,9 @@ interface PostServiceInterface
      * @return string $message message success or not
      */
     public function deletePostById($id, $deletedUserId);
+
+    /**
+     * To get all posts list
+     */
+    public function getPostList();
 }

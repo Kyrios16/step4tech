@@ -29,6 +29,31 @@ class PostDao implements PostDaoInterface
                                         ORDER BY posts.updated_at DESC"));
         return $postList;
     }
+
+    /**
+     * To search post list
+     * @return postList searched post list
+     */
+    public function searchPost($searchValue)
+    {
+        $postList = DB::select(DB::raw("SELECT users.name, users.profile_img, posts.created_at, posts.title, GROUP_CONCAT(categories.name) AS post_categories
+                                        FROM users, posts, categories, post_category
+                                        WHERE users.id = posts.created_user_id
+                                        AND posts.id = post_category.post_id
+                                        AND categories.id = post_category.category_id
+                                        AND (
+                                            users.name LIKE :userSearchValue OR
+                                            posts.title LIKE :postSearchValue OR
+                                            categories.name LIKE :categorySearchValue)
+                                        GROUP BY posts.id
+                                        ORDER BY posts.updated_at DESC"), array(
+            'userSearchValue' => '%' . $searchValue . '%',
+            'postSearchValue' => '%' . $searchValue . '%',
+            'categorySearchValue' => '%' . $searchValue . '%'
+        ));
+        return $postList;
+    }
+
     /**
      * To save post
      * @param Request $request request with inputs
@@ -58,8 +83,8 @@ class PostDao implements PostDaoInterface
             $postCategory = new PostCategory();
             $postCategory->post_id = $postid;
             $postCategory->category_id = $category;
+            $postCategory->save();
         }
-        $postCategory->save();
         return $post;
     }
     /**
@@ -125,5 +150,16 @@ class PostDao implements PostDaoInterface
             return 'Deleted Successfully!';
         }
         return 'Post Not Found!';
+    }
+
+    /**
+     *  To get all posts list
+     * 
+     * @return $posts posts list
+     */
+    public function getPostList()
+    {
+        $posts = DB::table('posts')->orderBy('id')->get();
+        return $posts;
     }
 }
