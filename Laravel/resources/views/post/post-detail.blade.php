@@ -9,5 +9,5 @@
 @endsection
 
 @section('content')
-<h1>Post details</h1>
+<h1>Post details{{$id}}</h1>
 @endsection

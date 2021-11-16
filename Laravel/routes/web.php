@@ -56,6 +56,4 @@ Route::post('/post/create', [PostController::class, 'submitPostCreateView'])->na
 Route::get('/post/edit/{id}', [PostController::class, 'showPostEditView'])->name('edit.post');
 Route::post('/post/edit/{id}', [PostController::class, 'submitPostEdit'])->name('edit.post');
 Route::delete('/post/delete/{id}', [PostController::class, 'deletePostById']);
-Route::get('/post/detail', function () {
-    return view('post.post-detail');
-});
+Route::get('/post/detail/{id}',  [PostController::class, 'showPostDetailView'])->name('detail.post');

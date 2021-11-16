@@ -112,4 +112,14 @@ class PostController extends Controller
         $msg = $this->postServiceInterface->deletePostById($id, $deletedUserId);
         return response($msg, 204);
     }
+    /**
+     * To show post detail view
+     * 
+     * @return View post detail
+     */
+    public function showPostDetailView($id)
+    {
+        $title = "Detail";
+        return view('post.post-detail', compact('title', 'id'));
+    }
 }
