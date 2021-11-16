@@ -23,20 +23,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function userCreateView()
-    {
-        return view('User.create-user');
-    }
-
-    /**
-     * To Show the profile detail.
-     *
-     * @return View profile detail view
-     */
-    public function showProfileDetail($id)
+    public function userCreateView($id)
     {
         $user = $this->userInterface->getUserById($id);
-        return view('User.profile-view-detail',compact('user'));
+        return view('User.create-user',compact('user'));
     }
 
     /**
@@ -62,18 +52,7 @@ class UserController extends Controller
         $user = $this->userInterface->getUserById($id);
         return view('User.update-user', compact('user'));
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function storeUserInfo(UserCreateRequest $request)
-    {
-        $validated = $request->validated();
-        $user = $this->userInterface->storeUserInfo($request);
-        return view('auth.login')->with('success', 'Data added successfully');
-    }
+    
     /**
      * Update the specified resource in storage.
      *
@@ -88,13 +67,26 @@ class UserController extends Controller
         return view('User.profile-view-detail',compact('user'))->with('success', 'Data updated successfully');
     }
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeUserInfo(UserCreateRequest $request)
+    {
+        $validated = $request->validated();
+        $user = $this->userInterface->storeUserInfo($request);
+        return view('auth.login')->with('success', 'Data added successfully');
+    }
+    /**
      * To Show the application dashboard.
      *
      * @return View change password view
      */
-    public function showChangePasswordView()
+    public function showChangePasswordView($id)
     {
-        return view('User.change-password');
+        $user = $this->userInterface->getUserById($id);
+        return view('User.change-password',compact('user'));
     }
 
     /**

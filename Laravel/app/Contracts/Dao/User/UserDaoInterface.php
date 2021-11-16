@@ -9,6 +9,8 @@
 
         public function update($request, $id);
 
+        public function getUserList();
+
         public function changeUserPassword($request);
 
     }

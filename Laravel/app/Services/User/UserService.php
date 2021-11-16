@@ -24,6 +24,11 @@
             return $this->userDao->getUserById($id);
         }
 
+        public function getUserList(){
+
+            return $this->userDao->getUserList();
+        }
+
         public function update($request, $id){
             return $this->userDao->update($request,$id);
         }

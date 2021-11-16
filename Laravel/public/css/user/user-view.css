@@ -74,32 +74,46 @@
 
 .bio {
     font-size: 1rem;
-    margin-top: 5px;
+    margin: 2%;
+    padding: 5%;
+    box-sizing: border-box;
+    border: 1px dotted #707070;
 }
 
-.link-group {
+.dob {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.fa-birthday-cake {
+    color: #663399;
+}
+
+.link-group,
+.data-group {
     display: block;
     position: relative;
+    padding-bottom: 5%;
 }
 
-.linkedin a,
-.github a {
+.left a,
+.right a {
     display: block;
     margin: -20px 0px 0px 30px;
     font-weight: bold;
-    color: #000;
 }
 
-.linkedin {
+.left {
     float: left;
 }
 
-.github {
+.right {
     float: right;
 }
 
 i {
     font-size: 1.5rem;
+    margin-right: 5px;
 }
 
 .btn-group {
@@ -135,20 +149,13 @@ i {
 }
 
 .btn-cancel:hover {
-    border-color: #707070;
-    color: #707070;
+    border-color: #000;
+    color: #000;
 }
 
 .profile-data {
     width: 80%;
     margin: 0 auto;
-}
-
-.profile-data ul {
-    text-decoration: none;
-}
-
-.profile-data li {
     font-size: 1rem;
     font-weight: bold;
     margin-bottom: 10px;

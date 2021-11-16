@@ -33,7 +33,7 @@
 
   <div class="container">
     <div class="create-form-wrapper">
-      <form method="post" action="{{ route('user-store') }}" class="user-form" enctype="multipart/form-data">
+      <form method="post" action="{{ route('submit-register') }}" class="user-form" enctype="multipart/form-data">
         @csrf
         <div class="cover-img">
           <input type="file" class="file-upload" name="cover_img" onchange="preview_cover(event)">

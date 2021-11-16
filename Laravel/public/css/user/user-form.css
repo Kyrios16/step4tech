@@ -175,8 +175,8 @@ span {
 }
 
 .btn-cancel:hover {
-    border-color: #707070;
-    color: #707070;
+    border-color: #000;
+    color: #000;
 }
 
 .text {

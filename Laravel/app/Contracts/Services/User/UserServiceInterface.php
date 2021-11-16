@@ -10,4 +10,6 @@
         public function update($request, $id);
 
         public function changeUserPassword($request);
+
+        public function getUserList();
     }

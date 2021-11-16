@@ -26,21 +26,31 @@
         <div class="profile-img">
           <img src="{{ URL::to('/') }}/images/profile/{{ $user->profile_img }}" class="profile">
         </div>
-        <a href="{{ route('profile-detail',$user->id) }}" class="setting" align="right">
+        <a href="{{ route('edit-user',$user->id) }}" class="setting" align="right">
           <i class="fas fa-cog"></i>
         </a>
         <div class="name-bio">
           <h1 class="name">{{ $user->name }}</h1>
           <p class="bio">{{ $user->bio }}</p>
+          <p class="dob"><i class="fas fa-birthday-cake"></i> {{ $user->date_of_birth }}</p>
         </div>
-        <div class="link-group clearfix">
-          <div class="linkedin">
-            <i class="fab fa-linkedin"></i>
-            <a href="{{ $user->linkedin }}">{{ $user->linkedin }}</a>
+        <div class="profile-data">
+          <div class="link-group">
+            <p class="left">
+              <i class="fab fa-linkedin"></i>
+              <a href="{{ $user->linkedin }}" class="link">{{ $user->linkedin }}</a>
+            </p>
+            <p class="right">
+              <i class="fab fa-github-square"></i>
+              <a href="{{ $user->github }}" class="link">{{ $user->github }}</a>
+            </p>
           </div>
-          <div class="github">
-            <i class="fab fa-github-square"></i>
-            <a href="{{ $user->github }}">{{ $user->github }}</a>
+          <div class="data-group">
+            <p class="left"><i class="fas fa-briefcase"></i>{{$user->position }}</p>
+            <p class="right">
+              <i class="fas fa-phone-square-alt"></i> 
+              <a href="tel:{{ $user->ph_no }}"> {{ $user->ph_no }}</a>
+            </p>
           </div>
         </div>
       </div>

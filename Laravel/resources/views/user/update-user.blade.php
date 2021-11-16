@@ -23,8 +23,8 @@
   
   <div class="container">
     <div class="create-form-wrapper">
-      <form method="post" action="/user/{{$user->id}}" class="user-form" enctype="multipart/form-data">
-        {{csrf_field()}}
+      <form method="post" action="{{ route('update-user',$user->id) }}" class="user-form" enctype="multipart/form-data">
+        @csrf
 
         <div class="cover-img">
           <input type="file" class="file-upload" name="cover_img" onchange="preview_cover(event)">
@@ -78,13 +78,13 @@
           </div>
 
           <div class="formdata-control">
-            <a href="{{ route('change-password-view') }}" class="link-text">Change Password?</a>
+            <a href="{{ route('change-password-view',$user->id) }}" class="link-text">Change Password?</a>
           </div>
           
           <div class="formdata-control">
             <div class="btn-group clearfix">
               <input type="submit" class="btn btn-success" name="create" value="Update">
-              <a href="{{ route('profile-detail',$user->id) }}" class="btn btn-cancel" name="cancel_btn">Cancel</a>
+              <a href="{{ route('user-view',$user->id) }}" class="btn btn-cancel" name="cancel_btn">Cancel</a>
             </div>
           </div>
 

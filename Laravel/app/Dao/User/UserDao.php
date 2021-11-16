@@ -12,6 +12,8 @@ class UserDao implements UserDaoInterface
 {
     public function storeUserInfo($request)
     {
+        $userlist = DB::table("users")->get();
+        $userid = count($userlist)+1;
         if ($cover_img = $request->file('cover_img')) {
             $destinationPath = public_path() . '/images/cover';
             $newcover = "cover_" . date('YmdHis') . "." . $cover_img->getClientOriginalExtension();
@@ -35,8 +37,8 @@ class UserDao implements UserDaoInterface
         $user->ph_no = $request['ph_no'];
         $user->position = $request['position'];
         $user->role = 1;
-        $user->created_user_id = 1;
-        $user->updated_user_id = 1;
+        $user->created_user_id = $userid;
+        $user->updated_user_id = $userid;
         $user->save();
         return $user;
     }
@@ -46,6 +48,12 @@ class UserDao implements UserDaoInterface
     {
         $user = User::findOrFail($id);
         return $user;
+    }
+
+    public function getUserList()
+    {
+        $userlist = User::orderBy('created_at', 'asc')->get();
+        return $userlist;
     }
 
     public function update($request, $id)

@@ -15,21 +15,22 @@ use App\Http\Controllers\User\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Register
+Route::get('/user/create',[UserController::class,'userCreateView'])->name('register');
+Route::post('/user/create/store',[UserController::class,'storeUserInfo'])->name('submit-register');
 
 //User Route
-Route::get('/user/create',[UserController::class,'userCreateView'])->name('user-create');
-Route::post('/user/create/store',[UserController::class,'storeUserInfo'])->name('user-store');
 Route::get('/user/edit/{id}',[UserController::class,'edit'])->name('edit-user');
-Route::post('/user/edit/{id}',[UserController::class,'update'])->name('update-user');
-Route::get('/user/detail/{id}',[UserController::class,'showProfileDetail'])->name('user-detail');
+Route::post('/user/update/{id}',[UserController::class,'update'])->name('update-user');
 Route::get('/user/view/{id}',[UserController::class,'view'])->name('user-view');
+Route::get('/user/password/change/{id}',[UserController::class,'showChangePasswordView'])->name('change-password-view');
+Route::post('/user/password/{id}',[UserController::class,'changePassword'])->name('change-password');
 
 Route::get('/admin', function () {
     return view('admin.dashboard');
 });
 
-// manage users
+// manage users 
 Route::get('/admin/users', function () {
     return view('admin.users-manage');
 });

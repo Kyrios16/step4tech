@@ -15,7 +15,7 @@
         <h1>Sign in</h1>
         <h2>New User?
           @if (Route::has('login'))
-          <a href="{{ route('user-create') }}" class="ml-4 text-sm text-gray-700 dark:text-green-500 underline">Create Account</a>
+          <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-green-500 underline">Create Account</a>
           @endif
         </h2><br>
         <x-label for="email" :value="__('Email')" />
