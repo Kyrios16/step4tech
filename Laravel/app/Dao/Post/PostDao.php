@@ -20,7 +20,7 @@ class PostDao implements PostDaoInterface
      */
     public function getPostListForInitial()
     {
-        $postList = DB::select(DB::raw("SELECT users.name, users.profile_img, posts.created_at, posts.title, GROUP_CONCAT(categories.name) AS post_categories
+        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, GROUP_CONCAT(categories.name) AS post_categories
                                         FROM users, posts, categories, post_category
                                         WHERE users.id = posts.created_user_id
                                         AND posts.id = post_category.post_id
@@ -36,7 +36,7 @@ class PostDao implements PostDaoInterface
      */
     public function searchPost($searchValue)
     {
-        $postList = DB::select(DB::raw("SELECT users.name, users.profile_img, posts.created_at, posts.title, GROUP_CONCAT(categories.name) AS post_categories
+        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, GROUP_CONCAT(categories.name) AS post_categories
                                         FROM users, posts, categories, post_category
                                         WHERE users.id = posts.created_user_id
                                         AND posts.id = post_category.post_id

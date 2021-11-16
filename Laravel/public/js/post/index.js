@@ -20,9 +20,11 @@ function showPostListByDate() {
                 var categoriesHtml = "";
                 categoriesArray.forEach((categoryName) => {
                     categoriesHtml +=
-                        '<span class="post-category">#' +
+                        '<a class="post-category" href="/post/search/' +
                         categoryName +
-                        "</span>";
+                        '">#' +
+                        categoryName +
+                        "</a>";
                 });
                 var getUrl = window.location;
                 var baseUrl = getUrl.protocol + "//" + getUrl.host + "/images/";
@@ -30,18 +32,24 @@ function showPostListByDate() {
                     `<div class="post">
                         <div class="clearfix">
                             <div class="img-container">
-                                <img src="${baseUrl + post.profile_img}" class="postprofile-ico span-1-of-8" alt="Profile">
+                                <img src="${
+                                    baseUrl + post.profile_img
+                                }" class="postprofile-ico span-1-of-8" alt="Profile">
                             </div>
                             <div class="post-blog">
                                 <p class="post-username">${post.name}</p>
                                 <p class="post-date">${created_at}</p>             
-                                <h2 class="post-title">${post.title}</h2>
+                                <a class="post-title" href="/post/detail/${
+                                    post.id
+                                }">${post.title}</a>
                                 ${categoriesHtml}
                             </div> 
                         </div>
                         <div class="postbtn-container">
                             <button class="post-btn" onclick="togglePostLike(this)"><i class="far fa-thumbs-up"></i> Like</button>
-                            <a href="#" class="post-btn"><i class="far fa-comment-alt"></i> Feedback</a>
+                            <a href="/post/detail/${
+                                post.id
+                            }" class="post-btn"><i class="far fa-comment-alt"></i> Feedback</a>
                         </div>
                     </div>`
                 );
