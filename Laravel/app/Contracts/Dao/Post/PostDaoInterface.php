@@ -14,18 +14,27 @@ interface PostDaoInterface
      * @return postList
      */
     public function getPostListForInitial();
+
+    /**
+     * To search post list
+     * @return postList searched post list
+     */
+    public function searchPost($searchValue);
+
     /**
      * To save post
      * @param Request $request request with inputs
      * @return Object $post saved post
      */
     public function savePost(Request $request);
+
     /**
      * To get post by id
      * @param string $id post id
      * @return Object $post post object
      */
     public function getPostById($id);
+
     /**
      * To update post by id
      * @param Request $request request with inputs
@@ -33,6 +42,7 @@ interface PostDaoInterface
      * @return Object $post post Object
      */
     public function updatedPostById(Request $request, $id);
+
     /**
      * To delete post by id
      * @param string $id post id
@@ -40,4 +50,9 @@ interface PostDaoInterface
      * @return string $message message success or not
      */
     public function deletePostById($id, $deletedUserId);
+
+    /**
+     *  To get all posts list
+     */
+    public function getPostList();
 }

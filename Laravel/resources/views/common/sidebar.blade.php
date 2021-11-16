@@ -1,4 +1,3 @@
-{{-- <div class="main-container"> --}}
 <div class="sidebar-container">
   <div class="sidebar-content">
     <div class="sidebar-items">
@@ -75,4 +74,3 @@
 
   </div>
 </div>
-{{-- </div> --}}

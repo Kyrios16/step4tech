@@ -17,7 +17,7 @@ class CreateFeedbacksTable extends Migration
             $table->id();
             $table->foreignId('post_id')->references('id')->on('posts');
             $table->text('content');
-            $table->string('photo', 255);
+            $table->string('photo', 255)->nullable();
             $table->foreignId('created_user_id')->references('id')->on('users');
             $table->foreignId('updated_user_id')->references('id')->on('users');
             $table->foreignId('deleted_user_id')->nullable()->references('id')->on('users');

@@ -7,6 +7,8 @@ use App\Contracts\Services\Post\PostServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\createPostRequest;
 use App\Http\Requests\editPostRequest;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PostsExport;
 use App\Models\PostCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +25,12 @@ class PostController extends Controller
      * post service interface
      */
     private $postServiceInterface;
+
+    /**
+     * post category interface
+     */
     private $categoryServiceInterface;
+
     /**
      * Create a new controller instance.
      *
@@ -36,14 +43,40 @@ class PostController extends Controller
     }
 
     /**
+     * To show posts list
+     * 
+     * 
+     */
+    public function index()
+    {
+        $posts = $this->postServiceInterface->getPostList();
+
+        return view('admin.post.posts-manage', compact('posts'));
+    }
+
+    /**
+     * To search posts
+     * @param string $id beer id
+     * @return View searched post list
+     */
+    public function searchPost($searchValue)
+    {
+        return view('post.search', [
+            'title' => "Search - " . $searchValue,
+            'searchValue' => $searchValue
+        ]);
+    }
+
+    /**
      * To show create post view
      * 
      * @return View create post
      */
     public function showPostCreateView(Request $request)
     {
+        $title = "Create Post";
         $categories = $this->categoryServiceInterface->getCateList($request);
-        return view('post.create',  compact('categories'));
+        return view('post.create',  compact('categories', 'title'));
     }
     /**
      * To check post create form and redirect to confirm page.
@@ -55,7 +88,7 @@ class PostController extends Controller
         // validation for request values
         $validated = $request->validated();
         $post = $this->postServiceInterface->savePost($request);
-        return redirect()->route('create.post');
+        return redirect('/');
     }
     /**
      * Show post edit
@@ -64,10 +97,11 @@ class PostController extends Controller
      */
     public function showPostEditView($id, Request $request)
     {
+        $title = "Edit Post";
         $categories = $this->categoryServiceInterface->getCateList($request);
         $post = $this->postServiceInterface->getPostById($id);
         $postCategory = $this->categoryServiceInterface->getCateListwithPostId($id);
-        return view('post.edit', compact('post', 'categories', 'postCategory'));
+        return view('post.edit', compact('post', 'categories', 'postCategory', 'title'));
     }
 
     /**
@@ -80,7 +114,7 @@ class PostController extends Controller
     {
         $request->validated();
         $test = $this->postServiceInterface->updatedPostById($request, $id);
-        return redirect()->route('create.post');
+        return redirect('/');
     }
     /**
      * To delete post by id
@@ -91,5 +125,15 @@ class PostController extends Controller
         $deletedUserId = Auth::user()->id ?? 1;
         $msg = $this->postServiceInterface->deletePostById($id, $deletedUserId);
         return response($msg, 204);
+    }
+
+    /**
+     * To export posts data form table
+     * 
+     * @return excel file donwloaded
+     */
+    public function export()
+    {
+        return Excel::download(new PostsExport, 'posts.xlsx');
     }
 }
