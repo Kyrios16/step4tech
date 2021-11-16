@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\Post\PostController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Categories\CategoriesController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\User\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,18 +15,58 @@ use App\Http\Controllers\Categories\CategoriesController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Register
+Route::get('/user/create',[UserController::class,'userCreateView'])->name('register')
+ ->middleware('guest');
+Route::post('/user/create/store',[UserController::class,'storeUserInfo'])->name('submit-register')
+->middleware('guest');
 
-Route::get('/', function () {
-    return view('welcome');
+//User Route
+Route::get('/user/edit/{id}',[UserController::class,'edit'])->name('edit-user');
+Route::post('/user/update/{id}',[UserController::class,'update'])->name('update-user');
+Route::get('/user/view/{id}',[UserController::class,'view'])->name('user-view');
+Route::get('/user/password/change/{id}',[UserController::class,'showChangePasswordView'])->name('change-password-view');
+Route::post('/user/password/{id}',[UserController::class,'changePassword'])->name('change-password');
+
+Route::get('/admin', function () {
+    return view('admin.dashboard');
 });
+
+// manage users 
+Route::get('/admin/users', function () {
+    return view('admin.users-manage');
+});
+
+// manage posts 
+Route::get('/admin/posts', [PostController::class, 'index'])->name('show.postList');
+Route::get('/posts/export', [PostController::class, 'export'])->name('export.posts');
+
+// manage categories 
+Route::get('/admin/categories', function () {
+    return view('admin.categories.categories-manage');
+});
+Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
+Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
+/* admin dashboard routes /
+
+
+/**
+ * Display All Posts ordered by date
+ */
+Route::get('/', function () {
+    return view('post.index', [
+        'title' => 'Home'
+    ]);
+})->middleware(['auth'])->name('dashboard');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+});
 
 require __DIR__.'/auth.php';
 
-/** admin dashboard routes */
+// admin dashboard routes
 Route::get('/admin', function () {
     return view('admin.dashboard');
 });
@@ -46,16 +87,6 @@ Route::get('/admin/categories', function () {
 Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
 Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
 /** admin dashboard routes */
-
-
-/**
- * Display All Posts ordered by date
- */
-Route::get('/', function () {
-    return view('post.index', [
-        'title' => 'Home'
-    ]);
-});
 
 /**
  * Search post
