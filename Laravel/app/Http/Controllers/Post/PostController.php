@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Post;
 
 use App\Contracts\Services\Categories\CategoriesServiceInterface;
+use App\Contracts\Services\Feedback\FeedbackServiceInterface;
 use App\Contracts\Services\Post\PostServiceInterface;
+use App\Contracts\Services\User\UserServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\createPostRequest;
 use App\Http\Requests\editPostRequest;
@@ -25,19 +27,29 @@ class PostController extends Controller
     private $postServiceInterface;
 
     /**
-     * post category interface
+     * category service interface
      */
     private $categoryServiceInterface;
+    /**
+     * user service interface
+     */
+    private $userServiceInterface;
+    /**
+     * feedback service interface
+     */
+    private $feedbackServiceInterface;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(PostServiceInterface $postServiceInterface, CategoriesServiceInterface $categoriesServiceInterface)
+    public function __construct(PostServiceInterface $postServiceInterface, CategoriesServiceInterface $categoriesServiceInterface, UserServiceInterface $userServiceInterface, FeedbackServiceInterface $feedbackServiceInterface)
     {
         $this->postServiceInterface = $postServiceInterface;
         $this->categoryServiceInterface = $categoriesServiceInterface;
+        $this->userServiceInterface = $userServiceInterface;
+        $this->feedbackServiceInterface = $feedbackServiceInterface;
     }
 
     /**
@@ -120,6 +132,10 @@ class PostController extends Controller
     public function showPostDetailView($id)
     {
         $title = "Detail";
-        return view('post.post-detail', compact('title', 'id'));
+        // $user = $this->userServiceInterface->getUserById($id);
+        // $post = $this->postServiceInterface->getPostById($id);
+        $feedbackList = $this->feedbackServiceInterface->getFeedbackbyPostId($id);
+        return $feedbackList;
+        // return view('post.post-detail', compact('title', 'id'));
     }
 }
