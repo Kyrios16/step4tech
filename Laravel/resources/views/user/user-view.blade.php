@@ -35,17 +35,17 @@
           <p class="dob"><i class="fas fa-birthday-cake"></i> {{ $user->date_of_birth }}</p>
         </div>
         <div class="profile-data">
-          <div class="link-group">
+          <div class="link-group clearfix">
             <p class="left">
               <i class="fab fa-linkedin"></i>
-              <a href="{{ $user->linkedin }}" class="link">{{ $user->linkedin }}</a>
+              <a href="{{ $user->linkedin }}">{{ $user->linkedin }}</a>
             </p>
             <p class="right">
               <i class="fab fa-github-square"></i>
-              <a href="{{ $user->github }}" class="link">{{ $user->github }}</a>
+              <a href="{{ $user->github }}">{{ $user->github }}</a>
             </p>
           </div>
-          <div class="data-group">
+          <div class="data-group clearfix">
             <p class="left"><i class="fas fa-briefcase"></i>{{$user->position }}</p>
             <p class="right">
               <i class="fas fa-phone-square-alt"></i> 

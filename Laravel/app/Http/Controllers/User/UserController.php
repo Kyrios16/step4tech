@@ -15,18 +15,8 @@ class UserController extends Controller
     private $userInterface;
     public function __construct(UserServiceInterface $userServiceInterface)
     {
+        //$this->middleware('Auth');
         $this->userInterface = $userServiceInterface;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function userCreateView($id)
-    {
-        $user = $this->userInterface->getUserById($id);
-        return view('User.create-user',compact('user'));
     }
 
     /**
