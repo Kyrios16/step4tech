@@ -7,6 +7,7 @@ use App\Contracts\Services\Feedback\FeedbackServiceInterface;
 use App\Contracts\Services\Post\PostServiceInterface;
 use App\Contracts\Services\User\UserServiceInterface;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\createFeedbackRequest;
 use App\Http\Requests\createPostRequest;
 use App\Http\Requests\editPostRequest;
 use App\Models\PostCategory;
@@ -139,7 +140,7 @@ class PostController extends Controller
         $post->created_at = $date;
         $feedbackList = $this->feedbackServiceInterface->getFeedbackbyPostId($id);
         $postCategory = $this->categoryServiceInterface->getCateListwithPostId($id);
-        info($post);
+        // info($feedbackList);
         return view('post.post-detail', compact('title', 'user', 'post', 'feedbackList', 'postCategory', 'date'));
     }
 }

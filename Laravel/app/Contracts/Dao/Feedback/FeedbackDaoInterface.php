@@ -14,4 +14,12 @@ interface FeedbackDaoInterface
      * @return Object $feedback
      */
     public function getFeedbackbyPostId($Id);
+    /**
+     * To create feedback
+     * 
+     * @param $request
+     * @param $id
+     * @return $feedback created new feedback
+     */
+    public function createFeedback($request, $id);
 }

@@ -35,4 +35,15 @@ class FeedbackService implements FeedbackServiceInterface
     {
         return $this->feedbackDao->getFeedbackbyPostId($Id);
     }
+    /**
+     * To create feedback
+     * 
+     * @param $request
+     * @param $id
+     * @return $feedback created new feedback
+     */
+    public function createFeedback($request, $id)
+    {
+        return $this->feedbackDao->createFeedback($request, $id);
+    }
 }

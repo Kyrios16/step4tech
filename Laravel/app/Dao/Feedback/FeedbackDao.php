@@ -3,6 +3,8 @@
 namespace App\Dao\Feedback;
 
 use App\Contracts\Dao\Feedback\FeedbackDaoInterface;
+use App\Models\Feedback;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -24,5 +26,35 @@ class FeedbackDao implements FeedbackDaoInterface
         GROUP BY feedbacks.id
         ORDER BY feedbacks.updated_at DESC"));
         return $feedbackList;
+    }
+
+    /**
+     * To create feedback
+     * 
+     * @param $request
+     * @param $id
+     * @return $feedback created new feedback
+     */
+    public function createFeedback($request, $id)
+    {
+        $feedbackList = DB::table("feedbacks")
+            ->get();
+        $feedbackid = count($feedbackList) + 1;
+        $feedback = new Feedback();
+
+        if ($file = $request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension();
+            $newName = "feedback_" . $feedbackid . "." . $extension;
+            $destinationPath = public_path() . '/images/feedbacks/';
+            $file->move($destinationPath, $newName);
+            $feedback->photo = $newName;
+        }
+        $feedback->content = $request->content;
+        $feedback->post_id = $id;
+        $feedback->created_user_id = Auth::user()->id ?? 1;
+        $feedback->updated_user_id = Auth::user()->id ?? 1;
+        $feedback->save();
+        return $feedback;
     }
 }
