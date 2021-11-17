@@ -167,6 +167,9 @@
     flex-direction: column;
     align-items: flex-end;
 }
+.form-error {
+    color: red;
+}
 #feedback-preImg {
     display: none;
 }

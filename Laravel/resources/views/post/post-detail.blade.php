@@ -56,24 +56,25 @@
                 <img id="preview-image-before-upload" class="preview-img" src="{{ asset('images/image_not_found.gif') }}" alt="preview image">
             </div>
             <textarea name="content" onkeyup="autoheight(this)" rows="1" class="input-feedback-content @error('content') is-invalid @enderror" placeholder="Enter Your Feedback..."></textarea>
-            @error('content')
-            <span class="form-error">
-                <div>{{ $message }}</div>
-            </span>
-            @enderror
             <label class="uploadLabel">
                 <i class="fas fa-folder-plus"></i>
 
                 <input type="file" class="uploadButton @error('photo') is-invalid @enderror" name="photo" id="image" placeholder="Upload Image" />
             </label>
+
+            <button class="feedback-send">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+            @error('content')
+            <span class="form-error">
+                <div>{{ $message }}</div>
+            </span>
+            @enderror
             @error('photo')
             <span class="form-error">
                 <div>{{ $message }}</div>
             </span>
             @enderror
-            <button class="feedback-send">
-                <i class="fas fa-paper-plane"></i>
-            </button>
         </form>
         @endauth
         @foreach($feedbackList as $feedback)

@@ -14,10 +14,9 @@ class CategoriesDao implements CategoriesDaoInterface
     /**
      * To get categories list
      * 
-     * @param $request
      * @return $categories categories list
      */
-    public function getCateList($request)
+    public function getCateList()
     {
         $categories = Categories::orderBy('created_at', 'asc')->get();
         return $categories;

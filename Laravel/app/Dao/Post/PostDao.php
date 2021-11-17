@@ -158,4 +158,15 @@ class PostDao implements PostDaoInterface
         }
         return 'Post Not Found!';
     }
+
+    /**
+     *  To get all posts list
+     * 
+     * @return $posts posts list
+     */
+    public function getPostList()
+    {
+        $posts = DB::table('posts')->orderBy('id')->get();
+        return $posts;
+    }
 }

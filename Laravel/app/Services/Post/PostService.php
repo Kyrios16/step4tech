@@ -29,7 +29,8 @@ class PostService implements PostServiceInterface
      * To get post list for intial view
      * @return postList
      */
-    public function getPostListForInitial() {
+    public function getPostListForInitial()
+    {
         return $this->postDao->getPostListForInitial();
     }
 
@@ -37,10 +38,11 @@ class PostService implements PostServiceInterface
      * To search post list
      * @return postList searched post list
      */
-    public function searchPost($searchValue) {
+    public function searchPost($searchValue)
+    {
         return $this->postDao->searchPost($searchValue);
     }
-    
+
     /**
      * To save post
      * @param Request $request request with inputs
@@ -79,5 +81,15 @@ class PostService implements PostServiceInterface
     public function deletePostById($id, $deletedUserId)
     {
         return $this->postDao->deletePostById($id, $deletedUserId);
+    }
+
+    /**
+     * To get all posts list
+     * 
+     * @return posts list from database
+     */
+    public function getPostList()
+    {
+        return $this->postDao->getPostList();
     }
 }

@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\createFeedbackRequest;
 use App\Http\Requests\createPostRequest;
 use App\Http\Requests\editPostRequest;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PostsExport;
 use App\Models\PostCategory;
 use Carbon\Carbon;
 use DateTime;
@@ -53,6 +55,18 @@ class PostController extends Controller
         $this->categoryServiceInterface = $categoriesServiceInterface;
         $this->userServiceInterface = $userServiceInterface;
         $this->feedbackServiceInterface = $feedbackServiceInterface;
+    }
+
+    /**
+     * To show posts list
+     * 
+     * 
+     */
+    public function index()
+    {
+        $posts = $this->postServiceInterface->getPostList();
+
+        return view('admin.post.posts-manage', compact('posts'));
     }
 
     /**
@@ -148,5 +162,14 @@ class PostController extends Controller
         $postCategory = $this->categoryServiceInterface->getCateListwithPostId($id);
         // info($feedbackList);
         return view('post.post-detail', compact('title', 'user', 'post', 'feedbackList', 'postCategory', 'date'));
+    }
+    /**
+     * To export posts data form table
+     * 
+     * @return excel file donwloaded
+     */
+    public function export()
+    {
+        return Excel::download(new PostsExport, 'posts.xlsx');
     }
 }

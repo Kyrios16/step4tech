@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Contracts\Services\Post;
+
 use Illuminate\Http\Request;
 
 /**
@@ -46,4 +47,9 @@ interface PostServiceInterface
      * @return string $message message success or not
      */
     public function deletePostById($id, $deletedUserId);
+
+    /**
+     * To get all posts list
+     */
+    public function getPostList();
 }
