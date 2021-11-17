@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserEditRequest;
 use App\Contracts\Services\User\UserServiceInterface;
 use App\Http\Requests\UserPasswordChangeRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 
@@ -25,9 +26,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function view($id)
+    public function view()
     {
-        $user = $this->userInterface->getUserById($id);
+        $userId = Auth::user()->id;
+        $user = $this->userInterface->getUserById($userId);
         return view('User.user-view', compact('user'));
     }
 
@@ -54,7 +56,7 @@ class UserController extends Controller
     {
         $validated = $request->validated();
         $user = $this->userInterface->update($request, $id);
-        return view('User.profile-view-detail',compact('user'))->with('success', 'Data updated successfully');
+        return view('User.user-view',compact('user'))->with('success', 'Data updated successfully');
     }
     
     /**

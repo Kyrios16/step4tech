@@ -23,7 +23,7 @@
   
   <div class="container">
     <div class="create-form-wrapper">
-      <form method="post" action="{{ route('update-user',$user->id) }}" class="user-form" enctype="multipart/form-data">
+      <form method="POST" action="{{ route('update-user',$user->id) }}" class="user-form" enctype="multipart/form-data">
         @csrf
 
         <div class="cover-img">
