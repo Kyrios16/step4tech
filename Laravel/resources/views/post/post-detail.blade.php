@@ -25,7 +25,7 @@
 
             @endforeach
         </div>
-        <div class="upload-user clearfix">
+        <div class="upload-user postUpload-user clearfix">
             <a href="#" class="upload-user-info">
                 <img class="profile-img" class="preview-img" src="{{ URL::to('/') }}/images/profile/{{ $post->profile_img }}" alt="user image">
                 <p class="upload-user-name">{{$post->name}}</p>
@@ -49,6 +49,7 @@
     </div>
     <div class="detail-body">
         <h2 class="feedback-header">Feedbacks</h2>
+        @auth
         <form class="feedback-txtfield" method="POST" action="{{ route('feedback.post',$post->id) }}" enctype="multipart/form-data">
             @csrf
             <div class=" preview-image-container" id="feedback-preImg">
@@ -74,6 +75,7 @@
                 <i class="fas fa-paper-plane"></i>
             </button>
         </form>
+        @endauth
         @foreach($feedbackList as $feedback)
         <div class="feedback-container">
             <div class="upload-user clearfix feedback-upload-user">
@@ -81,6 +83,7 @@
                     <img class="profile-img" class="preview-img" src="{{ URL::to('/') }}/images/profile/{{ $feedback->profile_img }}" alt="user image">
                     <p class="upload-user-name">{{$feedback->name}}</p>
                 </a>
+                <p class="feedback-time">{{$feedback->time}}</p>
             </div>
             <p class="feedback-content">{{$feedback->content}}</p>
             @if($feedback->photo != NULL)

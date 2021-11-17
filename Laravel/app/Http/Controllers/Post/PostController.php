@@ -11,6 +11,8 @@ use App\Http\Requests\createFeedbackRequest;
 use App\Http\Requests\createPostRequest;
 use App\Http\Requests\editPostRequest;
 use App\Models\PostCategory;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -75,7 +77,9 @@ class PostController extends Controller
     {
         $title = "Create Post";
         $categories = $this->categoryServiceInterface->getCateList($request);
-        return view('post.create',  compact('categories', 'title'));
+        $id = Auth::user()->id ?? 1;
+        $user = $this->userServiceInterface->getUserById($id);
+        return view('post.create',  compact('categories', 'title', 'user'));
     }
     /**
      * To check post create form and redirect to confirm page.
@@ -100,7 +104,9 @@ class PostController extends Controller
         $categories = $this->categoryServiceInterface->getCateList($request);
         $post = $this->postServiceInterface->getPostById($id);
         $postCategory = $this->categoryServiceInterface->getCateListwithPostId($id);
-        return view('post.edit', compact('post', 'categories', 'postCategory', 'title'));
+        $userid = Auth::user()->id ?? 1;
+        $user = $this->userServiceInterface->getUserById($userid);
+        return view('post.edit', compact('post', 'categories', 'postCategory', 'title', 'user'));
     }
 
     /**

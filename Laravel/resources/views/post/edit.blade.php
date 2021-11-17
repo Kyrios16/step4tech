@@ -17,8 +17,8 @@
 <div class="postCreate-container">
     <div class="postCreate">
         <div class="user-info">
-            <img src="{{ asset('images/img_profile_skeleton.png') }}" class="user-profile" alt="Profile">
-            <a class="user-name">User Name</a>
+            <img src="{{ URL::to('/') }}/images/profile/{{ $user->profile_img }}" class="user-profile" alt="Profile">
+            <a class="user-name">{{$user->name}}</a>
         </div>
         <form class="create-form" method="POST" enctype="multipart/form-data">
             @csrf

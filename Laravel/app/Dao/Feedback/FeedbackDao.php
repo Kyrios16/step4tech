@@ -4,6 +4,8 @@ namespace App\Dao\Feedback;
 
 use App\Contracts\Dao\Feedback\FeedbackDaoInterface;
 use App\Models\Feedback;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -19,12 +21,20 @@ class FeedbackDao implements FeedbackDaoInterface
      */
     public function getFeedbackbyPostId($Id)
     {
-        $feedbackList = DB::select(DB::raw("SELECT feedbacks.content, feedbacks.photo, users.name, users.profile_img
+        $feedbackList = DB::select(DB::raw("SELECT feedbacks.content, feedbacks.photo, users.name, users.profile_img,feedbacks.created_at
         FROM feedbacks,users
         WHERE users.id = feedbacks.created_user_id
         AND feedbacks.post_id = $Id
         GROUP BY feedbacks.id
         ORDER BY feedbacks.updated_at DESC"));
+        foreach ($feedbackList as $feedback) {
+            $currentDate = new DateTime();
+            $startTime = Carbon::parse($currentDate);
+            $endTime = Carbon::parse($feedback->created_at);
+            $totalDuration = $endTime->diffForHumans($startTime);
+            $feedback->time = $totalDuration;
+        }
+
         return $feedbackList;
     }
 
