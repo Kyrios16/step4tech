@@ -15,11 +15,6 @@
         {
             $this->userDao = $userDaoInterface;
         }
-        public function storeUserInfo($request)
-        {
-            return $this->userDao->storeUserInfo($request);
-        }
-
         public function getUserById($id){
             return $this->userDao->getUserById($id);
         }

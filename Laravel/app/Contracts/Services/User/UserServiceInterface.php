@@ -3,8 +3,6 @@
 
     interface UserServiceInterface
     {
-        public function storeUserInfo($request);
-
         public function getUserById($id);
 
         public function update($request, $id);

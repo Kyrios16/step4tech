@@ -10,40 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class UserDao implements UserDaoInterface
 {
-    public function storeUserInfo($request)
-    {
-        $userlist = DB::table("users")->get();
-        $userid = count($userlist)+1;
-        if ($cover_img = $request->file('cover_img')) {
-            $destinationPath = public_path() . '/images/cover';
-            $newcover = "cover_" . date('YmdHis') . "." . $cover_img->getClientOriginalExtension();
-            $cover_img->move($destinationPath, $newcover);
-        }
-        if ($profile_img = $request->file('profile_img')) {
-            $destinationPath = public_path() . '/images/profile';
-            $newProfile = "profile_" . date('YmdHis') . "." . $profile_img->getClientOriginalExtension();
-            $profile_img->move($destinationPath, $newProfile);
-        }
-        $user = new User;
-        $user->cover_img = $newcover;
-        $user->profile_img = $newProfile;
-        $user->name = $request['name'];
-        $user->email = $request['email'];
-        $user->password = Hash::make($request['password']);
-        $user->bio = $request['bio'];
-        $user->github = $request['github'];
-        $user->linkedin = $request['linkedin'];
-        $user->date_of_birth = $request['date_of_birth'];
-        $user->ph_no = $request['ph_no'];
-        $user->position = $request['position'];
-        $user->role = 1;
-        $user->created_user_id = $userid;
-        $user->updated_user_id = $userid;
-        $user->save();
-        return $user;
-    }
-
-
     public function getUserById($id)
     {
         $user = User::findOrFail($id);

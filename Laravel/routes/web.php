@@ -18,9 +18,9 @@ use App\Http\Controllers\User\UserController;
 */
 //User Route
 
-Route::get('/user/edit/',[UserController::class,'edit'])->name('edit-user');
+Route::get('/user/edit/{id}',[UserController::class,'edit'])->name('edit-user');
 Route::post('/user/update/{id}',[UserController::class,'update'])->name('update-user');
-Route::get('/user/view/{id}',[UserController::class,'view'])->name('user-view');
+Route::get('/user/view',[UserController::class,'view'])->name('user-view');
 Route::get('/user/password/change/{id}',[UserController::class,'showChangePasswordView'])->name('change-password-view');
 Route::post('/user/password/{id}',[UserController::class,'changePassword'])->name('change-password');
 
