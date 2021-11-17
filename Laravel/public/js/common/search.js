@@ -29,8 +29,25 @@ function searchPost() {
                     });
                     var getUrl = window.location;
                     var baseUrl =
-                        getUrl.protocol + "//" + getUrl.host + "/images/";
-                    console.log(getUrl);
+                        getUrl.protocol +
+                        "//" +
+                        getUrl.host +
+                        "/images/profile/";
+                    var likeCount = 0;
+                    var islikedClass = '';
+                    var thumbFillClass = 'far';
+                    if (post.post_voted_userid != null) {
+                        var likedUserIdArray = post.post_voted_userid.split(",");
+                        likeCount = likedUserIdArray.length;
+                        if(loggedin) {
+                            likedUserIdArray.forEach((likedUserId) => {
+                                if(likedUserId == userId) {
+                                    islikedClass = "post-liked";
+                                    thumbFillClass = "fa";
+                                }
+                            });
+                        }
+                    } 
                     $(".postlist-container").append(
                         `<div class="post">
                             <div class="clearfix">
@@ -49,7 +66,7 @@ function searchPost() {
                                 </div> 
                             </div>
                             <div class="postbtn-container">
-                                <button class="post-btn" onclick="togglePostLike(this)"><i class="far fa-thumbs-up"></i> Like</button>
+                                <button class="post-btn ${islikedClass}" onclick="togglePostLike(this, ${post.id})"><i class="${thumbFillClass} fa-thumbs-up"></i> ${likeCount} Likes</button>
                                 <a href="/post/detail/${
                                     post.id
                                 }" class="post-btn"><i class="far fa-comment-alt"></i> Feedback</a>

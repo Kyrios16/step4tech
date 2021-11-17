@@ -30,7 +30,18 @@ Route::get('/post-list', [PostAPIController::class, 'showPostListForInitial']);
  * Search post
  */
 Route::get('/post/search/{searchValue}', [PostAPIController::class, 'searchPost']);
+
 Route::get('/admin/categories/list', [CategoriesController::class, 'getCateList'])->name('show.categories');
 Route::get('/admin/categories/edit/{categories}',  [CategoriesController::class, 'editCate'])->name('edit.categories');
 Route::post('/categories/update/{categories}',  [CategoriesController::class, 'updateCate'])->name('update.categories');
 Route::delete('/admin/categories/{categories}',  [CategoriesController::class, 'deleteCate'])->name('delete.categories');
+
+/**
+ * To Like Post
+ */
+Route::post('/post/like', [PostAPIController::class, 'likePost']);
+
+/**
+ * To Unlike Post
+ */
+Route::post('/post/unlike', [PostAPIController::class, 'unlikePost']);
