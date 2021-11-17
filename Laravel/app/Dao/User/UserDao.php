@@ -24,7 +24,6 @@ class UserDao implements UserDaoInterface
 
     public function update($request, $id)
     {
-        dd("hello");
         $user = User::find(Auth::user()->id);
         if ($cover_img = $request->hasFile('cover_img')) {
             $cover_img = $request->file('cover_img');

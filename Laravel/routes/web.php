@@ -18,11 +18,11 @@ use App\Http\Controllers\User\UserController;
 */
 //User Route
 
-Route::get('/user/edit/{id}',[UserController::class,'edit'])->name('edit-user');
-Route::post('/user/update/{id}',[UserController::class,'update'])->name('update-user');
+Route::get('/user/edit',[UserController::class,'edit'])->name('edit-user');
+Route::post('/user/update/{userid}',[UserController::class,'update'])->name('update-user');
 Route::get('/user/view',[UserController::class,'view'])->name('user-view');
-Route::get('/user/password/change/{id}',[UserController::class,'showChangePasswordView'])->name('change-password-view');
-Route::post('/user/password/{id}',[UserController::class,'changePassword'])->name('change-password');
+Route::get('/user/password',[UserController::class,'showChangePasswordView'])->name('change-password-view');
+Route::post('/user/password',[UserController::class,'changePassword'])->name('change-password');
 
 Route::get('/admin', function () {
     return view('admin.analytic.analytics-manage');
@@ -53,7 +53,7 @@ Route::get('/', function () {
     return view('post.index', [
         'title' => 'Home'
     ]);
-})->middleware(['auth'])->name('dashboard');
+});
 
 
 
@@ -82,16 +82,6 @@ Route::get('categories/export/', [CategoriesController::class, 'export'])->name(
 /** admin dashboard routes */
 
 require __DIR__.'/auth.php';
-
-// admin dashboard routes
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-});
-
-// manage users
-Route::get('/admin/users', function () {
-    return view('admin.users-manage');
-});
 
 // manage posts 
 Route::get('/admin/posts', [PostController::class, 'index'])->name('show.postList');

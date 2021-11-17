@@ -26,7 +26,7 @@
         <div class="profile-img">
           <img src="{{ URL::to('/') }}/images/profile/{{ $user->profile_img }}" class="profile">
         </div>
-        <a href="{{ route('edit-user',$user->id) }}" class="setting" align="right">
+        <a href="{{ route('edit-user') }}" class="setting" align="right">
           <i class="fas fa-cog"></i>
         </a>
         <div class="name-bio">

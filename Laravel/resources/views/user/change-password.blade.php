@@ -22,7 +22,7 @@
     <div class="create-form-wrapper">
       <div class="changepwd-wrapper">
         <h1 class="title">Change Your Password?</h1>
-        <form action="{{ route('change-password',$user->id) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('change-password') }}" method="post" enctype="multipart/form-data">
           @csrf
           {{-- @foreach ($errors->all() as $error)
                             <p>{{ $error }}</p>
