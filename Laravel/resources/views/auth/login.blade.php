@@ -4,15 +4,15 @@
 
   <div id="sign-in">
     <div class="container">
-      <!-- Session Status -->
-      <x-auth-session-status class="mb-4" :status="session('status')" />
-
-      <!-- Validation Errors -->
-      <x-auth-validation-errors class="mb-4" :errors="$errors" />
       <div class="circle-btn" align="right">
         <a href="/" class="round-btn"><i class="fas fa-times"></i></a>
       </div>
       <div class="login-content clearfix">
+        <!-- Session Status -->
+        <x-auth-session-status class="mb-4" :status="session('status')" />
+
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <div class="content-sec">
 
           <form method="POST" action="{{ route('login') }}">
@@ -53,7 +53,7 @@
           </form>
         </div>
         <div class="img-sec">
-          <img src="{{ asset('images/signin_bannar.png')}}">
+          <img src="{{ asset('images/signin_bannar.png')}}" class="signin-bannar">
         </div>
       </div>
     </div>
