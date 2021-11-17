@@ -18,7 +18,7 @@ use App\Http\Controllers\User\UserController;
 
 
 Route::get('/admin', function () {
-    return view('admin.dashboard');
+    return view('admin.analytic.analytics-manage');
 });
 
 // manage users 

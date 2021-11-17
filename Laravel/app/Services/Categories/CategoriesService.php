@@ -32,13 +32,11 @@ class CategoriesService implements CategoriesServiceInterface
 
     /**
      * To get categories list
-     * 
-     * @param $request
      * @return $cates categories list
      */
-    public function getCateList($request)
+    public function getCateList()
     {
-        return $this->cateDao->getCateList($request);
+        return $this->cateDao->getCateList();
     }
 
     /**
