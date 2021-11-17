@@ -21,7 +21,7 @@
         <div class="profile-dropdown-content">
           <a href="/admin/categories">Admin</a>
           <a href="#">View Profile</a>
-          <a href="#">Log out</a>
+          <a href="{{ route('logout')}}">Log out</a>
         </div>
       </div>
 

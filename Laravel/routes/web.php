@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\Post\PostController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Categories\CategoriesController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\User\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +16,27 @@ use App\Http\Controllers\Categories\CategoriesController;
 |
 */
 
+/**
+ * Display All Posts ordered by date
+ */
+Route::get('/', function () {
+    return view('post.index', [
+        'title' => 'Home'
+    ]);
+})->middleware(['auth'])->name('dashboard');
 
-/** admin dashboard routes */
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+require __DIR__ . '/auth.php';
+
 Route::get('/admin', function () {
     return view('admin.analytic.analytics-manage');
 });
 
-// manage users
+// manage users 
 Route::get('/admin/users', function () {
     return view('admin.users-manage');
 });
@@ -37,16 +52,6 @@ Route::get('/admin/categories', function () {
 Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
 Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
 /** admin dashboard routes */
-
-
-/**
- * Display All Posts ordered by date
- */
-Route::get('/', function () {
-    return view('post.index', [
-        'title' => 'Home'
-    ]);
-});
 
 /**
  * Search post
