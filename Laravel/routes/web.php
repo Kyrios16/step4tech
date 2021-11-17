@@ -16,29 +16,6 @@ use App\Http\Controllers\User\UserController;
 |
 */
 
-
-Route::get('/admin', function () {
-    return view('admin.analytic.analytics-manage');
-});
-
-// manage users 
-Route::get('/admin/users', function () {
-    return view('admin.users-manage');
-});
-
-// manage posts 
-Route::get('/admin/posts', [PostController::class, 'index'])->name('show.postList');
-Route::get('/posts/export', [PostController::class, 'export'])->name('export.posts');
-
-// manage categories 
-Route::get('/admin/categories', function () {
-    return view('admin.categories.categories-manage');
-});
-Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
-Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
-/* admin dashboard routes /
-
-
 /**
  * Display All Posts ordered by date
  */
@@ -53,14 +30,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-// admin dashboard routes
 Route::get('/admin', function () {
-    return view('admin.dashboard');
+    return view('admin.analytic.analytics-manage');
 });
 
-// manage users
+// manage users 
 Route::get('/admin/users', function () {
     return view('admin.users-manage');
 });
