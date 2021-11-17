@@ -1,10 +1,7 @@
 <x-guest-layout>
-    <div class="free-container">
-      <div class="circle-btn" align="right">
-        <a href="/" class="round-btn"><i class="fas fa-times"></i></a>
-      </div>
+
   <x-auth-card>
-    
+
     <div class="mb-4 text-sm text-gray-600">
       {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
     </div>
@@ -32,5 +29,5 @@
       </div>
     </form>
   </x-auth-card>
-</div>
+
 </x-guest-layout>

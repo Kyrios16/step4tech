@@ -10,38 +10,41 @@ use Illuminate\Support\Facades\DB;
 
 class UserDao implements UserDaoInterface
 {
+    /**
+     * To get user by id
+     * @param string $id user id
+     * @return Object $user user object
+     */
     public function getUserById($id)
     {
         $user = User::findOrFail($id);
         return $user;
     }
 
+    /**
+     * To get user list
+     * @return array $userList list of users
+     */
     public function getUserList()
     {
         $userlist = User::orderBy('created_at', 'asc')->get();
         return $userlist;
     }
 
-    public function update($request, $id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function updateUser($request)
     {
         $user = User::find(Auth::user()->id);
-        if ($cover_img = $request->hasFile('cover_img')) {
-            $cover_img = $request->file('cover_img');
-            $destinationPath = public_path() . '/cover';
-            $newcover = "cover_" . date('YmdHis') . "." . $cover_img->getClientOriginalExtension();
-            $cover_img->move($destinationPath, $newcover);
-        }
-        if ($profile_img = $request->hasFile('profile_img')) {
-            $profile_img = $request->file('profile_img');
-            $destinationPath = public_path() . '/profile';
-            $newProfile = "profile_" . date('YmdHis') . "." . $profile_img->getClientOriginalExtension();
-            $profile_img->move($destinationPath, $newProfile);
-        }
-        $user->cover_img = $newcover;
-        $user->profile_img = $newProfile;
+
         $user->name = $request['name'];
         $user->email = $request['email'];
-        $user->password = Hash::make($request['password']);
         $user->bio = $request['bio'];
         $user->github = $request['github'];
         $user->linkedin = $request['linkedin'];
@@ -51,6 +54,24 @@ class UserDao implements UserDaoInterface
         $user->role = 1;
         $user->created_user_id = Auth::user()->id;
         $user->updated_user_id = Auth::user()->id;
+
+        if ($request->hasFile('cover_img')) {
+            $cover_img = $request->file('cover_img');
+            $destinationPath = public_path() . '/cover';
+            $newcover = "cover_" . date('YmdHis') . "." . $cover_img->getClientOriginalExtension();
+            $cover_img->move($destinationPath, $newcover);
+            $user->cover_img = $newcover;
+        }
+        if ($request->hasFile('profile_img')) {
+            $profile_img = $request->file('profile_img');
+            $destinationPath = public_path() . '/profile';
+            $newProfile = "profile_" . date('YmdHis') . "." . $profile_img->getClientOriginalExtension();
+            $profile_img->move($destinationPath, $newProfile);
+            $user->profile_img = $newProfile;
+        }
+        
+        
+
         $user->save();
         return $user;
     }

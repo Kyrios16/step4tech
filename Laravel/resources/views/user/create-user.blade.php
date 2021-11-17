@@ -29,7 +29,6 @@
       @endforeach
     </ul>
   </div>
-  @endif
 
   <div class="container">
     <div class="create-form-wrapper">

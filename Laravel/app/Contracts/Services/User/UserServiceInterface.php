@@ -1,13 +1,29 @@
-<?php 
-    namespace App\Contracts\Services\User;
+<?php
 
-    interface UserServiceInterface
-    {
-        public function getUserById($id);
+namespace App\Contracts\Services\User;
 
-        public function update($request, $id);
+/**
+ * Interface for Services of user
+ */
+interface UserServiceInterface
+{
+    /**
+     * To get user by id
+     * @param string $id user id
+     * @return Object $user user object
+     */
+    public function getUserById($id);
 
-        public function changeUserPassword($request);
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateUser($request);
 
-        public function getUserList();
-    }
+    public function changeUserPassword($request);
+
+    public function getUserList();
+}

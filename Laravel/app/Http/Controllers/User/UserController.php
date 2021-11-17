@@ -39,7 +39,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function showUserEditView()
     {
         $userId = Auth::user()->id;
         $user = $this->userInterface->getUserById($userId);
@@ -53,11 +53,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserEditRequest $request, $id)
+    
+    public function submitUserEditView(Request $request)
     {
-        $validated = $request->validated();
-        $user = $this->userInterface->update($request, $id);
-        return view('User.user-view',compact('user'))->with('success', 'Data updated successfully');
+       //$validated = $request->validated();
+        $user = $this->userInterface->updateUser($request);
+        return redirect('/user/view');
     }
     
     /**
@@ -80,7 +81,7 @@ class UserController extends Controller
         // validation for request values
         $validated = $request->validated();
         $user = $this->userInterface->changeUserPassword($validated);
-        return redirect()->route('user-view');
+        return redirect('/');
     }
 
     /**

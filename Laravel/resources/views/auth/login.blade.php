@@ -28,7 +28,7 @@
               </h2><br>
               <x-label for="email" :value="__('Email')" />
 
-              <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+              <x-input id="email" class="block mt-1 w-full" type="email" name="email"  required autofocus />
             </div>
 
             <!-- Password -->
@@ -53,7 +53,7 @@
           </form>
         </div>
         <div class="img-sec">
-          <img src="{{ asset('images/signin_bannar.png')}}" class="signin-bannar">
+          <img src="{{ asset('images/signin_bannar.png')}}" alt="BANNAR">
         </div>
       </div>
     </div>

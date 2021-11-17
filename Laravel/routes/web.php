@@ -18,8 +18,8 @@ use App\Http\Controllers\User\UserController;
 */
 //User Route
 
-Route::get('/user/edit',[UserController::class,'edit'])->name('edit-user');
-Route::post('/user/update/{userid}',[UserController::class,'update'])->name('update-user');
+Route::get('/user/edit',[UserController::class,'showUserEditView'])->name('edit-user');
+Route::post('/user/edit',[UserController::class,'submitUserEditView'])->name('update-user');
 Route::get('/user/view',[UserController::class,'view'])->name('user-view');
 Route::get('/user/password',[UserController::class,'showChangePasswordView'])->name('change-password-view');
 Route::post('/user/password',[UserController::class,'changePassword'])->name('change-password');
@@ -43,8 +43,16 @@ Route::get('/admin/categories', function () {
 });
 Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
 Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
-/* admin dashboard routes /
+/* admin dashboard routes */
 
+Route::get('/admin', function () {
+    return view('admin.analytic.analytics-manage');
+});
+
+// manage users 
+Route::get('/admin/users', function () {
+    return view('admin.users-manage');
+});
 
 /**
  * Display All Posts ordered by date
@@ -59,15 +67,6 @@ Route::get('/', function () {
 
 require __DIR__.'/auth.php';
 
-// admin dashboard routes
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-});
-
-// manage users
-Route::get('/admin/users', function () {
-    return view('admin.users-manage');
-});
 
 // manage posts 
 Route::get('/admin/posts', [PostController::class, 'index'])->name('show.postList');
