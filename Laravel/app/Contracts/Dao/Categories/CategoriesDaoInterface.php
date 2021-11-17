@@ -13,10 +13,8 @@ interface CategoriesDaoInterface
 
     /**
      * To get categories list
-     * 
-     * @param $requet
      */
-    public function getCateList($request);
+    public function getCateList();
 
     /**
      * To find id for category edit

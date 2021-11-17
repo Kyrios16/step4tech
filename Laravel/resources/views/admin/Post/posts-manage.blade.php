@@ -8,7 +8,7 @@
     <div class="main-content">
       <header>
         <div class="header-title-container">
-          <label for="">
+          <label for="menu-toggle">
             <span class="fas fa-bars"></span>
           </label>
           <div class="header-title">
