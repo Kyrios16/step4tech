@@ -41,7 +41,7 @@ function showPostListByDate() {
                         </div>
                         <div class="postbtn-container">
                             <button class="post-btn" onclick="togglePostLike(this)"><i class="far fa-thumbs-up"></i> Like</button>
-                            <a href="#" class="post-btn"><i class="far fa-comment-alt"></i> Feedback</a>
+                            <a href="/post/detail/${post.id}" class="post-btn"><i class="far fa-comment-alt"></i> Feedback</a>
                         </div>
                     </div>`
                 );
