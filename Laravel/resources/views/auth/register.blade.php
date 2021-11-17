@@ -1,59 +1,120 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <!--style-->
+  <link href="{{ asset('css/common/reset.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/auth/user-form.css') }}" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+  <!--script-->
+  <script src="{{ asset('js/preview-img.js') }}"></script>
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+</head>
 
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
+<body>
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+
+  @if ($errors->any())
+  <div>
+    <ul>
+      @foreach($errors->all() as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+  @endif
+
+  <div class="container">
+    <div class="create-form-wrapper">
+      <form method="post" action="{{ route('submit-register') }}" class="user-form" enctype="multipart/form-data">
+        @csrf
+        <div class="cover-img">
+          <input type="file" class="file-upload" name="cover_img" onchange="preview_cover(event)">
+          <img id="cover_preview" class="cover">
+        </div>
+
+        <div class="profile-data">
+          <div class="profile-img">
+            <input type="file" class="file-upload" name="profile_img" onchange="preview_profile(event)">
+            <img id="profile_preview" class="profile">
+          </div>
+
+          <div class="formdata-control">
+            <label for="name">Username <span>*</span></label><br>
+            <input type="text" class="form-input" name="name" placeholder="Enter Username">
+          </div>
+
+          <div class="formdata-control">
+            <label for="email">Email Address <span>*</span></label><br>
+            <input type="email" class="form-input" name="email" placeholder="Enter Email">
+          </div>
+
+          <div class="formdata-control">
+            <label for="password">Password <span>*</span></label><br>
+            <input type="password" class="form-input" name="password" placeholder="Enter Password">
+            @error('password')
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+          </div>
+
+          <div class="formdata-control">
+            <label for="password_confirmatoion">Password Confirmation<span>*</span></label><br>
+            <input type="password" class="form-input" name="password_confirmation" placeholder="Enter Password Again">
+          </div>
+
+          <div class="formdata-control">
+            <label for="dob">Date of Birth <span>*</span></label><br>
+            <input type="date" class="form-input" name="date_of_birth">
+          </div>
+
+          <div class="formdata-control">
+            <label for="bio">Biography </label><br>
+            <input type="text" class="form-input" name="bio" placeholder="Enter Biography">
+          </div>
+
+          <div class="formdata-control">
+            <label for="position">Job Position <span>*</span></label><br>
+            <input type="text" class="form-input" name="position" placeholder="Enter Job Position">
+          </div>
+
+          <div class="formdata-control">
+            <label for="linkedin">LinkedIn Link (Optional)</label><br>
+            <input type="text" class="form-input" name="linkedin" placeholder="Enter LinkedIn Link">
+          </div>
+
+          <div class="formdata-control">
+            <label for="github">GitHub Link (Optional) </label><br>
+            <input type="text" class="form-input" name="github" placeholder="Enter GitHub Link ">
+          </div>
+
+          <div class="formdata-control">
+            <label for="ph_no">Phone Number (Optional) </label><br>
+            <input type="text" class="form-input" name="ph_no" placeholder="Enter Phone Number ">
+          </div>
+
+          <div class="formdata-control">
+
+            <p class="text">Already have an account? <a href="{{ route('login')}}" class="link-text">Sign In</a>
+            <div class="btn-group clearfix">
+              <input type="submit" class="btn btn-success" name="create" value="Create">
+              <a href="#" class="btn btn-cancel" name="cancel_btn">Cancel</a>
             </div>
+          </div>
 
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
+        </div>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
+      </form>
+    </div>
+  </div>
+</body>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+</html>

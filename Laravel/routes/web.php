@@ -28,7 +28,7 @@ Route::get('/user/password/change/{id}',[UserController::class,'showChangePasswo
 Route::post('/user/password/{id}',[UserController::class,'changePassword'])->name('change-password');
 
 Route::get('/admin', function () {
-    return view('admin.dashboard');
+    return view('admin.analytic.analytics-manage');
 });
 
 // manage users 
@@ -62,6 +62,30 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+
+require __DIR__.'/auth.php';
+
+// admin dashboard routes
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+});
+
+// manage users
+Route::get('/admin/users', function () {
+    return view('admin.users-manage');
+});
+
+// manage posts 
+Route::get('/admin/posts', [PostController::class, 'index'])->name('show.postList');
+Route::get('/posts/export', [PostController::class, 'export'])->name('export.posts');
+
+// manage categories 
+Route::get('/admin/categories', function () {
+    return view('admin.categories.categories-manage');
+});
+Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
+Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
+/** admin dashboard routes */
 
 require __DIR__.'/auth.php';
 

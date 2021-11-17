@@ -56,3 +56,14 @@
     transition: all 300ms ease-in-out;
     transform: translate(-50%, -50%) scale(1);
 }
+
+/* chart components */
+
+.chart {
+    background-color: var(--bg);
+    box-shadow: var(--shadow);
+    margin: 4rem 0 1.5rem;
+    padding: 1.5rem;
+    width: 52vw;
+    height: auto;
+}

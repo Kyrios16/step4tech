@@ -14,10 +14,9 @@ interface CategoriesServiceInterface
     /**
      * To get categories list
      * 
-     * @param $request
      * @return $cates categories list
      */
-    public function getCateList($request);
+    public function getCateList();
 
     /**
      * To find id for category edit

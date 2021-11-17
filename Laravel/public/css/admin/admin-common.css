@@ -125,10 +125,24 @@ input:focus::placeholder {
     bottom: 0;
     padding: 1rem;
     float: left;
+    transition: left 300ms;
 }
 
 #menu-toggle {
     display: none;
+}
+
+#menu-toggle:hover {
+    cursor: pointer;
+}
+
+#menu-toggle:checked ~ .sidebar {
+    left: -25%;
+}
+
+#menu-toggle:checked ~ .main-container {
+    margin-left: 0;
+    width: 100%;
 }
 
 .sidebar-container {
@@ -200,6 +214,7 @@ input:focus::placeholder {
     width: 75%;
     height: 100%;
     float: right;
+    transition: margin-left 300ms;
 }
 
 .main-content {
@@ -288,7 +303,7 @@ main {
 /* table components */
 
 .table-container {
-    margin: 2.5rem auto;
+    margin: 2.5rem auto 3.5rem;
 }
 
 .users-table,
