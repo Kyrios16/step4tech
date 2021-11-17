@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserEditRequest;
 use App\Contracts\Services\User\UserServiceInterface;
 use App\Http\Requests\UserPasswordChangeRequest;
 use App\Models\User;
@@ -60,24 +60,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserCreateRequest $request, $id)
+    public function update(UserEditRequest $request, $id)
     {
         $validated = $request->validated();
         $user = $this->userInterface->update($request, $id);
         return view('User.profile-view-detail',compact('user'))->with('success', 'Data updated successfully');
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function storeUserInfo(UserCreateRequest $request)
-    {
-        $validated = $request->validated();
-        $user = $this->userInterface->storeUserInfo($request);
-        return view('auth.login')->with('success', 'Data added successfully');
-    }
+    
     /**
      * To Show the application dashboard.
      *
