@@ -52,4 +52,9 @@ interface PostServiceInterface
      * To get all posts list
      */
     public function getPostList();
+
+    /**
+     * To count total posts  
+     */
+    public function countTotalPosts();
 }

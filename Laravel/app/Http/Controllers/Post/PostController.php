@@ -9,6 +9,7 @@ use App\Http\Requests\createPostRequest;
 use App\Http\Requests\editPostRequest;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PostsExport;
+use App\Models\Post;
 use App\Models\PostCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

@@ -21,150 +21,40 @@
         @include('admin.common.analytics')
         <div class="table-container">
           <div class="table-header">
-            <h3 class="header-title">Users Table</h3>
+            <h3 class="header-title">Users Lists</h3>
           </div>
           <!-- table-header -->
-          <div class="users-table">
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Role</th>
-                  <th scope="col">Created User Id</th>
-                  <th scope="col">Updated User Id</th>
-                  <th scope="col">Deleted User Id</th>
-                  <th scope="col">Created At</th>
-                  <th scope="col">Updated At</th>
-                  <th scope="col">Deleted At</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>KaungKhantNaing</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>-</td>
-                  <td>11/9/2021</td>
-                  <td>11/9/2021</td>
-                  <td>-</td>
-                  <td>
-                    <a href="" class="icon-btn-info"><i class="far fa-eye"></i></a> |
-                    <a href="" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
-                    <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Bob</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>-</td>
-                  <td>11/9/2021</td>
-                  <td>11/9/2021</td>
-                  <td>-</td>
-                  <td>
-                    <a href="" class="icon-btn-info"><i class="far fa-eye"></i></a> |
-                    <a href="" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
-                    <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Paul</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>-</td>
-                  <td>11/9/2021</td>
-                  <td>11/9/2021</td>
-                  <td>-</td>
-                  <td>
-                    <a href="" class="icon-btn-info"><i class="far fa-eye"></i></a> |
-                    <a href="" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
-                    <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Bob</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>-</td>
-                  <td>11/9/2021</td>
-                  <td>11/9/2021</td>
-                  <td>-</td>
-                  <td>
-                    <a href="" class="icon-btn-info"><i class="far fa-eye"></i></a> |
-                    <a href="" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
-                    <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Bob</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>-</td>
-                  <td>11/9/2021</td>
-                  <td>11/9/2021</td>
-                  <td>-</td>
-                  <td>
-                    <a href="" class="icon-btn-info"><i class="far fa-eye"></i></a> |
-                    <a href="" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
-                    <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Bob</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>-</td>
-                  <td>11/9/2021</td>
-                  <td>11/9/2021</td>
-                  <td>-</td>
-                  <td>
-                    <a href="" class="icon-btn-info"><i class="far fa-eye"></i></a> |
-                    <a href="" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
-                    <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Bob</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>-</td>
-                  <td>11/9/2021</td>
-                  <td>11/9/2021</td>
-                  <td>-</td>
-                  <td>
-                    <a href="" class="icon-btn-info"><i class="far fa-eye"></i></a> |
-                    <a href="" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
-                    <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Bob</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>-</td>
-                  <td>11/9/2021</td>
-                  <td>11/9/2021</td>
-                  <td>-</td>
-                  <td>
-                    <a href="" class="icon-btn-info"><i class="far fa-eye"></i></a> |
-                    <a href="" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
-                    <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          @foreach ($users as $user)
+          <div class="users-list">
+            <div class="user-profile">
+              <div class="user-info">
+                <img src="https://www.shareicon.net/data/512x512/2016/09/15/829452_user_512x512.png" alt="">
+                <div class="user-detail">
+                  <h4 class="username">{{ $user->name }}</h4>
+                  <small class="user-position">{{ $user->position }}</small>
+                  <p class="user-contact">{{ $user->email }} | {{ $user->ph_no }}</p>
+                  <p class="dob">{{ $user->date_of_birth }}</p>
+                  <div class="links">
+                    <a target="_blank" href="https://codepen.io/l-e-e/"><i class="fab fa-codepen"></i></a>
+                    <a target="_blank" href="https://github.com/Leena26"><i class="fab fa-github"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="action">
+                <a href="#" class="icon-btn-info"><i class="far fa-eye"></i></a> |
+                <a href="#" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
+                <form action="{{ url('/admin/users/'.$user->id) }}" method="POST" class="deleteBtn">
+                  {{ csrf_field() }}
+                  {{ method_field('DELETE') }}
+                  <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
+                </form>
+
+              </div>
+            </div>
           </div>
-          <!-- users-table -->
-          <button type="submit" class="btn btn-info">Export</button>
+          @endforeach
+
+          <a href="{{ route('export.categories') }}" class="btn btn-info">Export&nbsp;&nbsp;<i class="fas fa-file-export"></i></a>
         </div>
         <!-- table-container -->
       </main>

@@ -162,4 +162,15 @@ class PostDao implements PostDaoInterface
         $posts = DB::table('posts')->orderBy('id')->get();
         return $posts;
     }
+
+    /**
+     * To count total posts 
+     * 
+     * @return return number of posts
+     */
+    public function countTotalPosts()
+    {
+        $count = Post::where('deleted_at', null)->count();
+        return $count;
+    }
 }

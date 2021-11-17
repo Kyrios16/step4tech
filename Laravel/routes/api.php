@@ -4,6 +4,7 @@ use App\Http\Controllers\API\Post\PostAPIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Categories\CategoriesController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -30,7 +31,10 @@ Route::get('/post-list', [PostAPIController::class, 'showPostListForInitial']);
  * Search post
  */
 Route::get('/post/search/{searchValue}', [PostAPIController::class, 'searchPost']);
+Route::post('/categories/update/{categories}',  [CategoriesController::class, 'updateCate'])->name('update.categories');
+
 Route::get('/admin/categories/list', [CategoriesController::class, 'getCateList'])->name('show.categories');
 Route::get('/admin/categories/edit/{categories}',  [CategoriesController::class, 'editCate'])->name('edit.categories');
-Route::post('/categories/update/{categories}',  [CategoriesController::class, 'updateCate'])->name('update.categories');
 Route::delete('/admin/categories/{categories}',  [CategoriesController::class, 'deleteCate'])->name('delete.categories');
+Route::get('/admin/totalpost', [PostAPIController::class, 'countTotalPosts'])->name('count.totalPosts');
+Route::get('/admin/totaluser', [UserController::class, 'countTotalUsers'])->name('count.totalUsers');

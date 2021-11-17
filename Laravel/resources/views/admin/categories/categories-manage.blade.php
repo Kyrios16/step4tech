@@ -4,7 +4,6 @@
 <!-- script -->
 <script src="{{ asset('js/admin/admin-cate-script.js') }}"></script>
 
-
 <div class="container clearfix">
   <input type="checkbox" name="" id="menu-toggle">
   @include('admin.common.aside')

@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\Post\PostController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Categories\CategoriesController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,10 +36,9 @@ Route::get('/admin', function () {
     return view('admin.analytic.analytics-manage');
 });
 
-// manage users 
-Route::get('/admin/users', function () {
-    return view('admin.users-manage');
-});
+// manage users
+Route::get('/admin/users', [UserController::class, 'index']);
+Route::delete('/admin/users/{id}', [UserController::class, 'deleteUser']);
 
 // manage posts 
 Route::get('/admin/posts', [PostController::class, 'index'])->name('show.postList');

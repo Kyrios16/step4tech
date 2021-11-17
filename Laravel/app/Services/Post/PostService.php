@@ -92,4 +92,14 @@ class PostService implements PostServiceInterface
     {
         return $this->postDao->getPostList();
     }
+
+    /**
+     * To count total posts 
+     * 
+     * @return return number of posts
+     */
+    public function countTotalPosts()
+    {
+        return $this->postDao->countTotalPosts();
+    }
 }
