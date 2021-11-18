@@ -35,8 +35,8 @@ a:hover {
     display: inline-block;
     margin: auto;
     text-align: center;
-    flex: 1 1 60%;
-    padding-left: 4%;
+    flex: 1 1 50%;
+    padding-left: 0;
 }
 
 .search {
@@ -61,39 +61,50 @@ a:hover {
 
 .nav-before-login {
     display: block;
-    flex: 1 1 15%;
+    flex: 1 1 20%;
     text-align: right;
     margin: auto;
 }
 
 .nav-btn {
     padding: 0.5em 0;
-    width: 45%;
-    margin: auto 0 auto auto;
+    width: 40%;
+    margin: auto 0 auto 1em;
     text-decoration: none;
     border-radius: 5px;
     text-align: center;
 }
 
-.btn-primary {
+.nav-btn:first-of-type {
+    margin-left: 0;
+}
+
+.btn-success {
     color: #ffffff;
     background-color: #34c85b;
+    border: 1px solid #34c85b;
+}
+
+.btn-success:hover {
+    background-color: #42af5f;
+    border-color: #42af5f;
+    opacity: 1;
 }
 
 .btn-outline-secondary {
-    color:#707070;
+    color: #707070;
     border: 1px solid #707070;
 }
 
 .nav-dropdown {
     display: block;
-    flex: 1 1 15%;
+    flex: 1 1 20%;
     text-align: right;
     margin: auto;
 }
 
 .profile-ico {
-    background: #000; 
+    background: #000;
     width: 2.6em;
     height: 2.6em;
     border-radius: 100%;
