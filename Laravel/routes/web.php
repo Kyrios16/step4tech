@@ -15,7 +15,13 @@ use App\Http\Controllers\User\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//User Route
 
+Route::get('/user/edit',[UserController::class,'showUserEditView'])->name('edit-user');
+Route::post('/user/edit',[UserController::class,'submitUserEditView'])->name('update-user');
+Route::get('/user/view',[UserController::class,'view'])->name('user-view');
+Route::get('/user/password',[UserController::class,'showChangePasswordView'])->name('change-password-view');
+Route::post('/user/password',[UserController::class,'changePassword'])->name('change-password');
 
 require __DIR__ . '/auth.php';
 
@@ -39,10 +45,15 @@ Route::get('/admin/categories', function () {
 });
 Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
 Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
-/** admin dashboard routes */
+/* admin dashboard routes */
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/admin', function () {
+    return view('admin.analytic.analytics-manage');
+});
+
+// manage users 
+Route::get('/admin/users', function () {
+    return view('admin.users-manage');
 });
 
 /**
@@ -53,7 +64,6 @@ Route::get('/', function () {
         'title' => 'Home'
     ]);
 });
-
 /**
  * Search post
  */
