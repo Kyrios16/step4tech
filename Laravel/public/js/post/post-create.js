@@ -11,6 +11,9 @@ $(document).ready(function (e) {
         reader.onload = (e) => {
 
             $('#preview-image-before-upload').attr('src', e.target.result);
+            $('#feedback-preImg').css({
+                'display': 'block'
+            });
         }
 
         reader.readAsDataURL(this.files[0]);

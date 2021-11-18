@@ -16,7 +16,7 @@
         @endif
         <button class="nav-dropdown-btn" onclick="toggleNavProfileDropdown()"><i class="fas fa-caret-down"></i></button>
         <div class="profile-dropdown-content">
-          <a href="/admin/categories">Admin</a>
+          <a href="/admin">Admin</a>
           <a href="{{ route('user-view') }}">View Profile</a>
           <a href="{{ route('logout')}}">Log out</a>
         </div>

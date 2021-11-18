@@ -2,8 +2,10 @@
 
 namespace App\Contracts\Dao\User;
 
+use Illuminate\Http\Request;
+
 /**
- * Interface for Data Accessing Object of user
+ * Interface of Data Access Object for user
  */
 interface UserDaoInterface
 {

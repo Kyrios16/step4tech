@@ -182,19 +182,11 @@ input:focus::placeholder {
     margin-bottom: 1rem;
 }
 
-.sidebar-menu a:link,
-.sidebar-menu a:visited {
+.sidebar-menu #menuBtn {
     color: var(--main-text);
     display: flex;
     flex-direction: row;
     padding: 1rem 0.5rem;
-}
-
-.active,
-.sidebar-menu a:hover {
-    background: var(--main-bg);
-    border-radius: 0px 10px 10px 0px;
-    color: var(--color-main);
 }
 
 .icon-small {
@@ -203,9 +195,21 @@ input:focus::placeholder {
     font-size: 1.2rem;
     color: var(--main-text);
 }
+.active {
+    color: var(--color-main);
+    background: var(--main-bg);
+    border-radius: 10px;
+    margin-left: 0.5rem;
+}
 
-.sidebar-menu a:active .icon-small,
-.sidebar-menu a:hover .icon-small {
+.sidebar-menu #menuBtn:hover {
+    background: var(--main-bg);
+    border-radius: 10px;
+    color: var(--color-main);
+    margin-left: 0.5rem;
+}
+
+.sidebar-menu #menuBtn:hover .icon-small {
     color: var(--color-main);
 }
 
@@ -270,17 +274,17 @@ main {
 
 .icon-first {
     background: #dce5ff;
-    color: #6883db;
+    color: #34495e;
 }
 
 .icon-sec {
-    background: #ebf7f5;
-    color: #db2727;
+    background: #bdc3c7;
+    color: #8e44ad;
 }
 
 .icon-third {
-    background: #dce5ff;
-    color: #2ec3a3;
+    background: #ecf0f1;
+    color: #ffff00;
 }
 
 .icon-fourth {
@@ -306,12 +310,30 @@ main {
     margin: 2.5rem auto 3.5rem;
 }
 
-.users-table,
 .posts-table,
 .cate-table {
     margin: 1.5rem auto;
     height: 250px;
     overflow-y: scroll;
+}
+.posts-table::-webkit-scrollbar,
+.cate-table::-webkit-scrollbar,
+.users-list::-webkit-scrollbar {
+    width: 0.5rem; /* width of the entire scrollbar */
+}
+
+.posts-table::-webkit-scrollbar-track,
+.cate-table::-webkit-scrollbar-track,
+.users-list::-webkit-scrollbar-track {
+    background: var(--main-bg); /* color of the tracking area */
+}
+
+.posts-table::-webkit-scrollbar-thumb,
+.cate-table::-webkit-scrollbar-thumb,
+.users-list::-webkit-scrollbar-thumb {
+    background-color: #74b9ff; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    border: 3px solid var(--main-accent); /* creates padding around scroll thumb */
 }
 
 table {

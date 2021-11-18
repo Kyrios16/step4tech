@@ -53,9 +53,9 @@ class PostDao implements PostDaoInterface
                                         OR categories.name LIKE :categorySearchValue
                                         GROUP BY posts.id
                                         ORDER BY posts.updated_at DESC"), array(
-                                        'userSearchValue' => '%' . $searchValue . '%',
-                                        'postSearchValue' => '%' . $searchValue . '%',
-                                        'categorySearchValue' => '%' . $searchValue . '%'
+            'userSearchValue' => '%' . $searchValue . '%',
+            'postSearchValue' => '%' . $searchValue . '%',
+            'categorySearchValue' => '%' . $searchValue . '%'
         ));
         return $postList;
     }
@@ -85,6 +85,7 @@ class PostDao implements PostDaoInterface
         $post->created_user_id = Auth::user()->id ?? 1;
         $post->updated_user_id = Auth::user()->id ?? 1;
         $post->save();
+        info($request['category']);
         foreach ($request['category'] as $category) {
             $postCategory = new PostCategory();
             $postCategory->post_id = $postid;
@@ -100,7 +101,13 @@ class PostDao implements PostDaoInterface
      */
     public function getPostById($id)
     {
-        $post = post::find($id);
+        $postList = post::join('users', 'users.id', '=', 'posts.created_user_id')
+            ->whereNull('posts.deleted_at')
+            ->where('posts.id', $id)
+            ->get(['posts.*', 'users.profile_img', 'users.name']);
+        info("inside getpostbyId");
+        info($postList);
+        $post = $postList[0];
         return $post;
     }
 
@@ -170,6 +177,17 @@ class PostDao implements PostDaoInterface
     }
 
     /**
+     * To count total posts 
+     * 
+     * @return return number of posts
+     */
+    public function countTotalPosts()
+    {
+        $count = Post::where('deleted_at', null)->count();
+        return $count;
+    }
+
+    /**
      * To like post
      * @param Request $request
      * @return Object $vote
@@ -192,6 +210,6 @@ class PostDao implements PostDaoInterface
     {
         info($request);
         $votes = Vote::where('user_id', $request->userId)
-                     ->where('post_id', $request->postId)->delete();
+            ->where('post_id', $request->postId)->delete();
     }
 }
