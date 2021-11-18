@@ -3,7 +3,6 @@
 use App\Http\Controllers\Post\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Categories\CategoriesController;
-use App\Http\Controllers\User\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +26,9 @@ Route::get('/admin', function () {
 
 
 // manage users
-Route::get('/admin/users', [UserController::class, 'index']);
-Route::delete('/admin/users/{id}', [UserController::class, 'deleteUser']);
-// Route::get('/admin/users', function () {
-//     return view('admin.users-manage');
-// });
+Route::get('/admin/users', function () {
+    return view('admin.users-manage');
+});
 
 // manage posts 
 Route::get('/admin/posts', [PostController::class, 'index'])->name('show.postList');
