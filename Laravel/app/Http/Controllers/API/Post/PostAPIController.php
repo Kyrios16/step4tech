@@ -57,4 +57,26 @@ class PostAPIController extends Controller
         $numTotalPosts =  $this->postServiceInterface->countTotalPosts();
         return response()->json($numTotalPosts);
     }
+
+    /**
+     * To like post
+     * @param Request $request
+     * @return Object $vote
+     */
+    public function likePost(Request $request)
+    {
+        $vote = $this->postServiceInterface->likePost($request);
+        return response()->json($vote);
+    }
+
+    /**
+     * To unlike post
+     * @param Request $request
+     * @return Object $vote
+     */
+    public function unlikePost(Request $request)
+    {
+        $this->postServiceInterface->unlikePost($request);
+        return response()->json("Unlike Success");
+    }
 }

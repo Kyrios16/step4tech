@@ -5,6 +5,7 @@ namespace App\Dao\Post;
 use App\Models\Post;
 use App\Contracts\Dao\Post\PostDaoInterface;
 use App\Models\PostCategory;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,11 +21,14 @@ class PostDao implements PostDaoInterface
      */
     public function getPostListForInitial()
     {
-        $postList = DB::select(DB::raw("SELECT users.name, users.profile_img, posts.created_at, posts.title, GROUP_CONCAT(categories.name) AS post_categories
-                                        FROM users, posts, categories, post_category
-                                        WHERE users.id = posts.created_user_id
-                                        AND posts.id = post_category.post_id
-                                        AND categories.id = post_category.category_id
+        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, 
+                                        GROUP_CONCAT(categories.name) AS post_categories,
+                                        GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid
+                                        FROM posts
+                                        LEFT JOIN votes ON (votes.post_id = posts.id)
+                                        INNER JOIN users ON (users.id = posts.created_user_id) 
+                                        INNER JOIN post_category ON (post_category.post_id = posts.id)
+                                        INNER JOIN categories ON (categories.id = post_category.category_id)
                                         GROUP BY posts.id
                                         ORDER BY posts.updated_at DESC"));
         return $postList;
@@ -36,15 +40,17 @@ class PostDao implements PostDaoInterface
      */
     public function searchPost($searchValue)
     {
-        $postList = DB::select(DB::raw("SELECT users.name, users.profile_img, posts.created_at, posts.title, GROUP_CONCAT(categories.name) AS post_categories
-                                        FROM users, posts, categories, post_category
-                                        WHERE users.id = posts.created_user_id
-                                        AND posts.id = post_category.post_id
-                                        AND categories.id = post_category.category_id
-                                        AND (
-                                            users.name LIKE :userSearchValue OR
-                                            posts.title LIKE :postSearchValue OR
-                                            categories.name LIKE :categorySearchValue)
+        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, 
+                                        GROUP_CONCAT(categories.name) AS post_categories,
+                                        GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid
+                                        FROM posts
+                                        LEFT JOIN votes ON (votes.post_id = posts.id)
+                                        INNER JOIN users ON (users.id = posts.created_user_id) 
+                                        INNER JOIN post_category ON (post_category.post_id = posts.id)
+                                        INNER JOIN categories ON (categories.id = post_category.category_id)
+                                        WHERE users.name LIKE :userSearchValue
+                                        OR posts.title LIKE :postSearchValue
+                                        OR categories.name LIKE :categorySearchValue
                                         GROUP BY posts.id
                                         ORDER BY posts.updated_at DESC"), array(
             'userSearchValue' => '%' . $searchValue . '%',
@@ -172,5 +178,31 @@ class PostDao implements PostDaoInterface
     {
         $count = Post::where('deleted_at', null)->count();
         return $count;
+    }
+
+    /**
+     * To like post
+     * @param Request $request
+     * @return Object $vote
+     */
+    public function likePost($request)
+    {
+        $vote = new Vote();
+        $vote->user_id = $request->userId;
+        $vote->post_id = $request->postId;
+        $vote->save();
+        return $vote;
+    }
+
+    /**
+     * To unlike post
+     * @param Request $request
+     * @return 
+     */
+    public function unlikePost($request)
+    {
+        info($request);
+        $votes = Vote::where('user_id', $request->userId)
+            ->where('post_id', $request->postId)->delete();
     }
 }

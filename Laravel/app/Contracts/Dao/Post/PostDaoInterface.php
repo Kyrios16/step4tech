@@ -61,4 +61,17 @@ interface PostDaoInterface
      * 
      */
     public function countTotalPosts();
+
+    /* * To like post
+     * @param Request $request
+     * @return Object $vote
+     */
+    public function likePost($request);
+
+    /**
+     * To unlike post
+     * @param Request $request
+     * @return 
+     */
+    public function unlikePost($request);
 }
