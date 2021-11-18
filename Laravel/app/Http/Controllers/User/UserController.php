@@ -16,7 +16,6 @@ class UserController extends Controller
     private $userInterface;
     public function __construct(UserServiceInterface $userServiceInterface)
     {
-        //$this->middleware('Auth');
         $this->userInterface = $userServiceInterface;
     }
 
@@ -56,7 +55,6 @@ class UserController extends Controller
     
     public function submitUserEditView(Request $request)
     {
-       //$validated = $request->validated();
         $user = $this->userInterface->updateUser($request);
         return redirect('/user/view');
     }
