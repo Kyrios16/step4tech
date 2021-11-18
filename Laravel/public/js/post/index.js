@@ -34,37 +34,34 @@ function showPostListByDate() {
                 if (post.post_voted_userid != null) {
                     var likedUserIdArray = post.post_voted_userid.split(",");
                     likeCount = likedUserIdArray.length;
-                    if(loggedin) {
+                    if (loggedin) {
                         likedUserIdArray.forEach((likedUserId) => {
-                            if(likedUserId == userId) {
+                            if (likedUserId == userId) {
                                 islikedClass = "post-liked";
                                 thumbFillClass = "fa";
                             }
                         });
                     }
-                }                    
+                }
                 $(".postlist-container").append(
                     `<div class="post">
                         <div class="clearfix">
                             <div class="img-container">
-                                <img src="${
-                                    baseUrl + post.profile_img
-                                }" class="postprofile-ico span-1-of-8" alt="Profile">
+                                <img src="${baseUrl + post.profile_img
+                    }" class="postprofile-ico span-1-of-8" alt="Profile">
                             </div>
                             <div class="post-blog">
                                 <p class="post-username">${post.name}</p>
                                 <p class="post-date">${created_at}</p>             
-                                <a class="post-title" href="/post/detail/${
-                                    post.id
-                                }">${post.title}</a>
+                                <a class="post-title" href="/post/detail/${post.id
+                    }">${post.title}</a>
                                 ${categoriesHtml}
                             </div> 
                         </div>
                         <div class="postbtn-container">
                             <button class="post-btn ${islikedClass}" onclick="togglePostLike(this, ${post.id})"><i class="${thumbFillClass} fa-thumbs-up"></i> ${likeCount} Likes</button>
-                            <a href="/post/detail/${
-                                post.id
-                            }" class="post-btn"><i class="far fa-comment-alt"></i> Feedback</a>
+                            <a href="/post/detail/${post.id
+                    }" class="post-btn"><i class="far fa-comment-alt"></i> Feedback</a>
                         </div>
                     </div>`
                 );
@@ -74,7 +71,7 @@ function showPostListByDate() {
                 $(".postlist-container").append(
                     `<a href="/post/create" class="post-create-btn"><i class="fas fa-pencil-alt"></i> Create</a>`
                 );
-            }                
+            }
         },
     });
 }

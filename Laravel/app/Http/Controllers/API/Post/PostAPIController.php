@@ -48,6 +48,17 @@ class PostAPIController extends Controller
     }
 
     /**
+     * To count total number of posts
+     * 
+     * @return Analytics blade with number of posts
+     */
+    public function countTotalPosts()
+    {
+        $numTotalPosts =  $this->postServiceInterface->countTotalPosts();
+        return response()->json($numTotalPosts);
+    }
+
+    /**
      * To like post
      * @param Request $request
      * @return Object $vote

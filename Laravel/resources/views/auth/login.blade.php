@@ -1,11 +1,7 @@
 <x-guest-layout>
   <!-- <x-auth-card> -->
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <!-- Validation Errors -->
-    <x-auth-validation-errors class="mb-4" :errors="$errors" />
-    
+
   <div id="sign-in">
     <div class="container">
       <div class="circle-btn" align="right">
@@ -13,7 +9,11 @@
       </div>
       <div class="login-content clearfix">
         <div class="content-sec">
+          <!-- Session Status -->
+          <x-auth-session-status class="mb-4" :status="session('status')" />
 
+          <!-- Validation Errors -->
+          <x-auth-validation-errors class="mb-4" :errors="$errors" />
           <form method="POST" action="{{ route('login') }}">
             @csrf
 
