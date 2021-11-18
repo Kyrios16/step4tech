@@ -1,3 +1,6 @@
+<!-- script -->
+<script src="{{ asset('js/admin/admin-analytic-script.js') }}"></script>
+
 <div class="analytics">
     <div class="analytic-card">
         <div class="analytic-icon icon-first">
@@ -5,7 +8,7 @@
         </div>
         <div class="analytic-info">
             <small>Total Users</small>
-            <h2>20k</h2>
+            <h2 id="total-users"></h2>
         </div>
     </div>
     <div class="analytic-card">
@@ -14,7 +17,7 @@
         </div>
         <div class="analytic-info">
             <small>Total Posts</small>
-            <h2>1250</h2>
+            <h2 id="total-posts"></h2>
         </div>
     </div>
     <div class="analytic-card">

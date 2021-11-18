@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\Post\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Feedback\FeedbackController;
 use App\Http\Controllers\Categories\CategoriesController;
-use App\Http\Controllers\User\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +19,12 @@ use App\Http\Controllers\User\UserController;
 
 require __DIR__ . '/auth.php';
 
+/* admin management routes */
 // admin dashboard routes
 Route::get('/admin', function () {
-    return view('admin.dashboard');
+    return view('admin.analytic.analytics-manage');
 });
+
 
 // manage users
 Route::get('/admin/users', function () {
@@ -39,11 +41,7 @@ Route::get('/admin/categories', function () {
 });
 Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
 Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
-/** admin dashboard routes */
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
 
 /**
  * Display All Posts ordered by date
@@ -64,3 +62,5 @@ Route::post('/post/create', [PostController::class, 'submitPostCreateView'])->na
 Route::get('/post/edit/{id}', [PostController::class, 'showPostEditView'])->name('edit.post');
 Route::post('/post/edit/{id}', [PostController::class, 'submitPostEdit'])->name('edit.post');
 Route::delete('/post/delete/{id}', [PostController::class, 'deletePostById']);
+Route::get('/post/detail/{id}',  [PostController::class, 'showPostDetailView'])->name('detail.post');
+Route::post('/post/feedback/{id}',  [FeedbackController::class, 'createFeedback'])->name('feedback.post');
