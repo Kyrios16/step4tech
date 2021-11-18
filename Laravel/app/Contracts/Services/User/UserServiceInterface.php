@@ -18,12 +18,20 @@ interface UserServiceInterface
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function updateUser($request);
 
-    public function changeUserPassword($request);
-
+    /**
+     * To get user list
+     * @return array $userList list of users
+     */
     public function getUserList();
+
+    /**
+     * To change user password
+     * @param array $validated Validated values from request
+     * @return Object $user user object
+     */
+    public function changeUserPassword($request);    
 }

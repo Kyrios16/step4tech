@@ -41,6 +41,7 @@
               <a href="{{ $user->linkedin }}">{{ $user->linkedin }}</a>
             </p>
             <p class="right">
+              
               <i class="fab fa-github-square"></i>
               <a href="{{ $user->github }}">{{ $user->github }}</a>
             </p>

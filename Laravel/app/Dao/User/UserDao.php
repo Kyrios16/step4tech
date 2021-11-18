@@ -35,7 +35,6 @@ class UserDao implements UserDaoInterface
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
 
@@ -55,23 +54,20 @@ class UserDao implements UserDaoInterface
         $user->created_user_id = Auth::user()->id;
         $user->updated_user_id = Auth::user()->id;
 
-        if ($request->hasFile('cover_img')) {
+        if ($cover_img = $request->hasFile('cover_img')) {
             $cover_img = $request->file('cover_img');
-            $destinationPath = public_path() . '/cover';
+            $destinationPath = public_path() . '/images/cover';
             $newcover = "cover_" . date('YmdHis') . "." . $cover_img->getClientOriginalExtension();
             $cover_img->move($destinationPath, $newcover);
             $user->cover_img = $newcover;
         }
-        if ($request->hasFile('profile_img')) {
+        if ($cover_img = $request->hasFile('profile_img')) {
             $profile_img = $request->file('profile_img');
-            $destinationPath = public_path() . '/profile';
+            $destinationPath = public_path() . '/images/profile';
             $newProfile = "profile_" . date('YmdHis') . "." . $profile_img->getClientOriginalExtension();
             $profile_img->move($destinationPath, $newProfile);
             $user->profile_img = $newProfile;
         }
-        
-        
-
         $user->save();
         return $user;
     }
