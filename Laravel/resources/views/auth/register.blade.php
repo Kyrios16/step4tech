@@ -39,6 +39,11 @@
           <div class="formdata-control">
             <label for="name">Username <span>*</span></label><br>
             <input type="text" class="form-input" name="name" placeholder="Enter Username" value="{{ old('name') }}">
+            @error('name')
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
           </div>
 
           <div class="formdata-control">
@@ -63,7 +68,7 @@
 
           <div class="formdata-control">
             <label for="password_confirmatoion">Password Confirmation<span>*</span></label><br>
-            <input type="password" class="form-input" name="password_confirmation" placeholder="Enter Password Again">
+            <input type="password" class="form-input" name="password_confirmation" placeholder="Enter Password Again" >
             @error('password_confirmation')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -74,6 +79,11 @@
           <div class="formdata-control">
             <label for="dob">Date of Birth <span>*</span></label><br>
             <input type="date" class="form-input" name="date_of_birth" value="{{ old('dob') }}">
+            @error('dob')
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
           </div>
 
           <div class="formdata-control">
@@ -84,6 +94,11 @@
           <div class="formdata-control">
             <label for="position">Job Position <span>*</span></label><br>
             <input type="text" class="form-input" name="position" placeholder="Enter Job Position" value="{{ old('position') }}">
+            @error('position')
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
           </div>
 
           <div class="formdata-control">
