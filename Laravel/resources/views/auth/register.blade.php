@@ -20,9 +20,6 @@
 
 <body>
 
-
-  
-
   <div class="container">
     <div class="create-form-wrapper">
       <form method="post" action="{{ route('submit-register') }}" class="user-form" enctype="multipart/form-data">
@@ -108,7 +105,7 @@
             <p class="text">Already have an account? <a href="{{ route('login')}}" class="link-text">Sign In</a>
             <div class="btn-group clearfix">
               <input type="submit" class="btn btn-success" name="create" value="Create">
-              <a href="{{ route('login')}}" class="btn btn-cancel" name="cancel_btn">Cancel</a>
+              <a href="/" class="btn btn-cancel" name="cancel_btn">Cancel</a>
             </div>
           </div>
 

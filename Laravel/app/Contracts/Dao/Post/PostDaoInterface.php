@@ -55,4 +55,18 @@ interface PostDaoInterface
      *  To get all posts list
      */
     public function getPostList();
+
+    /**
+     * To like post
+     * @param Request $request
+     * @return Object $vote
+     */
+    public function likePost($request);
+
+    /**
+     * To unlike post
+     * @param Request $request
+     * @return 
+     */
+    public function unlikePost($request);
 }

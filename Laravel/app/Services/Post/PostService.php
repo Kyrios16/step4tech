@@ -92,4 +92,22 @@ class PostService implements PostServiceInterface
     {
         return $this->postDao->getPostList();
     }
+
+    /**
+     * To like post
+     * @param Request $request
+     * @return Object $vote
+     */
+    public function likePost($request) {
+        return $this->postDao->likePost($request);
+    }
+
+    /**
+     * To unlike post
+     * @param Request $request
+     * @return 
+     */
+    public function unlikePost($request) {
+        $this->postDao->unlikePost($request);
+    }
 }

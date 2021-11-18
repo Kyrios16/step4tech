@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         $validate = $request->validated();
-        
+
 
         $request->authenticate();
 
@@ -46,9 +46,9 @@ class AuthenticatedSessionController extends Controller
     public function perform()
     {
         Session::flush();
-        
+
         Auth::logout();
 
-        return redirect('login');
+        return redirect('/');
     }
 }
