@@ -1,10 +1,12 @@
-<?php 
+<?php
+
 namespace App\Dao\Auth;
 
 use App\Contracts\Dao\Auth\AuthDaoInterface;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+
 class AuthDao implements AuthDaoInterface
 {
     /**
@@ -18,7 +20,7 @@ class AuthDao implements AuthDaoInterface
     public function saveUser($request)
     {
         $userlist = DB::table("users")->get();
-        $userid = count($userlist)+1;
+        $userid = count($userlist) + 1;
         if ($cover_img = $request->file('cover_img')) {
             $destinationPath = public_path() . '/images/cover';
             $newcover = "cover_" . date('YmdHis') . "." . $cover_img->getClientOriginalExtension();
@@ -47,5 +49,4 @@ class AuthDao implements AuthDaoInterface
         $user->save();
         return $user;
     }
-
 }
