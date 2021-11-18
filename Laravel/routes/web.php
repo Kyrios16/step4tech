@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Post\PostController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\User\UserController;
 
 /*
@@ -16,27 +16,15 @@ use App\Http\Controllers\User\UserController;
 |
 */
 
-/**
- * Display All Posts ordered by date
- */
-Route::get('/', function () {
-    return view('post.index', [
-        'title' => 'Home'
-    ]);
-})->middleware(['auth'])->name('dashboard');
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
 
 require __DIR__ . '/auth.php';
 
+// admin dashboard routes
 Route::get('/admin', function () {
-    return view('admin.analytic.analytics-manage');
+    return view('admin.dashboard');
 });
 
-// manage users 
+// manage users
 Route::get('/admin/users', function () {
     return view('admin.users-manage');
 });
@@ -53,10 +41,24 @@ Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateC
 Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
 /** admin dashboard routes */
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+/**
+ * Display All Posts ordered by date
+ */
+Route::get('/', function () {
+    return view('post.index', [
+        'title' => 'Home'
+    ]);
+});
+
 /**
  * Search post
  */
 Route::get('/post/search/{searchValue}', [PostController::class, 'searchPost']);
+
 Route::get('/post/create', [PostController::class, 'showPostCreateView'])->name('create.post');
 Route::post('/post/create', [PostController::class, 'submitPostCreateView'])->name('create.post');
 Route::get('/post/edit/{id}', [PostController::class, 'showPostEditView'])->name('edit.post');
