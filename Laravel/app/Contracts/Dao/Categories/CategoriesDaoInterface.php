@@ -44,4 +44,21 @@ interface CategoriesDaoInterface
      * @return $categories categories list
      */
     public function getCateListwithPostId($id);
+    /**
+     * Add to user category
+     * @param $categoryid
+     * @return back to previous route
+     */
+    public function AddUserCategory($categoryid);
+    /**
+     * get user category
+     * @return $userCategoryList
+     */
+    public function getUserCategory();
+    /**
+     * Delete userCategory
+     * @param $categoryid
+     * @return back to previous route
+     */
+    public function DeleteUserCategory($categoryid);
 }

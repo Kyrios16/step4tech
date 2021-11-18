@@ -48,27 +48,28 @@
                 <h2 class="sidebar-title">Categories</h2>
             </span>
             <div class="categories-container show" id="categories-container">
-                <a class="categories-item">
-                    <h4>JavaScript</h4>
+                @foreach ($categories as $category)
+                @php($flag=false)
+                @foreach($userCategoryList as $userCategory)
+                @if($category->id == $userCategory->category_id)
+                @php($flag=true)
+                @endif
+                @endforeach
+                @if($flag == true)
+                <a href="{!! route('user.category.delete', ['categoryid'=>$category->id,]) !!}" class="categories-item">
+                    <h4>{{$category->name}}</h4>
+                    <span class="add"><i class="fas fa-check"></i></span>
+
+                </a>
+                @else
+                <a href="{!! route('user.category', ['categoryid'=>$category->id,]) !!}" class="categories-item">
+                    <h4>{{$category->name}}</h4>
                     <span class="add"><i class="fas fa-plus"></i></span>
 
                 </a>
-                <a class="categories-item">
-                    <h4>PHP</h4>
-                    <span class="add"><i class="fas fa-plus"></i></span>
-                </a>
-                <a class="categories-item">
-                    <h4>Html</h4>
-                    <span class="add"><i class="fas fa-plus"></i></span>
-                </a>
-                <a class="categories-item">
-                    <h4>Laravel</h4>
-                    <span class="add"><i class="fas fa-plus"></i></span>
-                </a>
-                <a class="categories-item">
-                    <h4>CSS</h4>
-                    <span class="add"><i class="fas fa-plus"></i></span>
-                </a>
+                @endif
+                @endforeach
+
             </div>
         </div>
 

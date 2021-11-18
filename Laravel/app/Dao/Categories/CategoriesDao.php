@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Contracts\Dao\Categories\CategoriesDaoInterface;
 use App\Models\PostCategory;
+use App\Models\UserCategory;
 
 class CategoriesDao implements CategoriesDaoInterface
 {
@@ -95,5 +96,46 @@ class CategoriesDao implements CategoriesDaoInterface
             ->where('post_id', $id)
             ->get(['post_category.*', 'categories.name']);
         return $postCategory;
+    }
+    /**
+     * Add to user category
+     * @param $categoryid
+     * @return $usercategory
+     */
+    public function AddUserCategory($categoryid)
+    {
+        $userCategory = new UserCategory();
+        $userCategory->user_id = Auth::user()->id ?? 1;
+        $userCategory->category_id = $categoryid;
+        $userCategory->save();
+        return $userCategory;
+    }
+    /**
+     * get user category
+     * @return $userCategoryList
+     */
+    public function getUserCategory()
+    {
+        $userid = Auth::user()->id ?? 1;
+        $userCategory = UserCategory::whereNull('deleted_at')
+            ->where('user_id', $userid)
+            ->get();
+        return $userCategory;
+    }
+    /**
+     * Delete userCategory
+     * @param $categoryid
+     * @return back to previous route
+     */
+    public function DeleteUserCategory($categoryid)
+    {
+        $userCategoryList = UserCategory::whereNull('deleted_at')
+            ->where('category_id', $categoryid)
+            ->get();
+        foreach ($userCategoryList as $userCategory) {
+            $userCategory->deleted_at = now();
+            $userCategory->save();
+            return $userCategory;
+        }
     }
 }
