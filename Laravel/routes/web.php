@@ -4,6 +4,7 @@ use App\Http\Controllers\Post\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Feedback\FeedbackController;
 use App\Http\Controllers\Categories\CategoriesController;
+use App\Http\Controllers\User\UserController;
 
 /*
 |--------------------------------------------------------------------------
