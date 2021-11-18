@@ -38,12 +38,12 @@
 
           <div class="formdata-control">
             <label for="name">Username <span>*</span></label><br>
-            <input type="text" class="form-input" name="name" placeholder="Enter Username">
+            <input type="text" class="form-input" name="name" placeholder="Enter Username" value="{{ old('name') }}">
           </div>
 
           <div class="formdata-control">
             <label for="email">Email Address <span>*</span></label><br>
-            <input type="email" class="form-input" name="email" placeholder="Enter Email">
+            <input type="email" class="form-input" name="email" placeholder="Enter Email" value="{{ old('email') }}">
             @error('email')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -73,32 +73,32 @@
 
           <div class="formdata-control">
             <label for="dob">Date of Birth <span>*</span></label><br>
-            <input type="date" class="form-input" name="date_of_birth">
+            <input type="date" class="form-input" name="date_of_birth" value="{{ old('dob') }}">
           </div>
 
           <div class="formdata-control">
             <label for="bio">Biography </label><br>
-            <input type="text" class="form-input" name="bio" placeholder="Enter Biography">
+            <input type="text" class="form-input" name="bio" placeholder="Enter Biography" value="{{ old('bio') }}">
           </div>
 
           <div class="formdata-control">
             <label for="position">Job Position <span>*</span></label><br>
-            <input type="text" class="form-input" name="position" placeholder="Enter Job Position">
+            <input type="text" class="form-input" name="position" placeholder="Enter Job Position" value="{{ old('position') }}">
           </div>
 
           <div class="formdata-control">
             <label for="linkedin">LinkedIn Link (Optional)</label><br>
-            <input type="text" class="form-input" name="linkedin" placeholder="Enter LinkedIn Link">
+            <input type="text" class="form-input" name="linkedin" placeholder="Enter LinkedIn Link" value="{{ old('linkedin') }}">
           </div>
 
           <div class="formdata-control">
             <label for="github">GitHub Link (Optional) </label><br>
-            <input type="text" class="form-input" name="github" placeholder="Enter GitHub Link ">
+            <input type="text" class="form-input" name="github" placeholder="Enter GitHub Link" value="{{ old('github') }}">
           </div>
 
           <div class="formdata-control">
             <label for="ph_no">Phone Number (Optional) </label><br>
-            <input type="text" class="form-input" name="ph_no" placeholder="Enter Phone Number ">
+            <input type="text" class="form-input" name="ph_no" placeholder="Enter Phone Number " value="{{ old('ph_no') }}">
           </div>
 
           <div class="formdata-control">
