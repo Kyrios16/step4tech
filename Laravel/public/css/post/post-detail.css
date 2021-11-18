@@ -139,6 +139,7 @@
     margin: 0% 0% 3%;
     color: #34c85b;
     font-size: 1.58rem;
+    background: transparent;
 }
 .feedback-send {
     text-decoration: none;

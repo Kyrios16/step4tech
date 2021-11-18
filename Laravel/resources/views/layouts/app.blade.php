@@ -45,7 +45,9 @@
   @include('common.nav')
   <div class="main-container">
     <div class="clearfix">
-      @include('common.sidebar')
+      @if(!Request::is('user/*'))
+        @include('common.sidebar')
+      @endif
       @yield('content')
     </div>
   </div>

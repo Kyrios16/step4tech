@@ -71,16 +71,52 @@ class PostController extends Controller
     }
 
     /**
-     * To search posts
+     * To show postList
      * @param string $id beer id
+     * @return View post list
+     */
+    public function showPostList()
+    {
+        $title = 'Home';
+        if(Auth::check()) {
+            $userId = Auth::user()->id;
+            $user = $this->userServiceInterface->getUserById($userId);
+            return view('post.index', compact('title','user'));
+        }
+        else {
+            return view('post.index', compact('title'));
+        }
+    }
+
+    /**
+     * To show liked postList
+     * @param string $id beer id
+     * @return View post list
+     */
+    public function showLikedPostList()
+    {
+        $title = 'Liked Posts';
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $user = $this->userServiceInterface->getUserById($userId);
+            return view('post.like', compact('title', 'user'));
+        }
+    }   
+    /**
+     * To search posts
+     * @param string $searchValue searchdata
      * @return View searched post list
      */
     public function searchPost($searchValue)
     {
-        return view('post.search', [
-            'title' => "Search - " . $searchValue,
-            'searchValue' => $searchValue
-        ]);
+        $title = "Search - " . $searchValue;
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $user = $this->userServiceInterface->getUserById($userId);
+            return view('post.search', compact('title', 'user', 'searchValue'));
+        } else {
+            return view('post.search', compact('title', 'searchValue'));
+        }
     }
 
     /**
@@ -154,15 +190,19 @@ class PostController extends Controller
     public function showPostDetailView($id)
     {
         $title = "Detail";
-        $user = $this->userServiceInterface->getUserById($id);
         $post = $this->postServiceInterface->getPostById($id);
         $date = $post->created_at;
         $date = $date->format('M d, Y');
         $post->created_at = $date;
         $feedbackList = $this->feedbackServiceInterface->getFeedbackbyPostId($id);
         $postCategory = $this->categoryServiceInterface->getCateListwithPostId($id);
-        // info($feedbackList);
-        return view('post.post-detail', compact('title', 'user', 'post', 'feedbackList', 'postCategory', 'date'));
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $user = $this->userServiceInterface->getUserById($userId);
+            return view('post.post-detail', compact('title', 'post', 'feedbackList', 'postCategory', 'date', 'user'));
+        } else {
+            return view('post.post-detail', compact('title', 'post', 'feedbackList', 'postCategory', 'date'));
+        }
     }
     /**
      * To export posts data form table

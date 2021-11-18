@@ -83,7 +83,7 @@
           <div class="formdata-control">
             <div class="btn-group clearfix">
               <input type="submit" class="btn btn-success" name="create" value="Update">
-              <a href="{{ route('user-view') }}" class="btn btn-cancel" name="cancel_btn">Cancel</a>
+              <a href="{{ route('user-view', $user->id) }}" class="btn btn-cancel" name="cancel_btn">Cancel</a>
             </div>
           </div>
 

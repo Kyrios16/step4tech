@@ -35,6 +35,15 @@ class PostService implements PostServiceInterface
     }
 
     /**
+     * To show liked post list
+     * @param Request $request
+     * @return postList liked post list
+     */
+    public function getLikedPostList($request) {
+        return $this->postDao->getLikedPostList($request);
+    }
+
+    /**
      * To search post list
      * @return postList searched post list
      */

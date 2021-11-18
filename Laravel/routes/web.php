@@ -20,7 +20,7 @@ use App\Http\Controllers\User\UserController;
 
 Route::get('/user/edit',[UserController::class,'showUserEditView'])->name('edit-user');
 Route::post('/user/edit',[UserController::class,'submitUserEditView'])->name('update-user');
-Route::get('/user/view',[UserController::class,'view'])->name('user-view');
+Route::get('/user/view/{id}',[UserController::class,'view'])->name('user-view');
 Route::get('/user/password',[UserController::class,'showChangePasswordView'])->name('change-password-view');
 Route::post('/user/password',[UserController::class,'changePassword'])->name('change-password');
 
@@ -51,15 +51,16 @@ Route::get('categories/export/', [CategoriesController::class, 'export'])->name(
 /**
  * Display All Posts ordered by date
  */
-Route::get('/', function () {
-    return view('post.index', [
-        'title' => 'Home'
-    ]);
-});
+Route::get('/', [PostController::class, 'showPostList']);
 /**
  * Search post
  */
 Route::get('/post/search/{searchValue}', [PostController::class, 'searchPost']);
+
+/**
+ * Display All Liked Posts
+ */
+Route::get('/post/liked-posts', [PostController::class, 'showLikedPostList']);
 
 Route::get('/post/create', [PostController::class, 'showPostCreateView'])->name('create.post');
 Route::post('/post/create', [PostController::class, 'submitPostCreateView'])->name('create.post');
