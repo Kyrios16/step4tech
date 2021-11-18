@@ -31,6 +31,12 @@
   <script src="{{ asset('js/lib/moment.js') }}"></script>
   <script src="{{ asset('js/common/sidebar.js') }}"></script>
   <script src="{{ asset('js/common/nav.js') }}"></script>
+  <script>
+    var loggedin = {{ auth()->check() ? 'true' : 'false' }};
+    @auth
+      var userId = {{ Auth::user()->id }};
+    @endauth
+</script>
   @yield('script')
   <title>Step4Tech | {{$title}}</title>
 </head>

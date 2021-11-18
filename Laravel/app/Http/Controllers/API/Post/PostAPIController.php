@@ -46,4 +46,26 @@ class PostAPIController extends Controller
         $postList = $this->postServiceInterface->searchPost($searchValue);
         return response()->json($postList);
     }
+
+    /**
+     * To like post
+     * @param Request $request
+     * @return Object $vote
+     */
+    public function likePost(Request $request)
+    {
+        $vote = $this->postServiceInterface->likePost($request);
+        return response()->json($vote);
+    }
+
+    /**
+     * To unlike post
+     * @param Request $request
+     * @return Object $vote
+     */
+    public function unlikePost(Request $request)
+    {
+        $this->postServiceInterface->unlikePost($request);
+        return response()->json("Unlike Success");
+    }
 }
