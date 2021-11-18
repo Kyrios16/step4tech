@@ -4,6 +4,7 @@ use App\Http\Controllers\Post\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Feedback\FeedbackController;
 use App\Http\Controllers\Categories\CategoriesController;
+use App\Http\Controllers\User\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,13 @@ use App\Http\Controllers\Categories\CategoriesController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//User Route
 
+Route::get('/user/edit',[UserController::class,'showUserEditView'])->name('edit-user');
+Route::post('/user/edit',[UserController::class,'submitUserEditView'])->name('update-user');
+Route::get('/user/view',[UserController::class,'view'])->name('user-view');
+Route::get('/user/password',[UserController::class,'showChangePasswordView'])->name('change-password-view');
+Route::post('/user/password',[UserController::class,'changePassword'])->name('change-password');
 
 require __DIR__ . '/auth.php';
 
@@ -41,7 +48,6 @@ Route::get('/admin/categories', function () {
 Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
 Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
 
-
 /**
  * Display All Posts ordered by date
  */
@@ -50,7 +56,6 @@ Route::get('/', function () {
         'title' => 'Home'
     ]);
 });
-
 /**
  * Search post
  */
