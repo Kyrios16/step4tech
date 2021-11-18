@@ -27,13 +27,13 @@
         @csrf
         <div class="cover-img">
           <input type="file" class="file-upload" name="cover_img" onchange="preview_cover(event)">
-          <img src="{{ URL::to('/') }}/images/cover/{{ $user->cover_img }}" id="cover_preview" class="cover">
+          <img src="{{ URL::to('/') }}/images/cover/{{ $user->cover_img }}" id="cover_preview" class="cover" alt="COVER">
         </div>
 
         <div class="profile-data">
           <div class="profile-img">
             <input type="file" class="file-upload" name="profile_img" onchange="preview_profile(event)">
-            <img src="{{ URL::to('/') }}/images/profile/{{ $user->profile_img }}" id="profile_preview" class="profile">
+            <img src="{{ URL::to('/') }}/images/profile/{{ $user->profile_img }}" id="profile_preview" class="profile" alt="PROFILE">
           </div>
 
           <div class="formdata-control">
@@ -48,7 +48,7 @@
 
           <div class="formdata-control">
             <label for="dob">Date of Birth <span>*</span></label><br>
-            <input type="date" class="form-input" name="date_of_birth" value="{{ $user->date_of_birth }}">
+            <input type="date" class="form-input" name="date_of_birth" value="{{ $user->date_of_birth }}" >
           </div>
 
           <div class="formdata-control">

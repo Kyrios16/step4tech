@@ -30,13 +30,13 @@
 
         <div class="cover-img">
           <input type="file" class="file-upload" name="cover_img" onchange="preview_cover(event)">
-          <img id="cover_preview" class="cover">
+          <img id="cover_preview" class="cover" alt="">
         </div>
 
         <div class="profile-data">
           <div class="profile-img">
             <input type="file" class="file-upload" name="profile_img" onchange="preview_profile(event)">
-            <img id="profile_preview" class="profile">
+            <img id="profile_preview" class="profile" alt="">
           </div>
 
           <div class="formdata-control">

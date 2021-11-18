@@ -20,11 +20,11 @@
   <div class="container">
     <div class="user-view-wrapper">
       <div class="cover-img">
-        <img src="{{ URL::to('/') }}/images/cover/{{ $user->cover_img }}" class="cover">
+        <img src="{{ URL::to('/') }}/images/cover/{{ $user->cover_img }}" class="cover" alt="COVER">
       </div>
       <div class="profile-info">
         <div class="profile-img">
-          <img src="{{ URL::to('/') }}/images/profile/{{ $user->profile_img }}" class="profile">
+          <img src="{{ URL::to('/') }}/images/profile/{{ $user->profile_img }}" class="profile" alt="PROFILE">
         </div>
         <a href="{{ route('edit-user') }}" class="setting" align="right">
           <i class="fas fa-cog"></i>
