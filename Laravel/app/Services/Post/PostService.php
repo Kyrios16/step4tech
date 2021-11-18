@@ -94,11 +94,22 @@ class PostService implements PostServiceInterface
     }
 
     /**
-     * To like post
+     * To count total posts 
+     * 
+     * @return return number of posts
+     */
+    public function countTotalPosts()
+    {
+        return $this->postDao->countTotalPosts();
+    }
+
+    /** 
+     *  To like post
      * @param Request $request
      * @return Object $vote
      */
-    public function likePost($request) {
+    public function likePost($request)
+    {
         return $this->postDao->likePost($request);
     }
 
@@ -107,7 +118,8 @@ class PostService implements PostServiceInterface
      * @param Request $request
      * @return 
      */
-    public function unlikePost($request) {
+    public function unlikePost($request)
+    {
         $this->postDao->unlikePost($request);
     }
 }

@@ -57,7 +57,12 @@ interface PostDaoInterface
     public function getPostList();
 
     /**
-     * To like post
+     * To count total posts 
+     * 
+     */
+    public function countTotalPosts();
+
+    /* * To like post
      * @param Request $request
      * @return Object $vote
      */

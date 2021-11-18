@@ -1,12 +1,13 @@
-// show categories list
-$.ajax({
-    url: "/api/admin/categories/list",
-    type: "GET",
-    dataType: "json",
-    success: function (res) {
-        res.forEach((categories) => {
-            $("tbody").append(
-                `<tr>
+$(document).ready(function () {
+    // show categories list
+    $.ajax({
+        url: "/api/admin/categories/list",
+        type: "GET",
+        dataType: "json",
+        success: function (res) {
+            res.forEach((categories) => {
+                $("tbody").append(
+                    `<tr>
                         <td>${categories.id}</td>
                         <td>${categories.name}</td>
                         <td>${categories.created_user_id}</td>
@@ -19,11 +20,11 @@ $.ajax({
                             <button class="icon-btn-danger" onClick="destroy(${categories.id})"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>`
-            );
-        });
-    },
+                );
+            });
+        },
+    });
 });
-
 // To delete category
 function destroy(id) {
     $.ajax({

@@ -90,7 +90,10 @@ class CategoriesDao implements CategoriesDaoInterface
      */
     public function getCateListwithPostId($id)
     {
-        $postCategory = PostCategory::where('post_id', $id)->get();
+        $postCategory = PostCategory::join('categories', 'categories.id', '=', 'post_category.category_id')
+            ->whereNull('post_category.deleted_at')
+            ->where('post_id', $id)
+            ->get(['post_category.*', 'categories.name']);
         return $postCategory;
     }
 }
