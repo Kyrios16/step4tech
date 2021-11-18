@@ -64,4 +64,14 @@ class UserService implements UserServiceInterface
     {
         return $this->userDao->changeUserPassword($request);
     }
+
+    /**
+     * To get most popular user
+     * 
+     * @return $mostPopularUser most popular user
+     */
+    public function getMostPopularUser()
+    {
+        return $this->userDao->getMostPopularUser();
+    }
 }

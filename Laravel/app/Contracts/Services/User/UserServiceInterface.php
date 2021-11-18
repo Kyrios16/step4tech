@@ -33,5 +33,12 @@ interface UserServiceInterface
      * @param array $validated Validated values from request
      * @return Object $user user object
      */
-    public function changeUserPassword($request);    
+    public function changeUserPassword($request);
+
+    /**
+     * To get most popular user
+     * 
+     * @return $mostPopularUser most popular user
+     */
+    public function getMostPopularUser();
 }

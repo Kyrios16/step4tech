@@ -8,7 +8,9 @@ use App\Http\Requests\UserEditRequest;
 use App\Contracts\Services\User\UserServiceInterface;
 use App\Http\Requests\UserPasswordChangeRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
+
 
 
 class UserController extends Controller
@@ -44,7 +46,7 @@ class UserController extends Controller
         $user = $this->userInterface->getUserById($userId);
         return view('User.update-user', compact('user'));
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -52,13 +54,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+
     public function submitUserEditView(Request $request)
     {
         $user = $this->userInterface->updateUser($request);
         return redirect('/user/view');
     }
-    
+
     /**
      * To Show the application dashboard.
      *
@@ -82,14 +84,16 @@ class UserController extends Controller
         return redirect('/');
     }
 
+
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * To get most popular user
+     * 
+     * @return $mostPopularUser most popular user
      */
-    public function destroy($id)
+    public function getMostPopularUser()
     {
-        //
+        $mostPopularUser = $this->userInterface->getMostPopularUser();
+
+        return view('admin.analytic.analytics-manage', compact('mostPopularUser'));
     }
 }

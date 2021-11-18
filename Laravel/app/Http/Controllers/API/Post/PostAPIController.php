@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API\Post;
 
 use App\Contracts\Services\Post\PostServiceInterface;
 use App\Http\Controllers\Controller;
+use App\Models\Vote;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 /**
@@ -78,5 +80,16 @@ class PostAPIController extends Controller
     {
         $this->postServiceInterface->unlikePost($request);
         return response()->json("Unlike Success");
+    }
+
+    /**
+     * To get max likes on post
+     * 
+     * @return return max likes on post
+     */
+    public function getMaxLikes()
+    {
+        $count = $this->postServiceInterface->getMaxLikes();
+        return response()->json($count);
     }
 }

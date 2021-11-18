@@ -188,6 +188,23 @@ class PostDao implements PostDaoInterface
     }
 
     /**
+     * To get max likes on post
+     * 
+     * @return return max likes on post
+     */
+    public function getMaxLikes()
+    {
+        $count = DB::table('votes')
+            ->select(DB::raw('count(post_id) as totalLikes'))
+            ->where('user_id', '!=', '')
+            ->groupBy('post_id')
+            ->orderBy('totalLikes', 'desc')
+            ->first();
+
+        return $count;
+    }
+
+    /**
      * To like post
      * @param Request $request
      * @return Object $vote

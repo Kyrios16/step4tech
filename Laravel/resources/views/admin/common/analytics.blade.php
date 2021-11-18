@@ -22,11 +22,11 @@
     </div>
     <div class="analytic-card">
         <div class="analytic-icon icon-third">
-            <i class="fas fa-star"></i>
+            <i class="fas fa-thumbs-up"></i>
         </div>
         <div class="analytic-info">
-            <small>Post Rating</small>
-            <h2>4.9</h2>
+            <small>Most Liked Post</small>
+            <h2 id="total-likes"></h2>
         </div>
     </div>
     <div class="analytic-card">

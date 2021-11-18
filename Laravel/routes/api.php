@@ -4,6 +4,7 @@ use App\Http\Controllers\API\Post\PostAPIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Categories\CategoriesController;
+use App\Http\Controllers\User\UserController;
 
 
 /*
@@ -35,6 +36,7 @@ Route::get('/admin/categories/list', [CategoriesController::class, 'getCateList'
 Route::get('/admin/categories/edit/{categories}',  [CategoriesController::class, 'editCate'])->name('edit.categories');
 Route::delete('/admin/categories/{categories}',  [CategoriesController::class, 'deleteCate'])->name('delete.categories');
 Route::get('/admin/totalpost', [PostAPIController::class, 'countTotalPosts'])->name('count.totalPosts');
+Route::get('/admin/totallike', [PostAPIController::class, 'getMaxLikes']);
 
 
 /**

@@ -22,30 +22,34 @@
                 @include('admin.common.analytics')
                 <div class="analytic-sec">
                     @include('admin.common.chart')
+
+                    <!-- To show who created most liked post  -->
+                    @foreach($mostPopularUser as $mostPopularUser)
                     <div class="popular-user-card">
                         <div class="text">
-                            <img src="https://www.shareicon.net/data/512x512/2016/09/15/829452_user_512x512.png" alt="">
-                            <h3>Jane Smith</h3>
-                            <p>Senior Developer</p>
+                            <img src="{{ URL::to('/') }}/images/profile/{{ $mostPopularUser->profile_img }}" alt="User Profile">
+                            <h3>{{ $mostPopularUser->name }}</h3>
+                            <p>{{ $mostPopularUser->position }}</p>
                             <div class="card-info">
-                                <h5 class="info-title">What is Laravel?</h5>
+                                <h5 class="info-title">{{ $mostPopularUser->title }}</h5>
                                 <div class="analytic-card">
                                     <div class="popular-icon">
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <div class="analytic-info">
-                                        <small>Post Rating</small>
-                                        <h2>4.9</h2>
+                                        <small>Total Likes</small>
+                                        <h2>{{ $mostPopularUser->totalLike }}</h2>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="links">
-                            <a target="_blank" href="https://codepen.io/l-e-e/"><i class="fab fa-codepen"></i></a>
-                            <a target="_blank" href="https://github.com/Leena26"><i class="fab fa-github"></i></a>
-                            <a href="https://facebook.com/pixelsum"><span class="fab fa-facebook-square"></span></a>
+                            <a target="_blank" href="{{ $mostPopularUser->github }}"><i class="fab fa-linkedin-in"></i></a>
+                            <a target="_blank" href="{{ $mostPopularUser->linkedin }}"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
+                    @endforeach
+
                 </div>
 
             </main>

@@ -86,4 +86,31 @@ class UserDao implements UserDaoInterface
             ]);
         return $user;
     }
+
+    /**
+     * To get most popular user
+     * 
+     * @return $mostPopularUser most popular user
+     */
+    public function getMostPopularUser()
+    {
+        $mostPopularUser = DB::select(DB::raw(
+            'SELECT
+                    COUNT(votes.post_id) totalLike,
+                    posts.title,
+                    users.*
+                FROM
+                    users
+                    LEFT JOIN posts on posts.created_user_id = users.id
+                    LEFT JOIN votes ON votes.post_id = posts.id
+                GROUP BY
+                    votes.post_id, users.id, posts.id
+                ORDER BY
+                    totalLike DESC
+                LIMIT
+                    1'
+        ));
+
+        return $mostPopularUser;
+    }
 }

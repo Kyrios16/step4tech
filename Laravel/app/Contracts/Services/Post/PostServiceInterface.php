@@ -58,6 +58,13 @@ interface PostServiceInterface
      */
     public function countTotalPosts();
 
+    /**
+     * To get max likes on post
+     * 
+     * @return return max likes on post
+     */
+    public function getMaxLikes();
+
     /** To like post
      * @param Request $request
      * @return Object $vote

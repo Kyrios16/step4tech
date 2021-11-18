@@ -195,6 +195,7 @@ input:focus::placeholder {
     font-size: 1.2rem;
     color: var(--main-text);
 }
+
 .active {
     color: var(--color-main);
     background: var(--main-bg);
@@ -209,6 +210,8 @@ input:focus::placeholder {
     margin-left: 0.5rem;
 }
 
+.sidebar-menu .active .icon-small,
+.sidebar-menu .active span,
 .sidebar-menu #menuBtn:hover .icon-small {
     color: var(--color-main);
 }
@@ -284,7 +287,7 @@ main {
 
 .icon-third {
     background: #ecf0f1;
-    color: #ffff00;
+    color: #d35400;
 }
 
 .icon-fourth {
