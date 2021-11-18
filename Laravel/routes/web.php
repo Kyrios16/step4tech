@@ -19,12 +19,13 @@ use App\Http\Controllers\User\UserController;
 
 require __DIR__ . '/auth.php';
 
+/* admin management routes */
 // admin dashboard routes
 Route::get('/admin', function () {
-    return view('admin.dashboard');
+    return view('admin.analytic.analytics-manage');
 });
 
-// manage users
+// manage users 
 Route::get('/admin/users', function () {
     return view('admin.users-manage');
 });
