@@ -44,6 +44,14 @@ class PostService implements PostServiceInterface
     }
 
     /**
+     * To show deleted post list
+     * @param Request $request
+     * @return postList deleted post list
+     */
+    public function getDeletedPostList($request) {
+        return $this->postDao->getDeletedPostList($request);
+    }
+    /**
      * To search post list
      * @return postList searched post list
      */

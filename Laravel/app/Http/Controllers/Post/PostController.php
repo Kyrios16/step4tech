@@ -72,7 +72,6 @@ class PostController extends Controller
 
     /**
      * To show postList
-     * @param string $id beer id
      * @return View post list
      */
     public function showPostList()
@@ -90,8 +89,7 @@ class PostController extends Controller
 
     /**
      * To show liked postList
-     * @param string $id beer id
-     * @return View post list
+     * @return View liked post list
      */
     public function showLikedPostList()
     {
@@ -101,7 +99,22 @@ class PostController extends Controller
             $user = $this->userServiceInterface->getUserById($userId);
             return view('post.like', compact('title', 'user'));
         }
-    }   
+    }
+
+    /**
+     * To show deleted postList
+     * @return View deleted post list
+     */
+    public function showDeletedPostList()
+    {
+        $title = 'Trash';
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $user = $this->userServiceInterface->getUserById($userId);
+            return view('post.trash', compact('title', 'user'));
+        }
+    }
+
     /**
      * To search posts
      * @param string $searchValue searchdata

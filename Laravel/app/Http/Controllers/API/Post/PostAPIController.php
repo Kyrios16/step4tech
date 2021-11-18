@@ -48,6 +48,17 @@ class PostAPIController extends Controller
     }
 
     /**
+     * To show deleted post list
+     * @param Request $request
+     * @return Response json with deleted post list
+     */
+    public function showDeletedPostList(Request $request)
+    {
+        $postList = $this->postServiceInterface->getDeletedPostList($request);
+        return response()->json($postList);
+    }
+
+    /**
      * To search posts
      * @param string $id beer id
      * @return Response json with searched post list

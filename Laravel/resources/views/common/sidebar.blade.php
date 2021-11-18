@@ -34,7 +34,7 @@
                 <h2 class="sidebar-title">Liked Posts</h2>
             </span>
         </a>
-        <a class="sidebar-items">
+        <a href="/post/trash" class="sidebar-items">
             <span>
                 <span class="icon"><i class="fas fa-trash"></i></span>
                 <h2 class="sidebar-title">Trash</h2>

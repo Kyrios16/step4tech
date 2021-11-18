@@ -36,6 +36,11 @@ Route::get('/post/search/{searchValue}', [PostAPIController::class, 'searchPost'
  */
 Route::get('/post/like', [PostAPIController::class, 'showLikedPostList']);
 
+/**
+ * To Show deleted Posts
+ */
+Route::get('/post/trash', [PostAPIController::class, 'showDeletedPostList']);
+
 Route::get('/admin/categories/list', [CategoriesController::class, 'getCateList'])->name('show.categories');
 Route::get('/admin/categories/edit/{categories}',  [CategoriesController::class, 'editCate'])->name('edit.categories');
 Route::delete('/admin/categories/{categories}',  [CategoriesController::class, 'deleteCate'])->name('delete.categories');
