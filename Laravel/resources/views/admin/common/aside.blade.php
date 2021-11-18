@@ -19,27 +19,27 @@
     </div>
 
     <div class="sidebar-menu">
-      <ul>
+      <ul id="sidebar-list">
         <li>
-          <a href="/admin" class="menuBtn">
+          <a href="{{ url('/admin') }}" id="menuBtn" class="{{ Request::is('admin') ? 'active' : null }}">
             <span class="fas fa-sliders-h icon-small"></span>
             <span>Dashboard</span>
           </a>
         </li>
         <li>
-          <a href="/admin/users" class="menuBtn">
+          <a href="{{ url('/admin/users') }}" id="menuBtn" class="{{ Request::is('admin/users') ? 'active':'' }}">
             <span class="fas fa-users-cog icon-small"></span>
             <span>Users Management</span>
           </a>
         </li>
         <li>
-          <a href="/admin/posts" class="menuBtn">
+          <a href="{{ url('/admin/posts') }}" id="menuBtn" class="{{ Request::is('admin/posts') ? 'active':'' }}">
             <span class="fas fa-list-alt icon-small"></span>
             <span>Posts Management</span>
           </a>
         </li>
         <li>
-          <a href="/admin/categories" class="menuBtn">
+          <a href="{{ url('/admin/categories') }}" id="menuBtn" class="{{ Request::is('admin/categories') ? 'active':'' }}">
             <span class="fas fa-list-alt icon-small"></span>
             <span>Categories Management</span>
           </a>

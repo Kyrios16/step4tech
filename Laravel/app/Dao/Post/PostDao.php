@@ -177,6 +177,17 @@ class PostDao implements PostDaoInterface
     }
 
     /**
+     * To count total posts 
+     * 
+     * @return return number of posts
+     */
+    public function countTotalPosts()
+    {
+        $count = Post::where('deleted_at', null)->count();
+        return $count;
+    }
+
+    /**
      * To like post
      * @param Request $request
      * @return Object $vote
