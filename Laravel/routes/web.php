@@ -19,17 +19,19 @@ use App\Http\Controllers\User\UserController;
 
 require __DIR__ . '/auth.php';
 
+/* admin management routes */
 // admin dashboard routes
 Route::get('/admin', function () {
-    return view('admin.dashboard');
+    return view('admin.analytic.analytics-manage');
 });
 
+
 // manage users
-// Route::get('/admin/users', [UserController::class, 'index']);
-// Route::delete('/admin/users/{id}', [UserController::class, 'deleteUser']);
-Route::get('/admin/users', function () {
-    return view('admin.users-manage');
-});
+Route::get('/admin/users', [UserController::class, 'index']);
+Route::delete('/admin/users/{id}', [UserController::class, 'deleteUser']);
+// Route::get('/admin/users', function () {
+//     return view('admin.users-manage');
+// });
 
 // manage posts 
 Route::get('/admin/posts', [PostController::class, 'index'])->name('show.postList');
