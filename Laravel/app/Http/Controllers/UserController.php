@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = DB::table('users')->orderBy('created_at', 'asc')->get();
+        $users = User::orderBy('created_at', 'asc')->get();
         return view('admin.users-manage', compact('users'));
     }
 
@@ -32,7 +32,6 @@ class UserController extends Controller
         $user->deleted_user_id = 1;
         $user->deleted_at = now();
         $user->save();
-
         return redirect('/admin/users');
     }
 }
