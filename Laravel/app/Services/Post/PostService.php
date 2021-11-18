@@ -139,4 +139,13 @@ class PostService implements PostServiceInterface
     {
         $this->postDao->unlikePost($request);
     }
+
+    /**
+     * To show personal post list
+     * @param Request $request
+     * @return postList personal post list
+     */
+    public function getPersonalPostList($request) {
+        return $this->postDao->getPersonalPostList($request);
+    }
 }

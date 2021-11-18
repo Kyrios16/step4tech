@@ -56,3 +56,8 @@ Route::post('/post/like', [PostAPIController::class, 'likePost']);
  * To Unlike Post
  */
 Route::post('/post/unlike', [PostAPIController::class, 'unlikePost']);
+
+/**
+ * To Show Personal Posts
+ */
+Route::get('/user/posts', [PostAPIController::class, 'showPersonalPostList']);

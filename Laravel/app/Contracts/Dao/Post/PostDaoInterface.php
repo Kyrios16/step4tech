@@ -88,4 +88,11 @@ interface PostDaoInterface
      * @return 
      */
     public function unlikePost($request);
+
+    /**
+     * To show personal post list
+     * @param Request $request
+     * @return postList personal post list
+     */
+    public function getPersonalPostList($request);
 }

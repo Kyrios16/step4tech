@@ -101,4 +101,15 @@ class PostAPIController extends Controller
         $this->postServiceInterface->unlikePost($request);
         return response()->json("Unlike Success");
     }
+    
+    /**
+     * To show personal post list
+     * @param Request $request
+     * @return Response json with personal post list
+     */
+    public function showPersonalPostList(Request $request)
+    {
+        $postList = $this->postServiceInterface->getPersonalPostList($request);
+        return response()->json($postList);
+    }
 }

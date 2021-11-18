@@ -1,19 +1,19 @@
 $(document).ready(function () {
-    showDeletedPostList();
+    showPersonalPostList();
 });
 
 //Intial
-function showDeletedPostList() {
+function showPersonalPostList() {
     var data = {
-        userId: userId,
+        userId: viewedUserId,
     };
     $.ajax({
-        url: "/api/post/trash",
+        url: "/api/user/posts",
         type: "GET",
         data: data,
         dataType: "json",
         success: function (data) {
-            //Add deleted post list
+            //Add personal post list
             data.forEach((post) => {
                 var created_at = moment(
                     post.created_at,
@@ -48,7 +48,7 @@ function showDeletedPostList() {
                         });
                     }
                 }
-                $(".postlist-container").append(
+                $(".user-postlist-wrapper").append(
                     `<div class="post">
                         <div class="clearfix">
                             <div class="img-container">

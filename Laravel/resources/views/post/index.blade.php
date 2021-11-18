@@ -5,7 +5,7 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/post/list.js') }}"></script>
+<script src="{{ asset('js/post/like-btn.js') }}"></script>
 <script src="{{ asset('js/post/index.js') }}"></script>
 @endsection
 

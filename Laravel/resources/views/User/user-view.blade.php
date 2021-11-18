@@ -1,10 +1,16 @@
 @extends('layouts.app')
 
 @section('style')
-<link href="{{ asset('css/user/user-view.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/post/list.css') }}">
+<link rel="stylesheet" href="{{ asset('css/user/user-view.css') }}">
 @endsection
 
 @section('script')
+<script src="{{ asset('js/post/like-btn.js') }}"></script>
+<script>
+  var viewedUserId = {{ $viewUser->id }};
+</script>
+<script src="{{ asset('js/user/user-view.js') }}"></script>
 @endsection
 
 @section('content')
@@ -50,6 +56,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="user-postlist-wrapper">
   </div>
 </div>
 @endsection
