@@ -21,9 +21,10 @@ class FeedbackDao implements FeedbackDaoInterface
      */
     public function getFeedbackbyPostId($Id)
     {
-        $feedbackList = DB::select(DB::raw("SELECT feedbacks.content, feedbacks.photo, users.name, users.profile_img,feedbacks.created_at
+        $feedbackList = DB::select(DB::raw("SELECT feedbacks.created_user_id,feedbacks.id,feedbacks.content, feedbacks.photo, users.name, users.profile_img,feedbacks.created_at
         FROM feedbacks,users
         WHERE users.id = feedbacks.created_user_id
+        AND feedbacks.deleted_at is NULL
         AND feedbacks.post_id = $Id
         GROUP BY feedbacks.id
         ORDER BY feedbacks.updated_at DESC"));
@@ -65,6 +66,21 @@ class FeedbackDao implements FeedbackDaoInterface
         $feedback->created_user_id = Auth::user()->id ?? 1;
         $feedback->updated_user_id = Auth::user()->id ?? 1;
         $feedback->save();
+        return $feedback;
+    }
+    /**
+     * To delete $feedback
+     * 
+     * @param $id
+     * @return $feedback  
+     */
+    public function deleteFeedback($id)
+    {
+        $feedback = Feedback::find($id);
+        $feedback->deleted_user_id = Auth::user()->id ?? 1;
+        $feedback->deleted_at = now();
+        $feedback->save();
+
         return $feedback;
     }
 }

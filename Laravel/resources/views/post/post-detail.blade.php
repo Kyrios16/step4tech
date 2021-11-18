@@ -94,8 +94,9 @@
             </div>
 
             @endif
-
-            <a class="delete-icn"><i class="fas fa-trash-alt"></i></a>
+            @if(Auth::user()->id == $feedback->created_user_id)
+            <a class="delete-icn" href="{!! route('feedback.delete', ['id'=>$feedback->id,]) !!}"><i class="fas fa-trash-alt"></i></a>
+            @endif
         </div>
 
         @endforeach

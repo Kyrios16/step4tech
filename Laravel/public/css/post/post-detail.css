@@ -182,6 +182,7 @@
 .delete-icn {
     float: right;
     padding-right: 4%;
+    color: #707070;
 }
 .delete-icn:hover {
     color: #34c85b !important;

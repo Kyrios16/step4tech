@@ -18,11 +18,11 @@ use App\Http\Controllers\User\UserController;
 */
 //User Route
 
-Route::get('/user/edit',[UserController::class,'showUserEditView'])->name('edit-user');
-Route::post('/user/edit',[UserController::class,'submitUserEditView'])->name('update-user');
-Route::get('/user/view',[UserController::class,'view'])->name('user-view');
-Route::get('/user/password',[UserController::class,'showChangePasswordView'])->name('change-password-view');
-Route::post('/user/password',[UserController::class,'changePassword'])->name('change-password');
+Route::get('/user/edit', [UserController::class, 'showUserEditView'])->name('edit-user');
+Route::post('/user/edit', [UserController::class, 'submitUserEditView'])->name('update-user');
+Route::get('/user/view', [UserController::class, 'view'])->name('user-view');
+Route::get('/user/password', [UserController::class, 'showChangePasswordView'])->name('change-password-view');
+Route::post('/user/password', [UserController::class, 'changePassword'])->name('change-password');
 
 require __DIR__ . '/auth.php';
 
@@ -69,3 +69,4 @@ Route::post('/post/edit/{id}', [PostController::class, 'submitPostEdit'])->name(
 Route::delete('/post/delete/{id}', [PostController::class, 'deletePostById']);
 Route::get('/post/detail/{id}',  [PostController::class, 'showPostDetailView'])->name('detail.post');
 Route::post('/post/feedback/{id}',  [FeedbackController::class, 'createFeedback'])->name('feedback.post');
+Route::get('/feedback/delete/{id}',  [FeedbackController::class, 'deleteFeedback'])->name('feedback.delete');
