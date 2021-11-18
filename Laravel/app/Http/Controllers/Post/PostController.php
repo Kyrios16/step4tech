@@ -154,15 +154,14 @@ class PostController extends Controller
     public function showPostDetailView($id)
     {
         $title = "Detail";
-        $user = $this->userServiceInterface->getUserById($id);
         $post = $this->postServiceInterface->getPostById($id);
         $date = $post->created_at;
         $date = $date->format('M d, Y');
         $post->created_at = $date;
         $feedbackList = $this->feedbackServiceInterface->getFeedbackbyPostId($id);
         $postCategory = $this->categoryServiceInterface->getCateListwithPostId($id);
-        // info($feedbackList);
-        return view('post.post-detail', compact('title', 'user', 'post', 'feedbackList', 'postCategory', 'date'));
+        info($post);
+        return view('post.post-detail', compact('title', 'post', 'feedbackList', 'postCategory', 'date'));
     }
     /**
      * To export posts data form table
