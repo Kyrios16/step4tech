@@ -179,8 +179,6 @@ class PostDao implements PostDaoInterface
             ->whereNull('posts.deleted_at')
             ->where('posts.id', $id)
             ->get(['posts.*', 'users.profile_img', 'users.name']);
-        info("inside getpostbyId");
-        info($postList);
         $post = $postList[0];
         return $post;
     }

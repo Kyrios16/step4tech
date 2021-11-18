@@ -6,6 +6,7 @@ use App\Contracts\Services\Categories\CategoriesServiceInterface;
 use App\Contracts\Services\Feedback\FeedbackServiceInterface;
 use App\Contracts\Services\Post\PostServiceInterface;
 use App\Contracts\Services\User\UserServiceInterface;
+use App\Contracts\Services\Vote\VoteServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\createFeedbackRequest;
 use App\Http\Requests\createPostRequest;
@@ -46,16 +47,22 @@ class PostController extends Controller
     private $feedbackServiceInterface;
 
     /**
+     * vote service interface
+     */
+    private $voteServiceInterface;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(PostServiceInterface $postServiceInterface, CategoriesServiceInterface $categoriesServiceInterface, UserServiceInterface $userServiceInterface, FeedbackServiceInterface $feedbackServiceInterface)
+    public function __construct(PostServiceInterface $postServiceInterface, CategoriesServiceInterface $categoriesServiceInterface, UserServiceInterface $userServiceInterface, FeedbackServiceInterface $feedbackServiceInterface, VoteServiceInterface $voteServiceInterface)
     {
         $this->postServiceInterface = $postServiceInterface;
         $this->categoryServiceInterface = $categoriesServiceInterface;
         $this->userServiceInterface = $userServiceInterface;
         $this->feedbackServiceInterface = $feedbackServiceInterface;
+        $this->voteServiceInterface = $voteServiceInterface;
     }
 
     /**
@@ -209,12 +216,13 @@ class PostController extends Controller
         $post->created_at = $date;
         $feedbackList = $this->feedbackServiceInterface->getFeedbackbyPostId($id);
         $postCategory = $this->categoryServiceInterface->getCateListwithPostId($id);
+        $voteList = $this->voteServiceInterface->getVoteListwithPostId($id);
         if (Auth::check()) {
             $userId = Auth::user()->id;
             $user = $this->userServiceInterface->getUserById($userId);
-            return view('post.post-detail', compact('title', 'post', 'feedbackList', 'postCategory', 'date', 'user'));
+            return view('post.post-detail', compact('title', 'post', 'voteList', 'feedbackList', 'postCategory', 'date', 'user'));
         } else {
-            return view('post.post-detail', compact('title', 'post', 'feedbackList', 'postCategory', 'date'));
+            return view('post.post-detail', compact('title', 'post', 'voteList', 'feedbackList', 'postCategory', 'date'));
         }
     }
     /**

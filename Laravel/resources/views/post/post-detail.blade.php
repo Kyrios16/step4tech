@@ -5,7 +5,7 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/post/list.js') }}"></script>
+<script src="{{ asset('js/post/like-btn.js') }}"></script>
 <script src="{{ asset('js/post/post-detail.js') }}"></script>
 <script src="{{ asset('js/post/post-create.js') }}"></script>
 
@@ -43,7 +43,20 @@
             </p>
         </div>
         <div class="postbtn-container">
-            <button class="post-btn" onclick="togglePostLike(this)"><i class="far fa-thumbs-up"></i> Like</button>
+            @php($flag=false)
+            @if(count($voteList) > 0)
+            @foreach($voteList as $voteUserId)
+            @if($voteUserId->user_id == $user->id)
+            @php($flag=true)
+            @endif
+            @endforeach
+            @endif
+            @if($flag == true)
+            <button class="post-btn post-liked" onclick="togglePostLike(this, {{$post->id}})"><i class="fa fa-thumbs-up"></i> {{count($voteList)}} Likes</button>
+            @else
+            <button class="post-btn" onclick="togglePostLike(this, {{$post->id}})"><i class="far fa-thumbs-up"></i> {{count($voteList)}} Likes</button>
+            @endif
+
             <a href="/post/detail/${post.id}" class="post-btn"><i class="far fa-comment-alt"></i> {{count($feedbackList)}} Feedbacks</a>
         </div>
     </div>
