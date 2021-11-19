@@ -24,9 +24,9 @@ function showDeletedPostList() {
                 var categoriesHtml = "";
                 categoriesArray.forEach((categoryName) => {
                     categoriesHtml +=
-                        '<a class="post-category" href="/post/search/' +
+                        "<a class='post-category' href='/post/search/" +
                         categoryName +
-                        '">#' +
+                        "'>#" +
                         categoryName +
                         "</a>";
                 });

@@ -61,3 +61,8 @@ Route::post('/post/unlike', [PostAPIController::class, 'unlikePost']);
  * To Show Personal Posts
  */
 Route::get('/user/posts', [PostAPIController::class, 'showPersonalPostList']);
+
+/**
+ * To Delete Personal Posts
+ */
+Route::delete('/post/delete/{id}', [PostAPIController::class, 'deletePostById']);

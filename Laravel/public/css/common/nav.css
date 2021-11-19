@@ -131,7 +131,7 @@ a:hover {
 }
 
 .profile-dropdown-content a {
-    color: black;
+    color: #000000;
     padding: 0.75em;
     text-decoration: none;
     display: block;

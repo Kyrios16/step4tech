@@ -112,4 +112,15 @@ class PostAPIController extends Controller
         $postList = $this->postServiceInterface->getPersonalPostList($request);
         return response()->json($postList);
     }
+
+    /**
+     * To delete post by id
+     * @return View post list
+     */
+    public function deletePostById($id, Request $request)
+    {
+        $deletedUserId = $request->userId;
+        $msg = $this->postServiceInterface->deletePostById($id, $deletedUserId);
+        return response()->json($msg);
+    }
 }

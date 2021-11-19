@@ -35,7 +35,7 @@
     width: 100%;
     border-radius: 1rem;
     padding: 5%;
-    box-sizing: border-box;    
+    box-sizing: border-box;
     background-color: #f5f5f5;
     box-shadow: rgba(17, 17, 26, 0.1) 2px 2px 16px;
 }
@@ -172,4 +172,46 @@ i {
     border-radius: 1rem;
     background-color: #f5f5f5;
     box-shadow: rgba(17, 17, 26, 0.1) 2px 2px 16px;
+}
+
+.post-blog {
+    width: 95%;
+}
+
+.post-title {
+    display: inline-block;
+}
+
+.option-btn {
+    float:right;
+    border:none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.personal-post-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 23.5%;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    text-align: left;
+}
+
+.personal-post-dropdown-content button,
+.personal-post-dropdown-content a {
+    font-size: 0.8rem;
+    color: #000000;
+    padding: 0.75em;
+    text-decoration: none;
+    display: block;
+    background-color: transparent;
+    border: none;
+}
+
+.personal-post-dropdown-content button:hover,
+.personal-post-dropdown-content a:hover {
+    background-color: #f1f1f1;
+    opacity: 1;
 }

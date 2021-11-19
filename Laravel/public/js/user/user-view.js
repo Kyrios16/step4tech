@@ -21,21 +21,22 @@ function showPersonalPostList() {
                 ).format("MMM Do, YYYY");
                 var categories = post.post_categories;
                 var categoriesArray = categories.split(",");
-                var categoriesHtml = "";
+                var categoriesHtml = "<div>";
                 categoriesArray.forEach((categoryName) => {
                     categoriesHtml +=
-                        '<a class="post-category" href="/post/search/' +
+                        "<a class='post-category' href='/post/search/" +
                         categoryName +
-                        '">#' +
+                        "'>#" +
                         categoryName +
                         "</a>";
                 });
+                categoriesHtml += "</div>";
                 var getUrl = window.location;
                 var baseUrl =
                     getUrl.protocol + "//" + getUrl.host + "/images/profile/";
                 var likeCount = 0;
                 var islikedClass = "";
-                var thumbFillClass = "far";
+                var thumbFillClass = "far";                
                 if (post.post_voted_userid != null) {
                     var likedUserIdArray = post.post_voted_userid.split(",");
                     likeCount = likedUserIdArray.length;
@@ -47,6 +48,14 @@ function showPersonalPostList() {
                             }
                         });
                     }
+                }
+                var optionBtnHtml = "";
+                if (viewedUserId == userId) {
+                    optionBtnHtml = "<button class='option-btn' onclick='togglePersonalPostDropdown(this)'><i class='fas fa-caret-down'></i></button>"+
+                                    "<div class='personal-post-dropdown-content'>"+          
+                                        "<a href='/post/edit/" + post.id + "'>Edit</a>"+       
+                                        "<button onclick='deletePost(" + post.id + ")'>Delete</button>"+
+                                    "</div>";
                 }
                 $(".user-postlist-wrapper").append(
                     `<div class="post">
@@ -60,6 +69,7 @@ function showPersonalPostList() {
                                 <a href="/user/view/${
                                     post.userId
                                 }" class="post-username">${post.name}</a>
+                                ${optionBtnHtml}
                                 <p class="post-date">${created_at}</p>             
                                 <a class="post-title" href="/post/detail/${
                                     post.id
@@ -82,4 +92,38 @@ function showPersonalPostList() {
             });
         },
     });
+}
+
+
+function togglePersonalPostDropdown(button) {
+    if ($(button).parent(".post-blog").children(".personal-post-dropdown-content").css("display") == "none") {
+        $(button).parent(".post-blog").children(".personal-post-dropdown-content").css("display", "block");
+    } else {
+        $(button).parent(".post-blog").children(".personal-post-dropdown-content").css("display", "none");
+    }
+}
+
+//Close Personal Post Dropdown when click outside of the element
+$(document).on("click", function (event) {
+    var $trigger = $(".option-btn");
+    if ($trigger != event.target && !$trigger.has(event.target).length) {
+        $(".personal-post-dropdown-content").css("display", "none");
+    }
+});
+
+function deletePost(id) {
+    if (confirm("Do you want to delete this post?") == true) {
+        var data = {
+            userId: userId,
+        };        
+        $.ajax({
+            url: "/api/post/delete/" + id,
+            type: "DELETE",
+            data: data,
+            success: function (msg) {
+                alert("Delete Successful");
+                location.reload();
+            },
+        });
+    }
 }

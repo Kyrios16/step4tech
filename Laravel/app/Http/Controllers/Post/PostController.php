@@ -192,16 +192,7 @@ class PostController extends Controller
         $test = $this->postServiceInterface->updatedPostById($request, $id);
         return redirect('/');
     }
-    /**
-     * To delete post by id
-     * @return View post list
-     */
-    public function deletePostById($id)
-    {
-        $deletedUserId = Auth::user()->id ?? 1;
-        $msg = $this->postServiceInterface->deletePostById($id, $deletedUserId);
-        return response($msg, 204);
-    }
+    
     /**
      * To show post detail view
      * 

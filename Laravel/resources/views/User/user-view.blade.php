@@ -42,7 +42,6 @@
             <a href="{{ $viewUser->linkedin }}">{{ $viewUser->linkedin }}</a>
           </p>
           <p class="right">
-
             <i class="fab fa-github-square"></i>
             <a href="{{ $viewUser->github }}">{{ $viewUser->github }}</a>
           </p>
@@ -57,7 +56,7 @@
       </div>
     </div>
   </div>
-  <div class="user-postlist-wrapper">
+  <div class="user-postlist-wrapper">    
   </div>
 </div>
 @endsection

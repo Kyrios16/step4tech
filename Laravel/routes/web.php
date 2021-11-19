@@ -71,6 +71,5 @@ Route::get('/post/create', [PostController::class, 'showPostCreateView'])->name(
 Route::post('/post/create', [PostController::class, 'submitPostCreateView'])->name('create.post');
 Route::get('/post/edit/{id}', [PostController::class, 'showPostEditView'])->name('edit.post');
 Route::post('/post/edit/{id}', [PostController::class, 'submitPostEdit'])->name('edit.post');
-Route::delete('/post/delete/{id}', [PostController::class, 'deletePostById']);
 Route::get('/post/detail/{id}',  [PostController::class, 'showPostDetailView'])->name('detail.post');
 Route::post('/post/feedback/{id}',  [FeedbackController::class, 'createFeedback'])->name('feedback.post');
