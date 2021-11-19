@@ -27,3 +27,13 @@ $.ajax({
         $("#total-likes").append(data[Object.keys(data)[0]]);
     },
 });
+
+//To show most followers category
+$.ajax({
+    url: "/api/admin/favcategory",
+    type: "GET",
+    dataType: "json",
+    success: function (data) {
+        $("#fav-cate").append(data[Object.keys(data)[0]].name);
+    },
+});

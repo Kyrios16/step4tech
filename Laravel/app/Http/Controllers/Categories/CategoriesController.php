@@ -130,4 +130,15 @@ class CategoriesController extends Controller
         $category = $this->cateInterface->DeleteUserCategory($categoryid);
         return back();
     }
+
+    /**
+     * To get max total followers on category
+     * 
+     * @return response with max total followers on category
+     */
+    public function getMaxFollowers()
+    {
+        $count = $this->cateInterface->getMaxFollowers();
+        return $count;
+    }
 }

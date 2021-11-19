@@ -41,6 +41,7 @@ Route::get('/admin/totalpost', [PostAPIController::class, 'countTotalPosts'])->n
 Route::get('/admin/totaluser', [UserController::class, 'countTotalUsers'])->name('count.totalUsers');
 Route::get('/admin/totallike', [PostAPIController::class, 'getMaxLikes']);
 Route::get('/admin/chart', [ChartDataController::class, 'getDailyPostData']);
+Route::get('/admin/favcategory', [CategoriesController::class, 'getMaxFollowers']);
 
 
 /**

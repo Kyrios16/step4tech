@@ -34,8 +34,8 @@
             <i class="fas fa-bookmark"></i>
         </div>
         <div class="analytic-info">
-            <small>Most Popular Category</small>
-            <h2>Laravel</h2>
+            <small>Most Followed Category</small>
+            <h2 id="fav-cate"></h2>
         </div>
     </div>
 </div>
