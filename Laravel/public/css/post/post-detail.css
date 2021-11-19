@@ -152,6 +152,7 @@
     font-size: 1.58rem;
 }
 .feedback-send {
+    background: transparent;
     text-decoration: none;
     border: none;
     padding: 0;
