@@ -52,11 +52,8 @@ Route::get('categories/export/', [CategoriesController::class, 'export'])->name(
 /**
  * Display All Posts ordered by date
  */
-Route::get('/', function () {
-    return view('post.index', [
-        'title' => 'Home'
-    ]);
-});
+
+Route::get('/', [PostController::class, 'showIndexView']);
 /**
  * Search post
  */
@@ -70,3 +67,5 @@ Route::delete('/post/delete/{id}', [PostController::class, 'deletePostById']);
 Route::get('/post/detail/{id}',  [PostController::class, 'showPostDetailView'])->name('detail.post');
 Route::post('/post/feedback/{id}',  [FeedbackController::class, 'createFeedback'])->name('feedback.post');
 Route::get('/feedback/delete/{id}',  [FeedbackController::class, 'deleteFeedback'])->name('feedback.delete');
+Route::get('user/favouriteCategory/{categoryid}', [CategoriesController::class, 'AddUserCategory'])->name('user.category');
+Route::get('user/favouriteCategory/delete/{categoryid}', [CategoriesController::class, 'DeleteUserCategory'])->name('user.category.delete');
