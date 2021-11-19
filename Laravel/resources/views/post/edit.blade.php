@@ -75,7 +75,7 @@
             @enderror
             <div class="submit-btn">
                 <button type="submit" class="submit">Submit</button>
-                <a class="cancel" href="/">Cancel</a>
+                <a class="cancel" href="/user/view/{{$user->id}}">Cancel</a>
             </div>
         </form>
 

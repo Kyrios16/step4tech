@@ -1,15 +1,19 @@
 $(document).ready(function () {
-    showPostListByDate();
+    showLikedPostList();
 });
 
 //Intial
-function showPostListByDate() {
+function showLikedPostList() {
+    var data = {
+        userId: userId,
+    };
     $.ajax({
-        url: "/api/post-list",
+        url: "/api/post/like",
         type: "GET",
+        data: data,
         dataType: "json",
         success: function (data) {
-            //Add post list ordered by date
+            //Add liked post list
             data.forEach((post) => {
                 var created_at = moment(
                     post.created_at,
@@ -27,10 +31,11 @@ function showPostListByDate() {
                         "</a>";
                 });
                 var getUrl = window.location;
-                var baseUrl = getUrl.protocol + "//" + getUrl.host + "/images/profile/";
+                var baseUrl =
+                    getUrl.protocol + "//" + getUrl.host + "/images/profile/";
                 var likeCount = 0;
-                var islikedClass = '';
-                var thumbFillClass = 'far';
+                var islikedClass = "";
+                var thumbFillClass = "far";
                 if (post.post_voted_userid != null) {
                     var likedUserIdArray = post.post_voted_userid.split(",");
                     likeCount = likedUserIdArray.length;
@@ -47,31 +52,34 @@ function showPostListByDate() {
                     `<div class="post">
                         <div class="clearfix">
                             <div class="img-container">
-                                <img src="${baseUrl + post.profile_img
-                    }" class="postprofile-ico span-1-of-8" alt="Profile">
+                                <img src="${
+                                    baseUrl + post.profile_img
+                                }" class="postprofile-ico span-1-of-8" alt="Profile">
                             </div>
                             <div class="post-blog">
-                                <a href="/user/view/${post.userId}" class="post-username">${post.name}</a>
+                                <a href="/user/view/${
+                                    post.userId
+                                }" class="post-username">${post.name}</a>
                                 <p class="post-date">${created_at}</p>             
-                                <a class="post-title" href="/post/detail/${post.id
-                    }">${post.title}</a>
+                                <a class="post-title" href="/post/detail/${
+                                    post.id
+                                }">${post.title}</a>
                                 ${categoriesHtml}
                             </div> 
                         </div>
                         <div class="postbtn-container">
-                            <button class="post-btn ${islikedClass}" onclick="togglePostLike(this, ${post.id})"><i class="${thumbFillClass} fa-thumbs-up"></i> ${likeCount} Likes</button>
-                            <a href="/post/detail/${post.id
-                    }" class="post-btn"><i class="far fa-comment-alt"></i> ${post.no_of_feedbacks} Feedbacks</a>
+                            <button class="post-btn ${islikedClass}" onclick="togglePostLike(this, ${
+                        post.id
+                    })"><i class="${thumbFillClass} fa-thumbs-up"></i> ${likeCount} Likes</button>
+                            <a href="/post/detail/${
+                                post.id
+                            }" class="post-btn"><i class="far fa-comment-alt"></i> ${
+                        post.no_of_feedbacks
+                    } Feedbacks</a>
                         </div>
                     </div>`
                 );
             });
-            if (loggedin) {
-                //Add Create Button
-                $(".postlist-container").append(
-                    `<a href="/post/create" class="post-create-btn"><i class="fas fa-pencil-alt"></i> Create</a>`
-                );
-            }
         },
     });
 }

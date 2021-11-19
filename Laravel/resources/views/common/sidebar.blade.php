@@ -5,8 +5,8 @@
                 <span class="icon"><i class="fas fa-home"></i></span>
                 <h2 class="sidebar-title">Home</h2>
             </span>
-
         </a>
+        @auth
         <div class="sidebar-items">
             <span onclick="menu()" id="menu">
                 <span class="icon"><i class="fas fa-bars"></i></span>
@@ -28,20 +28,19 @@
             </div>
 
         </div>
-        <a class="sidebar-items">
+        <a href="/post/liked-posts" class="sidebar-items">
             <span>
                 <span class="icon"><i class="fas fa-thumbs-up"></i></span>
                 <h2 class="sidebar-title">Liked Posts</h2>
             </span>
-
         </a>
-        <a class="sidebar-items">
+        <a href="/post/trash" class="sidebar-items">
             <span>
                 <span class="icon"><i class="fas fa-trash"></i></span>
                 <h2 class="sidebar-title">Trash</h2>
             </span>
-
         </a>
+        @endauth
         <div class="sidebar-categories">
             <span onclick="categories()" id="categories-btn" class="categories-btn">
                 <span class="icon"><i class="fas fa-th"></i></span>
@@ -55,6 +54,7 @@
                 @php($flag=true)
                 @endif
                 @endforeach
+                @auth
                 @if($flag == true)
                 <div class="clearfix categories-item">
                     <a href="/post/search/{{$category->name}}" class="category-name">
@@ -74,6 +74,14 @@
                 </div>
 
                 @endif
+                @else
+                <div class="clearfix categories-item">
+                    <a href="/post/search/{{$category->name}}" class="category-name">
+                        {{$category->name}}
+                    </a>
+
+                </div>
+                @endauth
                 @endforeach
 
             </div>

@@ -25,11 +25,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function view()
+    public function view($id)
     {
-        $userId = Auth::user()->id;
-        $user = $this->userInterface->getUserById($userId);
-        return view('User.user-view', compact('user'));
+        $viewUser = $this->userInterface->getUserById($id);
+        $title = "View Profile"; 
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $user = $this->userInterface->getUserById($userId);
+            return view('User.user-view', compact('viewUser', 'title', 'user'));
+        } else {
+            return view('User.user-view', compact('viewUser', 'title'));
+        }
     }
 
     /**
@@ -42,7 +48,8 @@ class UserController extends Controller
     {
         $userId = Auth::user()->id;
         $user = $this->userInterface->getUserById($userId);
-        return view('User.update-user', compact('user'));
+        $title = "Edit Profile";
+        return view('User.update-user', compact('user', 'title'));
     }
 
     /**
@@ -56,7 +63,7 @@ class UserController extends Controller
     public function submitUserEditView(Request $request)
     {
         $user = $this->userInterface->updateUser($request);
-        return redirect('/user/view');
+        return redirect('/user/view/' . $user->id);
     }
 
     /**

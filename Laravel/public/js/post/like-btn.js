@@ -44,5 +44,11 @@ function togglePostLike(button, id) {
     }
     //If user is not in log in state
     else {
+        $(".likepopup-container").css("display", "block");
     }
+}
+
+//Close LikePopup
+function closeLikePopup() {
+    $(".likepopup-container").css("display", "none");
 }

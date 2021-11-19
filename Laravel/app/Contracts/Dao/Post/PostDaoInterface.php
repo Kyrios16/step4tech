@@ -16,6 +16,20 @@ interface PostDaoInterface
     public function getPostListForInitial();
 
     /**
+     * To show liked post list
+     * @param Request $request
+     * @return postList liked post list
+     */
+    public function getLikedPostList($request);
+
+    /**
+     * To show deleted post list
+     * @param Request $request
+     * @return postList deleted post list
+     */
+    public function getDeletedPostList($request);
+
+    /**
      * To search post list
      * @return postList searched post list
      */
@@ -74,4 +88,11 @@ interface PostDaoInterface
      * @return 
      */
     public function unlikePost($request);
+
+    /**
+     * To show personal post list
+     * @param Request $request
+     * @return postList personal post list
+     */
+    public function getPersonalPostList($request);
 }
