@@ -39,9 +39,31 @@ class PostAPIController extends Controller
     }
 
     /**
+     * To show liked post list
+     * @param Request $request
+     * @return Response json with liked post list
+     */
+    public function showLikedPostList(Request $request)
+    {
+        $postList = $this->postServiceInterface->getLikedPostList($request);
+        return response()->json($postList);
+    }
+
+    /**
+     * To show deleted post list
+     * @param Request $request
+     * @return Response json with deleted post list
+     */
+    public function showDeletedPostList(Request $request)
+    {
+        $postList = $this->postServiceInterface->getDeletedPostList($request);
+        return response()->json($postList);
+    }
+
+    /**
      * To search posts
      * @param string $id beer id
-     * @return View searched post list
+     * @return Response json with searched post list
      */
     public function searchPost($searchValue)
     {
@@ -63,7 +85,7 @@ class PostAPIController extends Controller
     /**
      * To like post
      * @param Request $request
-     * @return Object $vote
+     * @return Response json with $vote
      */
     public function likePost(Request $request)
     {
@@ -74,7 +96,7 @@ class PostAPIController extends Controller
     /**
      * To unlike post
      * @param Request $request
-     * @return Object $vote
+     * @return Response json with $vote
      */
     public function unlikePost(Request $request)
     {
@@ -91,5 +113,27 @@ class PostAPIController extends Controller
     {
         $count = $this->postServiceInterface->getMaxLikes();
         return response()->json($count);
+    }
+
+    /**
+     * To show personal post list
+     * @param Request $request
+     * @return Response json with personal post list
+     */
+    public function showPersonalPostList(Request $request)
+    {
+        $postList = $this->postServiceInterface->getPersonalPostList($request);
+        return response()->json($postList);
+    }
+
+    /**
+     * To delete post by id
+     * @return View post list
+     */
+    public function deletePostById($id, Request $request)
+    {
+        $deletedUserId = $request->userId;
+        $msg = $this->postServiceInterface->deletePostById($id, $deletedUserId);
+        return response()->json($msg);
     }
 }

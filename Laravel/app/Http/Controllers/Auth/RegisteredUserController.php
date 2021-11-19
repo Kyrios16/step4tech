@@ -30,7 +30,8 @@ class RegisteredUserController extends Controller
      */
     public function viewRegisterForm()
     {
-        return view('auth.register');
+        $title = "Register"; 
+        return view('auth.register', compact('title'));
     }
 
     /**
