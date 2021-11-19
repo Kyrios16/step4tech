@@ -34,7 +34,7 @@
         </li>
         <li>
           <a href="{{ url('/admin/posts') }}" id="menuBtn" class="{{ Request::is('admin/posts') ? 'active':'' }}">
-            <span class="fas fa-list-alt icon-small"></span>
+            <span class="fas fa-stream icon-small"></span>
             <span>Posts Management</span>
           </a>
         </li>

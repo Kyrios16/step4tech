@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Post\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Feedback\FeedbackController;
 use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Post\PostController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,12 +30,13 @@ require __DIR__ . '/auth.php';
 /* admin management routes start */
 
 // analytics dashboard routes
-Route::get('/admin', [UserController::class, 'getMostPopularUser']);
+Route::get('/admin', [UserController::class, 'getMostPopularUser'])->name('show.analytics');
 
 // manage users
-Route::get('/admin/users', function () {
-    return view('admin.users-manage');
-});
+Route::get('/admin/users', [UserController::class, 'index'])->name('show.userList');
+Route::delete('/admin/users/{id}', [UserController::class, 'deleteUserById'])->name('delete.user');
+Route::get('/users/export', [UserController::class, 'export'])->name('export.users');
+Route::get('/admin/users/profile/{id}', [UserController::class, 'showUserProfile']);
 
 // manage posts 
 Route::get('/admin/posts', [PostController::class, 'index'])->name('show.postList');

@@ -10,12 +10,13 @@
 
   <!-- style -->
   <link rel="stylesheet" href="{{ asset('css/common/reset.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/lib/fontawesome.css') }}">
   <link rel="stylesheet" href="{{ asset('css/admin/admin-style.css') }}">
   <link rel="stylesheet" href="{{ asset('css/admin/admin-common.css') }}">
 
 
+
   <!-- fonts -->
-  <link rel="stylesheet" href="{{ asset('css/library/fontawesome.css') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">

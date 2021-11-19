@@ -3,6 +3,7 @@
 @section('content')
 <!-- script -->
 <script src="{{ asset('js/admin/admin-cate-script.js') }}"></script>
+<script src="{{ asset('js/lib/moment.js') }}"></script>
 
 <div class="container clearfix">
   <input type="checkbox" name="" id="menu-toggle">
