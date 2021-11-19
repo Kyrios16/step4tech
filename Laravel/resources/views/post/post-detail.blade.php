@@ -2,6 +2,7 @@
 
 @section('style')
 <link rel="stylesheet" href="{{ asset('css/post/post-detail.css') }}">
+<link rel="stylesheet" href="{{ asset('css/common/likepopup.css') }}">
 @endsection
 
 @section('script')
@@ -57,7 +58,7 @@
             <button class="post-btn" onclick="togglePostLike(this, {{$post->id}})"><i class="far fa-thumbs-up"></i> {{count($voteList)}} Likes</button>
             @endif
 
-            <a href="/post/detail/${post.id}" class="post-btn"><i class="far fa-comment-alt"></i> {{count($feedbackList)}} Feedbacks</a>
+            <a class="post-btn"><i class="far fa-comment-alt"></i> {{count($feedbackList)}} Feedbacks</a>
         </div>
     </div>
     <div class="detail-body">
@@ -112,6 +113,18 @@
         </div>
 
         @endforeach
+    </div>
+</div>
+<div class="likepopup-container">
+    <div class="likepopup-content">
+        <div class="likepopup-header">
+            <button class="close" onclick="closeLikePopup()">&times;</button>
+            <h2>Like Failed !</h2>
+        </div>
+        <div class="likepopup-body">
+            <p>Please log in to continue ...</p>
+            <a href="/login" class="login-btn btn-success">Login</a>
+        </div>
     </div>
 </div>
 @endsection

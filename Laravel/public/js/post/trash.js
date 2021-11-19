@@ -61,9 +61,7 @@ function showDeletedPostList() {
                                     post.userId
                                 }" class="post-username">${post.name}</a>
                                 <p class="post-date">${created_at}</p>             
-                                <a class="post-title" href="/post/detail/${
-                                    post.id
-                                }">${post.title}</a>
+                                <p class="post-title">${post.title}</p>
                                 ${categoriesHtml}
                             </div> 
                         </div>

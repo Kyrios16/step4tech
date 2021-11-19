@@ -190,7 +190,8 @@ class PostController extends Controller
     {
         $request->validated();
         $test = $this->postServiceInterface->updatedPostById($request, $id);
-        return redirect('/');
+        $userId = Auth::user()->id;
+        return redirect('/user/view/' . $userId);
     }
     
     /**
