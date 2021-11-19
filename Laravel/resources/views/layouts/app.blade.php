@@ -33,8 +33,9 @@
   <script src="{{ asset('js/common/nav.js') }}"></script>
   <script>
     var loggedin = {{ auth()->check() ? 'true' : 'false' }};
+    var userId = '';
     @auth
-      var userId = {{ Auth::user()->id }};
+      userId = {{ Auth::user()->id }};
     @endauth
 </script>
   @yield('script')

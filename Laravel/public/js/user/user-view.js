@@ -121,7 +121,6 @@ function deletePost(id) {
             type: "DELETE",
             data: data,
             success: function (msg) {
-                alert("Delete Successful");
                 location.reload();
             },
         });
