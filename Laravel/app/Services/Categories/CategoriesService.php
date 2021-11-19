@@ -82,4 +82,30 @@ class CategoriesService implements CategoriesServiceInterface
     {
         return $this->cateDao->getCateListwithPostId($id);
     }
+    /**
+     * Add to user category
+     * @param $categoryid
+     * @return back to previous route
+     */
+    public function AddUserCategory($categoryid)
+    {
+        return $this->cateDao->AddUserCategory($categoryid);
+    }
+    /**
+     * get user category
+     * @return $userCategoryList
+     */
+    public function getUserCategory()
+    {
+        return $this->cateDao->getUserCategory();
+    }
+    /**
+     * Delete userCategory
+     * @param $categoryid
+     * @return back to previous route
+     */
+    public function DeleteUserCategory($categoryid)
+    {
+        return $this->cateDao->DeleteUserCategory($categoryid);
+    }
 }

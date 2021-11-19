@@ -8,7 +8,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\CategoriesExport;
 use App\Http\Controllers\Controller;
 use App\Contracts\Services\Categories\CategoriesServiceInterface;
-
+use App\Models\UserCategory;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriesController extends Controller
 {
@@ -108,5 +109,25 @@ class CategoriesController extends Controller
     public function export()
     {
         return Excel::download(new CategoriesExport, 'categories.xlsx');
+    }
+    /**
+     * Add to user category
+     * @param $categoryid
+     * @return back to previous route
+     */
+    public function AddUserCategory($categoryid)
+    {
+        $category = $this->cateInterface->AddUserCategory($categoryid);
+        return back();
+    }
+    /**
+     * Delete userCategory
+     * @param $categoryid
+     * @return back to previous route
+     */
+    public function DeleteUserCategory($categoryid)
+    {
+        $category = $this->cateInterface->DeleteUserCategory($categoryid);
+        return back();
     }
 }

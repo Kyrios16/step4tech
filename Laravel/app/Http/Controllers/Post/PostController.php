@@ -66,7 +66,6 @@ class PostController extends Controller
     public function index()
     {
         $posts = $this->postServiceInterface->getPostList();
-
         return view('admin.post.posts-manage', compact('posts'));
     }
 
@@ -75,11 +74,17 @@ class PostController extends Controller
      * @param string $id beer id
      * @return View searched post list
      */
-    public function searchPost($searchValue)
+    public function searchPost($searchValue, Request $request)
     {
+
+        $categories = $this->categoryServiceInterface->getCateList($request);
+
+        $userCategoryList = $this->categoryServiceInterface->getUserCategory();
         return view('post.search', [
             'title' => "Search - " . $searchValue,
-            'searchValue' => $searchValue
+            'searchValue' => $searchValue,
+            'categories' => $categories,
+            'userCategoryList' => $userCategoryList
         ]);
     }
 
@@ -92,9 +97,10 @@ class PostController extends Controller
     {
         $title = "Create Post";
         $categories = $this->categoryServiceInterface->getCateList($request);
+        $userCategoryList = $this->categoryServiceInterface->getUserCategory();
         $id = Auth::user()->id ?? 1;
         $user = $this->userServiceInterface->getUserById($id);
-        return view('post.create',  compact('categories', 'title', 'user'));
+        return view('post.create',  compact('categories', 'title', 'user', 'userCategoryList'));
     }
     /**
      * To check post create form and redirect to confirm page.
@@ -117,11 +123,13 @@ class PostController extends Controller
     {
         $title = "Edit Post";
         $categories = $this->categoryServiceInterface->getCateList($request);
+        $userCategoryList = $this->categoryServiceInterface->getUserCategory();
         $post = $this->postServiceInterface->getPostById($id);
         $postCategory = $this->categoryServiceInterface->getCateListwithPostId($id);
         $userid = Auth::user()->id ?? 1;
         $user = $this->userServiceInterface->getUserById($userid);
-        return view('post.edit', compact('post', 'categories', 'postCategory', 'title', 'user'));
+
+        return view('post.edit', compact('post', 'categories', 'postCategory', 'title', 'user', 'userCategoryList'));
     }
 
     /**
@@ -151,18 +159,31 @@ class PostController extends Controller
      * 
      * @return View post detail
      */
-    public function showPostDetailView($id)
+    public function showPostDetailView($id, Request $request)
     {
         $title = "Detail";
-        $user = $this->userServiceInterface->getUserById($id);
         $post = $this->postServiceInterface->getPostById($id);
         $date = $post->created_at;
         $date = $date->format('M d, Y');
         $post->created_at = $date;
         $feedbackList = $this->feedbackServiceInterface->getFeedbackbyPostId($id);
         $postCategory = $this->categoryServiceInterface->getCateListwithPostId($id);
-        // info($feedbackList);
-        return view('post.post-detail', compact('title', 'user', 'post', 'feedbackList', 'postCategory', 'date'));
+        $userCategoryList = $this->categoryServiceInterface->getUserCategory();
+        $categories = $this->categoryServiceInterface->getCateList($request);
+        info($post);
+        return view('post.post-detail', compact('title', 'post', 'feedbackList', 'postCategory', 'date', 'categories', 'userCategoryList'));
+    }
+    /**
+     * To show index view
+     * 
+     * @return View post detail
+     */
+    public function showIndexView(Request $request)
+    {
+        $title = "Home";
+        $categories = $this->categoryServiceInterface->getCateList($request);
+        $userCategoryList = $this->categoryServiceInterface->getUserCategory();
+        return view('post.index', compact('title', 'categories', 'userCategoryList'));
     }
     /**
      * To export posts data form table

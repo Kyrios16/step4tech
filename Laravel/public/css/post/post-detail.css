@@ -41,22 +41,25 @@
     justify-content: space-between;
 }
 
-.upload-user a{
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: row;
-    align-items: center;
-    float: right;
-    font-size: 0.875rem;
-    padding: 0.4% 0% 0.4% 4%;
-    border-radius: 17px;
-    color: #707070;
+.upload-user-info,
+.postupload-user-info{
+      /* display: flex; */
+      float: left;
+      font-size: 0.875rem;
+      padding: 0.4% 0% 0.4% 4%;
+      border-radius: 17px;
+      color: #000000;
+      font-size: 1.0625rem;
 }
-.upload-user a:hover {
+.upload-user-info:hover {
     color: #34c85b;
 }
-
+.postupload-user-info {
+    float: right;
+    padding: 1%;
+}
 .profile-img {
+    margin-right: 15px;
     float: left;
     height: 2.2rem;
     width: 2.2rem;
@@ -64,8 +67,9 @@
 }
 .upload-user-name{
     margin-bottom: 0;
-    margin-left: 18%;
     float: right;
+    margin-top: 2%;
+
 }
 .feedback-header {
     font-size: 1.3125rem;
@@ -74,20 +78,27 @@
 }
 .feedback-upload-user {
     align-items: flex-start;
+    display: block;
 }
 .feedback-upload-user .profile-img {
     height: 1.5rem;
     width: 1.5rem;
+    margin-right: 15px;
 }
 .feedback-container {
     padding: 2% 0%;
     /* border: 1px solid #34c85b; */
     border-radius: 12px;
     margin: 2% 0%;
-    box-shadow: #28a74570 2px 2px 16px;
+    background-color: #e4e4e459;
+    /* box-shadow: #28a74570 2px 2px 16px; */
+}
+.content {
+    word-break: break-all;
 }
 .feedback-content {
     padding: 1% 7%;
+    word-break: break-all;
 }
 .postbtn-container {
     display: flex;
@@ -141,6 +152,7 @@
     font-size: 1.58rem;
 }
 .feedback-send {
+    background: transparent;
     text-decoration: none;
     border: none;
     padding: 0;
@@ -157,18 +169,24 @@
     max-height: 250px;
 }
 .feedback-time {
-    padding-left: 70%;
+    float: right;
     font-size: 0.875rem;
-    color: #34c85b;
+    padding-right: 3%;
 }
 .postUpload-user {
-    display: flex;
+    display: block;
     padding-top: 2%;
-    flex-direction: column;
-    align-items: flex-end;
 }
 .form-error {
     color: red;
+}
+.delete-icn {
+    float: right;
+    padding-right: 4%;
+    color: #707070;
+}
+.delete-icn:hover {
+    color: #34c85b !important;
 }
 #feedback-preImg {
     display: none;

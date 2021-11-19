@@ -24,6 +24,22 @@
     align-items: center;
     justify-content: flex-start;
 }
+.category-name {
+    float: left;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    color: #000000;
+}
+.category-name:hover {
+    color: #34c85b;
+}
+.add {
+    float: right;
+    color: #34c85b !important;
+}
+.add:hover {
+    color: #000000 !important;
+}
 .sidebar-items span:hover {
     background-color: #707070;
     color: #34c85b;
@@ -53,12 +69,8 @@
 .categories-item {
     padding: 3.5% 9%;
     border-radius: 12px;
-    display: flex;
+    /* display: flex; */
     font-size: 1.05rem;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
 }
 .categories-item:hover {
     color: #34c85b !important;
@@ -73,6 +85,7 @@
 .categories-item h4 {
     font-weight: 500;
     font-size: 0.9375rem;
+    color: #000000;
 }
 .menu-items {
     display: none;
@@ -95,13 +108,6 @@
 .categories-container {
     padding-top: 7%;
     display: none;
-}
-
-.add {
-    color: #34c85b;
-}
-.add:hover {
-    color: #000;
 }
 .show {
     display: block;
