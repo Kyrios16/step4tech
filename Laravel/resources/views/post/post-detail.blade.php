@@ -45,6 +45,7 @@
         </div>
         <div class="postbtn-container">
             @php($flag=false)
+            @auth
             @if(count($voteList) > 0)
             @foreach($voteList as $voteUserId)
             @if($voteUserId->user_id == $user->id)
@@ -52,12 +53,12 @@
             @endif
             @endforeach
             @endif
+            @endauth
             @if($flag == true)
             <button class="post-btn post-liked" onclick="togglePostLike(this, {{$post->id}})"><i class="fa fa-thumbs-up"></i> {{count($voteList)}} Likes</button>
             @else
             <button class="post-btn" onclick="togglePostLike(this, {{$post->id}})"><i class="far fa-thumbs-up"></i> {{count($voteList)}} Likes</button>
             @endif
-
             <a class="post-btn"><i class="far fa-comment-alt"></i> {{count($feedbackList)}} Feedbacks</a>
         </div>
     </div>
@@ -108,9 +109,11 @@
             </div>
 
             @endif
+            @auth
             @if(Auth::user()->id == $feedback->created_user_id)
             <a class="delete-icn" href="{!! route('feedback.delete', ['id'=>$feedback->id,]) !!}"><i class="fas fa-trash-alt"></i></a>
             @endif
+            @endauth
         </div>
 
         @endforeach
