@@ -51,7 +51,7 @@ class UserController extends Controller
         $title = "Edit Profile";
         return view('User.update-user', compact('user', 'title'));
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -59,13 +59,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+
     public function submitUserEditView(Request $request)
     {
         $user = $this->userInterface->updateUser($request);
         return redirect('/user/view/' . $user->id);
     }
-    
+
     /**
      * To Show the application dashboard.
      *

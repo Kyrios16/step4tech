@@ -33,4 +33,14 @@ class FeedbackController extends Controller
         $feedback = $this->feedbackInterface->createFeedback($request, $id);
         return redirect('/post/detail/' . $id);
     }
+    /**
+     * To delete feedback
+     * 
+     * @param feedbackId
+     */
+    public function  deleteFeedback($id)
+    {
+        $feedback = $this->feedbackInterface->deleteFeedback($id);
+        return back();
+    }
 }
