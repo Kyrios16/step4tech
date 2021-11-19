@@ -78,10 +78,13 @@ class PostController extends Controller
     {
 
         $categories = $this->categoryServiceInterface->getCateList($request);
+
+        $userCategoryList = $this->categoryServiceInterface->getUserCategory();
         return view('post.search', [
             'title' => "Search - " . $searchValue,
             'searchValue' => $searchValue,
-            'categories' => $categories
+            'categories' => $categories,
+            'userCategoryList' => $userCategoryList
         ]);
     }
 

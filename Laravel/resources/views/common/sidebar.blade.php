@@ -56,17 +56,23 @@
                 @endif
                 @endforeach
                 @if($flag == true)
-                <a href="{!! route('user.category.delete', ['categoryid'=>$category->id,]) !!}" class="categories-item">
-                    <h4>{{$category->name}}</h4>
-                    <span class="add"><i class="fas fa-check"></i></span>
+                <div class="clearfix categories-item">
+                    <a href="/post/search/{{$category->name}}" class="category-name">
+                        {{$category->name}}
+                        <a href="{!! route('user.category.delete', ['categoryid'=>$category->id,]) !!}" class="add"><i class="fas fa-check"></i></a>
 
-                </a>
+                    </a>
+                </div>
                 @else
-                <a href="{!! route('user.category', ['categoryid'=>$category->id,]) !!}" class="categories-item">
-                    <h4>{{$category->name}}</h4>
-                    <span class="add"><i class="fas fa-plus"></i></span>
+                <div class="clearfix categories-item">
+                    <a href="/post/search/{{$category->name}}" class="category-name">
+                        {{$category->name}}
+                    </a>
+                    <a href="{!! route('user.category', ['categoryid'=>$category->id,]) !!}" class="add"><i class="fas fa-plus"></i></a>
 
-                </a>
+
+                </div>
+
                 @endif
                 @endforeach
 
