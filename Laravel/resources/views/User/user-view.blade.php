@@ -2,6 +2,7 @@
 
 @section('style')
 <link rel="stylesheet" href="{{ asset('css/post/list.css') }}">
+<link rel="stylesheet" href="{{ asset('css/common/likepopup.css') }}">
 <link rel="stylesheet" href="{{ asset('css/user/user-view.css') }}">
 @endsection
 
@@ -58,5 +59,17 @@
   </div>
   <div class="user-postlist-wrapper">    
   </div>
+</div>
+<div class="likepopup-container">
+    <div class="likepopup-content">
+        <div class="likepopup-header">
+            <button class="close" onclick="closeLikePopup()">&times;</button>
+            <h2>Like Failed !</h2>
+        </div>
+        <div class="likepopup-body">
+            <p>Please log in to continue ...</p>
+            <a href="/login" class="login-btn btn-success">Login</a>
+        </div>
+    </div>
 </div>
 @endsection
