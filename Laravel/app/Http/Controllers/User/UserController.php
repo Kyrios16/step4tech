@@ -48,7 +48,8 @@ class UserController extends Controller
     {
         $userId = Auth::user()->id;
         $user = $this->userInterface->getUserById($userId);
-        return view('User.update-user', compact('user'));
+        $title = "Edit Profile";
+        return view('User.update-user', compact('user', 'title'));
     }
     
     /**

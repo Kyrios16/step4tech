@@ -2,10 +2,10 @@
   <div class="nav-wrapper">
     <div class="nav-list">
       <h1><a href="/"><img src="{{ asset('images/img_logo.png') }}" alt="Step4Tech"></a></h1>
+      @if(!Request::is('user/register'))
       <div class="search-container">
         <input class="search" type="text" placeholder="Search . ." name="search"><i class="fa fa-search search-ico"></i>
       </div>
-
       @auth
       <!-- After Login -->
       <div class="nav-dropdown">
@@ -28,6 +28,7 @@
         <a href="/user/register" class="nav-btn btn-success">Create Account</a>
       </div>
       @endauth
+      @endif
     </div>
   </div>
 </nav>
