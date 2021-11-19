@@ -10,7 +10,7 @@
       <div>
         <img src="https://img.icons8.com/external-bearicons-glyph-bearicons/64/000000/external-User-essential-collection-bearicons-glyph-bearicons.png" />
       </div>
-
+    
       <div class="avartar-text">
         <h4>Admin</h4>
         <small>admin123@gmail.com</small>
