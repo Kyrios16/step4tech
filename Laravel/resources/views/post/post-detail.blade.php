@@ -26,7 +26,7 @@
             @endforeach
         </div>
         <div class="upload-user postUpload-user clearfix">
-            <a href="#" class="upload-user-info">
+            <a href="#" class="postupload-user-info">
                 <img class="profile-img" class="preview-img" src="{{ URL::to('/') }}/images/profile/{{ $post->profile_img }}" alt="user image">
                 <p class="upload-user-name">{{$post->name}}</p>
             </a>
@@ -78,7 +78,7 @@
         </form>
         @endauth
         @foreach($feedbackList as $feedback)
-        <div class="feedback-container">
+        <div class="feedback-container clearfix">
             <div class="upload-user clearfix feedback-upload-user">
                 <a href="#" class="upload-user-info">
                     <img class="profile-img" class="preview-img" src="{{ URL::to('/') }}/images/profile/{{ $feedback->profile_img }}" alt="user image">
@@ -86,7 +86,7 @@
                 </a>
                 <p class="feedback-time">{{$feedback->time}}</p>
             </div>
-            <p class="feedback-content">{{$feedback->content}}</p>
+            <div class="feedback-content">{{$feedback->content}}</div>
             @if($feedback->photo != NULL)
             <div class="feedback-img-container">
                 <img class="feedback-img" class="feedback-img" src="{{ URL::to('/') }}/images/feedbacks/{{ $feedback->photo }}" alt=" feedback image">
@@ -94,8 +94,9 @@
             </div>
 
             @endif
-
-
+            @if(Auth::user()->id == $feedback->created_user_id)
+            <a class="delete-icn" href="{!! route('feedback.delete', ['id'=>$feedback->id,]) !!}"><i class="fas fa-trash-alt"></i></a>
+            @endif
         </div>
 
         @endforeach

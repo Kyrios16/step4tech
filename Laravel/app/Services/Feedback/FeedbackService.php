@@ -46,4 +46,14 @@ class FeedbackService implements FeedbackServiceInterface
     {
         return $this->feedbackDao->createFeedback($request, $id);
     }
+    /**
+     * To delete feed$feedbackgory
+     * 
+     * @param $id
+     * @return $feedback  
+     */
+    public function deleteFeedback($id)
+    {
+        return $this->feedbackDao->deleteFeedback($id);
+    }
 }

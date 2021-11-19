@@ -48,27 +48,34 @@
                 <h2 class="sidebar-title">Categories</h2>
             </span>
             <div class="categories-container show" id="categories-container">
-                <a class="categories-item">
-                    <h4>JavaScript</h4>
-                    <span class="add"><i class="fas fa-plus"></i></span>
+                @foreach ($categories as $category)
+                @php($flag=false)
+                @foreach($userCategoryList as $userCategory)
+                @if($category->id == $userCategory->category_id)
+                @php($flag=true)
+                @endif
+                @endforeach
+                @if($flag == true)
+                <div class="clearfix categories-item">
+                    <a href="/post/search/{{$category->name}}" class="category-name">
+                        {{$category->name}}
+                        <a href="{!! route('user.category.delete', ['categoryid'=>$category->id,]) !!}" class="add"><i class="fas fa-check"></i></a>
 
-                </a>
-                <a class="categories-item">
-                    <h4>PHP</h4>
-                    <span class="add"><i class="fas fa-plus"></i></span>
-                </a>
-                <a class="categories-item">
-                    <h4>Html</h4>
-                    <span class="add"><i class="fas fa-plus"></i></span>
-                </a>
-                <a class="categories-item">
-                    <h4>Laravel</h4>
-                    <span class="add"><i class="fas fa-plus"></i></span>
-                </a>
-                <a class="categories-item">
-                    <h4>CSS</h4>
-                    <span class="add"><i class="fas fa-plus"></i></span>
-                </a>
+                    </a>
+                </div>
+                @else
+                <div class="clearfix categories-item">
+                    <a href="/post/search/{{$category->name}}" class="category-name">
+                        {{$category->name}}
+                    </a>
+                    <a href="{!! route('user.category', ['categoryid'=>$category->id,]) !!}" class="add"><i class="fas fa-plus"></i></a>
+
+
+                </div>
+
+                @endif
+                @endforeach
+
             </div>
         </div>
 
