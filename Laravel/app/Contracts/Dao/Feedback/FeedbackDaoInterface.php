@@ -22,4 +22,11 @@ interface FeedbackDaoInterface
      * @return $feedback created new feedback
      */
     public function createFeedback($request, $id);
+    /**
+     * To delete feed$feedbackgory
+     * 
+     * @param $id
+     * @return $feedback  
+     */
+    public function deleteFeedback($id);
 }
