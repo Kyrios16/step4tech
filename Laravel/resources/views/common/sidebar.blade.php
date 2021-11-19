@@ -54,6 +54,7 @@
                 @php($flag=true)
                 @endif
                 @endforeach
+                @auth
                 @if($flag == true)
                 <div class="clearfix categories-item">
                     <a href="/post/search/{{$category->name}}" class="category-name">
@@ -73,6 +74,14 @@
                 </div>
 
                 @endif
+                @else
+                <div class="clearfix categories-item">
+                    <a href="/post/search/{{$category->name}}" class="category-name">
+                        {{$category->name}}
+                    </a>
+
+                </div>
+                @endauth
                 @endforeach
 
             </div>
