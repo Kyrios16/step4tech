@@ -18,11 +18,11 @@ use App\Http\Controllers\User\UserController;
 */
 //User Route
 
-Route::get('/user/edit',[UserController::class,'showUserEditView'])->name('edit-user');
-Route::post('/user/edit',[UserController::class,'submitUserEditView'])->name('update-user');
-Route::get('/user/view',[UserController::class,'view'])->name('user-view');
-Route::get('/user/password',[UserController::class,'showChangePasswordView'])->name('change-password-view');
-Route::post('/user/password',[UserController::class,'changePassword'])->name('change-password');
+Route::get('/user/edit', [UserController::class, 'showUserEditView'])->name('edit-user');
+Route::post('/user/edit', [UserController::class, 'submitUserEditView'])->name('update-user');
+Route::get('/user/view', [UserController::class, 'view'])->name('user-view');
+Route::get('/user/password', [UserController::class, 'showChangePasswordView'])->name('change-password-view');
+Route::post('/user/password', [UserController::class, 'changePassword'])->name('change-password');
 
 require __DIR__ . '/auth.php';
 
@@ -52,11 +52,8 @@ Route::get('categories/export/', [CategoriesController::class, 'export'])->name(
 /**
  * Display All Posts ordered by date
  */
-Route::get('/', function () {
-    return view('post.index', [
-        'title' => 'Home'
-    ]);
-});
+
+Route::get('/', [PostController::class, 'showIndexView']);
 /**
  * Search post
  */
@@ -69,3 +66,6 @@ Route::post('/post/edit/{id}', [PostController::class, 'submitPostEdit'])->name(
 Route::delete('/post/delete/{id}', [PostController::class, 'deletePostById']);
 Route::get('/post/detail/{id}',  [PostController::class, 'showPostDetailView'])->name('detail.post');
 Route::post('/post/feedback/{id}',  [FeedbackController::class, 'createFeedback'])->name('feedback.post');
+
+Route::get('user/favouriteCategory/{categoryid}', [CategoriesController::class, 'AddUserCategory'])->name('user.category');
+Route::get('user/favouriteCategory/delete/{categoryid}', [CategoriesController::class, 'DeleteUserCategory'])->name('user.category.delete');
