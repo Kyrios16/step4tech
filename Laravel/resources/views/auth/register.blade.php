@@ -38,7 +38,7 @@
 
           <div class="formdata-control">
             <label for="name">Username <span>*</span></label><br>
-            <input type="text" class="form-input" name="name" placeholder="Enter Username" value="{{ old('name') }}">
+            <input type="text" class="form-input" name="name" placeholder="Enter Username" value="{{ old('name') }}" autocomplete="name">
             @error('name')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -48,7 +48,7 @@
 
           <div class="formdata-control">
             <label for="email">Email Address <span>*</span></label><br>
-            <input type="email" class="form-input" name="email" placeholder="Enter Email" value="{{ old('email') }}">
+            <input type="email" class="form-input" name="email" placeholder="Enter Email" value="{{ old('email') }}" autocomplete="email">
             @error('email')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -58,7 +58,7 @@
 
           <div class="formdata-control">
             <label for="password">Password <span>*</span></label><br>
-            <input type="password" class="form-input" name="password" placeholder="Enter Password">
+            <input type="password" class="form-input" name="password" placeholder="Enter Password" autocomplete="new-password">
             @error('password')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -68,7 +68,7 @@
 
           <div class="formdata-control">
             <label for="password_confirmatoion">Password Confirmation<span>*</span></label><br>
-            <input type="password" class="form-input" name="password_confirmation" placeholder="Enter Password Again" >
+            <input type="password" class="form-input" name="password_confirmation" placeholder="Enter Password Again" autocomplete="new-password">
             @error('password_confirmation')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -78,7 +78,7 @@
 
           <div class="formdata-control">
             <label for="dob">Date of Birth <span>*</span></label><br>
-            <input type="date" class="form-input" name="date_of_birth" value="{{ old('dob') }}">
+            <input type="date" class="form-input" name="date_of_birth" value="{{ old('dob') }}" autocomplete="dob">
             @error('dob')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -88,12 +88,12 @@
 
           <div class="formdata-control">
             <label for="bio">Biography </label><br>
-            <input type="text" class="form-input" name="bio" placeholder="Enter Biography" value="{{ old('bio') }}">
+            <input type="text" class="form-input" name="bio" placeholder="Enter Biography" value="{{ old('bio') }}" autocomplete="bio">
           </div>
 
           <div class="formdata-control">
             <label for="position">Job Position <span>*</span></label><br>
-            <input type="text" class="form-input" name="position" placeholder="Enter Job Position" value="{{ old('position') }}">
+            <input type="text" class="form-input" name="position" placeholder="Enter Job Position" value="{{ old('position') }}" autocomplete="position">
             @error('position')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -103,17 +103,17 @@
 
           <div class="formdata-control">
             <label for="linkedin">LinkedIn Link (Optional)</label><br>
-            <input type="text" class="form-input" name="linkedin" placeholder="Enter LinkedIn Link" value="{{ old('linkedin') }}">
+            <input type="text" class="form-input" name="linkedin" placeholder="Enter LinkedIn Link" value="{{ old('linkedin') }}" autocomplete="linkedin">
           </div>
 
           <div class="formdata-control">
             <label for="github">GitHub Link (Optional) </label><br>
-            <input type="text" class="form-input" name="github" placeholder="Enter GitHub Link" value="{{ old('github') }}">
+            <input type="text" class="form-input" name="github" placeholder="Enter GitHub Link" value="{{ old('github') }}" autocomplete="github">
           </div>
 
           <div class="formdata-control">
             <label for="ph_no">Phone Number (Optional) </label><br>
-            <input type="text" class="form-input" name="ph_no" placeholder="Enter Phone Number " value="{{ old('ph_no') }}">
+            <input type="text" class="form-input" name="ph_no" placeholder="Enter Phone Number " value="{{ old('ph_no') }}" autocomplete="ph_no">
           </div>
 
           <div class="formdata-control">
