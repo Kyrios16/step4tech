@@ -148,4 +148,13 @@ class PostService implements PostServiceInterface
     public function getPersonalPostList($request) {
         return $this->postDao->getPersonalPostList($request);
     }
+
+    /**
+     * To recover post by id
+     * @param string $id post id
+     * @return Object $post recovered post
+     */
+    public function recoverPostById($id) {
+        return $this->postDao->recoverPostById($id);
+    }
 }
