@@ -2,6 +2,7 @@
 
 @section('style')
 <link rel="stylesheet" href="{{ asset('css/post/list.css') }}">
+<link rel="stylesheet" href="{{ asset('css/post/trash.css') }}">
 @endsection
 
 @section('script')

@@ -66,3 +66,8 @@ Route::get('/user/posts', [PostAPIController::class, 'showPersonalPostList']);
  * To Delete Personal Posts
  */
 Route::delete('/post/delete/{id}', [PostAPIController::class, 'deletePostById']);
+
+/**
+ * To Recover Post
+ */
+Route::post('/post/recover/{id}', [PostAPIController::class, 'recoverPostById']);
