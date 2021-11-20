@@ -21,16 +21,82 @@ class PostDao implements PostDaoInterface
      */
     public function getPostListForInitial()
     {
-        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, 
-                                        GROUP_CONCAT(categories.name) AS post_categories,
-                                        GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid
+        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
+                                        GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
+                                        GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
+                                        COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
                                         FROM posts
                                         LEFT JOIN votes ON (votes.post_id = posts.id)
+                                        LEFT JOIN feedbacks ON (feedbacks.post_id = posts.id)
                                         INNER JOIN users ON (users.id = posts.created_user_id) 
                                         INNER JOIN post_category ON (post_category.post_id = posts.id)
                                         INNER JOIN categories ON (categories.id = post_category.category_id)
+                                        WHERE posts.deleted_at IS NULL
+                                        AND votes.deleted_at IS NULL
+                                        AND feedbacks.deleted_at IS NULL
+                                        AND users.deleted_at IS NULL
+                                        AND post_category.deleted_at IS NULL
+                                        AND categories.deleted_at IS NULL
                                         GROUP BY posts.id
                                         ORDER BY posts.updated_at DESC"));
+        return $postList;
+    }
+
+    /**
+     * To show liked post list
+     * @param Request $request
+     * @return postList liked post list
+     */
+    public function getLikedPostList($request)
+    {
+        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
+                                        GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
+                                        GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
+                                        COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
+                                        FROM posts
+                                        LEFT JOIN votes ON (votes.post_id = posts.id)
+                                        LEFT JOIN feedbacks ON (feedbacks.post_id = posts.id)
+                                        INNER JOIN users ON (users.id = posts.created_user_id) 
+                                        INNER JOIN post_category ON (post_category.post_id = posts.id)
+                                        INNER JOIN categories ON (categories.id = post_category.category_id)
+                                        INNER JOIN votes AS v ON (v.post_id = posts.id AND v.user_id = :userId)
+                                        WHERE posts.deleted_at IS NULL
+                                        AND votes.deleted_at IS NULL
+                                        AND feedbacks.deleted_at IS NULL
+                                        AND users.deleted_at IS NULL
+                                        AND post_category.deleted_at IS NULL
+                                        AND categories.deleted_at IS NULL
+                                        GROUP BY posts.id
+                                        ORDER BY posts.updated_at DESC;"), array('userId' => $request->userId));
+        return $postList;
+    }
+
+    /**
+     * To show deleted post list
+     * @param Request $request
+     * @return postList deleted post list
+     */
+    public function getDeletedPostList($request)
+    {
+        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
+                                        GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
+                                        GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
+                                        COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
+                                        FROM posts
+                                        LEFT JOIN votes ON (votes.post_id = posts.id)
+                                        LEFT JOIN feedbacks ON (feedbacks.post_id = posts.id)
+                                        INNER JOIN users ON (users.id = posts.created_user_id) 
+                                        INNER JOIN post_category ON (post_category.post_id = posts.id)
+                                        INNER JOIN categories ON (categories.id = post_category.category_id)
+                                        INNER JOIN users AS u ON (u.id = posts.created_user_id AND u.id = :userId)
+                                        WHERE posts.deleted_at IS NOT NULL
+                                        AND votes.deleted_at IS NULL
+                                        AND feedbacks.deleted_at IS NULL
+                                        AND users.deleted_at IS NULL
+                                        AND post_category.deleted_at IS NULL
+                                        AND categories.deleted_at IS NULL
+                                        GROUP BY posts.id
+                                        ORDER BY posts.updated_at DESC;"), array('userId' => $request->userId));
         return $postList;
     }
 
@@ -40,17 +106,25 @@ class PostDao implements PostDaoInterface
      */
     public function searchPost($searchValue)
     {
-        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, 
-                                        GROUP_CONCAT(categories.name) AS post_categories,
-                                        GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid
+        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
+                                        GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
+                                        GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
+                                        COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
                                         FROM posts
                                         LEFT JOIN votes ON (votes.post_id = posts.id)
+                                        LEFT JOIN feedbacks ON (feedbacks.post_id = posts.id)
                                         INNER JOIN users ON (users.id = posts.created_user_id) 
                                         INNER JOIN post_category ON (post_category.post_id = posts.id)
                                         INNER JOIN categories ON (categories.id = post_category.category_id)
-                                        WHERE users.name LIKE :userSearchValue
+                                        WHERE posts.deleted_at IS NULL
+                                        AND votes.deleted_at IS NULL
+                                        AND feedbacks.deleted_at IS NULL
+                                        AND users.deleted_at IS NULL
+                                        AND post_category.deleted_at IS NULL
+                                        AND categories.deleted_at IS NULL
+                                        AND (users.name LIKE :userSearchValue
                                         OR posts.title LIKE :postSearchValue
-                                        OR categories.name LIKE :categorySearchValue
+                                        OR categories.name LIKE :categorySearchValue)
                                         GROUP BY posts.id
                                         ORDER BY posts.updated_at DESC"), array(
             'userSearchValue' => '%' . $searchValue . '%',
@@ -105,8 +179,6 @@ class PostDao implements PostDaoInterface
             ->whereNull('posts.deleted_at')
             ->where('posts.id', $id)
             ->get(['posts.*', 'users.profile_img', 'users.name']);
-        info("inside getpostbyId");
-        info($postList);
         $post = $postList[0];
         return $post;
     }
@@ -211,5 +283,45 @@ class PostDao implements PostDaoInterface
         info($request);
         $votes = Vote::where('user_id', $request->userId)
             ->where('post_id', $request->postId)->delete();
+    }
+
+    /**
+     * To show personal post list
+     * @param Request $request
+     * @return postList personal post list
+     */
+    public function getPersonalPostList($request)
+    {
+        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
+                                        GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
+                                        GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
+                                        COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
+                                        FROM posts
+                                        LEFT JOIN votes ON (votes.post_id = posts.id)
+                                        LEFT JOIN feedbacks ON (feedbacks.post_id = posts.id)
+                                        INNER JOIN users ON (users.id = posts.created_user_id) 
+                                        INNER JOIN post_category ON (post_category.post_id = posts.id)
+                                        INNER JOIN categories ON (categories.id = post_category.category_id)
+                                        INNER JOIN users AS u ON (u.id = posts.created_user_id AND u.id = :userId)
+                                        WHERE posts.deleted_at IS NULL
+                                        AND votes.deleted_at IS NULL
+                                        AND feedbacks.deleted_at IS NULL
+                                        AND users.deleted_at IS NULL
+                                        AND post_category.deleted_at IS NULL
+                                        AND categories.deleted_at IS NULL
+                                        GROUP BY posts.id
+                                        ORDER BY posts.updated_at DESC;"), array('userId' => $request->userId));
+        return $postList;
+    }
+
+    /**
+     * To recover post by id
+     * @param string $id post id
+     * @return Object $post recovered post
+     */
+    public function recoverPostById($id)
+    {
+        $post = Post::withTrashed()->find($id)->restore();
+        return $post;
     }
 }

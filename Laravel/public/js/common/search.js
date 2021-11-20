@@ -9,7 +9,7 @@ function searchPost() {
         type: "GET",
         dataType: "json",
         success: function (data) {
-            //Add post list ordered by date
+            //Add searched post list
             if (data.length != 0) {
                 data.forEach((post) => {
                     var created_at = moment(
@@ -21,9 +21,9 @@ function searchPost() {
                     var categoriesHtml = "";
                     categoriesArray.forEach((categoryName) => {
                         categoriesHtml +=
-                            '<a class="post-category" href="/post/search/' +
+                            "<a class='post-category' href='/post/search/" +
                             categoryName +
-                            '">#' +
+                            "'>#" +
                             categoryName +
                             "</a>";
                     });
@@ -56,7 +56,7 @@ function searchPost() {
                         }" class="postprofile-ico span-1-of-8" alt="Profile">
                                 </div>
                                 <div class="post-blog">
-                                    <p class="post-username">${post.name}</p>
+                                    <a href="/user/view/${post.userId}" class="post-username">${post.name}</a>
                                     <p class="post-date">${created_at}</p>             
                                     <a class="post-title" href="/post/detail/${post.id
                         }">${post.title}</a>

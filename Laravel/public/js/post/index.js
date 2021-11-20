@@ -20,9 +20,9 @@ function showPostListByDate() {
                 var categoriesHtml = "";
                 categoriesArray.forEach((categoryName) => {
                     categoriesHtml +=
-                        '<a class="post-category" href="/post/search/' +
+                        "<a class='post-category' href='/post/search/" +
                         categoryName +
-                        '">#' +
+                        "'>#" +
                         categoryName +
                         "</a>";
                 });
@@ -51,7 +51,7 @@ function showPostListByDate() {
                     }" class="postprofile-ico span-1-of-8" alt="Profile">
                             </div>
                             <div class="post-blog">
-                                <p class="post-username">${post.name}</p>
+                                <a href="/user/view/${post.userId}" class="post-username">${post.name}</a>
                                 <p class="post-date">${created_at}</p>             
                                 <a class="post-title" href="/post/detail/${post.id
                     }">${post.title}</a>
@@ -61,7 +61,7 @@ function showPostListByDate() {
                         <div class="postbtn-container">
                             <button class="post-btn ${islikedClass}" onclick="togglePostLike(this, ${post.id})"><i class="${thumbFillClass} fa-thumbs-up"></i> ${likeCount} Likes</button>
                             <a href="/post/detail/${post.id
-                    }" class="post-btn"><i class="far fa-comment-alt"></i> Feedback</a>
+                    }" class="post-btn"><i class="far fa-comment-alt"></i> ${post.no_of_feedbacks} Feedbacks</a>
                         </div>
                     </div>`
                 );

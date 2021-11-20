@@ -2,10 +2,11 @@
 
 @section('style')
 <link rel="stylesheet" href="{{ asset('css/post/post-detail.css') }}">
+<link rel="stylesheet" href="{{ asset('css/common/likepopup.css') }}">
 @endsection
 
 @section('script')
-<script src="{{ asset('js/post/list.js') }}"></script>
+<script src="{{ asset('js/post/like-btn.js') }}"></script>
 <script src="{{ asset('js/post/post-detail.js') }}"></script>
 <script src="{{ asset('js/post/post-create.js') }}"></script>
 
@@ -26,7 +27,7 @@
             @endforeach
         </div>
         <div class="upload-user postUpload-user clearfix">
-            <a href="#" class="upload-user-info">
+            <a href="#" class="postupload-user-info">
                 <img class="profile-img" class="preview-img" src="{{ URL::to('/') }}/images/profile/{{ $post->profile_img }}" alt="user image">
                 <p class="upload-user-name">{{$post->name}}</p>
             </a>
@@ -43,8 +44,22 @@
             </p>
         </div>
         <div class="postbtn-container">
-            <button class="post-btn" onclick="togglePostLike(this)"><i class="far fa-thumbs-up"></i> Like</button>
-            <a href="/post/detail/${post.id}" class="post-btn"><i class="far fa-comment-alt"></i> {{count($feedbackList)}} Feedbacks</a>
+            @php($flag=false)
+            @auth
+            @if(count($voteList) > 0)
+            @foreach($voteList as $voteUserId)
+            @if($voteUserId->user_id == $user->id)
+            @php($flag=true)
+            @endif
+            @endforeach
+            @endif
+            @endauth
+            @if($flag == true)
+            <button class="post-btn post-liked" onclick="togglePostLike(this, {{$post->id}})"><i class="fa fa-thumbs-up"></i> {{count($voteList)}} Likes</button>
+            @else
+            <button class="post-btn" onclick="togglePostLike(this, {{$post->id}})"><i class="far fa-thumbs-up"></i> {{count($voteList)}} Likes</button>
+            @endif
+            <a class="post-btn"><i class="far fa-comment-alt"></i> {{count($feedbackList)}} Feedbacks</a>
         </div>
     </div>
     <div class="detail-body">
@@ -78,7 +93,7 @@
         </form>
         @endauth
         @foreach($feedbackList as $feedback)
-        <div class="feedback-container">
+        <div class="feedback-container clearfix">
             <div class="upload-user clearfix feedback-upload-user">
                 <a href="#" class="upload-user-info">
                     <img class="profile-img" class="preview-img" src="{{ URL::to('/') }}/images/profile/{{ $feedback->profile_img }}" alt="user image">
@@ -86,7 +101,7 @@
                 </a>
                 <p class="feedback-time">{{$feedback->time}}</p>
             </div>
-            <p class="feedback-content">{{$feedback->content}}</p>
+            <div class="feedback-content">{{$feedback->content}}</div>
             @if($feedback->photo != NULL)
             <div class="feedback-img-container">
                 <img class="feedback-img" class="feedback-img" src="{{ URL::to('/') }}/images/feedbacks/{{ $feedback->photo }}" alt=" feedback image">
@@ -94,11 +109,26 @@
             </div>
 
             @endif
-
-
+            @auth
+            @if(Auth::user()->id == $feedback->created_user_id)
+            <a class="delete-icn" href="{!! route('feedback.delete', ['id'=>$feedback->id,]) !!}"><i class="fas fa-trash-alt"></i></a>
+            @endif
+            @endauth
         </div>
 
         @endforeach
+    </div>
+</div>
+<div class="likepopup-container">
+    <div class="likepopup-content">
+        <div class="likepopup-header">
+            <button class="close" onclick="closeLikePopup()">&times;</button>
+            <h2>Like Failed !</h2>
+        </div>
+        <div class="likepopup-body">
+            <p>Please log in to continue ...</p>
+            <a href="/login" class="login-btn btn-success">Login</a>
+        </div>
     </div>
 </div>
 @endsection

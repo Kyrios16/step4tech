@@ -31,6 +31,16 @@ Route::get('/post-list', [PostAPIController::class, 'showPostListForInitial']);
  */
 Route::get('/post/search/{searchValue}', [PostAPIController::class, 'searchPost']);
 
+/**
+ * To Show Liked Posts
+ */
+Route::get('/post/like', [PostAPIController::class, 'showLikedPostList']);
+
+/**
+ * To Show deleted Posts
+ */
+Route::get('/post/trash', [PostAPIController::class, 'showDeletedPostList']);
+
 Route::get('/admin/categories/list', [CategoriesController::class, 'getCateList'])->name('show.categories');
 Route::get('/admin/categories/edit/{categories}',  [CategoriesController::class, 'editCate'])->name('edit.categories');
 Route::delete('/admin/categories/{categories}',  [CategoriesController::class, 'deleteCate'])->name('delete.categories');
@@ -46,3 +56,18 @@ Route::post('/post/like', [PostAPIController::class, 'likePost']);
  * To Unlike Post
  */
 Route::post('/post/unlike', [PostAPIController::class, 'unlikePost']);
+
+/**
+ * To Show Personal Posts
+ */
+Route::get('/user/posts', [PostAPIController::class, 'showPersonalPostList']);
+
+/**
+ * To Delete Personal Posts
+ */
+Route::delete('/post/delete/{id}', [PostAPIController::class, 'deletePostById']);
+
+/**
+ * To Recover Post
+ */
+Route::post('/post/recover/{id}', [PostAPIController::class, 'recoverPostById']);

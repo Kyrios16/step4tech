@@ -33,8 +33,9 @@
   <script src="{{ asset('js/common/nav.js') }}"></script>
   <script>
     var loggedin = {{ auth()->check() ? 'true' : 'false' }};
+    var userId = '';
     @auth
-      var userId = {{ Auth::user()->id }};
+      userId = {{ Auth::user()->id }};
     @endauth
 </script>
   @yield('script')
@@ -45,7 +46,9 @@
   @include('common.nav')
   <div class="main-container">
     <div class="clearfix">
-      @include('common.sidebar')
+      @if(!Request::is('user/*'))
+        @include('common.sidebar')
+      @endif
       @yield('content')
     </div>
   </div>
