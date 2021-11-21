@@ -26,7 +26,7 @@
       </div>
       @auth
       @if($viewUser->id == Auth::user()->id)
-      <a href="{{ route('edit-user') }}" class="setting" align="right">
+      <a href="{{ route('edit-user') }}" class="setting">
         <i class="fas fa-cog"></i>
       </a>
       @endif

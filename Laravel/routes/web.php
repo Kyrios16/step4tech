@@ -17,12 +17,15 @@ use App\Http\Controllers\User\UserController;
 |
 */
 //User Route
-
+Route::group(['middleware' => ['auth']], function () {
 Route::get('/user/edit',[UserController::class,'showUserEditView'])->name('edit-user');
 Route::post('/user/edit',[UserController::class,'submitUserEditView'])->name('update-user');
-Route::get('/user/view/{id}',[UserController::class,'view'])->name('user-view');
 Route::get('/user/password',[UserController::class,'showChangePasswordView'])->name('change-password-view');
 Route::post('/user/password',[UserController::class,'changePassword'])->name('change-password');
+});
+
+
+Route::get('/user/view/{id}',[UserController::class,'view'])->name('user-view');
 
 require __DIR__ . '/auth.php';
 
@@ -51,7 +54,7 @@ Route::get('categories/export/', [CategoriesController::class, 'export'])->name(
 /**
  * Display All Posts ordered by date
  */
-Route::get('/', [PostController::class, 'showPostList']);
+Route::get('/', [PostController::class, 'showPostList'])->name('home');
 /**
  * Search post
  */
@@ -60,17 +63,20 @@ Route::get('/post/search/{searchValue}', [PostController::class, 'searchPost']);
 /**
  * Display All Liked Posts
  */
-Route::get('/post/liked-posts', [PostController::class, 'showLikedPostList']);
+Route::get('/post/liked-posts', [PostController::class, 'showLikedPostList'])->middleware('auth');
 
 /**
  * Display All Deleted Posts
  */
-Route::get('/post/trash', [PostController::class, 'showDeletedPostList']);
+Route::get('/post/trash', [PostController::class, 'showDeletedPostList'])->middleware('auth');
 
+Route::group(['middleware' => ['auth']], function () {
 Route::get('/post/create', [PostController::class, 'showPostCreateView'])->name('create.post');
 Route::post('/post/create', [PostController::class, 'submitPostCreateView'])->name('create.post');
 Route::get('/post/edit/{id}', [PostController::class, 'showPostEditView'])->name('edit.post');
 Route::post('/post/edit/{id}', [PostController::class, 'submitPostEdit'])->name('edit.post');
+});
+
 Route::get('/post/detail/{id}',  [PostController::class, 'showPostDetailView'])->name('detail.post');
 Route::post('/post/feedback/{id}',  [FeedbackController::class, 'createFeedback'])->name('feedback.post');
 Route::get('/feedback/delete/{id}',  [FeedbackController::class, 'deleteFeedback'])->name('feedback.delete');
