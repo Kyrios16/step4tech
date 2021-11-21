@@ -102,4 +102,11 @@ interface PostDaoInterface
      * @return postList personal post list
      */
     public function getPersonalPostList($request);
+
+    /**
+     * To recover post by id
+     * @param string $id post id
+     * @return Object $post recovered post
+     */
+    public function recoverPostById($id);
 }

@@ -328,4 +328,15 @@ class PostDao implements PostDaoInterface
                                         ORDER BY posts.updated_at DESC;"), array('userId' => $request->userId));
         return $postList;
     }
+
+    /**
+     * To recover post by id
+     * @param string $id post id
+     * @return Object $post recovered post
+     */
+    public function recoverPostById($id)
+    {
+        $post = Post::withTrashed()->find($id)->restore();
+        return $post;
+    }
 }

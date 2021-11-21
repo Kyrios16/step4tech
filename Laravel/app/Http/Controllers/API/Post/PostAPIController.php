@@ -128,12 +128,22 @@ class PostAPIController extends Controller
 
     /**
      * To delete post by id
-     * @return View post list
+     * @return Response json with message
      */
     public function deletePostById($id, Request $request)
     {
         $deletedUserId = $request->userId;
         $msg = $this->postServiceInterface->deletePostById($id, $deletedUserId);
         return response()->json($msg);
+    }
+
+    /**
+     * To recover post by id
+     * @return Response json with recovered post
+     */
+    public function recoverPostById($id)
+    {
+        $post = $this->postServiceInterface->recoverPostById($id);
+        return response()->json($post);
     }
 }
