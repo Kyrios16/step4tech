@@ -75,11 +75,9 @@
           <a href="{{ route('change-password-view') }}" class="link-text">Change Password?</a>
         </div>
 
-        <div class="formdata-control">
-          <div class="button-group clearfix">
-            <input type="submit" class="btn btn-success" name="create" value="Update">
-            <a href="{{ route('user-view', $user->id) }}" class="btn cancel-btn" name="cancel_btn">Cancel</a>
-          </div>
+        <div class="button-group clearfix">
+          <input type="submit" class="btn btn-success" name="create" value="Update">
+          <a href="{{ route('user-view', $user->id) }}" class="btn cancel-btn" name="cancel_btn">Cancel</a>
         </div>
 
       </div>

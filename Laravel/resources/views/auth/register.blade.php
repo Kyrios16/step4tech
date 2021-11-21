@@ -122,10 +122,11 @@
 
         <div class="formdata-control">
           <p class="text">Already have an account? <a href="{{ route('login')}}" class="link-text">Sign In</a>
-          <div class="button-group clearfix">
-            <input type="submit" class="btn btn-success" name="create" value="Create">
-            <a href="/" class="btn cancel-btn" name="cancel_btn">Cancel</a>
-          </div>
+        </div>
+
+        <div class="button-group clearfix">
+          <input type="submit" class="btn btn-success" name="create" value="Create">
+          <a href="/" class="btn cancel-btn" name="cancel_btn">Cancel</a>
         </div>
 
       </div>

@@ -109,43 +109,6 @@ i {
     margin-right: 5px;
 }
 
-.btn-group {
-    position: relative;
-    margin: 0 auto;
-}
-
-.btn {
-    display: inline-block;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 0.5rem 0.5rem;
-    border: none;
-    border-radius: 7px;
-    text-decoration: none;
-}
-
-.btn-success {
-    color: #fff;
-    background-color: #34c85b;
-}
-
-.btn-success:hover {
-    background-color: #42af5f;
-}
-
-.btn-cancel {
-    color: #737373;
-    background-color: #fff;
-    border: 1px solid #737373;
-    box-sizing: border-box;
-    text-decoration: none;
-}
-
-.btn-cancel:hover {
-    border-color: #000;
-    color: #000;
-}
-
 .profile-data {
     width: 80%;
     margin: 0 auto;
