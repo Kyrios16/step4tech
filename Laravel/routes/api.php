@@ -33,7 +33,6 @@ Route::get('/post-list', [PostAPIController::class, 'showPostListForInitial']);
  */
 Route::get('/post/search/{searchValue}', [PostAPIController::class, 'searchPost']);
 
-/** admin dashboard api routes */
 /**
  * To Show Liked Posts
  */
@@ -43,16 +42,6 @@ Route::get('/post/like', [PostAPIController::class, 'showLikedPostList']);
  * To Show deleted Posts
  */
 Route::get('/post/trash', [PostAPIController::class, 'showDeletedPostList']);
-
-Route::get('/admin/categories/list', [CategoriesController::class, 'getCateList'])->name('show.categories');
-Route::get('/admin/categories/edit/{categories}',  [CategoriesController::class, 'editCate'])->name('edit.categories');
-Route::delete('/admin/categories/{categories}',  [CategoriesController::class, 'deleteCate'])->name('delete.categories');
-Route::get('/admin/totalpost', [PostAPIController::class, 'countTotalPosts'])->name('count.totalPosts');
-Route::get('/admin/totaluser', [UserController::class, 'countTotalUsers'])->name('count.totalUsers');
-Route::get('/admin/totallike', [PostAPIController::class, 'getMaxLikes']);
-Route::get('/admin/chart', [ChartDataController::class, 'getDailyPostData']);
-Route::get('/admin/favcategory', [CategoriesController::class, 'getMaxFollowers']);
-
 
 /**
  * To Like Post
@@ -73,3 +62,14 @@ Route::get('/user/posts', [PostAPIController::class, 'showPersonalPostList']);
  * To Delete Personal Posts
  */
 Route::delete('/post/delete/{id}', [PostAPIController::class, 'deletePostById']);
+
+
+/** admin dashboard api routes */
+Route::get('/admin/categories/list', [CategoriesController::class, 'getCateList'])->name('show.categories');
+Route::get('/admin/categories/edit/{categories}',  [CategoriesController::class, 'editCate'])->name('edit.categories');
+Route::delete('/admin/categories/{categories}',  [CategoriesController::class, 'deleteCate'])->name('delete.categories');
+Route::get('/admin/totalpost', [PostAPIController::class, 'countTotalPosts'])->name('count.totalPosts');
+Route::get('/admin/totaluser', [UserController::class, 'countTotalUsers'])->name('count.totalUsers');
+Route::get('/admin/totallike', [PostAPIController::class, 'getMaxLikes']);
+Route::get('/admin/favcategory', [CategoriesController::class, 'getMaxFollowers']);
+Route::get('/admin/chart', [ChartDataController::class, 'getDailyPostCount']);

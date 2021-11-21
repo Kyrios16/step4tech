@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use DateTime;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -15,6 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // DB::table('users')->truncate();
         DB::table('users')->insert(
             [
                 'name' => 'admin',
@@ -31,6 +33,83 @@ class DatabaseSeeder extends Seeder
                 'role' => '0',
                 'created_user_id' => 1,
                 'updated_user_id' => 1,
+            ]
+        );
+
+        DB::table('posts')->insert(
+            [
+                [
+                    'title' => 'admin',
+                    'content' => 'admin123@gmail.com',
+                    'photo' => 'profile_default.png',
+                    'created_user_id' => 1,
+                    'updated_user_id' => 1,
+                    'created_at' => Date('2021-11-22'),
+                    'updated_at' => Date('2021-11-22'),
+                ],
+                [
+                    'title' => 'tue',
+                    'content' => 'admin123@gmail.com',
+                    'photo' => 'profile_default.png',
+                    'created_user_id' => 1,
+                    'updated_user_id' => 1,
+                    'created_at' => Date('2021-11-23'),
+                    'updated_at' => Date('2021-11-23'),
+                ],
+                [
+                    'title' => 'wed',
+                    'content' => 'admin123@gmail.com',
+                    'photo' => 'profile_default.png',
+                    'created_user_id' => 1,
+                    'updated_user_id' => 1,
+                    'created_at' => Date('2021-11-24'),
+                    'updated_at' => Date('2021-11-24'),
+                ],
+                [
+                    'title' => 'tur',
+                    'content' => 'admin123@gmail.com',
+                    'photo' => 'profile_default.png',
+                    'created_user_id' => 1,
+                    'updated_user_id' => 1,
+                    'created_at' => Date('2021-11-25'),
+                    'updated_at' => Date('2021-11-25'),
+                ],
+                [
+                    'title' => 'fri',
+                    'content' => 'admin123@gmail.com',
+                    'photo' => 'profile_default.png',
+                    'created_user_id' => 1,
+                    'updated_user_id' => 1,
+                    'created_at' => Date('2021-11-26'),
+                    'updated_at' => Date('2021-11-26'),
+                ],
+                [
+                    'title' => 'sat',
+                    'content' => 'admin123@gmail.com',
+                    'photo' => 'profile_default.png',
+                    'created_user_id' => 1,
+                    'updated_user_id' => 1,
+                    'created_at' => Date('2021-11-27'),
+                    'updated_at' => Date('2021-11-27'),
+                ],
+                [
+                    'title' => 'sun',
+                    'content' => 'admin123@gmail.com',
+                    'photo' => 'profile_default.png',
+                    'created_user_id' => 1,
+                    'updated_user_id' => 1,
+                    'created_at' => Date('2021-11-28'),
+                    'updated_at' => Date('2021-11-28'),
+                ],
+                [
+                    'title' => 'mon2',
+                    'content' => 'admin123@gmail.com',
+                    'photo' => 'profile_default.png',
+                    'created_user_id' => 1,
+                    'updated_user_id' => 1,
+                    'created_at' => Date('2021-11-29'),
+                    'updated_at' => Date('2021-11-29'),
+                ],
             ]
         );
     }

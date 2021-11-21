@@ -26,11 +26,15 @@
          * Created the Completed Jobs Chart
          */
         createCompletedJobsChart: function (res) {
+            const biggestCount = Math.max(...Object.values(res));
+            const remainder = biggestCount / 10;
+            const max = Math.ceil(remainder) * 10;
+
             var ctx = document.getElementById("myChart");
             var myChart = new Chart(ctx, {
                 type: "line",
                 data: {
-                    labels: res.days,
+                    labels: Object.keys(res),
                     datasets: [
                         {
                             label: "no. of posts",
@@ -44,7 +48,7 @@
                             pointHoverBackgroundColor: "rgba(255, 206, 86, 1)",
                             pointHitRadius: 20,
                             pointBorderWidth: 2,
-                            data: res.post_count_data,
+                            data: Object.values(res),
                         },
                     ],
                 },
@@ -67,7 +71,7 @@
                             {
                                 ticks: {
                                     min: 0,
-                                    max: res.max,
+                                    max: max,
                                     maxTicksLimit: 5,
                                 },
                                 gridLines: {

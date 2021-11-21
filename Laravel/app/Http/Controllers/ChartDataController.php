@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Contracts\Services\Chart\ChartServiceInterface;
 use App\Models\Post;
 use DateTime;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ChartDataController extends Controller
 {
@@ -22,33 +24,13 @@ class ChartDataController extends Controller
     }
 
     /**
-     * To get all dates of created at
+     * To get daily posts count list
      * 
-     * @return $postsDates dates list
+     * @return $postsDates data array
      */
-    public function getAllDates()
+    public function getDailyPostCount()
     {
-        return  $this->chartInterface->getAllDates();
-    }
-
-    /**
-     * To get post count by date
-     * 
-     * @param $day
-     * @return $dailyPostCount array
-     */
-    public function getDailyPostCount($day)
-    {
-        return  $this->chartInterface->getDailyPostCount($day);
-    }
-
-    /**
-     * To get daily post count and data
-     * 
-     * @return $dailyPostDataArr daily post data array list
-     */
-    public function getDailyPostData()
-    {
-        return  $this->chartInterface->getDailyPostData();
+        $dates =  $this->chartInterface->getDailyPostCount();
+        return response()->json($dates);
     }
 }

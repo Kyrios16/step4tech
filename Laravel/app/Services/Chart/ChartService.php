@@ -5,6 +5,8 @@ namespace App\Services\Chart;
 use App\Contracts\Dao\Chart\ChartDaoInterface;
 use App\Contracts\Services\Chart\ChartServiceInterface;
 use DateTime;
+use SebastianBergmann\Environment\Console;
+use Symfony\Component\Console\Logger\ConsoleLogger;
 
 /**
  * Chart Service class
@@ -27,61 +29,30 @@ class ChartService implements ChartServiceInterface
     }
 
     /**
-     * To get all dates of created at
+     * To get daily posts count list 
      * 
      * @return $postsDates dates array list
      */
-    public function getAllDates()
+    public function getDailyPostCount()
     {
-        $postsDates = $this->chartDao->getAllDates();
+        $postsDates = $this->chartDao->getDailyPostCount();
         $dateArr = array();
-        if (!empty($postsDates)) {
+        if (count($postsDates->toArray()) > 0) {
+            $dateArr = [
+                'Mon' => 0,
+                'Tue' => 0,
+                'Wed' => 0,
+                'Thu' => 0,
+                'Fri' => 0,
+                'Sat' => 0,
+                'Sun' => 0,
+            ];
             foreach ($postsDates as $postsDate) {
                 $date = new DateTime($postsDate);
-                $dateNo = $date->format(format: 'd');
                 $dateName = $date->format(format: 'D');
-                $dateArr[$dateNo] = $dateName;
+                $dateArr[$dateName]++;
             }
         }
         return $dateArr;
-    }
-
-    /**
-     * To get post count by date
-     * 
-     * @param $day
-     * @return $dailyPostCount array
-     */
-    public function getDailyPostCount($day)
-    {
-        return $this->chartDao->getDailyPostCount($day);
-    }
-
-    /**
-     * To get daily post count and data
-     * 
-     * @return $dailyPostDataArr daily post data array list
-     */
-    public function getDailyPostData()
-    {
-        $dailyPostCountArr = array();
-        $dateNameArr = array();
-        $dateArr = $this->getAllDates();
-        if (!empty($dateArr)) {
-            foreach ($dateArr as $dateNo => $dateName) {
-                $dailyPostCount = $this->getDailyPostCount($dateNo);
-                array_push($dailyPostCountArr, $dailyPostCount);
-                array_push($dateNameArr, $dateName);
-            }
-        }
-
-        $max_no = max($dailyPostCountArr);
-        $max = round(($max_no + 10 / 2) / 10) * 10;
-        $dailyPostDataArr = array(
-            'days' => $dateNameArr,
-            'post_count_data' => $dailyPostCountArr,
-            'max' => $max
-        );
-        return $dailyPostDataArr;
     }
 }
