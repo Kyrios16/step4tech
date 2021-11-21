@@ -24,44 +24,51 @@
           <img src="{{ URL::to('/') }}/images/profile/{{ $user->profile_img }}" id="profile_preview" class="profile" alt="PROFILE">
         </div>
 
-        <div class="formdata-control">
-          <label for="name">Username <span>*</span></label><br>
-          <input type="text" class="form-input" name="name" value="{{ $user->name }}">
+        <div class="formdata-group">
+          <div class="formdata-control">
+            <label for="name">Username <span>*</span></label><br>
+            <input type="text" class="form-input" name="name" value="{{ $user->name }}">
+          </div>
+
+          <div class="formdata-control">
+            <label for="email">Email Address <span>*</span></label><br>
+            <input type="email" class="form-input" name="email" value="{{ $user->email }}" required autocomplete="email">
+          </div>
         </div>
 
-        <div class="formdata-control">
-          <label for="email">Email Address <span>*</span></label><br>
-          <input type="email" class="form-input" name="email" value="{{ $user->email }}" required autocomplete="email">
+        <div class="formdata-group">
+          <div class="formdata-control">
+            <label for="dob">Date of Birth <span>*</span></label><br>
+            <input type="date" class="form-input" name="date_of_birth" value="{{ $user->date_of_birth }}">
+          </div>
+
+          <div class="formdata-control">
+            <label for="position">Job Position <span>*</span></label><br>
+            <input type="text" class="form-input" name="position" value="{{ $user->position }}">
+          </div>
         </div>
 
-        <div class="formdata-control">
-          <label for="dob">Date of Birth <span>*</span></label><br>
-          <input type="date" class="form-input" name="date_of_birth" value="{{ $user->date_of_birth }}">
+        <div class="formdata-group">
+          <div class="formdata-control">
+            <label for="bio">Biography </label><br>
+            <input type="text" class="form-input" name="bio" value="{{ $user->bio }}">
+          </div>
+
+          <div class="formdata-control">
+            <label for="ph_no">Phone Number (Optional)</label><br>
+            <input type="text" class="form-input" name="ph_no" value="{{ $user->ph_no }}">
+          </div>
         </div>
 
-        <div class="formdata-control">
-          <label for="bio">Biography </label><br>
-          <input type="text" class="form-input" name="bio" value="{{ $user->bio }}">
-        </div>
-
-        <div class="formdata-control">
-          <label for="position">Job Position <span>*</span></label><br>
-          <input type="text" class="form-input" name="position" value="{{ $user->position }}">
-        </div>
-
-        <div class="formdata-control">
-          <label for="linkedin">LinkedIn Link (Optional)</label><br>
-          <input type="text" class="form-input" name="linkedin" value="{{ $user->linkedin }}">
-        </div>
-
-        <div class="formdata-control">
-          <label for="github">Github Link (Optional)</label><br>
-          <input type="text" class="form-input" name="github" value="{{ $user->github }}">
-        </div>
-
-        <div class="formdata-control">
-          <label for="ph_no">Phone Number (Optional)</label><br>
-          <input type="text" class="form-input" name="ph_no" value="{{ $user->ph_no }}">
+        <div class="formdata-group">
+          <div class="formdata-control">
+            <label for="linkedin">LinkedIn Link (Optional)</label><br>
+            <input type="text" class="form-input" name="linkedin" value="{{ $user->linkedin }}">
+          </div>
+          <div class="formdata-control">
+            <label for="github">Github Link (Optional)</label><br>
+            <input type="text" class="form-input" name="github" value="{{ $user->github }}">
+          </div>
         </div>
 
         <div class="formdata-control">
@@ -69,9 +76,9 @@
         </div>
 
         <div class="formdata-control">
-          <div class="btn-group clearfix">
+          <div class="button-group clearfix">
             <input type="submit" class="btn btn-success" name="create" value="Update">
-            <a href="{{ route('user-view', $user->id) }}" class="btn btn-cancel" name="cancel_btn">Cancel</a>
+            <a href="{{ route('user-view', $user->id) }}" class="btn cancel-btn" name="cancel_btn">Cancel</a>
           </div>
         </div>
 

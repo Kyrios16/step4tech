@@ -114,8 +114,14 @@
     height: 100%;
 }
 
+.formdata-group {
+    display: flex;
+    flex-direction: row;
+}
+
 .formdata-control {
-    margin-top: 15px;
+    margin: 2%;
+    width: 48%;
 }
 
 label {
@@ -128,14 +134,19 @@ span {
 }
 
 .form-input {
-    height: 30px;
+    height: 40px;
     width: 100%;
     border-radius: 5px;
     box-sizing: border-box;
     border: none;
+    outline: none;
     box-shadow: 0px 1px 1px 1px rgb(0 0 0 / 5%);
     color: #707070;
     padding: 0rem 0.5em;
+}
+
+.form-input:focus {
+    border: 1px solid#587fff;
 }
 
 .btn {
@@ -147,12 +158,11 @@ span {
     border-radius: 7px;
 }
 
-.btn-group {
+.button-group {
     position: relative;
-    width: 30%;
 }
 
-.btn-success {
+.button-success {
     color: #fff;
     background-color: #34c85b;
     float: left;
@@ -162,7 +172,7 @@ span {
     background-color: #42af5f;
 }
 
-.btn-cancel {
+.cancel-btn {
     color: #737373;
     background-color: #fff;
     border: 1px solid #737373;
@@ -171,9 +181,9 @@ span {
     float: right;
 }
 
-.btn-cancel:hover {
-    border-color: #000;
-    color: #000;
+.cancel-btn:hover {
+    border-color: #000000;
+    color: #000000;
 }
 
 .text {

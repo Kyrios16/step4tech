@@ -57,6 +57,7 @@
 .setting {
     color: #000;
     text-decoration: none;
+    text-align: right;
     margin-top: -50px;
     display: block;
 }

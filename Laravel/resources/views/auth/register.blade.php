@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-<link href="{{ asset('css/auth/user-form.css') }}" rel="stylesheet">
+<link href="{{ asset('css/user/user-form.css') }}" rel="stylesheet">
 @endsection
 
 @section('script')
@@ -25,91 +25,106 @@
           <img id="profile_preview" class="profile" alt="">
         </div>
 
-        <div class="formdata-control">
-          <label for="name">Username <span>*</span></label><br>
-          <input type="text" class="form-input" name="name" placeholder="Enter Username" value="{{ old('name') }}" autocomplete="name">
-          @error('name')
-          <span role="alert">
-            <strong>{{ $message }}</strong>
-          </span>
-          @enderror
+        <div class="formdata-group">
+          <div class="formdata-control">
+            <label for="name">Username <span>*</span></label><br>
+            <input type="text" class="form-input" name="name" placeholder="Enter Username" value="{{ old('name') }}" autocomplete="name">
+            @error('name')
+            <span role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+          </div>
+
+          <div class="formdata-control">
+            <label for="email">Email Address <span>*</span></label><br>
+            <input type="email" class="form-input" name="email" placeholder="Enter Email" value="{{ old('email') }}" autocomplete="email">
+            @error('email')
+            <span role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+          </div>
         </div>
 
-        <div class="formdata-control">
-          <label for="email">Email Address <span>*</span></label><br>
-          <input type="email" class="form-input" name="email" placeholder="Enter Email" value="{{ old('email') }}" autocomplete="email">
-          @error('email')
-          <span role="alert">
-            <strong>{{ $message }}</strong>
-          </span>
-          @enderror
+        <div class="formdata-group">
+          <div class="formdata-control">
+            <label for="password">Password <span>*</span></label><br>
+            <input type="password" class="form-input" name="password" placeholder="Enter Password" autocomplete="new-password">
+            @error('password')
+            <span role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+          </div>
+
+          <div class="formdata-control">
+            <label for="password_confirmatoion">Password Confirmation<span>*</span></label><br>
+            <input type="password" class="form-input" name="password_confirmation" placeholder="Enter Password Again" autocomplete="new-password">
+            @error('password_confirmation')
+            <span role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+          </div>
         </div>
 
-        <div class="formdata-control">
-          <label for="password">Password <span>*</span></label><br>
-          <input type="password" class="form-input" name="password" placeholder="Enter Password" autocomplete="new-password">
-          @error('password')
-          <span role="alert">
-            <strong>{{ $message }}</strong>
-          </span>
-          @enderror
+        <div class="formdata-group">
+          <div class="formdata-control">
+            <label for="dob">Date of Birth <span>*</span></label><br>
+            <input type="date" class="form-input" name="date_of_birth" value="{{ old('dob') }}" autocomplete="dob">
+            @error('date_of_birth')
+            <span role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+          </div>
+
+          <div class="formdata-control">
+            <label for="position">Job Position <span>*</span></label><br>
+            <input type="text" class="form-input" name="position" placeholder="Enter Job Position" value="{{ old('position') }}" autocomplete="position">
+            @error('position')
+            <span role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+          </div>
         </div>
 
-        <div class="formdata-control">
-          <label for="password_confirmatoion">Password Confirmation<span>*</span></label><br>
-          <input type="password" class="form-input" name="password_confirmation" placeholder="Enter Password Again" autocomplete="new-password">
-          @error('password_confirmation')
-          <span role="alert">
-            <strong>{{ $message }}</strong>
-          </span>
-          @enderror
+        <div class="formdata-group">
+          <div class="formdata-control">
+            <label for="bio">Biography </label><br>
+            <input type="text" class="form-input" name="bio" placeholder="Enter Biography" value="{{ old('bio') }}" autocomplete="bio">
+            @error('bio')
+            <span role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+          </div>
+
+          <div class="formdata-control">
+            <label for="ph_no">Phone Number (Optional) </label><br>
+            <input type="text" class="form-input" name="ph_no" placeholder="Enter Phone Number " value="{{ old('ph_no') }}" autocomplete="ph_no">
+          </div>
         </div>
 
-        <div class="formdata-control">
-          <label for="dob">Date of Birth <span>*</span></label><br>
-          <input type="date" class="form-input" name="date_of_birth" value="{{ old('dob') }}" autocomplete="dob">
-          @error('dob')
-          <span role="alert">
-            <strong>{{ $message }}</strong>
-          </span>
-          @enderror
-        </div>
+        <div class="formdata-group">
+          <div class="formdata-control">
+            <label for="linkedin">LinkedIn Link (Optional)</label><br>
+            <input type="text" class="form-input" name="linkedin" placeholder="Enter LinkedIn Link" value="{{ old('linkedin') }}" autocomplete="linkedin">
+          </div>
 
-        <div class="formdata-control">
-          <label for="bio">Biography </label><br>
-          <input type="text" class="form-input" name="bio" placeholder="Enter Biography" value="{{ old('bio') }}" autocomplete="bio">
-        </div>
-
-        <div class="formdata-control">
-          <label for="position">Job Position <span>*</span></label><br>
-          <input type="text" class="form-input" name="position" placeholder="Enter Job Position" value="{{ old('position') }}" autocomplete="position">
-          @error('position')
-          <span role="alert">
-            <strong>{{ $message }}</strong>
-          </span>
-          @enderror
-        </div>
-
-        <div class="formdata-control">
-          <label for="linkedin">LinkedIn Link (Optional)</label><br>
-          <input type="text" class="form-input" name="linkedin" placeholder="Enter LinkedIn Link" value="{{ old('linkedin') }}" autocomplete="linkedin">
-        </div>
-
-        <div class="formdata-control">
-          <label for="github">GitHub Link (Optional) </label><br>
-          <input type="text" class="form-input" name="github" placeholder="Enter GitHub Link" value="{{ old('github') }}" autocomplete="github">
-        </div>
-
-        <div class="formdata-control">
-          <label for="ph_no">Phone Number (Optional) </label><br>
-          <input type="text" class="form-input" name="ph_no" placeholder="Enter Phone Number " value="{{ old('ph_no') }}" autocomplete="ph_no">
+          <div class="formdata-control">
+            <label for="github">GitHub Link (Optional) </label><br>
+            <input type="text" class="form-input" name="github" placeholder="Enter GitHub Link" value="{{ old('github') }}" autocomplete="github">
+          </div>
         </div>
 
         <div class="formdata-control">
           <p class="text">Already have an account? <a href="{{ route('login')}}" class="link-text">Sign In</a>
-          <div class="btn-group clearfix">
+          <div class="button-group clearfix">
             <input type="submit" class="btn btn-success" name="create" value="Create">
-            <a href="/" class="btn btn-cancel" name="cancel_btn">Cancel</a>
+            <a href="/" class="btn cancel-btn" name="cancel_btn">Cancel</a>
           </div>
         </div>
 
