@@ -54,13 +54,14 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    padding: 0px 10px;
+    padding: 0px 8px;
     margin: 0% 0% 2% 90%;
     opacity: 1;
 }
 
-.cover-img .file-upload::before {
-    margin-top: -3px;
+.cover-img .file-upload::before,
+.profile-img .file-upload::before {
+    margin-top: -12px;
 }
 
 .file-upload::-webkit-file-upload-button {
@@ -103,17 +104,14 @@
 }
 
 .profile-img .file-upload {
-    padding: 0px 60px;
+    padding: 0px 55px;
+    height: 40%;
 }
 
-.cover {
-    width: 100%;
-    max-height: 200px;
-}
-
+.cover,
 .profile {
     width: 100%;
-    height: 100%;
+    max-height: 100%;
 }
 
 .formdata-control {
@@ -191,10 +189,14 @@ span {
     float: none;
 }
 
+hr {
+    margin: 10% 0%;
+}
+
 .change-btn {
     display: inline-block;
     width: 100%;
-    height: 30px;
+    height: 40px;
     background-color: #34c85b;
     border-radius: 5px;
     border: none;
@@ -205,7 +207,7 @@ span {
 .changepwd-wrapper {
     padding: 10%;
     margin: 0 auto;
-    width: 30%;
+    width: 50%;
 }
 
 .title {

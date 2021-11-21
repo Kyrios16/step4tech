@@ -47,6 +47,27 @@
             <a href="{{ $viewUser->github }}">{{ $viewUser->github }}</a>
           </p>
         </div>
+        <div class="data-group clearfix">
+          <p class="left"><i class="fas fa-briefcase"></i>{{$viewUser->position }}</p>
+          <p class="right">
+            <i class="fas fa-phone-square-alt"></i>
+            <a href="tel:{{ $viewUser->ph_no }}"> {{ $viewUser->ph_no }}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="user-postlist-wrapper">    
+  </div>
+</div>
+<div class="likepopup-container">
+    <div class="likepopup-content">
+        <div class="likepopup-header">
+            <button class="close" onclick="closeLikePopup()">&times;</button>
+            <h2>Like Failed !</h2>
+        </div>
+        <div class="likepopup-body">
+            <p>Please log in to continue ...</p>
             <a href="/login" class="login-btn btn-success">Login</a>
         </div>
     </div>
