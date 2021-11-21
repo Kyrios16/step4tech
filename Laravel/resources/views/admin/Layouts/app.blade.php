@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="{{ asset('css/lib/fontawesome.css') }}">
   <link rel="stylesheet" href="{{ asset('css/admin/admin-style.css') }}">
   <link rel="stylesheet" href="{{ asset('css/admin/admin-common.css') }}">
-
+  @yield('style')
 
 
   <!-- fonts -->
@@ -25,7 +25,9 @@
   <script src="{{ asset('js/lib/fontawesome.js') }}"></script>
   <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
   <script src="{{ asset('js/lib/popper.min.js') }}"></script>
+  <script src="{{ asset('js/lib/jquery.heightLine.js') }}"></script>
   <script src="{{ asset('js/admin/admin-common.js') }}"></script>
+  @yield('script')
 </head>
 
 <body>

@@ -20,11 +20,10 @@ $(document).ready(function () {
                         <td>${categories.name}</td>
                         <td>${categories.created_user_id}</td>
                         <td>${categories.updated_user_id}</td>
-                        <td>${categories.deleted_user_id}</td>
                         <td>${created_at}</td>
                         <td>${updated_at}</td>
                         <td>
-                            <button class="icon-btn-warning" onClick="editCategory(${categories.id})"><i class="fas fa-edit"></i></button>
+                            <button class="icon-btn-warning" onClick="editCategory(${categories.id})"><i class="fas fa-edit"></i></button> |
                             <button class="icon-btn-danger" onClick="destroy(${categories.id})"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>`

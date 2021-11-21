@@ -1,16 +1,15 @@
 @extends('admin.Layouts.app')
 
 @section('content')
-<div class="container clearfix">
-  <input type="checkbox" name="" id="menu-toggle">
+<div class="container">
   @include('admin.common.aside')
   <div class="main-container">
     <div class="main-content">
       <header>
         <div class="header-title-container">
-          <label for="menu-toggle">
+          <div class="header-icon">
             <span class="fas fa-bars"></span>
-          </label>
+          </div>
           <div class="header-title">
             <h2>User Management</h2>
           </div>

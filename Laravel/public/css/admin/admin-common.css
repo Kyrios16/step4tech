@@ -36,6 +36,8 @@ body {
 .container {
     width: 98%;
     margin: 1rem auto;
+    display: flex;
+    flex-direction: row;
 }
 
 .header-title {
@@ -118,17 +120,15 @@ input:focus::placeholder {
 
 .sidebar {
     width: 25%;
-    height: 100%;
-    position: fixed;
+    height: auto;
     top: 0;
     left: 0;
     bottom: 0;
-    padding: 1rem;
-    float: left;
+    padding: 0rem 1rem;
     transition: left 300ms;
 }
 
-#menu-toggle {
+/* #menu-toggle {
     display: none;
 }
 
@@ -137,13 +137,13 @@ input:focus::placeholder {
 }
 
 #menu-toggle:checked ~ .sidebar {
-    left: -25%;
+    left: -50%;
 }
 
 #menu-toggle:checked ~ .main-container {
     margin-left: 0;
     width: 100%;
-}
+} */
 
 .sidebar-container {
     height: 100%;
@@ -222,7 +222,6 @@ input:focus::placeholder {
 .main-container {
     width: 75%;
     height: 100%;
-    float: right;
     transition: margin-left 300ms;
 }
 
@@ -241,8 +240,8 @@ input:focus::placeholder {
     align-items: center;
 }
 
-.header-title-container label {
-    display: inline-block;
+.header-title-container .header-icon {
+    display: block;
     margin-right: 1rem;
     font-size: 1.5rem;
     color: var(--color-main);
@@ -341,20 +340,44 @@ main {
     border: 3px solid var(--main-accent); /* creates padding around scroll thumb */
 }
 
-table {
-    font-size: 0.9rem;
+/* table components */
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 1rem auto 0rem;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     text-align: center;
 }
 
-thead {
-    margin-bottom: 0.5rem;
+.styled-table thead tr {
+    background-color: var(--color-main);
+    color: #ffffff;
 }
 
-th {
-    padding: 0 0.5rem;
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
 }
 
-td {
-    padding: 1.2rem 0.5rem;
-    border-bottom: 1px solid #2ec3a3;
+.styled-table tbody {
+    font-size: 0.8rem;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid var(--color-main);
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: var(--color-main);
 }
