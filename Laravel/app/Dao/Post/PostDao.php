@@ -106,7 +106,29 @@ class PostDao implements PostDaoInterface
      */
     public function searchPost($searchValue)
     {
-        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
+        $postList = DB::select(DB::raw("SELECT * FROM
+                                        ((SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.updated_at, posts.title,
+                                        users.id AS userId,
+                                        GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
+                                        GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
+                                        COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
+                                        FROM posts
+                                        LEFT JOIN votes ON (votes.post_id = posts.id)
+                                        LEFT JOIN feedbacks ON (feedbacks.post_id = posts.id)
+                                        INNER JOIN users ON (users.id = posts.created_user_id) 
+                                        INNER JOIN post_category ON (post_category.post_id = posts.id)
+                                        INNER JOIN categories ON (categories.id = post_category.category_id)
+                                        WHERE posts.deleted_at IS NULL
+                                        AND votes.deleted_at IS NULL
+                                        AND feedbacks.deleted_at IS NULL
+                                        AND users.deleted_at IS NULL
+                                        AND post_category.deleted_at IS NULL
+                                        AND categories.deleted_at IS NULL
+                                        GROUP BY posts.id
+                                        HAVING post_categories LIKE :categorySearchValue)
+                                        UNION
+                                        (SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.updated_at, posts.title,
+                                        users.id AS userId,
                                         GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
                                         GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
                                         COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
@@ -123,13 +145,13 @@ class PostDao implements PostDaoInterface
                                         AND post_category.deleted_at IS NULL
                                         AND categories.deleted_at IS NULL
                                         AND (users.name LIKE :userSearchValue
-                                        OR posts.title LIKE :postSearchValue
-                                        OR categories.name LIKE :categorySearchValue)
-                                        GROUP BY posts.id
-                                        ORDER BY posts.updated_at DESC"), array(
-            'userSearchValue' => '%' . $searchValue . '%',
-            'postSearchValue' => '%' . $searchValue . '%',
-            'categorySearchValue' => '%' . $searchValue . '%'
+                                        OR posts.title LIKE :postSearchValue)
+                                        GROUP BY posts.id)) AS result
+                                        ORDER BY result.updated_at DESC"), array(
+                                        'categorySearchValue' => '%' . $searchValue . '%',
+                                        'userSearchValue' => '%' . $searchValue . '%',
+                                        'postSearchValue' => '%' . $searchValue . '%',
+            
         ));
         return $postList;
     }
