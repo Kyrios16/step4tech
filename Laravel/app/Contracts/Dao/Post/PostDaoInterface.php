@@ -63,7 +63,7 @@ interface PostDaoInterface
      * @param string $deletedUserId deleted user id
      * @return string $message message success or not
      */
-    public function deletePostById($id, $deletedUserId);
+    public function deletePostById($id);
 
     /**
      *  To get all posts list

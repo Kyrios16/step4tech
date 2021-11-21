@@ -222,19 +222,17 @@ class PostDao implements PostDaoInterface
     /**
      * To delete post by id
      * @param string $id post id
-     * @param string $deletedUserId deleted user id
      * @return string $message message success or not
      */
-    public function deletePostById($id, $deletedUserId)
+    public function deletePostById($id)
     {
         $post = Post::find($id);
         if ($post) {
-            $post->deleted_user_id = $deletedUserId;
+            $post->deleted_user_id = Auth::user()->id ?? 1;
+            $post->deleted_at = now();
             $post->save();
-            $post->delete();
-            return 'Deleted Successfully!';
         }
-        return 'Post Not Found!';
+        return $post;
     }
 
     /**
@@ -244,7 +242,7 @@ class PostDao implements PostDaoInterface
      */
     public function getPostList()
     {
-        $posts = DB::table('posts')->orderBy('id')->get();
+        $posts = Post::orderBy('id')->get();
         return $posts;
     }
 

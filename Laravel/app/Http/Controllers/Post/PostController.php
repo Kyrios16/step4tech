@@ -85,12 +85,11 @@ class PostController extends Controller
         $title = 'Home';
         $categories = $this->categoryServiceInterface->getCateList($request);
         $userCategoryList = $this->categoryServiceInterface->getUserCategory();
-        if(Auth::check()) {
+        if (Auth::check()) {
             $userId = Auth::user()->id;
             $user = $this->userServiceInterface->getUserById($userId);
-            return view('post.index', compact('title','user', 'categories', 'userCategoryList'));
-        }
-        else {
+            return view('post.index', compact('title', 'user', 'categories', 'userCategoryList'));
+        } else {
             return view('post.index', compact('title', 'categories', 'userCategoryList'));
         }
     }
@@ -123,7 +122,7 @@ class PostController extends Controller
             $user = $this->userServiceInterface->getUserById($userId);
             $categories = $this->categoryServiceInterface->getCateList($request);
             $userCategoryList = $this->categoryServiceInterface->getUserCategory();
-            return view('post.trash', compact('title','user', 'categories', 'userCategoryList'));
+            return view('post.trash', compact('title', 'user', 'categories', 'userCategoryList'));
         }
     }
 
@@ -142,7 +141,7 @@ class PostController extends Controller
             $user = $this->userServiceInterface->getUserById($userId);
             return view('post.search', compact('title', 'user', 'searchValue', 'categories', 'userCategoryList'));
         } else {
-            return view('post.search', compact('title','searchValue', 'categories', 'userCategoryList'));
+            return view('post.search', compact('title', 'searchValue', 'categories', 'userCategoryList'));
         }
     }
 
@@ -203,7 +202,7 @@ class PostController extends Controller
         $userId = Auth::user()->id;
         return redirect('/user/view/' . $userId);
     }
-    
+
     /**
      * To show post detail view
      * 
@@ -226,9 +225,22 @@ class PostController extends Controller
             $user = $this->userServiceInterface->getUserById($userId);
             return view('post.post-detail', compact('title', 'post', 'voteList', 'feedbackList', 'postCategory', 'date', 'user', 'categories', 'userCategoryList'));
         } else {
-            return view('post.post-detail', compact('title', 'post', 'voteList', 'feedbackList', 'postCategory','date', 'categories', 'userCategoryList'));
+            return view('post.post-detail', compact('title', 'post', 'voteList', 'feedbackList', 'postCategory', 'date', 'categories', 'userCategoryList'));
         }
     }
+
+    /**
+     * To delete post by id
+     * @param string $id post id
+     * @param string $deletedUserId deleted user id
+     * @return analytics blade
+     */
+    public function deletePostById($id)
+    {
+        $this->postServiceInterface->deletePostById($id);
+        return redirect('/admin/posts');
+    }
+
     /**
      * To export posts data form table
      * 

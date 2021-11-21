@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
         // DB::table('users')->truncate();
         DB::table('users')->insert(
             [
-                'name' => 'admin',
+                'name' => 'Admin',
                 'email' => 'admin123@gmail.com',
                 'password' => Hash::make('password'),
-                'profile_img' => 'profile_default.png',
+                'profile_img' => 'profile_20211121181319.jpg',
                 'cover_img' => 'cover_default.png',
                 'github' => 'https://github.com/Kyrios16',
                 'linkedin' => 'https://linkedIn',
@@ -109,6 +109,36 @@ class DatabaseSeeder extends Seeder
                     'updated_user_id' => 1,
                     'created_at' => Date('2021-11-29'),
                     'updated_at' => Date('2021-11-29'),
+                ],
+            ]
+        );
+
+        DB::table('categories')->insert(
+            [
+                [
+                    'name' => 'Laravel',
+                    'created_user_id' => 1,
+                    'updated_user_id' => 1,
+                ],
+                [
+                    'name' => 'JavaScript',
+                    'created_user_id' => 1,
+                    'updated_user_id' => 1,
+                ],
+                [
+                    'name' => 'Jquery',
+                    'created_user_id' => 1,
+                    'updated_user_id' => 1,
+                ],
+                [
+                    'name' => 'Java',
+                    'created_user_id' => 1,
+                    'updated_user_id' => 1,
+                ],
+                [
+                    'name' => 'PHP',
+                    'created_user_id' => 1,
+                    'updated_user_id' => 1,
                 ],
             ]
         );

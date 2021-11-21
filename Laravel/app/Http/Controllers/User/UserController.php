@@ -32,7 +32,7 @@ class UserController extends Controller
     public function view($id)
     {
         $viewUser = $this->userInterface->getUserById($id);
-        $title = "View Profile"; 
+        $title = "View Profile";
         if (Auth::check()) {
             $userId = Auth::user()->id;
             $user = $this->userInterface->getUserById($userId);

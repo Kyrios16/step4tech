@@ -169,9 +169,11 @@ input:focus::placeholder {
     margin: 2.5rem 0rem;
 }
 
-.sidebar-avartar img {
+.sidebar-avartar #admin-profile img {
     width: 60%;
     height: auto;
+    border-radius: 50%;
+    border: 2px solid var(--color-main);
 }
 
 .avartar-text small {

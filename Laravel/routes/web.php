@@ -40,6 +40,7 @@ Route::get('/admin/users/profile/{id}', [UserController::class, 'showUserProfile
 
 // manage posts 
 Route::get('/admin/posts', [PostController::class, 'index'])->name('show.postList');
+Route::delete('/admin/post/delete/{id}', [PostController::class, 'deletePostById']);
 Route::get('/posts/export', [PostController::class, 'export'])->name('export.posts');
 
 // manage categories 

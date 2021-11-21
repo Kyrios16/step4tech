@@ -53,9 +53,13 @@
                   <td>{{ $post->updated_at }}</td>
                   <td>{{ $post->deleted_at }}</td>
                   <td>
-                    <a href="" class="icon-btn-info"><i class="far fa-eye"></i></a> |
-                    <a href="" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
-                    <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
+                    <a href="{{ route('detail.post', $post->id) }}" class="icon-btn-info"><i class="far fa-eye"></i></a> |
+                    <a href="{{ route('edit.post', $post->id) }}" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
+                    <form action="{{ url('/admin/post/delete/'.$post->id) }}" method="POST" class="deleteBtn">
+                      {{ csrf_field() }}
+                      {{ method_field('DELETE') }}
+                      <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
+                    </form>
                   </td>
                 </tr>
                 @endforeach
