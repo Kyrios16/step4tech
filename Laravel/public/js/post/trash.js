@@ -21,7 +21,7 @@ function showDeletedPostList() {
                 ).format("MMM Do, YYYY");
                 var categories = post.post_categories;
                 var categoriesArray = categories.split(",");
-                var categoriesHtml = "";
+                var categoriesHtml = "<div>";
                 categoriesArray.forEach((categoryName) => {
                     categoriesHtml +=
                         "<a class='post-category' href='/post/search/" +
@@ -30,6 +30,7 @@ function showDeletedPostList() {
                         categoryName +
                         "</a>";
                 });
+                categoriesHtml += "</div>";
                 var getUrl = window.location;
                 var baseUrl =
                     getUrl.protocol + "//" + getUrl.host + "/images/profile/";
@@ -60,6 +61,10 @@ function showDeletedPostList() {
                                 <a href="/user/view/${
                                     post.userId
                                 }" class="post-username">${post.name}</a>
+                                <button class="recover-btn" onclick="toggleRecoverPostDropdown(this)"><i class="fas fa-caret-down"></i></button>
+                                <div class="recover-post-dropdown-content">     
+                                    <button onclick="recoverPost(${post.id})">Recover</button>
+                                </div>
                                 <p class="post-date">${created_at}</p>             
                                 <p class="post-title">${post.title}</p>
                                 ${categoriesHtml}
@@ -78,6 +83,33 @@ function showDeletedPostList() {
                     </div>`
                 );
             });
+        },
+    });
+}
+
+
+function toggleRecoverPostDropdown(button) {
+    if ($(button).parent(".post-blog").children(".recover-post-dropdown-content").css("display") == "none") {
+        $(button).parent(".post-blog").children(".recover-post-dropdown-content").css("display", "block");
+    } else {
+        $(button).parent(".post-blog").children(".recover-post-dropdown-content").css("display", "none");
+    }
+}
+
+//Close Personal Post Dropdown when click outside of the element
+$(document).on("click", function (event) {
+    var $trigger = $(".recover-btn");
+    if ($trigger != event.target && !$trigger.has(event.target).length) {
+        $(".recover-post-dropdown-content").css("display", "none");
+    }
+});
+
+function recoverPost(id) {
+    $.ajax({
+        url: "/api/post/recover/" + id,
+        type: "POST",
+        success: function (msg) {
+            location.reload();
         },
     });
 }
