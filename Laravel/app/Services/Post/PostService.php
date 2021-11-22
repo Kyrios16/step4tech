@@ -39,7 +39,8 @@ class PostService implements PostServiceInterface
      * @param Request $request
      * @return postList liked post list
      */
-    public function getLikedPostList($request) {
+    public function getLikedPostList($request)
+    {
         return $this->postDao->getLikedPostList($request);
     }
 
@@ -48,7 +49,8 @@ class PostService implements PostServiceInterface
      * @param Request $request
      * @return postList deleted post list
      */
-    public function getDeletedPostList($request) {
+    public function getDeletedPostList($request)
+    {
         return $this->postDao->getDeletedPostList($request);
     }
     /**
@@ -95,9 +97,9 @@ class PostService implements PostServiceInterface
      * @param string $deletedUserId deleted user id
      * @return string $message message success or not
      */
-    public function deletePostById($id, $deletedUserId)
+    public function deletePostById($id)
     {
-        return $this->postDao->deletePostById($id, $deletedUserId);
+        return $this->postDao->deletePostById($id);
     }
 
     /**
@@ -118,6 +120,16 @@ class PostService implements PostServiceInterface
     public function countTotalPosts()
     {
         return $this->postDao->countTotalPosts();
+    }
+
+    /**
+     * To get max likes on post
+     * 
+     * @return return max likes on post
+     */
+    public function getMaxLikes()
+    {
+        return $this->postDao->getMaxLikes();
     }
 
     /** 
@@ -145,7 +157,8 @@ class PostService implements PostServiceInterface
      * @param Request $request
      * @return postList personal post list
      */
-    public function getPersonalPostList($request) {
+    public function getPersonalPostList($request)
+    {
         return $this->postDao->getPersonalPostList($request);
     }
 

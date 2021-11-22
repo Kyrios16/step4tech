@@ -1,19 +1,21 @@
 @extends('admin.Layouts.app')
 
-@section('content')
+@section('script')
 <!-- script -->
 <script src="{{ asset('js/admin/admin-cate-script.js') }}"></script>
+<script src="{{ asset('js/lib/moment.js') }}"></script>
+@endsection
 
-<div class="container clearfix">
-  <input type="checkbox" name="" id="menu-toggle">
+@section('content')
+<div class="container">
   @include('admin.common.aside')
   <div class="main-container">
     <div class="main-content">
       <header>
         <div class="header-title-container">
-          <label for="menu-toggle">
+          <div class="header-icon">
             <span class="fas fa-bars"></span>
-          </label>
+          </div>
           <div class="header-title">
             <h2>Categories Management</h2>
           </div>
@@ -27,7 +29,7 @@
             <h3 class="header-title">Categories Table</h3>
             <div class="new-cate">
               @error('name')
-              <small>{{$message}}</small>
+              <small id="error-msg">{{$message}}</small>
               @enderror
               <form action="{{ route('add.categories') }}" method="POST">
                 {{ csrf_field() }}
@@ -49,14 +51,13 @@
                 <button class="btn btn-success" id="btnEdit" onclick="updateCategory()">Edit</button>
               </div>
             </div>
-            <table>
+            <table class="styled-table">
               <thead>
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Name</th>
                   <th scope="col">Created User Id</th>
                   <th scope="col">Updated User Id</th>
-                  <th scope="col">Deleted User Id</th>
                   <th scope="col">Created At</th>
                   <th scope="col">Updated At</th>
                   <th scope="col">Action</th>

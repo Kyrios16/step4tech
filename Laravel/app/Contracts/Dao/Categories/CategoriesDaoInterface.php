@@ -61,4 +61,11 @@ interface CategoriesDaoInterface
      * @return back to previous route
      */
     public function DeleteUserCategory($categoryid);
+
+    /**
+     * To get max total followers on category
+     * 
+     * @return return max total followers on category
+     */
+    public function getMaxFollowers();
 }

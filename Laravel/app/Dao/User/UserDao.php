@@ -85,4 +85,57 @@ class UserDao implements UserDaoInterface
             ]);
         return $user;
     }
+
+    /**
+     * To count total number of users
+     * 
+     * @return $numTotalUsers total number of users
+     */
+    public function countTotalUsers()
+    {
+        $numTotalUsers =  User::where('deleted_at', null)->count();
+        return $numTotalUsers;
+    }
+
+    /**
+     * To delete user by id
+     * 
+     * @param $id user id
+     * @return $user deleted user
+     */
+    public function deleteUserById($id)
+    {
+        $user = User::findOrFail($id);
+        $user->deleted_user_id = 1;
+        $user->deleted_at = now();
+        $user->save();
+        return $user;
+    }
+
+    /**
+     * To get most popular user
+     * 
+     * @return $mostPopularUser most popular user
+     */
+    public function getMostPopularUser()
+    {
+        $mostPopularUser = DB::select(DB::raw(
+            'SELECT
+                    COUNT(votes.post_id) totalLike,
+                    posts.title,
+                    users.*
+                FROM
+                    users
+                    LEFT JOIN posts on posts.created_user_id = users.id
+                    LEFT JOIN votes ON votes.post_id = posts.id
+                GROUP BY
+                    votes.post_id, users.id, posts.id
+                ORDER BY
+                    totalLike DESC
+                LIMIT
+                    1'
+        ));
+
+        return $mostPopularUser;
+    }
 }

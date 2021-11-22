@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Post\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Feedback\FeedbackController;
 use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Post\PostController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,19 +30,20 @@ Route::get('/user/view/{id}',[UserController::class,'view'])->name('user-view');
 
 require __DIR__ . '/auth.php';
 
-/* admin management routes */
-// admin dashboard routes
-Route::get('/admin', function () {
-    return view('admin.analytic.analytics-manage');
-});
+/* admin management routes start */
+
+// analytics dashboard routes
+Route::get('/admin', [UserController::class, 'getMostPopularUser'])->name('show.analytics');
 
 // manage users
-Route::get('/admin/users', function () {
-    return view('admin.users-manage');
-});
+Route::get('/admin/users', [UserController::class, 'index'])->name('show.userList');
+Route::delete('/admin/users/{id}', [UserController::class, 'deleteUserById'])->name('delete.user');
+Route::get('/users/export', [UserController::class, 'export'])->name('export.users');
+Route::get('/admin/users/profile/{id}', [UserController::class, 'showUserProfile']);
 
 // manage posts 
 Route::get('/admin/posts', [PostController::class, 'index'])->name('show.postList');
+Route::delete('/admin/post/delete/{id}', [PostController::class, 'deletePostById']);
 Route::get('/posts/export', [PostController::class, 'export'])->name('export.posts');
 
 // manage categories 
@@ -50,6 +52,8 @@ Route::get('/admin/categories', function () {
 });
 Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
 Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
+
+/* admin management routes end*/
 
 /**
  * Display All Posts ordered by date

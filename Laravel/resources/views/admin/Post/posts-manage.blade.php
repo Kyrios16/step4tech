@@ -1,16 +1,15 @@
 @extends('admin.Layouts.app')
 
 @section('content')
-<div class="container clearfix">
-  <input type="checkbox" name="" id="menu-toggle">
+<div class="container">
   @include('admin.common.aside')
   <div class="main-container">
     <div class="main-content">
       <header>
         <div class="header-title-container">
-          <label for="menu-toggle">
+          <div class="header-icon">
             <span class="fas fa-bars"></span>
-          </label>
+          </div>
           <div class="header-title">
             <h2>Posts Management</h2>
           </div>
@@ -25,7 +24,7 @@
           </div>
           <!-- table-header -->
           <div class="posts-table">
-            <table>
+            <table class="styled-table">
               <thead>
                 <tr>
                   <th scope="col">Title</th>
@@ -33,10 +32,8 @@
                   <th scope="col">Photo</th>
                   <th scope="col">Created User Id</th>
                   <th scope="col">Updated User Id</th>
-                  <th scope="col">Deleted User Id</th>
                   <th scope="col">Created At</th>
                   <th scope="col">Updated At</th>
-                  <th scope="col">Deleted At</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -48,14 +45,16 @@
                   <td>{{ $post->photo }}</td>
                   <td>{{ $post->created_user_id }}</td>
                   <td>{{ $post->updated_user_id }}</td>
-                  <td>{{ $post->deleted_user_id }}</td>
                   <td>{{ $post->created_at }}</td>
                   <td>{{ $post->updated_at }}</td>
-                  <td>{{ $post->deleted_at }}</td>
                   <td>
-                    <a href="" class="icon-btn-info"><i class="far fa-eye"></i></a> |
-                    <a href="" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
-                    <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
+                    <a href="{{ route('detail.post', $post->id) }}" class="icon-btn-info"><i class="far fa-eye"></i></a> |
+                    <a href="{{ route('edit.post', $post->id) }}" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
+                    <form action="{{ url('/admin/post/delete/'.$post->id) }}" method="POST" class="deleteBtn">
+                      {{ csrf_field() }}
+                      {{ method_field('DELETE') }}
+                      <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
+                    </form>
                   </td>
                 </tr>
                 @endforeach

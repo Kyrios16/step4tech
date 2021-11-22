@@ -60,7 +60,7 @@ interface PostServiceInterface
      * @param string $deletedUserId deleted user id
      * @return string $message message success or not
      */
-    public function deletePostById($id, $deletedUserId);
+    public function deletePostById($id);
 
     /**
      * To get all posts list
@@ -71,6 +71,13 @@ interface PostServiceInterface
      * To count total posts  
      */
     public function countTotalPosts();
+
+    /**
+     * To get max likes on post
+     * 
+     * @return return max likes on post
+     */
+    public function getMaxLikes();
 
     /** To like post
      * @param Request $request

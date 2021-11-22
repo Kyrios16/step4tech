@@ -5,6 +5,7 @@ namespace App\Dao\Categories;
 use App\Models\Categories;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Contracts\Dao\Categories\CategoriesDaoInterface;
 use App\Models\PostCategory;
 use App\Models\UserCategory;
@@ -137,5 +138,22 @@ class CategoriesDao implements CategoriesDaoInterface
             $userCategory->save();
             return $userCategory;
         }
+    }
+
+    /**
+     * To get max total followers on category
+     * 
+     * @return return max total followers on category
+     */
+    public function getMaxFollowers()
+    {
+        $count = DB::select(DB::raw(
+            'SELECT COUNT(user_category.category_id) total, categories.name
+                                    FROM user_category
+                                    LEFT JOIN categories ON categories.id = user_category.category_id
+                                    GROUP BY user_category.category_id, categories.name
+                                    ORDER BY total DESC'
+        ));
+        return $count;
     }
 }

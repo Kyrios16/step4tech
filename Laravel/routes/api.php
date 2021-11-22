@@ -4,6 +4,8 @@ use App\Http\Controllers\API\Post\PostAPIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Categories\CategoriesController;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\ChartDataController;
 
 
 /*
@@ -41,12 +43,6 @@ Route::get('/post/like', [PostAPIController::class, 'showLikedPostList']);
  */
 Route::get('/post/trash', [PostAPIController::class, 'showDeletedPostList']);
 
-Route::get('/admin/categories/list', [CategoriesController::class, 'getCateList'])->name('show.categories');
-Route::get('/admin/categories/edit/{categories}',  [CategoriesController::class, 'editCate'])->name('edit.categories');
-Route::delete('/admin/categories/{categories}',  [CategoriesController::class, 'deleteCate'])->name('delete.categories');
-Route::get('/admin/totalpost', [PostAPIController::class, 'countTotalPosts'])->name('count.totalPosts');
-
-
 /**
  * To Like Post
  */
@@ -67,6 +63,16 @@ Route::get('/user/posts', [PostAPIController::class, 'showPersonalPostList']);
  */
 Route::delete('/post/delete/{id}', [PostAPIController::class, 'deletePostById']);
 
+
+/** admin dashboard api routes */
+Route::get('/admin/categories/list', [CategoriesController::class, 'getCateList'])->name('show.categories');
+Route::get('/admin/categories/edit/{categories}',  [CategoriesController::class, 'editCate'])->name('edit.categories');
+Route::delete('/admin/categories/{categories}',  [CategoriesController::class, 'deleteCate'])->name('delete.categories');
+Route::get('/admin/totalpost', [PostAPIController::class, 'countTotalPosts'])->name('count.totalPosts');
+Route::get('/admin/totaluser', [UserController::class, 'countTotalUsers'])->name('count.totalUsers');
+Route::get('/admin/totallike', [PostAPIController::class, 'getMaxLikes']);
+Route::get('/admin/favcategory', [CategoriesController::class, 'getMaxFollowers']);
+Route::get('/admin/chart', [ChartDataController::class, 'getDailyPostCount']);
 /**
  * To Recover Post
  */
