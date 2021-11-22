@@ -9,7 +9,7 @@ use App\Contracts\Services\User\UserServiceInterface;
 use App\Http\Requests\UserPasswordChangeRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -86,7 +86,19 @@ class UserController extends Controller
     {
         // validation for request values
         $validated = $request->validated();
-        $user = $this->userInterface->changeUserPassword($validated);
+        //$user = $this->userInterface->changeUserPassword($validated);
+        $authuser = User::find(auth()->user()->id);
+        $email = $authuser->email;
+        $data = [
+            'subject' => 'Password Changed Confirmation',
+            'email' => $email,
+            'content' => 'Password Changed Successfully'
+        ];
+
+        Mail::send('password-mail', $data, function ($message) use ($data) {
+            $message->to($data['email'])
+                ->subject($data['subject']);
+        });
         return redirect('/');
     }
 }
