@@ -30,11 +30,12 @@ class PostAPIController extends Controller
 
     /**
      * To show post list for intial view
+     * @param Request $request
      * @return Response json with post list
      */
-    public function showPostListForInitial()
+    public function showPostListForInitial(Request $request)
     {
-        $postList = $this->postServiceInterface->getPostListForInitial();
+        $postList = $this->postServiceInterface->getPostListForInitial($request);
         return response()->json($postList);
     }
 

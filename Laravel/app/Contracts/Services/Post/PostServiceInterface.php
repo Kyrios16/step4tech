@@ -11,9 +11,10 @@ interface PostServiceInterface
 {
     /**
      * To get post list for intial view
+     * @param Request $request
      * @return postList
      */
-    public function getPostListForInitial();
+    public function getPostListForInitial($request);
 
     /**
      * To show liked post list
