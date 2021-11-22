@@ -40,7 +40,7 @@
         </div>
         <div class="content-container">
             <p class="content">
-                {{$post->content}}
+                {!!$post->content!!}
             </p>
         </div>
         <div class="postbtn-container">
