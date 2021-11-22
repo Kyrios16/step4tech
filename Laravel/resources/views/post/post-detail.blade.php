@@ -27,7 +27,7 @@
             @endforeach
         </div>
         <div class="upload-user postUpload-user clearfix">
-            <a href="#" class="postupload-user-info">
+            <a href="/user/view/{{$post->created_user_id}}" class="postupload-user-info">
                 <img class="profile-img" class="preview-img" src="{{ URL::to('/') }}/images/profile/{{ $post->profile_img }}" alt="user image">
                 <p class="upload-user-name">{{$post->name}}</p>
             </a>
