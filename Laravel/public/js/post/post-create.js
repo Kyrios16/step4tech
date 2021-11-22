@@ -1,3 +1,4 @@
+// multiple-select button
 $(document).ready(function () {
     $('select').selectpicker();
 });
