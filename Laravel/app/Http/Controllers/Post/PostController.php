@@ -13,6 +13,7 @@ use App\Http\Requests\createPostRequest;
 use App\Http\Requests\editPostRequest;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PostsExport;
+use GrahamCampbell\Markdown\Facades\Markdown;
 use App\Models\Post;
 use App\Models\PostCategory;
 use Carbon\Carbon;
@@ -21,6 +22,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
+use League\CommonMark\Parser\MarkdownParser;
 use SebastianBergmann\Environment\Console;
 
 /**
@@ -217,6 +220,7 @@ class PostController extends Controller
         $date = $post->created_at;
         $date = $date->format('M d, Y');
         $post->created_at = $date;
+        $post->content = Str::markdown($post->content);
         $feedbackList = $this->feedbackServiceInterface->getFeedbackbyPostId($id);
         $postCategory = $this->categoryServiceInterface->getCateListwithPostId($id);
         $voteList = $this->voteServiceInterface->getVoteListwithPostId($id);

@@ -33,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('deleted_user_id')->nullable()->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes('deleted_at');
+            $table->rememberToken();
         });
     }
 

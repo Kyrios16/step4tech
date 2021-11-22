@@ -11,9 +11,10 @@ interface PostDaoInterface
 {
     /**
      * To get post list for intial view
+     * @param Request $request
      * @return postList
      */
-    public function getPostListForInitial();
+    public function getPostListForInitial($request);
 
     /**
      * To show liked post list
@@ -31,6 +32,7 @@ interface PostDaoInterface
 
     /**
      * To search post list
+     * @param string $searchValue
      * @return postList searched post list
      */
     public function searchPost($searchValue);
