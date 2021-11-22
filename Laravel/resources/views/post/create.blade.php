@@ -2,12 +2,10 @@
 
 @section('style')
 <link rel="stylesheet" href="{{ asset('css/post/post-create.css') }}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 @endsection
 
 @section('script')
 <script src="{{ asset('js/post/post-create.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 <script src="{{ asset('js/post/post-create-markdown.js') }}"></script>
 @endsection
 
@@ -56,7 +54,7 @@
             @enderror
             <!-- <label for="content" class="label">Enter Post Details</label> -->
             <div id="editor MyID"></div>
-            <textarea name="content" id="MyID" rows="8" cols="35" class="post-detail @error('title') is-invalid @enderror" placeholder="Enter Post Details Here..."></textarea>
+            <textarea name="content" id="post-content" rows="8" cols="35" class="post-detail @error('title') is-invalid @enderror" placeholder="Enter Post Details Here..."></textarea>
             @error('content')
             <span class="form-error">
                 <div>{{ $message }}</div>
@@ -67,11 +65,7 @@
                 <a class="cancel" href="/">Cancel</a>
             </div>
         </form>
-        <script>
-            var simplemde = new SimpleMDE({
-                element: document.getElementById("MyID")
-            });
-        </script>
+        <script src="{{ asset('js/post/post-create-markdown.js') }}"></script>
     </div>
 </div>
 @endsection

@@ -4,14 +4,12 @@
 <link rel="stylesheet" href="{{ asset('css/post/post-create.css') }}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 @endsection
 
 @section('script')
 <script src="{{ asset('js/post/post-create.js') }}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 @endsection
 
 @section('content')
@@ -69,7 +67,7 @@
             </span>
             @enderror
             <!-- <label for="content" class="label">Enter Post Details</label> -->
-            <textarea name="content" id="MyID" rows="8" cols="35" class="post-detail @error('title') is-invalid @enderror" placeholder="Enter Post Details Here..." value="{{ $post->content }}">{{ $post->content }}</textarea>
+            <textarea name="content" id="post-content" rows="8" cols="35" class="post-detail @error('title') is-invalid @enderror" placeholder="Enter Post Details Here..." value="{{ $post->content }}">{{ $post->content }}</textarea>
             @error('content')
             <span class=" form-error">
                 <div>{{ $message }}</div>
@@ -80,11 +78,7 @@
                 <a class="cancel" href="/user/view/{{$user->id}}">Cancel</a>
             </div>
         </form>
-        <script>
-            var simplemde = new SimpleMDE({
-                element: document.getElementById("MyID")
-            });
-        </script>
+        <script src="{{ asset('js/post/post-create-markdown.js') }}"></script>
     </div>
 </div>
 @endsection
