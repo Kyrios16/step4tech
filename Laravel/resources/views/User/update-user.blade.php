@@ -50,7 +50,7 @@
 
         <div class="formdata-group">
           <div class="formdata-control">
-            <label for="bio">Biography </label><br>
+            <label for="bio">Biography (Optional)</label><br>
             <input type="text" class="form-input" name="bio" value="{{ $user->bio }}">
           </div>
 
