@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use DateTime;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -15,12 +16,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // DB::table('users')->truncate();
         DB::table('users')->insert(
             [
-                'name' => 'admin',
+                'name' => 'Admin',
                 'email' => 'admin123@gmail.com',
                 'password' => Hash::make('password'),
-                'profile_img' => 'profile_default.png',
+                'profile_img' => 'profile_20211121181319.jpg',
                 'cover_img' => 'cover_default.png',
                 'github' => 'https://github.com/Kyrios16',
                 'linkedin' => 'https://linkedIn',

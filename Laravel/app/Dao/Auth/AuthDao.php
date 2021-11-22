@@ -1,10 +1,12 @@
-<?php 
+<?php
+
 namespace App\Dao\Auth;
 
 use App\Contracts\Dao\Auth\AuthDaoInterface;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+
 class AuthDao implements AuthDaoInterface
 {
     /**
@@ -18,20 +20,26 @@ class AuthDao implements AuthDaoInterface
     public function saveUser($request)
     {
         $userlist = DB::table("users")->get();
-        $userid = count($userlist)+1;
-        if ($cover_img = $request->file('cover_img')) {
+        $user = new User;
+        $userid = count($userlist) + 1;
+        if ($cover_img = $request->hasFile('cover_img')) {
+            $cover_img = $request->file('cover_img');
             $destinationPath = public_path() . '/images/cover';
             $newcover = "cover_" . date('YmdHis') . "." . $cover_img->getClientOriginalExtension();
             $cover_img->move($destinationPath, $newcover);
+            $user->cover_img = $newcover;
+        } else {
+            $user->cover_img = 'cover_default.png';
         }
-        if ($profile_img = $request->file('profile_img')) {
+        if ($cover_img = $request->hasFile('profile_img')) {
+            $profile_img = $request->file('profile_img');
             $destinationPath = public_path() . '/images/profile';
             $newProfile = "profile_" . date('YmdHis') . "." . $profile_img->getClientOriginalExtension();
             $profile_img->move($destinationPath, $newProfile);
+            $user->profile_img = $newProfile;
+        } else {
+            $user->profile_img = 'profile_default.png';
         }
-        $user = new User;
-        $user->cover_img = $newcover;
-        $user->profile_img = $newProfile;
         $user->name = $request['name'];
         $user->email = $request['email'];
         $user->password = Hash::make($request['password']);
@@ -47,5 +55,4 @@ class AuthDao implements AuthDaoInterface
         $user->save();
         return $user;
     }
-
 }

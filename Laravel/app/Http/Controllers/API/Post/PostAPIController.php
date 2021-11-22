@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API\Post;
 
 use App\Contracts\Services\Post\PostServiceInterface;
 use App\Http\Controllers\Controller;
+use App\Models\Vote;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 /**
@@ -28,11 +30,12 @@ class PostAPIController extends Controller
 
     /**
      * To show post list for intial view
+     * @param Request $request
      * @return Response json with post list
      */
-    public function showPostListForInitial()
+    public function showPostListForInitial(Request $request)
     {
-        $postList = $this->postServiceInterface->getPostListForInitial();
+        $postList = $this->postServiceInterface->getPostListForInitial($request);
         return response()->json($postList);
     }
 
@@ -60,7 +63,7 @@ class PostAPIController extends Controller
 
     /**
      * To search posts
-     * @param string $id beer id
+     * @param string $searchValue
      * @return Response json with searched post list
      */
     public function searchPost($searchValue)
@@ -100,6 +103,17 @@ class PostAPIController extends Controller
     {
         $this->postServiceInterface->unlikePost($request);
         return response()->json("Unlike Success");
+    }
+
+    /**
+     * To get max likes on post
+     * 
+     * @return return max likes on post
+     */
+    public function getMaxLikes()
+    {
+        $count = $this->postServiceInterface->getMaxLikes();
+        return response()->json($count);
     }
 
     /**

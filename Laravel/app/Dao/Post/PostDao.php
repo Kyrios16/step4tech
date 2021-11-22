@@ -17,28 +17,74 @@ class PostDao implements PostDaoInterface
 {
     /**
      * To get post list for intial view
+     * @param Request $request
      * @return postList
      */
-    public function getPostListForInitial()
+    public function getPostListForInitial($request)
     {
-        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
-                                        GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
-                                        GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
-                                        COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
-                                        FROM posts
-                                        LEFT JOIN votes ON (votes.post_id = posts.id)
-                                        LEFT JOIN feedbacks ON (feedbacks.post_id = posts.id)
-                                        INNER JOIN users ON (users.id = posts.created_user_id) 
-                                        INNER JOIN post_category ON (post_category.post_id = posts.id)
-                                        INNER JOIN categories ON (categories.id = post_category.category_id)
-                                        WHERE posts.deleted_at IS NULL
-                                        AND votes.deleted_at IS NULL
-                                        AND feedbacks.deleted_at IS NULL
-                                        AND users.deleted_at IS NULL
-                                        AND post_category.deleted_at IS NULL
-                                        AND categories.deleted_at IS NULL
-                                        GROUP BY posts.id
-                                        ORDER BY posts.updated_at DESC"));
+        if($request->userId == '') {
+            $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
+                                            GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
+                                            GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
+                                            COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
+                                            FROM posts
+                                            LEFT JOIN votes ON (votes.post_id = posts.id)
+                                            LEFT JOIN feedbacks ON (feedbacks.post_id = posts.id)
+                                            INNER JOIN users ON (users.id = posts.created_user_id) 
+                                            INNER JOIN post_category ON (post_category.post_id = posts.id)
+                                            INNER JOIN categories ON (categories.id = post_category.category_id)
+                                            WHERE posts.deleted_at IS NULL
+                                            AND votes.deleted_at IS NULL
+                                            AND feedbacks.deleted_at IS NULL
+                                            AND users.deleted_at IS NULL
+                                            AND post_category.deleted_at IS NULL
+                                            AND categories.deleted_at IS NULL
+                                            GROUP BY posts.id
+                                            ORDER BY posts.updated_at DESC"));
+        }
+        else {
+            $user_category_names = DB::select(DB::raw("SELECT categories.name FROM categories, user_category
+                                                WHERE categories.id = user_category.category_id
+                                                AND user_category.deleted_at IS NULL
+                                                AND user_category.user_id = :userId"), array("userId" => $request->userId));
+            $mysql = "SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
+                    GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
+                    GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
+                    COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
+                    FROM posts
+                    LEFT JOIN votes ON (votes.post_id = posts.id)
+                    LEFT JOIN feedbacks ON (feedbacks.post_id = posts.id)
+                    INNER JOIN users ON (users.id = posts.created_user_id) 
+                    INNER JOIN post_category ON (post_category.post_id = posts.id)
+                    INNER JOIN categories ON (categories.id = post_category.category_id)
+                    WHERE posts.deleted_at IS NULL
+                    AND votes.deleted_at IS NULL
+                    AND feedbacks.deleted_at IS NULL
+                    AND users.deleted_at IS NULL
+                    AND post_category.deleted_at IS NULL
+                    AND categories.deleted_at IS NULL
+                    GROUP BY posts.id";
+            if(count($user_category_names) > 0) {
+                $mysql .= " ORDER BY CASE post_categories WHEN";
+                $no_of_category = 0;
+                foreach($user_category_names as $user_category_name) {
+                    if($no_of_category == 0) {
+                        $mysql .= " post_categories LIKE '%" . $user_category_name->name . "%'";
+                    }
+                    else {
+                        $mysql .= " OR post_categories LIKE '%" . $user_category_name->name . "%'";
+                    }
+                    $no_of_category++;
+                }
+                $mysql .= " THEN 0 ELSE 1 END DESC, posts.updated_at DESC";
+            }
+            else {
+                $mysql .= " ORDER BY posts.updated_at DESC";
+            }
+            
+            $postList = DB::select(DB::raw($mysql));
+        }
+        
         return $postList;
     }
 
@@ -67,7 +113,7 @@ class PostDao implements PostDaoInterface
                                         AND post_category.deleted_at IS NULL
                                         AND categories.deleted_at IS NULL
                                         GROUP BY posts.id
-                                        ORDER BY posts.updated_at DESC;"), array('userId' => $request->userId));
+                                        ORDER BY posts.updated_at DESC"), array('userId' => $request->userId));
         return $postList;
     }
 
@@ -96,17 +142,40 @@ class PostDao implements PostDaoInterface
                                         AND post_category.deleted_at IS NULL
                                         AND categories.deleted_at IS NULL
                                         GROUP BY posts.id
-                                        ORDER BY posts.updated_at DESC;"), array('userId' => $request->userId));
+                                        ORDER BY posts.updated_at DESC"), array('userId' => $request->userId));
         return $postList;
     }
 
     /**
      * To search post list
+     * @param string $searchValue
      * @return postList searched post list
      */
     public function searchPost($searchValue)
     {
-        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
+        $postList = DB::select(DB::raw("SELECT * FROM
+                                        ((SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.updated_at, posts.title,
+                                        users.id AS userId,
+                                        GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
+                                        GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
+                                        COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
+                                        FROM posts
+                                        LEFT JOIN votes ON (votes.post_id = posts.id)
+                                        LEFT JOIN feedbacks ON (feedbacks.post_id = posts.id)
+                                        INNER JOIN users ON (users.id = posts.created_user_id) 
+                                        INNER JOIN post_category ON (post_category.post_id = posts.id)
+                                        INNER JOIN categories ON (categories.id = post_category.category_id)
+                                        WHERE posts.deleted_at IS NULL
+                                        AND votes.deleted_at IS NULL
+                                        AND feedbacks.deleted_at IS NULL
+                                        AND users.deleted_at IS NULL
+                                        AND post_category.deleted_at IS NULL
+                                        AND categories.deleted_at IS NULL
+                                        GROUP BY posts.id
+                                        HAVING post_categories LIKE :categorySearchValue)
+                                        UNION
+                                        (SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.updated_at, posts.title,
+                                        users.id AS userId,
                                         GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
                                         GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
                                         COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
@@ -123,13 +192,13 @@ class PostDao implements PostDaoInterface
                                         AND post_category.deleted_at IS NULL
                                         AND categories.deleted_at IS NULL
                                         AND (users.name LIKE :userSearchValue
-                                        OR posts.title LIKE :postSearchValue
-                                        OR categories.name LIKE :categorySearchValue)
-                                        GROUP BY posts.id
-                                        ORDER BY posts.updated_at DESC"), array(
-            'userSearchValue' => '%' . $searchValue . '%',
-            'postSearchValue' => '%' . $searchValue . '%',
-            'categorySearchValue' => '%' . $searchValue . '%'
+                                        OR posts.title LIKE :postSearchValue)
+                                        GROUP BY posts.id)) AS result
+                                        ORDER BY result.updated_at DESC"), array(
+                                        'categorySearchValue' => '%' . $searchValue . '%',
+                                        'userSearchValue' => '%' . $searchValue . '%',
+                                        'postSearchValue' => '%' . $searchValue . '%',
+            
         ));
         return $postList;
     }
@@ -222,19 +291,17 @@ class PostDao implements PostDaoInterface
     /**
      * To delete post by id
      * @param string $id post id
-     * @param string $deletedUserId deleted user id
      * @return string $message message success or not
      */
-    public function deletePostById($id, $deletedUserId)
+    public function deletePostById($id)
     {
         $post = Post::find($id);
         if ($post) {
-            $post->deleted_user_id = $deletedUserId;
+            $post->deleted_user_id = Auth::user()->id ?? 1;
+            $post->deleted_at = now();
             $post->save();
-            $post->delete();
-            return 'Deleted Successfully!';
         }
-        return 'Post Not Found!';
+        return $post;
     }
 
     /**
@@ -244,7 +311,7 @@ class PostDao implements PostDaoInterface
      */
     public function getPostList()
     {
-        $posts = DB::table('posts')->orderBy('id')->get();
+        $posts = Post::orderBy('id')->get();
         return $posts;
     }
 
@@ -256,6 +323,23 @@ class PostDao implements PostDaoInterface
     public function countTotalPosts()
     {
         $count = Post::where('deleted_at', null)->count();
+        return $count;
+    }
+
+    /**
+     * To get max likes on post
+     * 
+     * @return return max likes on post
+     */
+    public function getMaxLikes()
+    {
+        $count = DB::table('votes')
+            ->select(DB::raw('count(post_id) as totalLikes'))
+            ->where('user_id', '!=', '')
+            ->groupBy('post_id')
+            ->orderBy('totalLikes', 'desc')
+            ->first();
+
         return $count;
     }
 
@@ -280,7 +364,6 @@ class PostDao implements PostDaoInterface
      */
     public function unlikePost($request)
     {
-        info($request);
         $votes = Vote::where('user_id', $request->userId)
             ->where('post_id', $request->postId)->delete();
     }
@@ -310,7 +393,7 @@ class PostDao implements PostDaoInterface
                                         AND post_category.deleted_at IS NULL
                                         AND categories.deleted_at IS NULL
                                         GROUP BY posts.id
-                                        ORDER BY posts.updated_at DESC;"), array('userId' => $request->userId));
+                                        ORDER BY posts.updated_at DESC"), array('userId' => $request->userId));
         return $postList;
     }
 

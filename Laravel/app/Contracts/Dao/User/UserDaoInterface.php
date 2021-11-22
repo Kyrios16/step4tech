@@ -36,4 +36,25 @@ interface UserDaoInterface
      * @return Object $user user object
      */
     public function changeUserPassword($request);
+
+    /**
+     * To count total number of users
+     * 
+     * @return $numTotalUsers total number of users
+     */
+    public function countTotalUsers();
+
+    /**
+     * To delete user by id
+     * 
+     * @param $id user id
+     */
+    public function deleteUserById($id);
+
+    /**
+     * To get most popular user
+     * 
+     * @return $mostPopularUser most popular user
+     */
+    public function getMostPopularUser();
 }

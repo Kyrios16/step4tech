@@ -108,4 +108,14 @@ class CategoriesService implements CategoriesServiceInterface
     {
         return $this->cateDao->DeleteUserCategory($categoryid);
     }
+
+    /**
+     * To get max total followers on category
+     * 
+     * @return return max total followers on category
+     */
+    public function getMaxFollowers()
+    {
+        return $this->cateDao->getMaxFollowers();
+    }
 }

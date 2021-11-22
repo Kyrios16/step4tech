@@ -83,10 +83,10 @@ class PostController extends Controller
      * To show postList
      * @return View post list
      */
-    public function showPostList(Request $request)
+    public function showPostList()
     {
         $title = 'Home';
-        $categories = $this->categoryServiceInterface->getCateList($request);
+        $categories = $this->categoryServiceInterface->getCateList();
         $userCategoryList = $this->categoryServiceInterface->getUserCategory();
         if (Auth::check()) {
             $userId = Auth::user()->id;
@@ -101,13 +101,13 @@ class PostController extends Controller
      * To show liked postList
      * @return View liked post list
      */
-    public function showLikedPostList(Request $request)
+    public function showLikedPostList()
     {
         $title = 'Liked Posts';
         if (Auth::check()) {
             $userId = Auth::user()->id;
             $user = $this->userServiceInterface->getUserById($userId);
-            $categories = $this->categoryServiceInterface->getCateList($request);
+            $categories = $this->categoryServiceInterface->getCateList();
             $userCategoryList = $this->categoryServiceInterface->getUserCategory();
             return view('post.like', compact('title', 'user', 'categories', 'userCategoryList'));
         }
@@ -117,13 +117,13 @@ class PostController extends Controller
      * To show deleted postList
      * @return View deleted post list
      */
-    public function showDeletedPostList(Request $request)
+    public function showDeletedPostList()
     {
         $title = 'Trash';
         if (Auth::check()) {
             $userId = Auth::user()->id;
             $user = $this->userServiceInterface->getUserById($userId);
-            $categories = $this->categoryServiceInterface->getCateList($request);
+            $categories = $this->categoryServiceInterface->getCateList();
             $userCategoryList = $this->categoryServiceInterface->getUserCategory();
             return view('post.trash', compact('title', 'user', 'categories', 'userCategoryList'));
         }
@@ -134,10 +134,10 @@ class PostController extends Controller
      * @param string $searchValue searchdata
      * @return View searched post list
      */
-    public function searchPost($searchValue, Request $request)
+    public function searchPost($searchValue)
     {
         $title = "Search - " . $searchValue;
-        $categories = $this->categoryServiceInterface->getCateList($request);
+        $categories = $this->categoryServiceInterface->getCateList();
         $userCategoryList = $this->categoryServiceInterface->getUserCategory();
         if (Auth::check()) {
             $userId = Auth::user()->id;
@@ -153,10 +153,10 @@ class PostController extends Controller
      * 
      * @return View create post
      */
-    public function showPostCreateView(Request $request)
+    public function showPostCreateView()
     {
         $title = "Create Post";
-        $categories = $this->categoryServiceInterface->getCateList($request);
+        $categories = $this->categoryServiceInterface->getCateList();
         $userCategoryList = $this->categoryServiceInterface->getUserCategory();
         $id = Auth::user()->id ?? 1;
         $user = $this->userServiceInterface->getUserById($id);
@@ -177,12 +177,13 @@ class PostController extends Controller
     /**
      * Show post edit
      * 
+     * @param $id post id
      * @return View post edit
      */
-    public function showPostEditView($id, Request $request)
+    public function showPostEditView($id)
     {
         $title = "Edit Post";
-        $categories = $this->categoryServiceInterface->getCateList($request);
+        $categories = $this->categoryServiceInterface->getCateList();
         $userCategoryList = $this->categoryServiceInterface->getUserCategory();
         $post = $this->postServiceInterface->getPostById($id);
         $postCategory = $this->categoryServiceInterface->getCateListwithPostId($id);
@@ -209,9 +210,10 @@ class PostController extends Controller
     /**
      * To show post detail view
      * 
+     * @param $id post id
      * @return View post detail
      */
-    public function showPostDetailView($id, Request $request)
+    public function showPostDetailView($id)
     {
         $title = "Detail";
         $post = $this->postServiceInterface->getPostById($id);
@@ -222,7 +224,7 @@ class PostController extends Controller
         $feedbackList = $this->feedbackServiceInterface->getFeedbackbyPostId($id);
         $postCategory = $this->categoryServiceInterface->getCateListwithPostId($id);
         $voteList = $this->voteServiceInterface->getVoteListwithPostId($id);
-        $categories = $this->categoryServiceInterface->getCateList($request);
+        $categories = $this->categoryServiceInterface->getCateList();
         $userCategoryList = $this->categoryServiceInterface->getUserCategory();
         if (Auth::check()) {
             $userId = Auth::user()->id;
@@ -232,6 +234,19 @@ class PostController extends Controller
             return view('post.post-detail', compact('title', 'post', 'voteList', 'feedbackList', 'postCategory', 'date', 'categories', 'userCategoryList'));
         }
     }
+
+    /**
+     * To delete post by id
+     * @param string $id post id
+     * @param string $deletedUserId deleted user id
+     * @return analytics blade
+     */
+    public function deletePostById($id)
+    {
+        $this->postServiceInterface->deletePostById($id);
+        return redirect('/admin/posts');
+    }
+
     /**
      * To export posts data form table
      * 

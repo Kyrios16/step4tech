@@ -28,12 +28,11 @@ class CategoriesController extends Controller
     /**
      * To get categories list
      * 
-     * @param Request $request
      * @return Response categories list
      */
-    public function getCateList(Request $request)
+    public function getCateList()
     {
-        $categories = $this->cateInterface->getCateList($request);
+        $categories = $this->cateInterface->getCateList();
 
         return response()->json($categories);
     }
@@ -129,5 +128,16 @@ class CategoriesController extends Controller
     {
         $category = $this->cateInterface->DeleteUserCategory($categoryid);
         return back();
+    }
+
+    /**
+     * To get max total followers on category
+     * 
+     * @return response with max total followers on category
+     */
+    public function getMaxFollowers()
+    {
+        $count = $this->cateInterface->getMaxFollowers();
+        return $count;
     }
 }

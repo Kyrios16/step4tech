@@ -26,7 +26,7 @@
       </div>
       @auth
       @if($viewUser->id == Auth::user()->id)
-      <a href="{{ route('edit-user') }}" class="setting" align="right">
+      <a href="{{ route('edit-user') }}" class="setting">
         <i class="fas fa-cog"></i>
       </a>
       @endif
@@ -57,19 +57,28 @@
       </div>
     </div>
   </div>
-  <div class="user-postlist-wrapper">    
+  <div class="user-postlist-wrapper">
   </div>
 </div>
 <div class="likepopup-container">
-    <div class="likepopup-content">
-        <div class="likepopup-header">
-            <button class="close" onclick="closeLikePopup()">&times;</button>
-            <h2>Like Failed !</h2>
-        </div>
-        <div class="likepopup-body">
-            <p>Please log in to continue ...</p>
-            <a href="/login" class="login-btn btn-success">Login</a>
-        </div>
+  <div class="likepopup-content">
+    <div class="likepopup-header">
+      <button class="close" onclick="closeLikePopup()">&times;</button>
+      <h2>Like Failed !</h2>
     </div>
+    <div class="likepopup-body">
+      <p>Please log in to continue ...</p>
+      <a href="/login" class="login-btn btn-success">Login</a>
+    </div>
+  </div>
+</div>
+<div class="deletepopup-container">
+  <div class="deletepopup-content">
+    <div class="deletepopup-header">
+      <h2>Delete Warning</h2>
+    </div>
+    <div class="deletepopup-body">
+    </div>
+  </div>
 </div>
 @endsection

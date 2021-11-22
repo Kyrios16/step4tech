@@ -6,17 +6,24 @@ $(document).ready(function () {
         dataType: "json",
         success: function (res) {
             res.forEach((categories) => {
+                var created_at = moment(
+                    categories.created_at,
+                    "YYYY-MM-DD HH:mm:ss"
+                ).format("YYYY-MM-DD");
+                var updated_at = moment(
+                    categories.updated_at,
+                    "YYYY-MM-DD HH:mm:ss"
+                ).format("YYYY-MM-DD");
                 $("tbody").append(
                     `<tr>
                         <td>${categories.id}</td>
                         <td>${categories.name}</td>
                         <td>${categories.created_user_id}</td>
                         <td>${categories.updated_user_id}</td>
-                        <td>${categories.deleted_user_id}</td>
-                        <td>${categories.created_at}</td>
-                        <td>${categories.updated_at}</td>
+                        <td>${created_at}</td>
+                        <td>${updated_at}</td>
                         <td>
-                            <button class="icon-btn-warning" onClick="editCategory(${categories.id})"><i class="fas fa-edit"></i></button>
+                            <button class="icon-btn-warning" onClick="editCategory(${categories.id})"><i class="fas fa-edit"></i></button> |
                             <button class="icon-btn-danger" onClick="destroy(${categories.id})"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>`

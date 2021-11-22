@@ -11,9 +11,10 @@ interface PostDaoInterface
 {
     /**
      * To get post list for intial view
+     * @param Request $request
      * @return postList
      */
-    public function getPostListForInitial();
+    public function getPostListForInitial($request);
 
     /**
      * To show liked post list
@@ -31,6 +32,7 @@ interface PostDaoInterface
 
     /**
      * To search post list
+     * @param string $searchValue
      * @return postList searched post list
      */
     public function searchPost($searchValue);
@@ -63,7 +65,7 @@ interface PostDaoInterface
      * @param string $deletedUserId deleted user id
      * @return string $message message success or not
      */
-    public function deletePostById($id, $deletedUserId);
+    public function deletePostById($id);
 
     /**
      *  To get all posts list
@@ -75,6 +77,13 @@ interface PostDaoInterface
      * 
      */
     public function countTotalPosts();
+
+    /**
+     * To get max likes on post
+     * 
+     * @return return max likes on post
+     */
+    public function getMaxLikes();
 
     /* * To like post
      * @param Request $request

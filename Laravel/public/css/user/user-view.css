@@ -23,7 +23,7 @@
 
 .cover {
     width: 100%;
-    max-height: 200px;
+    max-height: 100%;
 }
 
 .profile {
@@ -51,13 +51,13 @@
     background-image: url(../../images/profile_default.png);
     position: relative;
     background-size: 100% 100%;
-    border: 4px solid #707070;
     overflow: hidden;
 }
 
 .setting {
     color: #000;
     text-decoration: none;
+    text-align: right;
     margin-top: -50px;
     display: block;
 }
@@ -96,13 +96,6 @@
     padding-bottom: 5%;
 }
 
-.left a,
-.right a {
-    display: block;
-    margin: -20px 0px 0px 30px;
-    font-weight: bold;
-}
-
 .left {
     float: left;
 }
@@ -116,43 +109,6 @@ i {
     margin-right: 5px;
 }
 
-.btn-group {
-    position: relative;
-    margin: 0 auto;
-}
-
-.btn {
-    display: inline-block;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 0.5rem 0.5rem;
-    border: none;
-    border-radius: 7px;
-    text-decoration: none;
-}
-
-.btn-success {
-    color: #fff;
-    background-color: #34c85b;
-}
-
-.btn-success:hover {
-    background-color: #42af5f;
-}
-
-.btn-cancel {
-    color: #737373;
-    background-color: #fff;
-    border: 1px solid #737373;
-    box-sizing: border-box;
-    text-decoration: none;
-}
-
-.btn-cancel:hover {
-    border-color: #000;
-    color: #000;
-}
-
 .profile-data {
     width: 80%;
     margin: 0 auto;
@@ -162,7 +118,9 @@ i {
 }
 
 .profile-data a {
-    color: #000;
+    display: block;
+    margin: -27px 0px 0px 30px;
+    font-weight: bold;
 }
 
 .user-postlist-wrapper {
@@ -183,8 +141,8 @@ i {
 }
 
 .option-btn {
-    float:right;
-    border:none;
+    float: right;
+    border: none;
     background: transparent;
     cursor: pointer;
 }
@@ -214,4 +172,77 @@ i {
 .personal-post-dropdown-content a:hover {
     background-color: #f1f1f1;
     opacity: 1;
+}
+
+.deletepopup-container {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 200; /* Sit on top */
+    padding-top: 20%;
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.deletepopup-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 30%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+.deletepopup-header {
+  padding: 1em 2em;
+  background-color: #c62828;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #ffffff;
+}
+
+.deletepopup-body {padding: 1em 2em;}
+
+.delete-yes-btn {
+    cursor: pointer;
+    float: left;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #c62828;
+    color: #ffffff;
+    border: none;
+}
+
+.delete-no-btn {
+    cursor: pointer;
+    float: right;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #34c85b;
+    color: #ffffff;
+    border: none;
 }

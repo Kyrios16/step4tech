@@ -123,13 +123,13 @@
     background-color: #ecf0f1;
     color: var(--main-text);
     border-radius: 5px;
-    padding: 0.5rem 1.2rem;
+    padding: 0.5rem 1.5rem;
 }
 
 .popular-user-card .card-info .popular-icon {
     place-items: center;
     margin-right: 0.8rem;
-    color: #ffff00;
+    color: #74b9ff;
     font-size: 1.5rem;
 }
 
@@ -213,4 +213,20 @@
 
 .deleteBtn {
     display: inline;
+}
+
+/* posts management components */
+
+.posts-table .styled-table th,
+.posts-table .styled-table td {
+    width: 10rem;
+    padding: 12px 0px;
+}
+
+/* categories management components */
+
+#error-msg {
+    font-size: 0.7rem;
+    color: #dc3545;
+    margin-bottom: 0.5rem;
 }
