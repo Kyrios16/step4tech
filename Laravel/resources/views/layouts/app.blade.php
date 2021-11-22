@@ -18,10 +18,10 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">
+    <link rel="stylesheet" href="{{ asset('css/lib/simplemde.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common/nav.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common/sidebar.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/library/simplemde.min.css') }}">
     @yield('style')
 
     <!-- Script -->
