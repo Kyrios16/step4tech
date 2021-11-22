@@ -90,7 +90,7 @@ class UserController extends Controller
     {
         // validation for request values
         $validated = $request->validated();
-        //$user = $this->userInterface->changeUserPassword($validated);
+        $user = $this->userInterface->changeUserPassword($validated);
         $authuser = User::find(auth()->user()->id);
         $email = $authuser->email;
         $data = [
