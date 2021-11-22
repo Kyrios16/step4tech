@@ -7,26 +7,7 @@
       </span>
     </a>
     @auth
-    <div class="sidebar-items">
-      <span onclick="menu()" id="menu">
-        <span class="icon"><i class="fas fa-bars"></i></span>
-        <h2 class="sidebar-title">Menu</h2>
-      </span>
-      <div class="menu-items" id="menu-items">
-        <span>
-          <span class="menu-icon"><i class="fas fa-comments"></i></span>
-          <h2 class="menu-title">Feedbacks</h2>
-        </span>
-        <span>
-          <span class="menu-icon"><i class="fas fa-question"></i></span>
-          <h2 class="menu-title">FAQ</h2>
-        </span>
-        <span>
-          <span class="menu-icon"><i class="fas fa-address-card"></i></span>
-          <h2 class="menu-title">Contact Us</h2>
-        </span>
-      </div>
-    </div>
+
     <a href="/post/liked-posts" class="sidebar-items {{ Request::is('post/liked-posts') ? 'active': '' }}">
       <span>
         <span class="icon"><i class="fas fa-thumbs-up"></i></span>
@@ -75,19 +56,12 @@
             {{$category->name}}
           </a>
 
-          @endif
-          @else
-          <div class="clearfix categories-item">
-            <a href="/post/search/{{$category->name}}" class="category-name">
-              {{$category->name}}
-            </a>
-
-          </div>
-          @endauth
-          @endforeach
-
         </div>
-      </div>
+        @endauth
+        @endforeach
 
+      </div>
     </div>
+
   </div>
+</div>

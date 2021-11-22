@@ -50,7 +50,6 @@ class UserDao implements UserDaoInterface
         $user->date_of_birth = $request['date_of_birth'];
         $user->ph_no = $request['ph_no'];
         $user->position = $request['position'];
-        $user->role = 1;
         $user->created_user_id = Auth::user()->id;
         $user->updated_user_id = Auth::user()->id;
 

@@ -55,7 +55,7 @@
       @endif
       @endauth
       @if($flag == true)
-      <button class="post-btn post-liked" onclick="togglePostLike(this, {{ $post->id }})"><i class="fa fa-thumbs-up"></i> {{count($voteList)}} Likes</button>
+      <button class="post-btn post-liked" onclick="togglePostLike(this, {{$post->id}})"><i class="fa fa-thumbs-up"></i> {{count($voteList)}} Likes</button>
       @else
       <button class="post-btn" onclick="togglePostLike(this, {{$post->id}})"><i class="far fa-thumbs-up"></i> {{count($voteList)}} Likes</button>
       @endif
