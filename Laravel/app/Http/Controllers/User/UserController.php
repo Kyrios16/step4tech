@@ -12,7 +12,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Mail;
 
 
 class UserController extends Controller
@@ -45,7 +45,6 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function showUserEditView()
@@ -60,7 +59,6 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
 
@@ -77,7 +75,10 @@ class UserController extends Controller
      */
     public function showChangePasswordView()
     {
-        return view('User.change-password');
+        $userId = Auth::user()->id;
+        $title = "Change Password";
+        $user = $this->userInterface->getUserById($userId);
+        return view('User.change-password',compact('user','title'));
     }
 
     /**
@@ -89,10 +90,21 @@ class UserController extends Controller
     {
         // validation for request values
         $validated = $request->validated();
-        $user = $this->userInterface->changeUserPassword($validated);
+        //$user = $this->userInterface->changeUserPassword($validated);
+        $authuser = User::find(auth()->user()->id);
+        $email = $authuser->email;
+        $data = [
+            'subject' => 'Password Changed Confirmation',
+            'email' => $email,
+            'content' => 'Password Changed Successfully'
+        ];
+
+        Mail::send('password-mail', $data, function ($message) use ($data) {
+            $message->to($data['email'])
+                ->subject($data['subject']);
+        });
         return redirect('/');
     }
-
     /**
      * To show users list
      * 
