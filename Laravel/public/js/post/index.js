@@ -4,9 +4,13 @@ $(document).ready(function () {
 
 //Intial
 function showPostListByDate() {
+    var data = {
+        userId: userId,
+    };
     $.ajax({
         url: "/api/post-list",
         type: "GET",
+        data: data,
         dataType: "json",
         success: function (data) {
             //Add post list ordered by date
