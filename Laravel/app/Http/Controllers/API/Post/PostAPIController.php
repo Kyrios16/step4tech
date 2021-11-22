@@ -63,7 +63,7 @@ class PostAPIController extends Controller
 
     /**
      * To search posts
-     * @param string $id beer id
+     * @param string $searchValue
      * @return Response json with searched post list
      */
     public function searchPost($searchValue)

@@ -148,6 +148,7 @@ class PostDao implements PostDaoInterface
 
     /**
      * To search post list
+     * @param string $searchValue
      * @return postList searched post list
      */
     public function searchPost($searchValue)
@@ -363,7 +364,6 @@ class PostDao implements PostDaoInterface
      */
     public function unlikePost($request)
     {
-        info($request);
         $votes = Vote::where('user_id', $request->userId)
             ->where('post_id', $request->postId)->delete();
     }

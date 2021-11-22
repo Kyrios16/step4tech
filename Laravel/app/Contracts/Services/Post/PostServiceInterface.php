@@ -32,6 +32,7 @@ interface PostServiceInterface
 
     /**
      * To search post list
+     * @param string $searchValue
      * @return postList searched post list
      */
     public function searchPost($searchValue);
