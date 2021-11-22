@@ -64,4 +64,35 @@ class UserService implements UserServiceInterface
     {
         return $this->userDao->changeUserPassword($request);
     }
+
+    /**
+     * To count total number of users
+     * 
+     * @return Analytics blade with number of users
+     */
+    public function countTotalUsers()
+    {
+        return $this->userDao->countTotalUsers();
+    }
+
+    /**
+     * To delete user by id
+     * 
+     * @param $id user id
+     * @return $user deleted user
+     */
+    public function deleteUserById($id)
+    {
+        return $this->userDao->deleteUserById($id);
+    }
+
+    /**
+     * To get most popular user
+     * 
+     * @return $mostPopularUser most popular user
+     */
+    public function getMostPopularUser()
+    {
+        return $this->userDao->getMostPopularUser();
+    }
 }

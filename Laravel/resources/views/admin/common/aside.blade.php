@@ -7,15 +7,13 @@
     </div>
 
     <div class="sidebar-avartar">
-      <div>
-        <img src="https://img.icons8.com/external-bearicons-glyph-bearicons/64/000000/external-User-essential-collection-bearicons-glyph-bearicons.png" />
+      <div id="admin-profile">
+        <img src="{{ URL::to('/') }}/images/profile/{{ Auth::user()->profile_img }}" alt="admin profile" />
       </div>
-    
       <div class="avartar-text">
-        <h4>Admin</h4>
-        <small>admin123@gmail.com</small>
+        <h4>{{ Auth::user()->name }}</h4>
+        <small>{{ Auth::user()->email }}</small>
       </div>
-
     </div>
 
     <div class="sidebar-menu">
@@ -34,7 +32,7 @@
         </li>
         <li>
           <a href="{{ url('/admin/posts') }}" id="menuBtn" class="{{ Request::is('admin/posts') ? 'active':'' }}">
-            <span class="fas fa-list-alt icon-small"></span>
+            <span class="fas fa-stream icon-small"></span>
             <span>Posts Management</span>
           </a>
         </li>
