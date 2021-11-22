@@ -4,10 +4,6 @@
 <link rel="stylesheet" href="{{ asset('css/user/user-form.css') }}">
 @endsection
 
-@section('script')
-<script src="{{ asset('js/preview-img.js') }}"></script>
-@endsection
-
 @section('content')
   <div class="container">
     <div class="create-form-wrapper">
@@ -16,7 +12,7 @@
         <form action="{{ route('change-password') }}" method="post" enctype="multipart/form-data">
           @csrf
           
-          <div class="formdata-control">
+          <div class="formdata">
             <label for="current_password">Current Password</label><br>
             <input type="password" name="current_password" class="form-input" placeholder="Enter current password">
             @error('current_password')
@@ -26,7 +22,7 @@
             @enderror
           </div>
           <hr>
-          <div class="formdata-control">
+          <div class="formdata">
             <label for="new_password">New Password</label><br>
             <input type="password" name="new_password" class="form-input" placeholder="Enter new password">
             @error('new_password')
@@ -35,7 +31,7 @@
             </span>
             @enderror
           </div>
-          <div class="formdata-control">
+          <div class="formdata">
             <label for="new_confirm_password">Confirm New Password</label><br>
             <input type="password" name="new_confirm_password" class="form-input" placeholder="Enter new password again">
             @error('new_confirm_password')
@@ -44,7 +40,7 @@
             </span>
             @enderror
           </div>
-          <div class="formdata-control">
+          <div class="formdata">
             <input type="submit" name="submit" class="change-btn" value="Change Password">
           </div>
         </form>
