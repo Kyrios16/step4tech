@@ -36,7 +36,7 @@ function showPersonalPostList() {
                     getUrl.protocol + "//" + getUrl.host + "/images/profile/";
                 var likeCount = 0;
                 var islikedClass = "";
-                var thumbFillClass = "far";                
+                var thumbFillClass = "far";
                 if (post.post_voted_userid != null) {
                     var likedUserIdArray = post.post_voted_userid.split(",");
                     likeCount = likedUserIdArray.length;
@@ -51,11 +51,16 @@ function showPersonalPostList() {
                 }
                 var optionBtnHtml = "";
                 if (viewedUserId == userId) {
-                    optionBtnHtml = "<button class='option-btn' onclick='togglePersonalPostDropdown(this)'><i class='fas fa-caret-down'></i></button>"+
-                                    "<div class='personal-post-dropdown-content'>"+          
-                                        "<a href='/post/edit/" + post.id + "'>Edit</a>"+       
-                                        "<button onclick='deletePost(" + post.id + ")'>Delete</button>"+
-                                    "</div>";
+                    optionBtnHtml =
+                        "<button class='option-btn' onclick='togglePersonalPostDropdown(this)'><i class='fas fa-caret-down'></i></button>" +
+                        "<div class='personal-post-dropdown-content'>" +
+                        "<a href='/post/edit/" +
+                        post.id +
+                        "'>Edit</a>" +
+                        "<button onclick='openDeletePopup(" +
+                        post.id +
+                        ")'>Delete</button>" +
+                        "</div>";
                 }
                 $(".user-postlist-wrapper").append(
                     `<div class="post">
@@ -94,12 +99,22 @@ function showPersonalPostList() {
     });
 }
 
-
 function togglePersonalPostDropdown(button) {
-    if ($(button).parent(".post-blog").children(".personal-post-dropdown-content").css("display") == "none") {
-        $(button).parent(".post-blog").children(".personal-post-dropdown-content").css("display", "block");
+    if (
+        $(button)
+            .parent(".post-blog")
+            .children(".personal-post-dropdown-content")
+            .css("display") == "none"
+    ) {
+        $(button)
+            .parent(".post-blog")
+            .children(".personal-post-dropdown-content")
+            .css("display", "block");
     } else {
-        $(button).parent(".post-blog").children(".personal-post-dropdown-content").css("display", "none");
+        $(button)
+            .parent(".post-blog")
+            .children(".personal-post-dropdown-content")
+            .css("display", "none");
     }
 }
 
@@ -112,17 +127,27 @@ $(document).on("click", function (event) {
 });
 
 function deletePost(id) {
-    if (confirm("Do you want to delete this post?") == true) {
-        var data = {
-            userId: userId,
-        };        
-        $.ajax({
-            url: "/api/post/delete/" + id,
-            type: "DELETE",
-            data: data,
-            success: function (msg) {
-                location.reload();
-            },
-        });
-    }
+    var data = {
+        userId: userId,
+    };
+    $.ajax({
+        url: "/api/post/delete/" + id,
+        type: "DELETE",
+        data: data,
+        success: function (msg) {
+            location.reload();
+        },
+    });
+}
+
+function openDeletePopup(id) {
+    $(".deletepopup-container").css("display", "block");
+    $(".deletepopup-body").html("<p>Are you sure you want to delete this Post?</p>"+
+                                "<div class='clearfix'>"+
+                                "<button class='delete-yes-btn' onclick='deletePost("+ id + ")'>Yes</button>"+
+                                "<button class='delete-no-btn' onclick='closeDeletePopup()'>No</button></div>");
+}
+
+function closeDeletePopup() {
+    $(".deletepopup-container").css("display", "none");
 }

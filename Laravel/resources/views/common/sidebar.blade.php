@@ -1,6 +1,6 @@
 <div class="sidebar-container">
   <div class="sidebar-content">
-    <a href="/" class="sidebar-items">
+    <a href="/" class="sidebar-items {{ Request::is('/') ? 'active': '' }}">
       <span>
         <span class="icon"><i class="fas fa-home"></i></span>
         <h2 class="sidebar-title">Home</h2>
@@ -26,15 +26,14 @@
           <h2 class="menu-title">Contact Us</h2>
         </span>
       </div>
-
     </div>
-    <a href="/post/liked-posts" class="sidebar-items">
+    <a href="/post/liked-posts" class="sidebar-items {{ Request::is('post/liked-posts') ? 'active': '' }}">
       <span>
         <span class="icon"><i class="fas fa-thumbs-up"></i></span>
         <h2 class="sidebar-title">Liked Posts</h2>
       </span>
     </a>
-    <a href="/post/trash" class="sidebar-items">
+    <a href="/post/trash" class="sidebar-items {{ Request::is('post/trash') ? 'active': '' }}">
       <span>
         <span class="icon"><i class="fas fa-trash"></i></span>
         <h2 class="sidebar-title">Trash</h2>
@@ -56,23 +55,19 @@
         @endforeach
         @auth
         @if($flag == true)
-        <div class="clearfix categories-item">
+        <div class="clearfix categories-item {{ Request::is('post/search/' . $category->name) ? 'active': '' }}">
           <a href="/post/search/{{$category->name}}" class="category-name">
             {{$category->name}}
             <a href="{!! route('user.category.delete', ['categoryid'=>$category->id,]) !!}" class="add"><i class="fas fa-check"></i></a>
-
           </a>
         </div>
         @else
-        <div class="clearfix categories-item">
+        <div class="clearfix categories-item {{ Request::is('post/search/' . $category->name) ? 'active': '' }}">
           <a href="/post/search/{{$category->name}}" class="category-name">
             {{$category->name}}
           </a>
           <a href="{!! route('user.category', ['categoryid'=>$category->id,]) !!}" class="add"><i class="fas fa-plus"></i></a>
-
-
         </div>
-
         @endif
         @else
         <div class="clearfix categories-item">
@@ -80,12 +75,19 @@
             {{$category->name}}
           </a>
 
+          @endif
+          @else
+          <div class="clearfix categories-item">
+            <a href="/post/search/{{$category->name}}" class="category-name">
+              {{$category->name}}
+            </a>
+
+          </div>
+          @endauth
+          @endforeach
+
         </div>
-        @endauth
-        @endforeach
-
       </div>
-    </div>
 
+    </div>
   </div>
-</div>
