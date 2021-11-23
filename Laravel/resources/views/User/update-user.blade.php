@@ -27,7 +27,7 @@
         <div class="formdata-group">
           <div class="formdata-control">
             <label for="name">Username <span>*</span></label><br>
-            <input type="text" class="form-input" name="name" value="{{ $user->name }}">
+            <input type="text" class="form-input @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}">
             @error('name')
             <span role="alert">
               <strong>{{ $message }}</strong>
@@ -37,7 +37,7 @@
 
           <div class="formdata-control">
             <label for="email">Email Address <span>*</span></label><br>
-            <input type="email" class="form-input" name="email" value="{{ $user->email }}" required autocomplete="email">
+            <input type="email" class="form-input @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email">
             @error('email')
             <span role="alert">
               <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@
         <div class="formdata-group">
           <div class="formdata-control">
             <label for="dob">Date of Birth <span>*</span></label><br>
-            <input type="date" class="form-input" name="date_of_birth" value="{{ $user->date_of_birth }}">
+            <input type="date" class="form-input @error('date_of_birth') is-invalid @enderror" name="date_of_birth" value="{{ $user->date_of_birth }}">
             @error('date_of_birth')
             <span role="alert">
               <strong>{{ $message }}</strong>
@@ -59,7 +59,7 @@
 
           <div class="formdata-control">
             <label for="position">Job Position <span>*</span></label><br>
-            <input type="text" class="form-input" name="position" value="{{ $user->position }}">
+            <input type="text" class="form-input @error('position') is-invalid @enderror" name="position" value="{{ $user->position }}">
             @error('position')
             <span role="alert">
               <strong>{{ $message }}</strong>
@@ -71,7 +71,7 @@
         <div class="formdata-group">
           <div class="formdata-control">
             <label for="bio">Biography (Optional)</label><br>
-            <input type="text" class="form-input" name="bio" value="{{ $user->bio }}">
+            <input type="text" class="form-input @error('bio') is-invalid @enderror" name="bio" value="{{ $user->bio }}">
             @error('bio')
             <span role="alert">
               <strong>{{ $message }}</strong>
