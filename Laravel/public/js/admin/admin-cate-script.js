@@ -32,18 +32,28 @@ $(document).ready(function () {
         },
     });
 });
+
 // To delete category
 function destroy(id) {
-    $.ajax({
-        url: `/api/admin/categories/${id}`,
-        type: "DELETE",
-        success: function (result) {
-            alert("Category Deleted Successfull");
-            location.reload();
-        },
-        error: function (result) {
-            alert("Category Deleted Fail");
-        },
+    swal({
+        title: "Are you sure want to delete?",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: `/api/admin/categories/${id}`,
+                type: "DELETE",
+                success: function (result) {
+                    location.reload();
+                },
+                error: function (result) {
+                    alert("Category Deleted Fail");
+                },
+            });
+        } else {
+            swal("Your category is safe!");
+        }
     });
 }
 
@@ -55,19 +65,17 @@ function editCategory(id) {
         type: "GET",
         dataType: "json", // added data type
         success: function (res) {
-            console.log(res);
             $("#id").val(res.id);
             $("#name").val(res.name);
         },
     });
 }
 
+// To update category
 function updateCategory() {
     var id = $("#id").val();
     var name = $("#name").val();
-    // var editedData = {
-    //     name: $("#name").val(),
-    // };
+
     console.log(id);
     $.ajaxSetup({
         headers: {
@@ -76,7 +84,7 @@ function updateCategory() {
     });
     $.ajax({
         type: "post",
-        url: "/api/categories/update/" + id,
+        url: "/api/admin/categories/update/" + id,
         data: {
             id: id,
             name: name,

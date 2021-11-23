@@ -2,8 +2,9 @@
 
 @section('script')
 <!-- script -->
-<script src="{{ asset('js/admin/admin-cate-script.js') }}"></script>
 <script src="{{ asset('js/lib/moment.js') }}"></script>
+<script src="{{ asset('js/admin/admin-cate-script.js') }}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endsection
 
 @section('content')
@@ -34,7 +35,7 @@
               <form action="{{ route('add.categories') }}" method="POST">
                 {{ csrf_field() }}
                 <input type="text" name="name" class="@error ('name') is-invalid @enderror" placeholder="add new category">
-                <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New</button>
+                <button type="submit" class="btn btn-success" onclick="createBtn()"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New</button>
               </form>
             </div>
             <!-- new-cate -->
