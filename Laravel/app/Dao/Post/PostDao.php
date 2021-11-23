@@ -45,6 +45,7 @@ class PostDao implements PostDaoInterface
         else {
             $user_category_names = DB::select(DB::raw("SELECT categories.name FROM categories, user_category
                                                 WHERE categories.id = user_category.category_id
+                                                AND categories.deleted_at IS NULL
                                                 AND user_category.deleted_at IS NULL
                                                 AND user_category.user_id = :userId"), array("userId" => $request->userId));
             $mysql = "SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,

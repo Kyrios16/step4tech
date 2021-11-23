@@ -5,6 +5,7 @@
     width: 95%;
     border-radius: 10px;
     padding: 1em;
+    box-shadow: rgba(17, 17, 26, 0.1) 2px 2px 16px;
 }
 
 .search-title-container h2 {
@@ -17,5 +18,5 @@
 
 .search-error-container h2 {
     font-size: 1.2rem;
-    color: #dc3545;
+    color: #c62828;
 }
