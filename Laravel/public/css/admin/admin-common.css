@@ -22,7 +22,7 @@
 body {
     font-size: 18px;
     background: var(--main-bg);
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .clearfix::after {
@@ -128,23 +128,6 @@ input:focus::placeholder {
     transition: left 300ms;
 }
 
-/* #menu-toggle {
-    display: none;
-}
-
-#menu-toggle:hover {
-    cursor: pointer;
-}
-
-#menu-toggle:checked ~ .sidebar {
-    left: -50%;
-}
-
-#menu-toggle:checked ~ .main-container {
-    margin-left: 0;
-    width: 100%;
-} */
-
 .sidebar-container {
     height: 100%;
     width: 100%;
@@ -232,7 +215,6 @@ input:focus::placeholder {
     background: var(--bg);
     border-radius: 10px;
     box-shadow: var(--shadow);
-    overflow-y: auto;
 }
 
 .header-title-container {
@@ -324,12 +306,6 @@ main {
 .cate-table::-webkit-scrollbar,
 .users-list::-webkit-scrollbar {
     width: 0.5rem; /* width of the entire scrollbar */
-}
-
-.posts-table::-webkit-scrollbar-track,
-.cate-table::-webkit-scrollbar-track,
-.users-list::-webkit-scrollbar-track {
-    background: var(--main-bg); /* color of the tracking area */
 }
 
 .posts-table::-webkit-scrollbar-thumb,
