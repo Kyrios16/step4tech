@@ -9,11 +9,11 @@ $(document).ready(function () {
                 var created_at = moment(
                     categories.created_at,
                     "YYYY-MM-DD HH:mm:ss"
-                ).format("YYYY-MM-DD");
+                ).format("DD-MM-YYYY");
                 var updated_at = moment(
                     categories.updated_at,
                     "YYYY-MM-DD HH:mm:ss"
-                ).format("YYYY-MM-DD");
+                ).format("DD-MM-YYYY");
                 $("tbody").append(
                     `<tr>
                         <td>${categories.id}</td>

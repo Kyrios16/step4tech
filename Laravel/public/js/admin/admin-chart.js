@@ -87,8 +87,7 @@
                         fontSize: 25,
                     },
                     legend: {
-                        position: "right",
-                        fontColor: "#000",
+                        display: false,
                     },
                 },
             });
