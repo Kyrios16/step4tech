@@ -57,7 +57,7 @@ class FeedbackController extends Controller
             $user = $this->userServiceInterface->getUserById($uploadUserId);
             $email = $user->email;
             $feedbackInfo = [
-                'title' => 'Deals of the Day',
+                'title' => 'New Feedback Notification',
                 'url' => 'http://127.0.0.1:8000/post/detail/' . $id,
                 'name' => Auth::user()->name
             ];
