@@ -32,6 +32,8 @@ class UserController extends Controller
     public function view($id)
     {
         $viewUser = $this->userInterface->getUserById($id);
+        $date = date('d-M-Y', strtotime($viewUser->date_of_birth));
+        $viewUser->dob = $date;
         $title = "View Profile";
         if (Auth::check()) {
             $userId = Auth::user()->id;
@@ -62,8 +64,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function submitUserEditView(Request $request)
+    public function submitUserEditView(UserEditRequest $request)
     {
+        $validated = $request->validated();
         $user = $this->userInterface->updateUser($request);
         return redirect('/user/view/' . $user->id);
     }
@@ -90,7 +93,7 @@ class UserController extends Controller
     {
         // validation for request values
         $validated = $request->validated();
-        //$user = $this->userInterface->changeUserPassword($validated);
+        $user = $this->userInterface->changeUserPassword($validated);
         $authuser = User::find(auth()->user()->id);
         $email = $authuser->email;
         $data = [

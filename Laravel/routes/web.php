@@ -5,7 +5,7 @@ use App\Http\Controllers\Feedback\FeedbackController;
 use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Post\PostController;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +17,10 @@ use App\Http\Controllers\Post\PostController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::group(['middleware' => 'prevent-back-history'],function(){
+
 //User Route
 Route::group(['middleware' => ['auth']], function () {
 Route::get('/user/edit',[UserController::class,'showUserEditView'])->name('edit-user');
@@ -32,6 +36,7 @@ require __DIR__ . '/auth.php';
 
 /* admin management routes start */
 
+Route::group(['middleware' => ['admin','auth']], function () {
 // analytics dashboard routes
 Route::get('/admin', [UserController::class, 'getMostPopularUser'])->name('show.analytics');
 
@@ -52,7 +57,7 @@ Route::get('/admin/categories', function () {
 });
 Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
 Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
-
+});
 /* admin management routes end*/
 
 /**
@@ -86,3 +91,5 @@ Route::post('/post/feedback/{id}',  [FeedbackController::class, 'createFeedback'
 Route::get('/feedback/delete/{id}',  [FeedbackController::class, 'deleteFeedback'])->name('feedback.delete');
 Route::get('user/favouriteCategory/{categoryid}', [CategoriesController::class, 'AddUserCategory'])->name('user.category');
 Route::get('user/favouriteCategory/delete/{categoryid}', [CategoriesController::class, 'DeleteUserCategory'])->name('user.category.delete');
+
+});

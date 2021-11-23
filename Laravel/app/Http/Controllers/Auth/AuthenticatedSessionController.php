@@ -38,16 +38,20 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+    
     /**
-     * Log out account user.
+     * Destroy an authenticated session.
      *
-     * @return \Illuminate\Routing\Redirector
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function perform()
+    public function destroy(Request $request)
     {
-        Session::flush();
-
         Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
 
         return redirect('/');
     }
