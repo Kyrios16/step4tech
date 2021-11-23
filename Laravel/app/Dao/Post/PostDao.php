@@ -22,7 +22,7 @@ class PostDao implements PostDaoInterface
      */
     public function getPostListForInitial($request)
     {
-        if($request->userId == '') {
+        if ($request->userId == '') {
             $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
                                             GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
                                             GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
@@ -41,8 +41,7 @@ class PostDao implements PostDaoInterface
                                             AND categories.deleted_at IS NULL
                                             GROUP BY posts.id
                                             ORDER BY posts.updated_at DESC"));
-        }
-        else {
+        } else {
             $user_category_names = DB::select(DB::raw("SELECT categories.name FROM categories, user_category
                                                 WHERE categories.id = user_category.category_id
                                                 AND user_category.deleted_at IS NULL
@@ -64,27 +63,25 @@ class PostDao implements PostDaoInterface
                     AND post_category.deleted_at IS NULL
                     AND categories.deleted_at IS NULL
                     GROUP BY posts.id";
-            if(count($user_category_names) > 0) {
+            if (count($user_category_names) > 0) {
                 $mysql .= " ORDER BY CASE post_categories WHEN";
                 $no_of_category = 0;
-                foreach($user_category_names as $user_category_name) {
-                    if($no_of_category == 0) {
+                foreach ($user_category_names as $user_category_name) {
+                    if ($no_of_category == 0) {
                         $mysql .= " post_categories LIKE '%" . $user_category_name->name . "%'";
-                    }
-                    else {
+                    } else {
                         $mysql .= " OR post_categories LIKE '%" . $user_category_name->name . "%'";
                     }
                     $no_of_category++;
                 }
                 $mysql .= " THEN 0 ELSE 1 END DESC, posts.updated_at DESC";
-            }
-            else {
+            } else {
                 $mysql .= " ORDER BY posts.updated_at DESC";
             }
-            
+
             $postList = DB::select(DB::raw($mysql));
         }
-        
+
         return $postList;
     }
 
@@ -195,10 +192,10 @@ class PostDao implements PostDaoInterface
                                         OR posts.title LIKE :postSearchValue)
                                         GROUP BY posts.id)) AS result
                                         ORDER BY result.updated_at DESC"), array(
-                                        'categorySearchValue' => '%' . $searchValue . '%',
-                                        'userSearchValue' => '%' . $searchValue . '%',
-                                        'postSearchValue' => '%' . $searchValue . '%',
-            
+            'categorySearchValue' => '%' . $searchValue . '%',
+            'userSearchValue' => '%' . $searchValue . '%',
+            'postSearchValue' => '%' . $searchValue . '%',
+
         ));
         return $postList;
     }

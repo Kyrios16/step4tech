@@ -20,7 +20,6 @@ class RegisteredUserController extends Controller
      */
     public function __construct(AuthServiceInterface $authServiceInterface)
     {
-        //$this->middleware('auth');
         $this->authInterface = $authServiceInterface;
     }
     /**
