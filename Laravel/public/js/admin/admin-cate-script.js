@@ -1,10 +1,10 @@
-$(document).ready(function () {
+$(document).ready(function() {
     // show categories list
     $.ajax({
         url: "/api/admin/categories/list",
         type: "GET",
         dataType: "json",
-        success: function (res) {
+        success: function(res) {
             res.forEach((categories) => {
                 var created_at = moment(
                     categories.created_at,
@@ -37,11 +37,11 @@ function destroy(id) {
     $.ajax({
         url: `/api/admin/categories/${id}`,
         type: "DELETE",
-        success: function (result) {
+        success: function(result) {
             alert("Category Deleted Successfull");
             location.reload();
         },
-        error: function (result) {
+        error: function(result) {
             alert("Category Deleted Fail");
         },
     });
@@ -54,7 +54,7 @@ function editCategory(id) {
         url: "/api/admin/categories/edit/" + id,
         type: "GET",
         dataType: "json", // added data type
-        success: function (res) {
+        success: function(res) {
             console.log(res);
             $("#id").val(res.id);
             $("#name").val(res.name);
@@ -76,13 +76,13 @@ function updateCategory() {
     });
     $.ajax({
         type: "post",
-        url: "/api/categories/update/" + id,
+        url: "/api/admin/categories/update/" + id,
         data: {
             id: id,
             name: name,
         },
         dataType: "json",
-        success: function (data) {
+        success: function(data) {
             window.location.replace("/admin/categories");
         },
     });

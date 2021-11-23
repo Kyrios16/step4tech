@@ -28,7 +28,7 @@
         <div class="formdata-group">
           <div class="formdata-control">
             <label for="name">Username <span>*</span></label><br>
-            <input type="text" class="form-input" name="name" placeholder="Enter Username" value="{{ old('name') }}" autocomplete="name">
+            <input type="text" class="form-input @error('name') is-invalid @enderror" name="name" placeholder="Enter Username" value="{{ old('name') }}" autocomplete="name">
             @error('name')
             <span role="alert">
               <strong>{{ $message }}</strong>
@@ -38,7 +38,7 @@
 
           <div class="formdata-control">
             <label for="email">Email Address <span>*</span></label><br>
-            <input type="email" class="form-input" name="email" placeholder="Enter Email" value="{{ old('email') }}" autocomplete="email">
+            <input type="email" class="form-input @error('email') is-invalid @enderror" name="email" placeholder="Enter Email" value="{{ old('email') }}" autocomplete="email">
             @error('email')
             <span role="alert">
               <strong>{{ $message }}</strong>
@@ -50,7 +50,7 @@
         <div class="formdata-group">
           <div class="formdata-control">
             <label for="password">Password <span>*</span></label><br>
-            <input type="password" class="form-input" name="password" placeholder="Enter Password" autocomplete="new-password">
+            <input type="password" class="form-input @error('password') is-invalid @enderror" name="password" placeholder="Enter Password" autocomplete="new-password">
             @error('password')
             <span role="alert">
               <strong>{{ $message }}</strong>
@@ -60,7 +60,7 @@
 
           <div class="formdata-control">
             <label for="password_confirmatoion">Password Confirmation<span>*</span></label><br>
-            <input type="password" class="form-input" name="password_confirmation" placeholder="Enter Password Again" autocomplete="new-password">
+            <input type="password" class="form-input @error('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="Enter Password Again" autocomplete="new-password">
             @error('password_confirmation')
             <span role="alert">
               <strong>{{ $message }}</strong>
@@ -72,7 +72,7 @@
         <div class="formdata-group">
           <div class="formdata-control">
             <label for="dob">Date of Birth <span>*</span></label><br>
-            <input type="date" class="form-input" name="date_of_birth" value="{{ old('dob') }}" autocomplete="dob">
+            <input type="date" class="form-input @error('date_of_birth') is-invalid @enderror" name="date_of_birth" value="{{ old('dob') }}" autocomplete="date_of_birth">
             @error('date_of_birth')
             <span role="alert">
               <strong>{{ $message }}</strong>
@@ -82,7 +82,7 @@
 
           <div class="formdata-control">
             <label for="position">Job Position <span>*</span></label><br>
-            <input type="text" class="form-input" name="position" placeholder="Enter Job Position" value="{{ old('position') }}" autocomplete="position">
+            <input type="text" class="form-input @error('position') is-invalid @enderror" name="position" placeholder="Enter Job Position" value="{{ old('position') }}" autocomplete="position">
             @error('position')
             <span role="alert">
               <strong>{{ $message }}</strong>
@@ -93,8 +93,8 @@
 
         <div class="formdata-group">
           <div class="formdata-control">
-            <label for="bio">Biography </label><br>
-            <input type="text" class="form-input" name="bio" placeholder="Enter Biography" value="{{ old('bio') }}" autocomplete="bio">
+            <label for="bio">Biography (Optional)</label><br>
+            <input type="text" class="form-input @error('bio') is-invalid @enderror" name="bio" placeholder="Enter Biography" value="{{ old('bio') }}" autocomplete="bio">
             @error('bio')
             <span role="alert">
               <strong>{{ $message }}</strong>
