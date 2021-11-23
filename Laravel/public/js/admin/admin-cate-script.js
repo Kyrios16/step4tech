@@ -76,7 +76,7 @@ function updateCategory() {
     });
     $.ajax({
         type: "post",
-        url: "/api/categories/update/" + id,
+        url: "/api/admin/categories/update/" + id,
         data: {
             id: id,
             name: name,

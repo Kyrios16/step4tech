@@ -73,6 +73,7 @@ Route::get('/admin/totaluser', [UserController::class, 'countTotalUsers'])->name
 Route::get('/admin/totallike', [PostAPIController::class, 'getMaxLikes']);
 Route::get('/admin/favcategory', [CategoriesController::class, 'getMaxFollowers']);
 Route::get('/admin/chart', [ChartDataController::class, 'getDailyPostCount']);
+Route::post('/admin/categories/update/{categories}',  [CategoriesController::class, 'updateCate'])->name('update.categories');
 /**
  * To Recover Post
  */
