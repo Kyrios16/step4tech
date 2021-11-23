@@ -34,7 +34,7 @@
       <div class="name-bio">
         <h1 class="name">{{ $viewUser->name }}</h1>
         <p class="bio">{{ $viewUser->bio }}</p>
-        <p class="dob"><i class="fas fa-birthday-cake"></i> {{ $viewUser->date_of_birth }}</p>
+        <p class="dob"><i class="fas fa-birthday-cake"></i> {{ $viewUser->dob }}</p>
       </div>
       <div class="profile-data">
         <div class="link-group clearfix">
