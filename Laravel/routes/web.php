@@ -36,7 +36,7 @@ require __DIR__ . '/auth.php';
 
 /* admin management routes start */
 
-Route::group(['middleware' => ['admin']], function () {
+Route::group(['middleware' => ['admin','auth']], function () {
 // analytics dashboard routes
 Route::get('/admin', [UserController::class, 'getMostPopularUser'])->name('show.analytics');
 
