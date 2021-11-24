@@ -4,10 +4,12 @@ namespace App\Dao\Feedback;
 
 use App\Contracts\Dao\Feedback\FeedbackDaoInterface;
 use App\Models\Feedback;
+use App\Models\Post;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Data Access Object for User
@@ -68,6 +70,7 @@ class FeedbackDao implements FeedbackDaoInterface
         $feedback->save();
         return $feedback;
     }
+
     /**
      * To delete $feedback
      * 

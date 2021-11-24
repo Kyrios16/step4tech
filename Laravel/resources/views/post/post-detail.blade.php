@@ -92,6 +92,7 @@
             @enderror
         </form>
         @endauth
+
         @foreach($feedbackList as $feedback)
         <div class="feedback-container clearfix">
             <div class="upload-user clearfix feedback-upload-user">
@@ -113,9 +114,10 @@
             @if(Auth::user()->id == $feedback->created_user_id)
             <a class="delete-icn" href="{!! route('feedback.delete', ['id'=>$feedback->id,]) !!}"><i class="fas fa-trash-alt"></i></a>
             @endif
+            <!-- <button type="submit" id="replyBtn" onclick="reply()">Reply</button>
+            @include('post.replies') -->
             @endauth
         </div>
-
         @endforeach
     </div>
 </div>

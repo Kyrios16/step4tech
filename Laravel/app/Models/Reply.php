@@ -6,25 +6,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Post extends Model
+class Reply extends Model
 {
-    use SoftDeletes, HasFactory;
-
+    use HasFactory, SoftDeletes;
     protected $fillable = [
-        'title',
+        'post_id',
+        'feedback_id',
         'content',
         'photo',
+        'created_user_id',
+        'updated_user_id',
+        'deleted_user_id'
     ];
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+    protected $table = 'replies';
 
-    public function user()
+    public function feedback()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function feedbacks()
-    {
-        return $this->morphMany(Feedback::class, 'commentable')->whereNull('parent_id');
+        return $this->belongsTo(Feedback::class);
     }
 }

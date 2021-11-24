@@ -7,6 +7,7 @@ use App\Contracts\Services\Feedback\FeedbackServiceInterface;
 use App\Contracts\Services\Post\PostServiceInterface;
 use App\Contracts\Services\User\UserServiceInterface;
 use App\Contracts\Services\Vote\VoteServiceInterface;
+use App\Contracts\Services\Reply\ReplyServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\createFeedbackRequest;
 use App\Http\Requests\createPostRequest;
@@ -55,17 +56,24 @@ class PostController extends Controller
     private $voteServiceInterface;
 
     /**
+     * reply service interface
+     */
+    private $replyInterface;
+
+
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(PostServiceInterface $postServiceInterface, CategoriesServiceInterface $categoriesServiceInterface, UserServiceInterface $userServiceInterface, FeedbackServiceInterface $feedbackServiceInterface, VoteServiceInterface $voteServiceInterface)
+    public function __construct(PostServiceInterface $postServiceInterface, CategoriesServiceInterface $categoriesServiceInterface, UserServiceInterface $userServiceInterface, FeedbackServiceInterface $feedbackServiceInterface, VoteServiceInterface $voteServiceInterface, ReplyServiceInterface $replyInterface)
     {
         $this->postServiceInterface = $postServiceInterface;
         $this->categoryServiceInterface = $categoriesServiceInterface;
         $this->userServiceInterface = $userServiceInterface;
         $this->feedbackServiceInterface = $feedbackServiceInterface;
         $this->voteServiceInterface = $voteServiceInterface;
+        $this->replyInterface = $replyInterface;
     }
 
     /**
@@ -226,12 +234,13 @@ class PostController extends Controller
         $voteList = $this->voteServiceInterface->getVoteListwithPostId($id);
         $categories = $this->categoryServiceInterface->getCateList();
         $userCategoryList = $this->categoryServiceInterface->getUserCategory();
+        $replies = $this->replyInterface->getReplyByPostAndFeedbackId($id);
         if (Auth::check()) {
             $userId = Auth::user()->id;
             $user = $this->userServiceInterface->getUserById($userId);
-            return view('post.post-detail', compact('title', 'post', 'voteList', 'feedbackList', 'postCategory', 'date', 'user', 'categories', 'userCategoryList'));
+            return view('post.post-detail', compact('title', 'post', 'voteList', 'feedbackList', 'postCategory', 'date', 'user', 'categories', 'userCategoryList', 'replies'));
         } else {
-            return view('post.post-detail', compact('title', 'post', 'voteList', 'feedbackList', 'postCategory', 'date', 'categories', 'userCategoryList'));
+            return view('post.post-detail', compact('title', 'post', 'voteList', 'feedbackList', 'postCategory', 'date', 'categories', 'userCategoryList', 'replies'));
         }
     }
 

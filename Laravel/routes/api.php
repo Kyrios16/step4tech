@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\ChartDataController;
+use App\Http\Controllers\Reply\ReplyController;
 
 
 /*
