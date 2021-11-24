@@ -46,7 +46,6 @@ class PostAPIController extends Controller
      */
     public function showPostListForInitialLoadMore(Request $request)
     {
-        info($request);
         $postList = $this->postServiceInterface->getPostListForInitialLoadMore($request);
         return response()->json($postList);
     }
