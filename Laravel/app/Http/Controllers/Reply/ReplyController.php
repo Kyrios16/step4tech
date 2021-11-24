@@ -28,9 +28,11 @@ class ReplyController extends Controller
     }
 
     /**
-     * To create feedback
+     * To create reply
      * 
-     * @param Request $request
+     * @param $request
+     * @param $id
+     * @return $reply created new reply
      */
     public function createReply(ReplyCreateRequest $request, $post_id, $feedback_id)
     {

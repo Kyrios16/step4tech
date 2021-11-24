@@ -115,6 +115,13 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
      */
     Route::get('user/favouriteCategory/delete/{categoryid}', [CategoriesController::class, 'DeleteUserCategory'])->name('user.category.delete');
 
-    /* Reply routes */
-    Route::get('/feedback/reply/create/{post}/feedback/{feedback}',  [ReplyController::class, 'createReply'])->name("create.reply");
+    /**
+     * Create reply for feedback 
+     */
+    Route::post('/post/{post}/feedback/{feedback}/reply',  [ReplyController::class, 'createReply'])->name("create.reply");
+
+    /**
+     * Delete reply  
+     */
+    Route::post('/reply/delete/{id}',  [ReplyController::class, 'deleteReply'])->name("delete.reply");
 });

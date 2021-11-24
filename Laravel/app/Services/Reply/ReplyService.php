@@ -9,12 +9,12 @@ use Carbon\Carbon;
 use DateTime;
 
 /**
- * User Service class
+ * Reply Service class
  */
 class ReplyService implements ReplyServiceInterface
 {
     /**
-     * user Dao
+     * reply Dao
      */
     private $replyDao;
 
@@ -29,9 +29,9 @@ class ReplyService implements ReplyServiceInterface
     }
 
     /**
-     * To get user by id
-     * @param string $id user id
-     * @return Object $user user object
+     * To Replys by PostId
+     * @param string $id post id
+     * @return Object $Reply
      */
     public function getReplyByPostAndFeedbackId($Id)
     {
@@ -47,18 +47,19 @@ class ReplyService implements ReplyServiceInterface
         return $replies;
     }
     /**
-     * To create feedback
+     * To create reply
      * 
      * @param $request
-     * @param $id
-     * @return $feedback created new feedback
+     * @param $post_id post id
+     * @param $feedback_id feedback id
+     * @return created new reply
      */
     public function createReply($request, $post_id, $feedback_id)
     {
         return $this->replyDao->createReply($request, $post_id, $feedback_id);
     }
     /**
-     * To delete feed$feedbackgory
+     * To delete reply
      * 
      * @param $id
      * @return $feedback  

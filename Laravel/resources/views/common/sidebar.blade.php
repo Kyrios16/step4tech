@@ -1,21 +1,21 @@
 <div class="sidebar-container">
   <div class="sidebar-content">
-    <a href="/" class="sidebar-items {{ Request::is('/') ? 'active': '' }}">
-      <span>
+    <a href="/" class="sidebar-items">
+      <span class="{{ Request::is('/') ? 'active': '' }}">
         <span class="icon"><i class="fas fa-home"></i></span>
         <h2 class="sidebar-title">Home</h2>
       </span>
     </a>
     @auth
 
-    <a href="/post/liked-posts" class="sidebar-items {{ Request::is('post/liked-posts') ? 'active': '' }}">
-      <span>
+    <a href="/post/liked-posts" class="sidebar-items">
+      <span class="{{ Request::is('post/liked-posts') ? 'active': '' }}">
         <span class="icon"><i class="fas fa-thumbs-up"></i></span>
         <h2 class="sidebar-title">Liked Posts</h2>
       </span>
     </a>
-    <a href="/post/trash" class="sidebar-items {{ Request::is('post/trash') ? 'active': '' }}">
-      <span>
+    <a href="/post/trash" class="sidebar-items">
+      <span class="{{ Request::is('post/trash') ? 'active': '' }}">
         <span class="icon"><i class="fas fa-trash"></i></span>
         <h2 class="sidebar-title">Trash</h2>
       </span>

@@ -4,8 +4,6 @@ namespace App\Dao\Reply;
 
 use App\Contracts\Dao\Reply\ReplyDaoInterface;
 use App\Models\Reply;
-use App\Models\Post;
-use App\Models\Feedback;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Request;
@@ -65,6 +63,7 @@ class ReplyDao implements ReplyDaoInterface
         $reply->created_user_id = Auth::user()->id ?? 1;
         $reply->updated_user_id = Auth::user()->id ?? 1;
         $reply->save();
+
         return $reply;
     }
 

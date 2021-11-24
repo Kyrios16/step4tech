@@ -4,8 +4,10 @@ function autoheight(x) {
 }
 
 $(document).ready(function () {
-    $("#reply-container").hide();
-    $("#replyBtn").click(function () {
-        $("#reply-container").toggle();
+    $(".reply-container").hide();
+    $(".replyBtn").click(function () {
+        var $toggle = $(this);
+        var id = "#replycomment-" + $toggle.data("id");
+        $(id).toggle();
     });
 });

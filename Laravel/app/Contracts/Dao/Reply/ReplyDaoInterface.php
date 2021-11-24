@@ -9,24 +9,25 @@ namespace App\Contracts\Dao\Reply;
 interface ReplyDaoInterface
 {
     /**
-     * To reply by PostId
+     * To reply by post and feedback id
      * @param string $id post id
      * @return Object $reply
      */
     public function getReplyByPostAndFeedbackId($Id);
+
     /**
-     * To create feedback
+     * To create reply
      * 
      * @param $request
-     * @param $id
-     * @return $feedback created new feedback
+     * @param $post_id post id
+     * @param $feedback_id feedback id
      */
     public function createReply($request, $post_id, $feedback_id);
+
     /**
-     * To delete feed$feedbackgory
+     * To delete reply
      * 
-     * @param $id
-     * @return $feedback  
+     * @param $id reply id 
      */
     public function deleteReply($id);
 }
