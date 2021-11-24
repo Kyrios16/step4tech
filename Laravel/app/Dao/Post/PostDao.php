@@ -40,10 +40,12 @@ class PostDao implements PostDaoInterface
                                             AND post_category.deleted_at IS NULL
                                             AND categories.deleted_at IS NULL
                                             GROUP BY posts.id
-                                            ORDER BY posts.updated_at DESC"));
+                                            ORDER BY posts.updated_at DESC
+                                            LIMIT 8 OFFSET 0"));
         } else {
             $user_category_names = DB::select(DB::raw("SELECT categories.name FROM categories, user_category
                                                 WHERE categories.id = user_category.category_id
+                                                AND categories.deleted_at IS NULL
                                                 AND user_category.deleted_at IS NULL
                                                 AND user_category.user_id = :userId"), array("userId" => $request->userId));
             $mysql = "SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
@@ -74,11 +76,11 @@ class PostDao implements PostDaoInterface
                     }
                     $no_of_category++;
                 }
-                $mysql .= " THEN 0 ELSE 1 END DESC, posts.updated_at DESC";
+                $mysql .= " THEN 0 ELSE 1 END DESC, posts.updated_at DESC LIMIT 8 OFFSET 0";
             } else {
-                $mysql .= " ORDER BY posts.updated_at DESC";
+                $mysql .= " ORDER BY posts.updated_at DESC LIMIT 8 OFFSET 0";
             }
-
+            info($mysql);
             $postList = DB::select(DB::raw($mysql));
         }
 
