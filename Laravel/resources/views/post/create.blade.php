@@ -19,14 +19,14 @@
         </div>
         <form class="create-form" method="POST" action="{{ route('create.post') }}" enctype="multipart/form-data">
             @csrf
-            <input type="text" id="title" name="title" placeholder="Post Title" class="title @error('title') is-invalid @enderror">
+            <input type="text" id="title" name="title" placeholder="Post Title" class="title @error('title') is-invalid @enderror" value="{{ old('title') }}">
             @error('title')
             <span class="form-error">
                 <div>{{ $message }}</div>
             </span>
             @enderror
             <label for="categories" class="label">Select Post Category</label>
-            <select multiple="multiple" id="categories" name="category[]" class="categories @error('category') is-invalid @enderror">
+            <select multiple="multiple" id="categories" name="category[]" class="categories @error('category') is-invalid @enderror" value="{{ old('category') }}">
                 @foreach ($categories as $category)
                 <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
