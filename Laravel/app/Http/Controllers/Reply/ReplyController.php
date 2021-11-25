@@ -44,11 +44,13 @@ class ReplyController extends Controller
     /**
      * To delete reply by id
      *
-     * @param  $id 
+     * @param  $id reply id
+     * @param $feedback_id feedback id
      * @return deleted reply
      */
     public function deleteReply($id)
     {
-        return  $this->replyInterface->deleteReply($id);
+        $this->replyInterface->deleteReply($id);
+        return back();
     }
 }

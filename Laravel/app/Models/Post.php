@@ -17,14 +17,4 @@ class Post extends Model
     ];
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function feedbacks()
-    {
-        return $this->morphMany(Feedback::class, 'commentable')->whereNull('parent_id');
-    }
 }

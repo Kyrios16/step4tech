@@ -1,5 +1,4 @@
 <div class="reply-container" id="replycomment-{{ $feedback->id }}">
-
   @foreach($replies as $reply)
   @if($reply->feedback_id == $feedback->id)
   <div class="feedback-container clearfix">
@@ -11,6 +10,7 @@
       <p class="feedback-time">{{$reply->time}}</p>
     </div>
     <div class="feedback-content">{{$reply->content}}</div>
+
     @if($reply->photo != NULL)
     <div class="feedback-img-container">
       <img class="feedback-img" class="feedback-img" src="{{ URL::to('/') }}/images/feedbacks/{{ $feedback->photo }}" alt=" feedback image">
@@ -19,7 +19,7 @@
     @endif
     @auth
     @if(Auth::user()->id == $reply->created_user_id)
-    <a class="delete-icn" href="{!! route('delete.reply', ['id'=>$reply->id,]) !!}"><i class="fas fa-trash-alt"></i></a>
+    <a class="delete-icn" href="{{ route('delete.reply', $reply->replyId) }}"><i class="fas fa-trash-alt"></i></a>
     @endif
     @endauth
   </div>

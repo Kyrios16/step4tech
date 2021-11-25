@@ -123,5 +123,5 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     /**
      * Delete reply  
      */
-    Route::post('/reply/delete/{id}',  [ReplyController::class, 'deleteReply'])->name("delete.reply");
+    Route::get('/reply/delete/{replyId}',  [ReplyController::class, 'deleteReply'])->name("delete.reply");
 });

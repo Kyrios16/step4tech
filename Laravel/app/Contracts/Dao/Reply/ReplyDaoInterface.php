@@ -2,7 +2,6 @@
 
 namespace App\Contracts\Dao\Reply;
 
-
 /**
  * Interface of Data Access Object for user
  */

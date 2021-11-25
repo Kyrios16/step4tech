@@ -21,16 +21,16 @@ class ReplyDao implements ReplyDaoInterface
     public function getReplyByPostAndFeedbackId($Id)
     {
         $replies = DB::select(DB::raw(
-            "SELECT replies.created_user_id, replies.id, replies.content,
+            "SELECT replies.created_user_id, replies.id as replyId, replies.content,
                 replies.created_at, replies.photo, replies.feedback_id,
-                users.name, users.profile_img, feedbacks.id
+                users.name, users.profile_img, feedbacks.id 
             FROM replies, users, feedbacks
             WHERE users.id = replies.created_user_id
             AND replies.deleted_at is NULL
             AND replies.post_id = $Id
             AND replies.feedback_id = feedbacks.id
-            GROUP BY replies.id
-            ORDER BY replies.updated_at DESC"
+            GROUP BY replyId
+            ORDER BY replies.created_at DESC"
         ));
 
         return $replies;
@@ -70,7 +70,7 @@ class ReplyDao implements ReplyDaoInterface
     /**
      * To delete reply
      * 
-     * @param $id
+     * @param $id reply id
      * @return $reply  
      */
     public function deleteReply($id)
