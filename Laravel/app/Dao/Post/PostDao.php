@@ -48,7 +48,8 @@ class PostDao implements PostDaoInterface
                                                 AND categories.deleted_at IS NULL
                                                 AND user_category.deleted_at IS NULL
                                                 AND user_category.user_id = :userId"), array("userId" => $request->userId));
-            $mysql = "SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
+            $mysql = "SELECT * FROM (SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, posts.updated_at,
+                    users.id AS userId,
                     GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
                     GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
                     COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
@@ -64,9 +65,9 @@ class PostDao implements PostDaoInterface
                     AND users.deleted_at IS NULL
                     AND post_category.deleted_at IS NULL
                     AND categories.deleted_at IS NULL
-                    GROUP BY posts.id";
+                    GROUP BY posts.id) AS result";
             if (count($user_category_names) > 0) {
-                $mysql .= " ORDER BY CASE post_categories WHEN";
+                $mysql .= " ORDER BY CASE result.post_categories WHEN";
                 $no_of_category = 0;
                 foreach ($user_category_names as $user_category_name) {
                     if ($no_of_category == 0) {
@@ -76,14 +77,83 @@ class PostDao implements PostDaoInterface
                     }
                     $no_of_category++;
                 }
-                $mysql .= " THEN 0 ELSE 1 END DESC, posts.updated_at DESC LIMIT 8 OFFSET 0";
+                $mysql .= " THEN 0 ELSE 1 END DESC, result.updated_at DESC LIMIT 8 OFFSET 0";
             } else {
-                $mysql .= " ORDER BY posts.updated_at DESC LIMIT 8 OFFSET 0";
+                $mysql .= " ORDER BY result.updated_at DESC LIMIT 8 OFFSET 0";
             }
-            info($mysql);
             $postList = DB::select(DB::raw($mysql));
         }
+        return $postList;
+    }
 
+    /**
+     * To get post list for load more
+     * @param Request $request
+     * @return postList
+     */
+    public function getPostListForInitialLoadMore($request)
+    {
+        if ($request->userId == '') {
+            $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
+                                            GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
+                                            GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
+                                            COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
+                                            FROM posts
+                                            LEFT JOIN votes ON (votes.post_id = posts.id)
+                                            LEFT JOIN feedbacks ON (feedbacks.post_id = posts.id)
+                                            INNER JOIN users ON (users.id = posts.created_user_id) 
+                                            INNER JOIN post_category ON (post_category.post_id = posts.id)
+                                            INNER JOIN categories ON (categories.id = post_category.category_id)
+                                            WHERE posts.deleted_at IS NULL
+                                            AND votes.deleted_at IS NULL
+                                            AND feedbacks.deleted_at IS NULL
+                                            AND users.deleted_at IS NULL
+                                            AND post_category.deleted_at IS NULL
+                                            AND categories.deleted_at IS NULL
+                                            GROUP BY posts.id
+                                            ORDER BY posts.updated_at DESC
+                                            LIMIT 8 OFFSET :offset"), array("offset" => $request->offset));
+        } else {
+            $user_category_names = DB::select(DB::raw("SELECT categories.name FROM categories, user_category
+                                                WHERE categories.id = user_category.category_id
+                                                AND categories.deleted_at IS NULL
+                                                AND user_category.deleted_at IS NULL
+                                                AND user_category.user_id = :userId"), array("userId" => $request->userId));
+            $mysql = "SELECT * FROM (SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, posts.updated_at,
+                    users.id AS userId,
+                    GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
+                    GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
+                    COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
+                    FROM posts
+                    LEFT JOIN votes ON (votes.post_id = posts.id)
+                    LEFT JOIN feedbacks ON (feedbacks.post_id = posts.id)
+                    INNER JOIN users ON (users.id = posts.created_user_id) 
+                    INNER JOIN post_category ON (post_category.post_id = posts.id)
+                    INNER JOIN categories ON (categories.id = post_category.category_id)
+                    WHERE posts.deleted_at IS NULL
+                    AND votes.deleted_at IS NULL
+                    AND feedbacks.deleted_at IS NULL
+                    AND users.deleted_at IS NULL
+                    AND post_category.deleted_at IS NULL
+                    AND categories.deleted_at IS NULL
+                    GROUP BY posts.id) AS result";
+            if (count($user_category_names) > 0) {
+                $mysql .= " ORDER BY CASE result.post_categories WHEN";
+                $no_of_category = 0;
+                foreach ($user_category_names as $user_category_name) {
+                    if ($no_of_category == 0) {
+                        $mysql .= " post_categories LIKE '%" . $user_category_name->name . "%'";
+                    } else {
+                        $mysql .= " OR post_categories LIKE '%" . $user_category_name->name . "%'";
+                    }
+                    $no_of_category++;
+                }
+                $mysql .= " THEN 0 ELSE 1 END DESC, result.updated_at DESC LIMIT 8 OFFSET " . $request->offset;
+            } else {
+                $mysql .= " ORDER BY result.updated_at DESC LIMIT 8 OFFSET " . $request->offset;
+            }
+            $postList = DB::select(DB::raw($mysql));
+        }
         return $postList;
     }
 
