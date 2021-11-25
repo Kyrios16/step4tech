@@ -3,7 +3,6 @@
 namespace App\Services\Reply;
 
 use App\Contracts\Dao\Reply\ReplyDaoInterface;
-use App\Contracts\Dao\User\UserDaoInterface;
 use App\Contracts\Services\Reply\ReplyServiceInterface;
 use Carbon\Carbon;
 use DateTime;
@@ -57,18 +56,6 @@ class ReplyService implements ReplyServiceInterface
     public function createReply($request, $post_id, $feedback_id)
     {
         return $this->replyDao->createReply($request, $post_id, $feedback_id);
-    }
-
-    /**
-     * To update reply
-     * 
-     * @param $request
-     * @param $id found reply id
-     * @return $cate updated reply
-     */
-    public function updateReply($request, $id)
-    {
-        return $this->replyDao->updateReply($request, $id);
     }
 
     /**

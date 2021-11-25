@@ -16,11 +16,12 @@ class VoteDao implements VoteDaoInterface
      * @param string $id post id
      * @return Object $voteList
      */
-    public function getVoteListwithPostId($id) {
+    public function getVoteListwithPostId($id)
+    {
         $voteList = DB::select(DB::raw("SELECT votes.user_id
                                         FROM posts
                                         LEFT JOIN votes ON (votes.post_id = posts.id AND posts.id = :postId)                                        
-                                        WHERE votes.deleted_at IS NULL  AND user_id IS NOT NULL"), array( "postId" => $id));
+                                        WHERE votes.deleted_at IS NULL  AND user_id IS NOT NULL"), array("postId" => $id));
         return $voteList;
     }
 }

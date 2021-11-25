@@ -33,7 +33,12 @@ $(document).ready(function () {
     });
 });
 
-// To delete category
+/**
+ * To delete category pop-up model and show old data in input box
+ *
+ * @param category id
+ * @return void
+ */
 function destroy(id) {
     swal({
         title: "Are you sure want to delete?",
@@ -57,7 +62,12 @@ function destroy(id) {
     });
 }
 
-// To show edit form popup box
+/**
+ * To open edit category pop-up model and show old data in input box
+ *
+ * @param category id
+ * @return void
+ */
 function editCategory(id) {
     document.getElementById("popup-1").classList.add("active");
     $.ajax({
@@ -71,12 +81,15 @@ function editCategory(id) {
     });
 }
 
-// To update category
+/**
+ * To update category and return categories management screen
+ *
+ * @return void
+ */
 function updateCategory() {
     var id = $("#id").val();
     var name = $("#name").val();
 
-    console.log(id);
     $.ajaxSetup({
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -96,6 +109,7 @@ function updateCategory() {
     });
 }
 
+//To close edit category pop-up box
 function closeBox() {
     document.getElementById("popup-1").classList.remove("active");
 }

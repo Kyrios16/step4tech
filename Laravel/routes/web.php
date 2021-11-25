@@ -55,7 +55,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         // manage categories 
         Route::get('/admin/categories', function () {
             return view('admin.categories.categories-manage');
-        });
+        })->name('show.categories');
         Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
         Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
     });

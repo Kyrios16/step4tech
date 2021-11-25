@@ -14,7 +14,6 @@
             <h2>Posts Management</h2>
           </div>
         </div>
-        <!-- header-title-container -->
       </header>
       <main>
         @include('admin.common.analytics')
@@ -22,7 +21,6 @@
           <div class="table-header">
             <h3 class="header-title">Posts Table</h3>
           </div>
-          <!-- table-header -->
           <div class="posts-table">
             <table class="styled-table">
               <thead>
@@ -61,15 +59,10 @@
               </tbody>
             </table>
           </div>
-          <!-- post-table -->
           <a href="{{ route('export.posts') }}" class="btn btn-info">Export&nbsp;&nbsp;<i class="fas fa-file-export"></i></a>
         </div>
-        <!-- table-container -->
       </main>
     </div>
-    <!-- main-content -->
   </div>
-  <!-- main-container -->
 </div>
-<!-- container -->
 @endsection

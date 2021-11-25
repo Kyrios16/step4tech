@@ -14,14 +14,11 @@
             <h2>Analytics</h2>
           </div>
         </div>
-        <!-- header-title-container -->
       </header>
       <main>
         @include('admin.common.analytics')
         <div class="analytic-sec">
           @include('admin.common.chart')
-
-          <!-- To show who created most liked post  -->
           @foreach($mostPopularUser as $mostPopularUser)
           <div class="popular-user-card">
             <div class="text">
@@ -47,15 +44,12 @@
             </div>
           </div>
           @endforeach
-
         </div>
-
       </main>
     </div>
-    <!-- main-content -->
   </div>
-  <!-- main-container -->
+
 </div>
-<!-- container -->
+
 
 @endsection

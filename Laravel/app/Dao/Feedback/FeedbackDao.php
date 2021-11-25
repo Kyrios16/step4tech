@@ -4,12 +4,8 @@ namespace App\Dao\Feedback;
 
 use App\Contracts\Dao\Feedback\FeedbackDaoInterface;
 use App\Models\Feedback;
-use App\Models\Post;
-use Carbon\Carbon;
-use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Data Access Object for User
@@ -30,13 +26,6 @@ class FeedbackDao implements FeedbackDaoInterface
         AND feedbacks.post_id = $Id
         GROUP BY feedbacks.id
         ORDER BY feedbacks.updated_at DESC"));
-        foreach ($feedbackList as $feedback) {
-            $currentDate = new DateTime();
-            $startTime = Carbon::parse($currentDate);
-            $endTime = Carbon::parse($feedback->created_at);
-            $totalDuration = $endTime->diffForHumans($startTime);
-            $feedback->time = $totalDuration;
-        }
 
         return $feedbackList;
     }
@@ -50,8 +39,7 @@ class FeedbackDao implements FeedbackDaoInterface
      */
     public function createFeedback($request, $id)
     {
-        $feedbackList = DB::table("feedbacks")
-            ->get();
+        $feedbackList = DB::table("feedbacks")->get();
         $feedbackid = count($feedbackList) + 1;
         $feedback = new Feedback();
 

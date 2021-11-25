@@ -2,7 +2,11 @@ $(document).ready(function () {
     showLikedPostList();
 });
 
-//Intial
+/**
+ * To show liked post list
+ *
+ * @return void
+ */
 function showLikedPostList() {
     var data = {
         userId: userId,
@@ -33,12 +37,16 @@ function showLikedPostList() {
                     });
                     var getUrl = window.location;
                     var baseUrl =
-                        getUrl.protocol + "//" + getUrl.host + "/images/profile/";
+                        getUrl.protocol +
+                        "//" +
+                        getUrl.host +
+                        "/images/profile/";
                     var likeCount = 0;
                     var islikedClass = "";
                     var thumbFillClass = "far";
                     if (post.post_voted_userid != null) {
-                        var likedUserIdArray = post.post_voted_userid.split(",");
+                        var likedUserIdArray =
+                            post.post_voted_userid.split(",");
                         likeCount = likedUserIdArray.length;
                         if (loggedin) {
                             likedUserIdArray.forEach((likedUserId) => {
@@ -80,7 +88,7 @@ function showLikedPostList() {
                             </div>
                         </div>`
                     );
-                });                
+                });
             } else {
                 $(".postlist-container").append(`
                     <div class="no-list-container">

@@ -1,10 +1,9 @@
 @extends('admin.Layouts.app')
 
 @section('script')
-<!-- script -->
 <script src="{{ asset('js/lib/moment.js') }}"></script>
 <script src="{{ asset('js/admin/admin-cate-script.js') }}"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{{ asset('js/lib/sweetalert.min.js') }}"></script>
 @endsection
 
 @section('content')
@@ -21,7 +20,6 @@
             <h2>Categories Management</h2>
           </div>
         </div>
-        <!-- header-title-container -->
       </header>
       <main>
         @include('admin.common.analytics')
@@ -38,9 +36,7 @@
                 <button type="submit" class="btn btn-success" onclick="createBtn()"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New</button>
               </form>
             </div>
-            <!-- new-cate -->
           </div>
-          <!-- table-header -->
           <div class="cate-table">
             <div class="popup" id="popup-1">
               <div class="overlay"></div>
@@ -68,15 +64,10 @@
               </tbody>
             </table>
           </div>
-          <!-- cate-table -->
           <a href="{{ route('export.categories') }}" class="btn btn-info">Export&nbsp;&nbsp;<i class="fas fa-file-export"></i></a>
         </div>
-        <!-- table-container -->
       </main>
     </div>
-    <!-- main-content -->
   </div>
-  <!-- main-container -->
 </div>
-<!-- container -->
 @endsection

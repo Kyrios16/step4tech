@@ -8,8 +8,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\CategoriesExport;
 use App\Http\Controllers\Controller;
 use App\Contracts\Services\Categories\CategoriesServiceInterface;
-use App\Models\UserCategory;
-use Illuminate\Support\Facades\Auth;
+
 
 class CategoriesController extends Controller
 {
@@ -53,7 +52,7 @@ class CategoriesController extends Controller
             return back()->withErrors($validated)->withInput();
         }
         $category = $this->cateInterface->getCateCreate($request);
-        return redirect('/admin/categories/');
+        return redirect()->route('show.categories');
     }
 
     /**

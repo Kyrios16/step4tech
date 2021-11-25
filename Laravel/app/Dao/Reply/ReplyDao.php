@@ -45,52 +45,26 @@ class ReplyDao implements ReplyDaoInterface
      */
     public function createReply($request, $post_id, $feedback_id)
     {
-        $replies = DB::table("replies")->get();
-        $replyId = count($replies) + 1;
-        $reply = new Reply();
 
-        if ($file = $request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $newName = "feedback_" . $replyId . "." . $extension;
-            $destinationPath = public_path() . '/images/replies/';
-            $file->move($destinationPath, $newName);
-            $reply->photo = $newName;
-        }
-        $reply->content = $request->content;
-        $reply->post_id = $post_id;
-        $reply->feedback_id = $feedback_id;
-        $reply->created_user_id = Auth::user()->id ?? 1;
-        $reply->updated_user_id = Auth::user()->id ?? 1;
-        $reply->save();
-
-        return $reply;
-    }
-
-    /**
-     * To update reply
-     * 
-     * @param $request
-     * @param $id found reply id
-     * @return $cate updated reply
-     */
-    public function updateReply($request, $id)
-    {
-        $reply = Reply::find($id);
-        if ($file = $request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $newName = "feedback_" . $id . "." . $extension;
-            $destinationPath = public_path() . '/images/replies/';
-            $file->move($destinationPath, $newName);
-            $reply->photo = $newName;
-        }
-        $reply->content = $request->content;
-        $reply->created_user_id = Auth::user()->id ?? 1;
-        $reply->updated_user_id = Auth::user()->id ?? 1;
-        $reply->save();
-
-        return $reply;
+        return DB::transaction(function () use ($request, $post_id, $feedback_id) {
+            $replies = DB::table("replies")->get();
+            $replyId = count($replies) + 1;
+            $reply = new Reply();
+            if ($file = $request->hasFile('photo')) {
+                $file = $request->file('photo');
+                $extension = $file->getClientOriginalExtension();
+                $newName = "feedback_" . $replyId . "." . $extension;
+                $destinationPath = public_path() . '/images/replies/';
+                $file->move($destinationPath, $newName);
+                $reply->photo = $newName;
+            }
+            $reply->content = $request->content;
+            $reply->post_id = $post_id;
+            $reply->feedback_id = $feedback_id;
+            $reply->created_user_id = Auth::user()->id ?? 1;
+            $reply->updated_user_id = Auth::user()->id ?? 1;
+            $reply->save();
+        });
     }
 
     /**
@@ -101,11 +75,11 @@ class ReplyDao implements ReplyDaoInterface
      */
     public function deleteReply($id)
     {
-        $reply = Reply::find($id);
-        $reply->deleted_user_id = Auth::user()->id ?? 1;
-        $reply->deleted_at = now();
-        $reply->save();
-
-        return $reply;
+        return DB::transaction(function () use ($id) {
+            $reply = Reply::find($id);
+            $reply->deleted_user_id = Auth::user()->id ?? 1;
+            $reply->deleted_at = now();
+            $reply->save();
+        });
     }
 }
