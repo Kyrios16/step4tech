@@ -4,7 +4,7 @@
       <h1><a href="/"><img src="{{ asset('images/img_logo.png') }}" alt="Step4Tech"></a></h1>
       @if(!Request::is('user/register'))
       <div class="search-container">
-        <input class="search" type="text" placeholder="Search . ." name="search"><i class="fa fa-search search-ico"></i>
+        <input class="search" type="text" placeholder="Search . . ." name="search"><i class="fa fa-search search-ico"></i>
       </div>
       @auth
       <!-- After Login -->

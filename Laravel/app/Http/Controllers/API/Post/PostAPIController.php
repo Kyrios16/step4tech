@@ -40,6 +40,17 @@ class PostAPIController extends Controller
     }
 
     /**
+     * To show post list for load more
+     * @param Request $request
+     * @return Response json with post list
+     */
+    public function showPostListForInitialLoadMore(Request $request)
+    {
+        $postList = $this->postServiceInterface->getPostListForInitialLoadMore($request);
+        return response()->json($postList);
+    }
+
+    /**
      * To show liked post list
      * @param Request $request
      * @return Response json with liked post list

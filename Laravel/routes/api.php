@@ -25,9 +25,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 /**
- * To Show All Posts ordered by date
+ * To Show Intial Post List
  */
 Route::get('/post-list', [PostAPIController::class, 'showPostListForInitial']);
+
+/**
+ * To Show More Post List
+ */
+Route::get('/post-list/more', [PostAPIController::class, 'showPostListForInitialLoadMore']);
 
 /**
  * Search post

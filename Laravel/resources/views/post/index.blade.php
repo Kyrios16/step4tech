@@ -13,6 +13,7 @@
 @section('content')
 <div class="postlist-container">
 </div>
+<p class="loading"></p>
 <div class="likepopup-container">
   <div class="likepopup-content">
     <div class="likepopup-header">

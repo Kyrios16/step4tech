@@ -36,6 +36,16 @@ class PostService implements PostServiceInterface
     }
 
     /**
+     * To get post list for load more
+     * @param Request $request
+     * @return postList
+     */
+    public function getPostListForInitialLoadMore($request)
+    {
+        return $this->postDao->getPostListForInitialLoadMore($request);
+    }
+
+    /**
      * To show liked post list
      * @param Request $request
      * @return postList liked post list
