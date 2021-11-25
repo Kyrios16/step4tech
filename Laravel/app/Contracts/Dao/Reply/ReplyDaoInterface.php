@@ -24,6 +24,15 @@ interface ReplyDaoInterface
     public function createReply($request, $post_id, $feedback_id);
 
     /**
+     * To update reply
+     * 
+     * @param $request
+     * @param $id found reply id
+     * @return $cate updated reply
+     */
+    public function updateReply($request, $id);
+
+    /**
      * To delete reply
      * 
      * @param $id reply id 

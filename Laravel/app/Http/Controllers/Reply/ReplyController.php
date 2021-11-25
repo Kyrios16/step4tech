@@ -42,6 +42,18 @@ class ReplyController extends Controller
     }
 
     /**
+     * To update reply
+     * 
+     * @param $request
+     * @param $id found reply id
+     * @return $cate updated reply
+     */
+    public function updateReply($request, $id)
+    {
+        $reply = $this->replyInterface->updateReply($request, $id);
+        return response()->json($reply);
+    }
+    /**
      * To delete reply by id
      *
      * @param  $id reply id
