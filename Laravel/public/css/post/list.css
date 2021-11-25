@@ -128,3 +128,11 @@
     font-size: 1.35rem;
     line-height: 1.5;
 }
+
+.loading {
+    width: 78%;
+    float: right;
+    padding-top: 1em;
+    text-align: center;
+    color: #6c757d;
+}
