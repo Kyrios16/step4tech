@@ -63,6 +63,7 @@ class FeedbackDao implements FeedbackDaoInterface
         }
         $feedback->content = $request->content;
         $feedback->post_id = $id;
+        $feedback->green_mark = false;
         $feedback->created_user_id = Auth::user()->id ?? 1;
         $feedback->updated_user_id = Auth::user()->id ?? 1;
         $feedback->save();
@@ -82,5 +83,21 @@ class FeedbackDao implements FeedbackDaoInterface
         $feedback->save();
 
         return $feedback;
+    }
+    /**
+     * To give green_mark
+     * 
+     * @param Request $request
+     * @return $message 
+     */
+    public function selectGreenmark($request)
+    {
+        Feedback::where('id', $request->id)
+                ->where('post_id', $request->post_id)
+                ->update(['green_mark' => true]);
+        Feedback::where('id','!=', $request->id)
+                ->where('post_id', $request->post_id)
+                ->update(['green_mark' => false]);     
+        return 'Greenmark Approved';   
     }
 }

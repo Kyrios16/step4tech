@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Feedback;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use App\Contracts\Services\Categories\CategoriesServiceInterface;
+use Illuminate\Http\Request;;
 use App\Contracts\Services\Feedback\FeedbackServiceInterface;
 use App\Contracts\Services\Post\PostServiceInterface;
 use App\Contracts\Services\User\UserServiceInterface;
@@ -76,6 +74,17 @@ class FeedbackController extends Controller
     public function  deleteFeedback($id)
     {
         $feedback = $this->feedbackInterface->deleteFeedback($id);
+        return back();
+    }
+    /**
+     * To give green_mark
+     * 
+     * @param Request $request 
+     * @return $message 
+     */
+    public function selectGreenmark(Request $request)
+    {
+        $greenmark = $this->feedbackInterface->selectGreenmark($request); 
         return back();
     }
 }

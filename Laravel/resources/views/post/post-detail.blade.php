@@ -112,6 +112,7 @@
             @auth
             @if(Auth::user()->id == $feedback->created_user_id)
             <a class="delete-icn" href="{!! route('feedback.delete', ['id'=>$feedback->id,]) !!}"><i class="fas fa-trash-alt"></i></a>
+            <a class="greenmark-icn" href="{!! route('feedback.delete', ['id'=>$feedback->id,]) !!}"><i class="fas fa-check"></i></a>
             @endif
             @endauth
         </div>
