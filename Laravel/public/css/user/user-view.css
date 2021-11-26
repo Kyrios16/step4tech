@@ -55,11 +55,13 @@
 }
 
 .setting {
-    color: #000;
-    text-decoration: none;
     text-align: right;
-    margin-top: -50px;
-    display: block;
+    margin-top: -40px;
+}
+
+.setting a {
+    text-decoration: none;
+    color: #000000;
 }
 
 .name-bio {

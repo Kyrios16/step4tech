@@ -41,7 +41,6 @@ class UserDao implements UserDaoInterface
     public function updateUser($request)
     {
         $user = User::find(Auth::user()->id);
-
         $user->name = $request['name'];
         $user->email = $request['email'];
         $user->bio = $request['bio'];
@@ -59,7 +58,7 @@ class UserDao implements UserDaoInterface
             $cover_img->move($destinationPath, $newcover);
             $user->cover_img = $newcover;
         }
-        if ($cover_img = $request->hasFile('profile_img')) {
+        if ($profile_img = $request->hasFile('profile_img')) {
             $profile_img = $request->file('profile_img');
             $destinationPath = public_path() . '/images/profile';
             $newProfile = "profile_" . date('YmdHis') . "." . $profile_img->getClientOriginalExtension();
