@@ -5,8 +5,6 @@ namespace App\Services\Chart;
 use App\Contracts\Dao\Chart\ChartDaoInterface;
 use App\Contracts\Services\Chart\ChartServiceInterface;
 use DateTime;
-use SebastianBergmann\Environment\Console;
-use Symfony\Component\Console\Logger\ConsoleLogger;
 
 /**
  * Chart Service class

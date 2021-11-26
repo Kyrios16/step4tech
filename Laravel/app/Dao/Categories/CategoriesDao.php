@@ -3,7 +3,6 @@
 namespace App\Dao\Categories;
 
 use App\Models\Categories;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Contracts\Dao\Categories\CategoriesDaoInterface;
@@ -32,12 +31,13 @@ class CategoriesDao implements CategoriesDaoInterface
      */
     public function getCateCreate($request)
     {
-        $cate = new Categories;
-        $cate->name = $request->name;
-        $cate->created_user_id = Auth::user()->id ?? 1;
-        $cate->updated_user_id = Auth::user()->id ?? 1;
-        $cate->save();
-        return $cate;
+        return DB::transaction(function () use ($request) {
+            $cate = new Categories;
+            $cate->name = $request->name;
+            $cate->created_user_id = Auth::user()->id ?? 1;
+            $cate->updated_user_id = Auth::user()->id ?? 1;
+            $cate->save();
+        });
     }
 
     /**
@@ -49,7 +49,6 @@ class CategoriesDao implements CategoriesDaoInterface
     public function editCate($id)
     {
         $cate = Categories::find($id);
-
         return $cate;
     }
 
@@ -62,11 +61,11 @@ class CategoriesDao implements CategoriesDaoInterface
      */
     public function updateCate($request, $id)
     {
-        $cate = Categories::find($id);
-        $cate->name = $request->name;
-        $cate->save();
-
-        return $cate;
+        return DB::transaction(function () use ($request, $id) {
+            $cate = Categories::find($id);
+            $cate->name = $request->name;
+            $cate->save();
+        });
     }
 
     /**
@@ -77,12 +76,12 @@ class CategoriesDao implements CategoriesDaoInterface
      */
     public function deleteCate($id)
     {
-        $cate = Categories::findOrFail($id);
-        $cate->deleted_user_id = Auth::user()->id ?? 1;
-        $cate->deleted_at = now();
-        $cate->save();
-
-        return $cate;
+        return DB::transaction(function () use ($id) {
+            $cate = Categories::findOrFail($id);
+            $cate->deleted_user_id = Auth::user()->id ?? 1;
+            $cate->deleted_at = now();
+            $cate->save();
+        });
     }
     /**
      * To get categories list from post_category

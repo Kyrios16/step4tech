@@ -7,24 +7,15 @@ use App\Contracts\Services\Feedback\FeedbackServiceInterface;
 use App\Contracts\Services\Post\PostServiceInterface;
 use App\Contracts\Services\User\UserServiceInterface;
 use App\Contracts\Services\Vote\VoteServiceInterface;
+use App\Contracts\Services\Reply\ReplyServiceInterface;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\createFeedbackRequest;
 use App\Http\Requests\createPostRequest;
 use App\Http\Requests\editPostRequest;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PostsExport;
-use GrahamCampbell\Markdown\Facades\Markdown;
-use App\Models\Post;
-use App\Models\PostCategory;
-use Carbon\Carbon;
-use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use League\CommonMark\Parser\MarkdownParser;
-use SebastianBergmann\Environment\Console;
 
 /**
  * This is Post controller.
@@ -55,17 +46,30 @@ class PostController extends Controller
     private $voteServiceInterface;
 
     /**
+     * reply service interface
+     */
+    private $replyInterface;
+
+
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(PostServiceInterface $postServiceInterface, CategoriesServiceInterface $categoriesServiceInterface, UserServiceInterface $userServiceInterface, FeedbackServiceInterface $feedbackServiceInterface, VoteServiceInterface $voteServiceInterface)
-    {
+    public function __construct(
+        PostServiceInterface $postServiceInterface,
+        CategoriesServiceInterface $categoriesServiceInterface,
+        UserServiceInterface $userServiceInterface,
+        FeedbackServiceInterface $feedbackServiceInterface,
+        VoteServiceInterface $voteServiceInterface,
+        ReplyServiceInterface $replyInterface
+    ) {
         $this->postServiceInterface = $postServiceInterface;
         $this->categoryServiceInterface = $categoriesServiceInterface;
         $this->userServiceInterface = $userServiceInterface;
         $this->feedbackServiceInterface = $feedbackServiceInterface;
         $this->voteServiceInterface = $voteServiceInterface;
+        $this->replyInterface = $replyInterface;
     }
 
     /**
@@ -226,12 +230,13 @@ class PostController extends Controller
         $voteList = $this->voteServiceInterface->getVoteListwithPostId($id);
         $categories = $this->categoryServiceInterface->getCateList();
         $userCategoryList = $this->categoryServiceInterface->getUserCategory();
+        $replies = $this->replyInterface->getReplyByPostAndFeedbackId($id);
         if (Auth::check()) {
             $userId = Auth::user()->id;
             $user = $this->userServiceInterface->getUserById($userId);
-            return view('post.post-detail', compact('title', 'post', 'voteList', 'feedbackList', 'postCategory', 'date', 'user', 'categories', 'userCategoryList'));
+            return view('post.post-detail', compact('title', 'post', 'voteList', 'feedbackList', 'postCategory', 'date', 'user', 'categories', 'userCategoryList', 'replies'));
         } else {
-            return view('post.post-detail', compact('title', 'post', 'voteList', 'feedbackList', 'postCategory', 'date', 'categories', 'userCategoryList'));
+            return view('post.post-detail', compact('title', 'post', 'voteList', 'feedbackList', 'postCategory', 'date', 'categories', 'userCategoryList', 'replies'));
         }
     }
 
@@ -244,7 +249,7 @@ class PostController extends Controller
     public function deletePostById($id)
     {
         $this->postServiceInterface->deletePostById($id);
-        return redirect('/admin/posts');
+        return redirect()->name('show.postList');
     }
 
     /**

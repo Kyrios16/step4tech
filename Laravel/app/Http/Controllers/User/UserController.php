@@ -79,7 +79,7 @@ class UserController extends Controller
         $userId = Auth::user()->id;
         $title = "Change Password";
         $user = $this->userInterface->getUserById($userId);
-        return view('User.change-password',compact('user','title'));
+        return view('User.change-password', compact('user', 'title'));
     }
 
     /**

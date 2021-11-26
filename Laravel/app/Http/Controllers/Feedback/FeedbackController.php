@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Feedback;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use App\Contracts\Services\Categories\CategoriesServiceInterface;
 use App\Contracts\Services\Feedback\FeedbackServiceInterface;
 use App\Contracts\Services\Post\PostServiceInterface;
 use App\Contracts\Services\User\UserServiceInterface;

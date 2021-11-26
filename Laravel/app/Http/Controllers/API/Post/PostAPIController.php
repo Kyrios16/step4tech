@@ -4,8 +4,6 @@ namespace App\Http\Controllers\API\Post;
 
 use App\Contracts\Services\Post\PostServiceInterface;
 use App\Http\Controllers\Controller;
-use App\Models\Vote;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 /**

@@ -6,7 +6,9 @@ function toggleNavProfileDropdown() {
     }
 }
 
-//Close NavProfileDropdown when click outside of the element
+/**
+ * Close NavProfileDropdown when click outside of the element
+ */
 $(document).on("click", function (event) {
     var $trigger = $(".nav-dropdown");
     if ($trigger != event.target && !$trigger.has(event.target).length) {
@@ -14,13 +16,15 @@ $(document).on("click", function (event) {
     }
 });
 
-//Search Function
-$(document).ready(function() {
-    $('.search').keydown(function(event) {
-      // Enter has keyCode = 13
-      if (event.keyCode == 13) {
-        var searchValue = $('.search').val();
-        window.location.href = "/post/search/" + searchValue;
-      }
-    });  
+/**
+ * Search Function
+ */
+$(document).ready(function () {
+    $(".search").keydown(function (event) {
+        // Enter has keyCode = 13
+        if (event.keyCode == 13) {
+            var searchValue = $(".search").val();
+            window.location.href = "/post/search/" + searchValue;
+        }
+    });
 });

@@ -5,6 +5,7 @@ use App\Http\Controllers\Feedback\FeedbackController;
 use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\Reply\ReplyController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -54,7 +55,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         // manage categories 
         Route::get('/admin/categories', function () {
             return view('admin.categories.categories-manage');
-        });
+        })->name('show.categories');
         Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
         Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
     });
@@ -113,4 +114,14 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
      * Delete From Followed Category List
      */
     Route::get('user/favouriteCategory/delete/{categoryid}', [CategoriesController::class, 'DeleteUserCategory'])->name('user.category.delete');
+
+    /**
+     * Create reply for feedback 
+     */
+    Route::post('/post/{post}/feedback/{feedback}/reply',  [ReplyController::class, 'createReply'])->name("create.reply");
+
+    /**
+     * Delete reply  
+     */
+    Route::get('/reply/delete/{replyId}',  [ReplyController::class, 'deleteReply'])->name("delete.reply");
 });
