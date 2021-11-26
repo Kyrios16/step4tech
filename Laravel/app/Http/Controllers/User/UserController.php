@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserEditRequest;
 use App\Contracts\Services\User\UserServiceInterface;
@@ -10,7 +10,6 @@ use App\Http\Requests\UserPasswordChangeRequest;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
@@ -81,7 +80,7 @@ class UserController extends Controller
         $userId = Auth::user()->id;
         $title = "Change Password";
         $user = $this->userInterface->getUserById($userId);
-        return view('User.change-password',compact('user','title'));
+        return view('User.change-password', compact('user', 'title'));
     }
 
     /**

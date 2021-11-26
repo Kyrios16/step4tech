@@ -1,10 +1,10 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // show categories list
     $.ajax({
         url: "/api/admin/categories/list",
         type: "GET",
         dataType: "json",
-        success: function(res) {
+        success: function (res) {
             res.forEach((categories) => {
                 var created_at = moment(
                     categories.created_at,
@@ -32,43 +32,64 @@ $(document).ready(function() {
         },
     });
 });
-// To delete category
+
+/**
+ * To delete category pop-up model and show old data in input box
+ *
+ * @param category id
+ * @return void
+ */
 function destroy(id) {
-    $.ajax({
-        url: `/api/admin/categories/${id}`,
-        type: "DELETE",
-        success: function(result) {
-            alert("Category Deleted Successfull");
-            location.reload();
-        },
-        error: function(result) {
-            alert("Category Deleted Fail");
-        },
+    swal({
+        title: "Are you sure want to delete?",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: `/api/admin/categories/${id}`,
+                type: "DELETE",
+                success: function (result) {
+                    location.reload();
+                },
+                error: function (result) {
+                    alert("Category Deleted Fail");
+                },
+            });
+        } else {
+            swal("Your category is safe!");
+        }
     });
 }
 
-// To show edit form popup box
+/**
+ * To open edit category pop-up model and show old data in input box
+ *
+ * @param category id
+ * @return void
+ */
 function editCategory(id) {
     document.getElementById("popup-1").classList.add("active");
     $.ajax({
         url: "/api/admin/categories/edit/" + id,
         type: "GET",
         dataType: "json", // added data type
-        success: function(res) {
-            console.log(res);
+        success: function (res) {
             $("#id").val(res.id);
             $("#name").val(res.name);
         },
     });
 }
 
+/**
+ * To update category and return categories management screen
+ *
+ * @return void
+ */
 function updateCategory() {
     var id = $("#id").val();
     var name = $("#name").val();
-    // var editedData = {
-    //     name: $("#name").val(),
-    // };
-    console.log(id);
+
     $.ajaxSetup({
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -82,12 +103,13 @@ function updateCategory() {
             name: name,
         },
         dataType: "json",
-        success: function(data) {
+        success: function (data) {
             window.location.replace("/admin/categories");
         },
     });
 }
 
+//To close edit category pop-up box
 function closeBox() {
     document.getElementById("popup-1").classList.remove("active");
 }

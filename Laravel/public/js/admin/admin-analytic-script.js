@@ -1,4 +1,6 @@
-//To show total number of posts
+/**
+ * To show total number of posts
+ */
 $.ajax({
     url: "/api/admin/totalpost/",
     type: "GET",
@@ -8,7 +10,9 @@ $.ajax({
     },
 });
 
-//To show total number of users
+/**
+ * To show total number of users
+ */
 $.ajax({
     url: "/api/admin/totaluser/",
     type: "GET",
@@ -18,7 +22,9 @@ $.ajax({
     },
 });
 
-//To show total number of likes
+/**
+ * To show total number of likes
+ */
 $.ajax({
     url: "/api/admin/totallike/",
     type: "GET",
@@ -28,7 +34,9 @@ $.ajax({
     },
 });
 
-//To show most followers category
+/**
+ * To show most followers category
+ */
 $.ajax({
     url: "/api/admin/favcategory",
     type: "GET",

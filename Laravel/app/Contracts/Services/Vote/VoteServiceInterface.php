@@ -2,7 +2,6 @@
 
 namespace App\Contracts\Services\Vote;
 
-use Illuminate\Http\Request;
 
 /**
  * Interface for vote service

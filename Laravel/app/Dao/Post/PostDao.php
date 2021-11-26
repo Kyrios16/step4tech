@@ -343,7 +343,7 @@ class PostDao implements PostDaoInterface
         $post->created_user_id = Auth::user()->id ?? 1;
         $post->updated_user_id = Auth::user()->id ?? 1;
         $post->save();
-        $deletedUserId =  Auth::user()->id ?? 1;
+
         $postCateList = PostCategory::where('post_id', $id)->get();
         if ($postCateList) {
             foreach ($postCateList as $postCate) {
@@ -352,7 +352,7 @@ class PostDao implements PostDaoInterface
             }
         }
         foreach ($request['category'] as $category) {
-            $post_category = DB::insert('INSERT into post_category (post_id, category_id) VALUES (?, ?)', [$id, $category]);
+            DB::insert('INSERT into post_category (post_id, category_id) VALUES (?, ?)', [$id, $category]);
         }
 
         return $post;

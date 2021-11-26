@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
                 $this->app->bind('App\Contracts\Dao\Categories\CategoriesDaoInterface', 'App\Dao\Categories\CategoriesDao');
                 $this->app->bind('App\Contracts\Dao\User\UserDaoInterface', 'App\Dao\User\UserDao');
                 $this->app->bind('App\Contracts\Dao\Feedback\FeedbackDaoInterface', 'App\Dao\Feedback\FeedbackDao');
+                $this->app->bind('App\Contracts\Dao\Reply\ReplyDaoInterface', 'App\Dao\Reply\ReplyDao');
                 $this->app->bind('App\Contracts\Dao\Chart\ChartDaoInterface', 'App\Dao\Chart\ChartDao');
                 $this->app->bind('App\Contracts\Dao\Vote\VoteDaoInterface', 'App\Dao\Vote\VoteDao');
 
@@ -28,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
                 $this->app->bind('App\Contracts\Services\Categories\CategoriesServiceInterface', 'App\Services\Categories\CategoriesService');
                 $this->app->bind('App\Contracts\Services\User\UserServiceInterface', 'App\Services\User\UserService');
                 $this->app->bind('App\Contracts\Services\Feedback\FeedbackServiceInterface', 'App\Services\Feedback\FeedbackService');
+                $this->app->bind('App\Contracts\Services\Reply\ReplyServiceInterface', 'App\Services\Reply\ReplyService');
                 $this->app->bind('App\Contracts\Services\Chart\ChartServiceInterface', 'App\Services\Chart\ChartService');
                 $this->app->bind('App\Contracts\Services\Vote\VoteServiceInterface', 'App\Services\Vote\VoteService');
         }
