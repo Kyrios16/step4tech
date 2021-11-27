@@ -1,8 +1,17 @@
+/**
+ * Initial Load
+ *
+ * @return void
+ */
 $(document).ready(function () {
     showPostListInitial();
 });
 
-//Intial
+/**
+ * To show  initial post list
+ *
+ * @return void
+ */
 function showPostListInitial() {
     var data = {
         userId: userId,
@@ -103,6 +112,13 @@ function showPostListInitial() {
 }
 
 var offset = 0;
+
+
+/**
+ * To check window scroll reaches the end 
+ *
+ * @return void
+ */
 $(window).scroll(function () {
     if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
         offset = offset + 8;
@@ -110,6 +126,12 @@ $(window).scroll(function () {
     }
 });
 
+
+/**
+ * To show post list more 
+ *
+ * @return void
+ */
 function showPostListForInitialLoadMore() {
     var data = {
         userId: userId,

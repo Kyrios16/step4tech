@@ -1,8 +1,17 @@
+/**
+ * Initial Load
+ *
+ * @return void
+ */
 $(document).ready(function () {
     showDeletedPostList();
 });
 
-//Intial
+/**
+ * To show deleted post list
+ *
+ * @return void
+ */
 function showDeletedPostList() {
     var data = {
         userId: userId,
@@ -101,6 +110,11 @@ function showDeletedPostList() {
     });
 }
 
+/**
+ * Toggle recover post dropdown 
+ *
+ * @return void
+ */
 function toggleRecoverPostDropdown(button) {
     if (
         $(button)
@@ -120,7 +134,11 @@ function toggleRecoverPostDropdown(button) {
     }
 }
 
-//Close Personal Post Dropdown when click outside of the element
+/**
+ * To close recover dropdown when user clicked outside of the element 
+ *
+ * @return void
+ */
 $(document).on("click", function (event) {
     var $trigger = $(".recover-btn");
     if ($trigger != event.target && !$trigger.has(event.target).length) {
@@ -128,6 +146,12 @@ $(document).on("click", function (event) {
     }
 });
 
+
+/**
+ * To recover post
+ *
+ * @return void
+ */
 function recoverPost(id) {
     $.ajax({
         url: "/api/post/recover/" + id,
