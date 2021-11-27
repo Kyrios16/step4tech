@@ -35,7 +35,7 @@
     var loggedin = {{ auth()->check() ? 'true' : 'false' }};
     var userId = '';
     @auth
-    userId = {{ Auth::user() -> id}};
+    userId = {{ Auth::user()->id }};
     @endauth
   </script>
   @yield('script')
