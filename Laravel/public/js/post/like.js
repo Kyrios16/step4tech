@@ -1,3 +1,8 @@
+/**
+ * Initial Load
+ *
+ * @return void
+ */
 $(document).ready(function () {
     showLikedPostList();
 });

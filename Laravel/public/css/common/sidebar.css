@@ -1,4 +1,6 @@
 .sidebar-container {
+    position: sticky;
+    top: 7.1em;
     background-color: #f5f5f5;
     width: 22%;
     height: 100%;
@@ -106,7 +108,20 @@
 .categories-container {
     padding-top: 7%;
     display: none;
+    max-height: 22em;
+    overflow-y: auto;
 }
+
+.categories-container::-webkit-scrollbar {
+    width: 0.2em;
+  }
+
+.categories-container::-webkit-scrollbar-thumb {
+    background: #34c85b;
+    border-radius: 20px;
+    border: 1px solid #34c85b;
+}
+
 .show {
     display: block;
 }

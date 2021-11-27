@@ -3,7 +3,7 @@ $(document).ready(function () {
 });
 
 /**
- * search post
+ * To search posts
  *
  * @return void
  */
