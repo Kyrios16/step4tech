@@ -6,7 +6,11 @@ function toggleNavProfileDropdown() {
     }
 }
 
-//Close NavProfileDropdown when click outside of the element
+/**
+ * To close nav dropdown when user clicked outside of the element 
+ *
+ * @return void
+ */
 $(document).on("click", function (event) {
     var $trigger = $(".nav-dropdown");
     if ($trigger != event.target && !$trigger.has(event.target).length) {
@@ -14,13 +18,17 @@ $(document).on("click", function (event) {
     }
 });
 
-//Search Function
-$(document).ready(function() {
-    $('.search').keydown(function(event) {
-      // Enter has keyCode = 13
-      if (event.keyCode == 13) {
-        var searchValue = $('.search').val();
-        window.location.href = "/post/search/" + searchValue;
-      }
-    });  
+/**
+ * To send search posts view
+ *
+ * @return void
+ */
+$(document).ready(function () {
+    $(".search").keydown(function (event) {
+        // Enter has keyCode = 13
+        if (event.keyCode == 13) {
+            var searchValue = $(".search").val();
+            window.location.href = "/post/search/" + searchValue;
+        }
+    });
 });

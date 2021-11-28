@@ -3,10 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Services\Chart\ChartServiceInterface;
-use App\Models\Post;
-use DateTime;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class ChartDataController extends Controller
 {

@@ -1,3 +1,8 @@
+/**
+ * Toggle Like in post
+ * @param  button clicked button id
+ * @param  id liked post id
+ */
 function togglePostLike(button, id) {
     if (loggedin) {
         var btnTextArray = $(button).html().split(" ");
@@ -14,13 +19,15 @@ function togglePostLike(button, id) {
                 success: function (res) {
                     //
                 },
-            });            
+            });
             --likeCount;
             if (isNaN(likeCount)) {
                 likeCount = 0;
             }
             $(button).removeClass("post-liked");
-            $(button).html("<i class='far fa-thumbs-up'></i> " + likeCount + " Likes");
+            $(button).html(
+                "<i class='far fa-thumbs-up'></i> " + likeCount + " Likes"
+            );
         } else {
             var data = {
                 postId: id,
@@ -38,8 +45,10 @@ function togglePostLike(button, id) {
                 likeCount = 0;
             }
             ++likeCount;
-            $(button).addClass("post-liked");            
-            $(button).html("<i class='fa fa-thumbs-up'></i> " + likeCount + " Likes");
+            $(button).addClass("post-liked");
+            $(button).html(
+                "<i class='fa fa-thumbs-up'></i> " + likeCount + " Likes"
+            );
         }
     }
     //If user is not in log in state
@@ -48,7 +57,11 @@ function togglePostLike(button, id) {
     }
 }
 
-//Close LikePopup
+/**
+ * To close like pop up 
+ *
+ * @return void
+ */
 function closeLikePopup() {
     $(".likepopup-container").css("display", "none");
 }

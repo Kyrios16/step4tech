@@ -14,7 +14,6 @@
             <h2>User Management</h2>
           </div>
         </div>
-        <!-- header-title-container -->
       </header>
       <main>
         @include('admin.common.analytics')
@@ -22,7 +21,6 @@
           <div class="table-header">
             <h3 class="header-title">Users Lists</h3>
           </div>
-          <!-- table-header -->
           <div class="users-list">
             @foreach ($users as $user)
             <div class="user-profile">
@@ -51,15 +49,10 @@
             </div>
             @endforeach
           </div>
-          <!-- users-list -->
           <a href="{{ route('export.users') }}" class="btn btn-info">Export&nbsp;&nbsp;<i class="fas fa-file-export"></i></a>
         </div>
-        <!-- table-container -->
       </main>
     </div>
-    <!-- main-content -->
   </div>
-  <!-- main-container -->
 </div>
-<!-- container -->
 @endsection

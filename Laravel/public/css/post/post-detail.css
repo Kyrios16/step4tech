@@ -1,4 +1,4 @@
-.category{
+.category {
     text-decoration: none;
     color: #707070;
 }
@@ -42,14 +42,14 @@
 }
 
 .upload-user-info,
-.postupload-user-info{
-      /* display: flex; */
-      float: left;
-      font-size: 0.875rem;
-      padding: 0.4% 0% 0.4% 4%;
-      border-radius: 17px;
-      color: #000000;
-      font-size: 1.0625rem;
+.postupload-user-info {
+    /* display: flex; */
+    float: left;
+    font-size: 0.875rem;
+    padding: 0.4% 0% 0.4% 4%;
+    border-radius: 17px;
+    color: #000000;
+    font-size: 1.0625rem;
 }
 .upload-user-info:hover {
     color: #34c85b;
@@ -65,11 +65,10 @@
     width: 2.2rem;
     border-radius: 50%;
 }
-.upload-user-name{
+.upload-user-name {
     margin-bottom: 0;
     float: right;
     margin-top: 2%;
-
 }
 .feedback-header {
     font-size: 1.3125rem;
@@ -81,23 +80,21 @@
     display: block;
 }
 .feedback-upload-user .profile-img {
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 2rem;
+    width: 2rem;
     margin-right: 15px;
 }
 .feedback-container {
     padding: 2% 0%;
-    /* border: 1px solid #34c85b; */
     border-radius: 12px;
     margin: 2% 0%;
     background-color: #e4e4e459;
-    /* box-shadow: #28a74570 2px 2px 16px; */
 }
 .content {
     word-break: break-all;
 }
 .feedback-content {
-    padding: 1% 7%;
+    padding: 1% 9%;
     word-break: break-all;
 }
 .postbtn-container {
@@ -133,7 +130,7 @@
     resize: none;
     font-size: 0.875rem;
     width: 90%;
-    border-bottom: 1px solid #34c85b ;
+    border-bottom: 1px solid #34c85b;
     background-color: #f5f5f5;
 }
 .input-feedback-content:focus {
@@ -179,7 +176,7 @@
     padding-top: 2%;
 }
 .form-error {
-    color: red;
+    color: #dc3545;
 }
 .delete-icn {
     float: right;
@@ -187,8 +184,28 @@
     color: #707070;
 }
 .delete-icn:hover {
-    color: #34c85b !important;
+    color: #dc3545 !important;
 }
 #feedback-preImg {
     display: none;
+}
+
+.replyBtn {
+    border: none;
+    background: none;
+    font-size: 0.8rem;
+    color: #6883db;
+    padding-left: 4%;
+}
+
+.replyBtn:hover {
+    cursor: pointer;
+}
+
+.reply-container .feedback-txtfield {
+    padding: 0 10%;
+}
+
+.reply-container .feedback-container {
+    margin-left: 10%;
 }

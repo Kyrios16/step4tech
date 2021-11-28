@@ -22,33 +22,7 @@ class PostDao implements PostDaoInterface
      */
     public function getPostListForInitial($request)
     {
-        if ($request->userId == '') {
-            $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
-                                            GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
-                                            GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
-                                            COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
-                                            FROM posts
-                                            LEFT JOIN votes ON (votes.post_id = posts.id)
-                                            LEFT JOIN feedbacks ON (feedbacks.post_id = posts.id)
-                                            INNER JOIN users ON (users.id = posts.created_user_id) 
-                                            INNER JOIN post_category ON (post_category.post_id = posts.id)
-                                            INNER JOIN categories ON (categories.id = post_category.category_id)
-                                            WHERE posts.deleted_at IS NULL
-                                            AND votes.deleted_at IS NULL
-                                            AND feedbacks.deleted_at IS NULL
-                                            AND users.deleted_at IS NULL
-                                            AND post_category.deleted_at IS NULL
-                                            AND categories.deleted_at IS NULL
-                                            GROUP BY posts.id
-                                            ORDER BY posts.updated_at DESC
-                                            LIMIT 8 OFFSET 0"));
-        } else {
-            $user_category_names = DB::select(DB::raw("SELECT categories.name FROM categories, user_category
-                                                WHERE categories.id = user_category.category_id
-                                                AND categories.deleted_at IS NULL
-                                                AND user_category.deleted_at IS NULL
-                                                AND user_category.user_id = :userId"), array("userId" => $request->userId));
-            $mysql = "SELECT * FROM (SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, posts.updated_at,
+        $query = "SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, posts.updated_at,
                     users.id AS userId,
                     GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
                     GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
@@ -65,7 +39,16 @@ class PostDao implements PostDaoInterface
                     AND users.deleted_at IS NULL
                     AND post_category.deleted_at IS NULL
                     AND categories.deleted_at IS NULL
-                    GROUP BY posts.id) AS result";
+                    GROUP BY posts.id";
+        if ($request->userId == '') {
+            return DB::select(DB::raw($query . " ORDER BY posts.updated_at DESC LIMIT 8 OFFSET 0"));
+        } else {
+            $user_category_names = DB::select(DB::raw("SELECT categories.name FROM categories, user_category
+                                                WHERE categories.id = user_category.category_id
+                                                AND categories.deleted_at IS NULL
+                                                AND user_category.deleted_at IS NULL
+                                                AND user_category.user_id = :userId"), array("userId" => $request->userId));
+            $mysql = "SELECT * FROM (" . $query . ") AS result";
             if (count($user_category_names) > 0) {
                 $mysql .= " ORDER BY CASE result.post_categories WHEN";
                 $no_of_category = 0;
@@ -81,9 +64,8 @@ class PostDao implements PostDaoInterface
             } else {
                 $mysql .= " ORDER BY result.updated_at DESC LIMIT 8 OFFSET 0";
             }
-            $postList = DB::select(DB::raw($mysql));
+            return DB::select(DB::raw($mysql));
         }
-        return $postList;
     }
 
     /**
@@ -93,33 +75,7 @@ class PostDao implements PostDaoInterface
      */
     public function getPostListForInitialLoadMore($request)
     {
-        if ($request->userId == '') {
-            $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
-                                            GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
-                                            GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
-                                            COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
-                                            FROM posts
-                                            LEFT JOIN votes ON (votes.post_id = posts.id)
-                                            LEFT JOIN feedbacks ON (feedbacks.post_id = posts.id)
-                                            INNER JOIN users ON (users.id = posts.created_user_id) 
-                                            INNER JOIN post_category ON (post_category.post_id = posts.id)
-                                            INNER JOIN categories ON (categories.id = post_category.category_id)
-                                            WHERE posts.deleted_at IS NULL
-                                            AND votes.deleted_at IS NULL
-                                            AND feedbacks.deleted_at IS NULL
-                                            AND users.deleted_at IS NULL
-                                            AND post_category.deleted_at IS NULL
-                                            AND categories.deleted_at IS NULL
-                                            GROUP BY posts.id
-                                            ORDER BY posts.updated_at DESC
-                                            LIMIT 8 OFFSET :offset"), array("offset" => $request->offset));
-        } else {
-            $user_category_names = DB::select(DB::raw("SELECT categories.name FROM categories, user_category
-                                                WHERE categories.id = user_category.category_id
-                                                AND categories.deleted_at IS NULL
-                                                AND user_category.deleted_at IS NULL
-                                                AND user_category.user_id = :userId"), array("userId" => $request->userId));
-            $mysql = "SELECT * FROM (SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, posts.updated_at,
+        $query = "SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, posts.updated_at,
                     users.id AS userId,
                     GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
                     GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
@@ -136,7 +92,17 @@ class PostDao implements PostDaoInterface
                     AND users.deleted_at IS NULL
                     AND post_category.deleted_at IS NULL
                     AND categories.deleted_at IS NULL
-                    GROUP BY posts.id) AS result";
+                    GROUP BY posts.id";
+        if ($request->userId == '') {
+            return DB::select(DB::raw($query . " ORDER BY posts.updated_at DESC
+                                            LIMIT 8 OFFSET :offset"), array("offset" => $request->offset));
+        } else {
+            $user_category_names = DB::select(DB::raw("SELECT categories.name FROM categories, user_category
+                                                WHERE categories.id = user_category.category_id
+                                                AND categories.deleted_at IS NULL
+                                                AND user_category.deleted_at IS NULL
+                                                AND user_category.user_id = :userId"), array("userId" => $request->userId));
+            $mysql = "SELECT * FROM (" . $query . ") AS result";
             if (count($user_category_names) > 0) {
                 $mysql .= " ORDER BY CASE result.post_categories WHEN";
                 $no_of_category = 0;
@@ -152,9 +118,8 @@ class PostDao implements PostDaoInterface
             } else {
                 $mysql .= " ORDER BY result.updated_at DESC LIMIT 8 OFFSET " . $request->offset;
             }
-            $postList = DB::select(DB::raw($mysql));
+            return DB::select(DB::raw($mysql));
         }
-        return $postList;
     }
 
     /**
@@ -164,7 +129,7 @@ class PostDao implements PostDaoInterface
      */
     public function getLikedPostList($request)
     {
-        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
+        return DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
                                         GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
                                         GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
                                         COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
@@ -183,7 +148,6 @@ class PostDao implements PostDaoInterface
                                         AND categories.deleted_at IS NULL
                                         GROUP BY posts.id
                                         ORDER BY posts.updated_at DESC"), array('userId' => $request->userId));
-        return $postList;
     }
 
     /**
@@ -193,7 +157,7 @@ class PostDao implements PostDaoInterface
      */
     public function getDeletedPostList($request)
     {
-        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
+        return DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
                                         GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
                                         GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
                                         COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
@@ -212,7 +176,6 @@ class PostDao implements PostDaoInterface
                                         AND categories.deleted_at IS NULL
                                         GROUP BY posts.id
                                         ORDER BY posts.updated_at DESC"), array('userId' => $request->userId));
-        return $postList;
     }
 
     /**
@@ -222,7 +185,7 @@ class PostDao implements PostDaoInterface
      */
     public function searchPost($searchValue)
     {
-        $postList = DB::select(DB::raw("SELECT * FROM
+        return DB::select(DB::raw("SELECT * FROM
                                         ((SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.updated_at, posts.title,
                                         users.id AS userId,
                                         GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
@@ -267,9 +230,7 @@ class PostDao implements PostDaoInterface
             'categorySearchValue' => '%' . $searchValue . '%',
             'userSearchValue' => '%' . $searchValue . '%',
             'postSearchValue' => '%' . $searchValue . '%',
-
         ));
-        return $postList;
     }
 
     /**
@@ -297,7 +258,6 @@ class PostDao implements PostDaoInterface
         $post->created_user_id = Auth::user()->id ?? 1;
         $post->updated_user_id = Auth::user()->id ?? 1;
         $post->save();
-        info($request['category']);
         foreach ($request['category'] as $category) {
             $postCategory = new PostCategory();
             $postCategory->post_id = $postid;
@@ -343,7 +303,7 @@ class PostDao implements PostDaoInterface
         $post->created_user_id = Auth::user()->id ?? 1;
         $post->updated_user_id = Auth::user()->id ?? 1;
         $post->save();
-        $deletedUserId =  Auth::user()->id ?? 1;
+
         $postCateList = PostCategory::where('post_id', $id)->get();
         if ($postCateList) {
             foreach ($postCateList as $postCate) {
@@ -352,7 +312,7 @@ class PostDao implements PostDaoInterface
             }
         }
         foreach ($request['category'] as $category) {
-            $post_category = DB::insert('INSERT into post_category (post_id, category_id) VALUES (?, ?)', [$id, $category]);
+            DB::insert('INSERT into post_category (post_id, category_id) VALUES (?, ?)', [$id, $category]);
         }
 
         return $post;
@@ -444,7 +404,7 @@ class PostDao implements PostDaoInterface
      */
     public function getPersonalPostList($request)
     {
-        $postList = DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
+        return DB::select(DB::raw("SELECT posts.id, users.name, users.profile_img, posts.created_at, posts.title, users.id AS userId,
                                         GROUP_CONCAT(DISTINCT categories.name) AS post_categories,
                                         GROUP_CONCAT(DISTINCT votes.user_id) AS post_voted_userid,
                                         COUNT(DISTINCT feedbacks.id) AS no_of_feedbacks
@@ -463,7 +423,6 @@ class PostDao implements PostDaoInterface
                                         AND categories.deleted_at IS NULL
                                         GROUP BY posts.id
                                         ORDER BY posts.updated_at DESC"), array('userId' => $request->userId));
-        return $postList;
     }
 
     /**
@@ -473,7 +432,6 @@ class PostDao implements PostDaoInterface
      */
     public function recoverPostById($id)
     {
-        $post = Post::withTrashed()->find($id)->restore();
-        return $post;
+        return Post::withTrashed()->find($id)->restore();
     }
 }

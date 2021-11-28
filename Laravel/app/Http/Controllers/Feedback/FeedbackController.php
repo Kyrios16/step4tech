@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Feedback;
 
-use Illuminate\Http\Request;;
+use Illuminate\Http\Request;
 use App\Contracts\Services\Feedback\FeedbackServiceInterface;
 use App\Contracts\Services\Post\PostServiceInterface;
 use App\Contracts\Services\User\UserServiceInterface;

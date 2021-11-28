@@ -3,8 +3,9 @@
 namespace App\Services\Feedback;
 
 use App\Contracts\Dao\Feedback\FeedbackDaoInterface;
-use App\Contracts\Dao\User\UserDaoInterface;
 use App\Contracts\Services\Feedback\FeedbackServiceInterface;
+use Carbon\Carbon;
+use DateTime;
 
 /**
  * User Service class
@@ -33,8 +34,17 @@ class FeedbackService implements FeedbackServiceInterface
      */
     public function getFeedbackbyPostId($Id)
     {
-        return $this->feedbackDao->getFeedbackbyPostId($Id);
+        $feedbackList = $this->feedbackDao->getFeedbackbyPostId($Id);
+        foreach ($feedbackList as $feedback) {
+            $currentDate = new DateTime();
+            $startTime = Carbon::parse($currentDate);
+            $endTime = Carbon::parse($feedback->created_at);
+            $totalDuration = $endTime->diffForHumans($startTime);
+            $feedback->time = $totalDuration;
+        }
+        return $feedbackList;
     }
+
     /**
      * To create feedback
      * 
