@@ -26,9 +26,11 @@
       </div>
       @auth
       @if($viewUser->id == Auth::user()->id)
-      <a href="{{ route('edit-user') }}" class="setting">
-        <i class="fas fa-cog"></i>
-      </a>
+      <div  class="setting">
+        <a href="{{ route('edit-user') }}">
+          <i class="fas fa-cog"></i>
+        </a>
+      </div>
       @endif
       @endauth
       <div class="name-bio">
