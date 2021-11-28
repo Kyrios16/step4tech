@@ -44,20 +44,17 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         // manage users
         Route::get('/admin/users', [UserController::class, 'index'])->name('show.userList');
         Route::delete('/admin/users/{id}', [UserController::class, 'deleteUserById'])->name('delete.user');
-        Route::get('/users/export', [UserController::class, 'export'])->name('export.users');
         Route::get('/admin/users/profile/{id}', [UserController::class, 'showUserProfile']);
 
         // manage posts 
         Route::get('/admin/posts', [PostController::class, 'index'])->name('show.postList');
         Route::delete('/admin/post/delete/{id}', [PostController::class, 'deletePostById']);
-        Route::get('/posts/export', [PostController::class, 'export'])->name('export.posts');
 
         // manage categories 
         Route::get('/admin/categories', function () {
             return view('admin.categories.categories-manage');
         })->name('show.categories');
         Route::post('/admin/categories/create',  [CategoriesController::class, 'getCateCreate'])->name('add.categories');
-        Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
     });
     /* admin management routes end*/
 
@@ -125,3 +122,14 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
      */
     Route::get('/reply/delete/{replyId}',  [ReplyController::class, 'deleteReply'])->name("delete.reply");
 });
+
+/* Export by admin */
+
+//Manage Users
+Route::get('/users/export', [UserController::class, 'export'])->name('export.users');
+
+//Manage Categories
+Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
+
+//Manage Post
+Route::get('/posts/export', [PostController::class, 'export'])->name('export.posts');
