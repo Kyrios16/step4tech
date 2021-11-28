@@ -43,8 +43,8 @@
                   <td>{{ $post->photo }}</td>
                   <td>{{ $post->created_user_id }}</td>
                   <td>{{ $post->updated_user_id }}</td>
-                  <td>{{ $post->created_at }}</td>
-                  <td>{{ $post->updated_at }}</td>
+                  <td>{{ $post->created_at->format('d-m-Y') }}</td>
+                  <td>{{ $post->updated_at->format('d-m-Y') }}</td>
                   <td>
                     <a href="{{ route('detail.post', $post->id) }}" class="icon-btn-info"><i class="far fa-eye"></i></a> |
                     <a href="{{ route('edit.post', $post->id) }}" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |

@@ -32,8 +32,8 @@
                   <p class="user-position">Position:&nbsp;{{ $user->position }}</p>
                   <p class="dob">DOB:&nbsp;{{ $user->date_of_birth }}</p>
                   <div class="links">
-                    <a target="_blank" href="https://codepen.io/l-e-e/"><i class="fab fa-linkedin"></i></a>
-                    <a target="_blank" href="https://github.com/Leena26"><i class="fab fa-github"></i></a>
+                    <a target="_blank" href="{{ $user->linkedin }}"><i class="fab fa-linkedin"></i></a>
+                    <a target="_blank" href="{{ $user->github }}"><i class="fab fa-github"></i></a>
                   </div>
                 </div>
               </div>
