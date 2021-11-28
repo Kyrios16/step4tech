@@ -1,9 +1,8 @@
 /**
- *
- * @param  button
- * @param  id
+ * Toggle Like in post
+ * @param  button clicked button id
+ * @param  id liked post id
  */
-
 function togglePostLike(button, id) {
     if (loggedin) {
         var btnTextArray = $(button).html().split(" ");
@@ -58,7 +57,11 @@ function togglePostLike(button, id) {
     }
 }
 
-//Close LikePopup
+/**
+ * To close like pop up 
+ *
+ * @return void
+ */
 function closeLikePopup() {
     $(".likepopup-container").css("display", "none");
 }
