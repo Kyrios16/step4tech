@@ -101,7 +101,7 @@
         </div>
 
         <div class="button-group clearfix">
-          <input type="submit" class="btn btn-success" name="create" value="Update">
+          <input type="submit" class="btn btn-success" name="update" value="Update">
           <a href="{{ route('user-view', $user->id) }}" class="btn cancel-btn" name="cancel_btn">Cancel</a>
         </div>
 
