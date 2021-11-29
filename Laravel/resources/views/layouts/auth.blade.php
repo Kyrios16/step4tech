@@ -15,12 +15,14 @@
   <link rel="stylesheet" href="{{ asset('css/app-login.css') }}">
   <link rel="stylesheet" href="{{ asset('css/login.css') }}">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+  <link rel="stylesheet" href="{{ asset('css/common/nav.css') }}">
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
 <body>
+@include('common.nav')
   <div class="font-sans text-gray-900 antialiased">
     {{ $slot }}
   </div>

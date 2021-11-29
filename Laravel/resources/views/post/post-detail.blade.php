@@ -95,7 +95,7 @@
     @foreach($feedbackList as $feedback)
     <div class="feedback-container clearfix">
       <div class="upload-user clearfix feedback-upload-user">
-        <a href="#" class="upload-user-info">
+        <a href="/user/view/{{$feedback->created_user_id}}" class="upload-user-info">
           <img class="profile-img" class="preview-img" src="{{ URL::to('/') }}/images/profile/{{ $feedback->profile_img }}" alt="user image">
           <p class="upload-user-name">{{$feedback->name}}</p>
         </a>
