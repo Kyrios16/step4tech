@@ -14,6 +14,7 @@ class Feedback extends Model
         'post_id',
         'content',
         'photo',
+        'green_mark',
         'created_user_id',
         'updated_user_id',
         'deleted_user_id'

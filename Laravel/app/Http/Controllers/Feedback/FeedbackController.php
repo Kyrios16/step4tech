@@ -82,9 +82,9 @@ class FeedbackController extends Controller
      * @param Request $request 
      * @return $message 
      */
-    public function selectGreenmark(Request $request)
+    public function selectGreenmark($feedback_id)
     {
-        $greenmark = $this->feedbackInterface->selectGreenmark($request); 
+        $greenmark = $this->feedbackInterface->selectGreenmark($feedback_id);
         return back();
     }
 }

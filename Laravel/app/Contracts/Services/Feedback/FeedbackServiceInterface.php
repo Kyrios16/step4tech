@@ -35,5 +35,5 @@ interface FeedbackServiceInterface
      * @param Request $request 
      * @return $message 
      */
-    public function selectGreenmark($request);
+    public function selectGreenmark($feedback_id);
 }
