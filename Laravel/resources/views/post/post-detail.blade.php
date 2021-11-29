@@ -140,7 +140,7 @@
 
                 @auth
                 @if(Auth::user()->id == $feedback->created_user_id)
-                <a class="delete-icn" href="{!! route('feedback.delete', ['id'=>$feedback->id,]) !!}"><i class="fas fa-trash-alt"></i></a>
+                <a class="delete-icn" href="{!! route('feedback.delete', ['id'=>$feedback->id,]) !!}" onclick="return confirm('Are you sure want to delete?')"><i class="fas fa-trash-alt"></i></a>
                 @endif
                 @endauth
                 <button class="replyBtn" data-id="{{ $feedback->id }}">
