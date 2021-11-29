@@ -1,7 +1,7 @@
 @component('mail::message')
 # Password Changed Confirmation
 
-**Your Password** successfully changed.<br>
+**{{$data['name']}}**, your password successfully changed.<br>
 Please Login with your **New Password**.
 
 @component('mail::button', ['url' => $data['url']])

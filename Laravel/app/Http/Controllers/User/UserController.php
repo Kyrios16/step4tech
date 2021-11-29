@@ -99,7 +99,7 @@ class UserController extends Controller
         $data = [
             'subject' => 'Password Changed Confirmation',
             'url' => 'http://127.0.0.1:8000/login',
-            'content' => 'Password Changed Successfully'
+            'name' => $authuser->name
         ];
 
         Mail::to($email)->send(new PasswordChangeMail($data));
