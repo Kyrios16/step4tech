@@ -27,7 +27,7 @@ class UserEditRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255',  Rule::unique('users')p->ignore(Auth::user()->id)],
+            'email' => ['required', 'string', 'email', 'max:255',  Rule::unique('users')->ignore(Auth::user()->id)],
             'profile_img' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'cover_img' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'github' => ['max:255'],

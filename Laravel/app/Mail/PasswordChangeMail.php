@@ -7,19 +7,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class FeedbackMail extends Mailable
+class PasswordChangeMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $feedbackInfo;
+    private $data;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($feedbackInfo)
+    public function __construct($data)
     {
-        $this->feedbackInfo = $feedbackInfo;
+        $this->data = $data;
     }
 
     /**
@@ -29,8 +29,8 @@ class FeedbackMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.FeedbackSendMail')
-            ->subject("New Feedback Notification")
-            ->with('feedbackInfo', $this->feedbackInfo);
+        return $this->markdown('emails.password-mail')
+            ->subject("Password Change Confirmation")
+            ->with('data', $this->data);
     }
 }

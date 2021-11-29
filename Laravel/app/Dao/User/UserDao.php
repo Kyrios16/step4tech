@@ -17,8 +17,7 @@ class UserDao implements UserDaoInterface
      */
     public function getUserById($id)
     {
-        $user = User::findOrFail($id);
-        return $user;
+        return $user = User::findOrFail($id);
     }
 
     /**
@@ -27,8 +26,7 @@ class UserDao implements UserDaoInterface
      */
     public function getUserList()
     {
-        $userlist = User::orderBy('created_at', 'asc')->get();
-        return $userlist;
+        return $userlist = User::orderBy('created_at', 'asc')->get();
     }
 
     /**
@@ -77,12 +75,13 @@ class UserDao implements UserDaoInterface
      */
     public function changeUserPassword($validated)
     {
-        $user = User::find(auth()->user()->id)
-            ->update([
-                'password' => Hash::make($validated['new_password']),
-                'updated_user_id' => Auth::user()->id
-            ]);
-        return $user;
+        return DB::transaction(function () use ($validated) {
+            $user = User::find(auth()->user()->id)
+                ->update([
+                    'password' => Hash::make($validated['new_password']),
+                    'updated_user_id' => Auth::user()->id
+                ]);
+        });
     }
 
     /**

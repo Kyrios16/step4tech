@@ -10,6 +10,7 @@ use App\Http\Requests\UserPasswordChangeRequest;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
+use App\Mail\PasswordChangeMail;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
@@ -92,19 +93,16 @@ class UserController extends Controller
     {
         // validation for request values
         $validated = $request->validated();
-        $user = $this->userInterface->changeUserPassword($validated);
+       // $user = $this->userInterface->changeUserPassword($validated);
         $authuser = User::find(auth()->user()->id);
         $email = $authuser->email;
         $data = [
             'subject' => 'Password Changed Confirmation',
-            'email' => $email,
+            'url' => 'http://127.0.0.1:8000/login',
             'content' => 'Password Changed Successfully'
         ];
 
-        Mail::send('password-mail', $data, function ($message) use ($data) {
-            $message->to($data['email'])
-                ->subject($data['subject']);
-        });
+        Mail::to($email)->send(new PasswordChangeMail($data));
         return redirect('/');
     }
     /**
