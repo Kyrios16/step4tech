@@ -59,6 +59,19 @@ class ReplyService implements ReplyServiceInterface
     }
 
     /**
+     * To update reply
+     * 
+     * @param $request
+     * @param $id reply id
+     * @return $reply updated reply 
+     */
+    public function updatedReply($request, $id)
+    {
+        return $this->replyDao->updatedReply($request, $id);
+    }
+
+
+    /**
      * To delete reply
      * 
      * @param $id

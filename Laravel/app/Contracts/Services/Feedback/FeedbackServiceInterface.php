@@ -22,6 +22,15 @@ interface FeedbackServiceInterface
      * @return $feedback created new feedback
      */
     public function createFeedback($request, $id);
+
+    /**
+     * To update feedback
+     * 
+     * @param $request
+     * @param $id feedback id
+     * @return $feedback updated feedback 
+     */
+    public function updateFeedback($request, $id);
     /**
      * To delete feed$feedbackgory
      * 

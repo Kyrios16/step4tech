@@ -32,7 +32,7 @@
               @enderror
               <form action="{{ route('add.categories') }}" method="POST">
                 {{ csrf_field() }}
-                <input type="text" name="name" class="@error ('name') is-invalid @enderror" placeholder="add new category">
+                <input type="text" name="name" class="@error('name') is-invalid @enderror" placeholder="add new category">
                 <button type="submit" class="btn btn-success" onclick="createBtn()"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New</button>
               </form>
             </div>

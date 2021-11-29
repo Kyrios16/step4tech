@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .category {
     text-decoration: none;
     color: #707070;
@@ -43,7 +44,6 @@
 
 .upload-user-info,
 .postupload-user-info {
-    /* display: flex; */
     float: left;
     font-size: 0.875rem;
     padding: 0.4% 0% 0.4% 4%;
@@ -122,7 +122,8 @@
 .feedback-img {
     width: 50%;
 }
-.feedback-txtfield {
+.feedback-txtfield,
+.reply-txtfield {
     padding: 3% 0%;
 }
 .input-feedback-content {
@@ -137,7 +138,8 @@
     outline: none;
 }
 .uploadLabel,
-.feedback-send {
+.feedback-send,
+.reply-send {
     text-align: center;
     border-radius: 5px;
     display: inline-block;
@@ -149,7 +151,8 @@
     font-size: 1.58rem;
     background: transparent;
 }
-.feedback-send {
+.feedback-send,
+.reply-send {
     background: transparent;
     text-decoration: none;
     border: none;
@@ -179,8 +182,6 @@
     color: #dc3545;
 }
 .delete-icn {
-    float: right;
-    padding-right: 4%;
     color: #707070;
 }
 .delete-icn:hover {
@@ -202,10 +203,32 @@
     cursor: pointer;
 }
 
-.reply-container .feedback-txtfield {
-    padding: 0 10%;
+.reply-container .reply-txtfield {
+    padding-left: 15%;
 }
 
 .reply-container .feedback-container {
     margin-left: 10%;
+}
+
+.action {
+    float: right;
+    padding-right: 5%;
+    color: #707070;
+}
+
+.icon-btn-warning:hover {
+    color: #fd7e14;
+}
+
+.icon-btn-danger {
+    color: #dc3545;
+}
+
+.icon-btn-warning,
+.icon-btn-danger,
+.btn-close {
+    border: none;
+    background: none;
+    cursor: pointer;
 }

@@ -60,6 +60,32 @@ class FeedbackDao implements FeedbackDaoInterface
     }
 
     /**
+     * To update feedback
+     * 
+     * @param $request
+     * @param $id feedback id
+     * @return $feedback updated feedback 
+     */
+    public function updateFeedback($request, $id)
+    {
+        return DB::transaction(function () use ($request, $id) {
+            $feedback = Feedback::findOrFail($id);
+            if ($file = $request->hasFile('photo')) {
+                $file = $request->file('photo');
+                $extension = $file->getClientOriginalExtension();
+                $newName = "feedback_" . $id . "." . $extension;
+                $destinationPath = public_path() . '/images/replies/';
+                $file->move($destinationPath, $newName);
+                $feedback->photo = $newName;
+            }
+            $feedback->content = $request->content;
+            $feedback->created_user_id = Auth::user()->id ?? 1;
+            $feedback->updated_user_id = Auth::user()->id ?? 1;
+            $feedback->save();
+        });
+    }
+
+    /**
      * To delete $feedback
      * 
      * @param $id

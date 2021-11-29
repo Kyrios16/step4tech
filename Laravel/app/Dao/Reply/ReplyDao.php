@@ -68,6 +68,32 @@ class ReplyDao implements ReplyDaoInterface
     }
 
     /**
+     * To update reply
+     * 
+     * @param $request
+     * @param $id reply id
+     * @return $reply updated reply 
+     */
+    public function updatedReply($request, $id)
+    {
+        return DB::transaction(function () use ($request, $id) {
+            $reply = Reply::findOrFail($id);
+            if ($file = $request->hasFile('photo')) {
+                $file = $request->file('photo');
+                $extension = $file->getClientOriginalExtension();
+                $newName = "feedback_" . $id . "." . $extension;
+                $destinationPath = public_path() . '/images/replies/';
+                $file->move($destinationPath, $newName);
+                $reply->photo = $newName;
+            }
+            $reply->content = $request->content;
+            $reply->created_user_id = Auth::user()->id ?? 1;
+            $reply->updated_user_id = Auth::user()->id ?? 1;
+            $reply->save();
+        });
+    }
+
+    /**
      * To delete reply
      * 
      * @param $id reply id

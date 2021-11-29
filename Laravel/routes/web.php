@@ -101,6 +101,12 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::post('/post/feedback/{id}',  [FeedbackController::class, 'createFeedback'])->name('feedback.post');
 
     /**
+     * Feedback Update
+     */
+    Route::get('/feedback/show/{id}', [FeedbackController::class, 'show']);
+    Route::get('/feedback/update/{id}', [FeedbackController::class, 'updateFeedback']);
+
+    /**
      * Feedback Delete
      */
     Route::get('/feedback/delete/{id}',  [FeedbackController::class, 'deleteFeedback'])->name('feedback.delete');
@@ -119,6 +125,12 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
      * Create reply for feedback 
      */
     Route::post('/post/{post}/feedback/{feedback}/reply',  [ReplyController::class, 'createReply'])->name("create.reply");
+
+    /**
+     * Edit reply for feedback 
+     */
+    Route::get('/show/{id}', [ReplyController::class, 'show']);
+    Route::get('/update/{id}', [ReplyController::class, 'updatedReply'])->name('update.reply');
 
     /**
      * Delete reply  
