@@ -72,8 +72,8 @@ class FeedbackService implements FeedbackServiceInterface
      * @param Request $request 
      * @return $message 
      */
-    public function selectGreenmark($request)
+    public function selectGreenmark($feedback_id)
     {
-        return $this->feedbackDao->selectGreenmark($request);
+        return $this->feedbackDao->selectGreenmark($feedback_id);
     }
 }

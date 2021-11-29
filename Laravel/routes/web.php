@@ -96,7 +96,10 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
      * Feedback Create
      */
     Route::post('/post/feedback/{id}',  [FeedbackController::class, 'createFeedback'])->name('feedback.post');
-
+    /**
+     * Greenmark Create
+     */
+    Route::get('/feedback/greenmark/{feedback_id}',  [FeedbackController::class, 'selectGreenmark'])->name('feedback.greenmark');
     /**
      * Feedback Delete
      */
