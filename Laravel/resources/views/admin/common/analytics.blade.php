@@ -25,7 +25,7 @@
       <i class="fas fa-thumbs-up"></i>
     </div>
     <div class="analytic-info">
-      <small>Most Liked Post</small>
+      <small>Most Popular Post(Total Likes)</small>
       <h2 id="total-likes"></h2>
     </div>
   </div>

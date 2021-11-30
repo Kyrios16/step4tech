@@ -121,7 +121,7 @@ class UserController extends Controller
     /**
      * To count total number of users
      * 
-     * @return Analytics blade with number of users
+     * @return Object Analytics blade with number of users
      */
     public function countTotalUsers()
     {
@@ -132,12 +132,13 @@ class UserController extends Controller
     /**
      * To delete user by id
      * 
-     * @return redirect url
+     * @param int $id user id
+     * @return Object user object
      */
     public function deleteUserById($id)
     {
-        $this->userInterface->deleteUserById($id);
-        return redirect('/admin/users');
+        $user= $this->userInterface->deleteUserById($id);
+        return response()->json($user);
     }
 
     /**

@@ -43,13 +43,11 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
         // manage users
         Route::get('/admin/users', [UserController::class, 'index'])->name('show.userList');
-        Route::delete('/admin/users/{id}', [UserController::class, 'deleteUserById'])->name('delete.user');
         Route::get('/users/export', [UserController::class, 'export'])->name('export.users');
         Route::get('/admin/users/profile/{id}', [UserController::class, 'showUserProfile']);
 
         // manage posts 
         Route::get('/admin/posts', [PostController::class, 'index'])->name('show.postList');
-        Route::delete('/admin/post/delete/{id}', [PostController::class, 'deletePostById']);
         Route::get('/posts/export', [PostController::class, 'export'])->name('export.posts');
 
         // manage categories 

@@ -17,7 +17,7 @@
       </header>
       <main>
         @include('admin.common.analytics')
-        <div class="table-container">
+        <div class="table-container clearfix">
           <div class="table-header">
             <h3 class="header-title">Posts Table</h3>
           </div>
@@ -48,18 +48,14 @@
                   <td>
                     <a href="{{ route('detail.post', $post->id) }}" class="icon-btn-info"><i class="far fa-eye"></i></a> |
                     <a href="{{ route('edit.post', $post->id) }}" class="icon-btn-warning"><i class="fas fa-pencil-alt"></i></a> |
-                    <form action="{{ url('/admin/post/delete/'.$post->id) }}" method="POST" class="deleteBtn">
-                      {{ csrf_field() }}
-                      {{ method_field('DELETE') }}
-                      <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
-                    </form>
+                    <button type="submit" class="icon-btn-danger" onclick="deletePost({{$post->id}})"><i class="fas fa-trash-alt"></i></button>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
           </div>
-          <a href="{{ route('export.posts') }}" class="btn btn-info">Export&nbsp;&nbsp;<i class="fas fa-file-export"></i></a>
+          <a href="{{ route('export.posts') }}" class="btn btn-info export-btn">Export&nbsp;&nbsp;<i class="fas fa-file-export"></i></a>
         </div>
       </main>
     </div>

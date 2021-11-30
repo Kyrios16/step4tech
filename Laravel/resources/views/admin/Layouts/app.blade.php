@@ -26,6 +26,7 @@
   <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
   <script src="{{ asset('js/lib/popper.min.js') }}"></script>
   <script src="{{ asset('js/lib/jquery.heightLine.js') }}"></script>
+  <script src="{{ asset('js/lib/sweetalert.min.js') }}"></script>
   <script src="{{ asset('js/admin/admin-common.js') }}"></script>
   @yield('script')
 

@@ -36,7 +36,7 @@ $(document).ready(function () {
 /**
  * To delete category pop-up model and show old data in input box
  *
- * @param category id
+ * @param int category id
  * @return void
  */
 function destroy(id) {
@@ -65,7 +65,7 @@ function destroy(id) {
 /**
  * To open edit category pop-up model and show old data in input box
  *
- * @param category id
+ * @param int category id
  * @return void
  */
 function editCategory(id) {

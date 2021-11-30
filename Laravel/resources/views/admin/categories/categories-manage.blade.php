@@ -23,7 +23,7 @@
       </header>
       <main>
         @include('admin.common.analytics')
-        <div class="table-container">
+        <div class="table-container clearfix">
           <div class="table-header clearfix">
             <h3 class="header-title">Categories Table</h3>
             <div class="new-cate">
@@ -64,7 +64,7 @@
               </tbody>
             </table>
           </div>
-          <a href="{{ route('export.categories') }}" class="btn btn-info">Export&nbsp;&nbsp;<i class="fas fa-file-export"></i></a>
+          <a href="{{ route('export.categories') }}" class="btn btn-info export-btn">Export&nbsp;&nbsp;<i class="fas fa-file-export"></i></a>
         </div>
       </main>
     </div>
