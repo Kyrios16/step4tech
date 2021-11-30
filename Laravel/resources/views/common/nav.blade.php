@@ -2,7 +2,7 @@
   <div class="nav-wrapper">
     <div class="nav-list">
       <h1><a href="/"><img src="{{ asset('images/logo.png') }}" alt="Step4Tech"></a></h1>
-      @if(!Request::is('user/register'))
+      @if(!Request::is('user/register') && !Request::is('forgot-password'))
       <div class="search-container">
         <input class="search" type="text" placeholder="Search . . ." name="search"><i class="fa fa-search search-ico"></i>
       </div>
