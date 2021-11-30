@@ -85,3 +85,4 @@ Route::get('/admin/chart', [ChartDataController::class, 'getDailyPostCount']);
  * To Recover Post
  */
 Route::post('/post/recover/{id}', [PostAPIController::class, 'recoverPostById']);
+

@@ -9,6 +9,7 @@
 <script src="{{ asset('js/post/like-btn.js') }}"></script>
 <script src="{{ asset('js/post/post-detail.js') }}"></script>
 <script src="{{ asset('js/post/post-create.js') }}"></script>
+<script src="{{ asset('js/post/replies-edit.js') }}"></script>
 <script>
   /**
    * To show edit popup model

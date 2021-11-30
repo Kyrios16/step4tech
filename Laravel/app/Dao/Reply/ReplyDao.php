@@ -21,8 +21,8 @@ class ReplyDao implements ReplyDaoInterface
     public function getReplyByPostAndFeedbackId($Id)
     {
         $replies = DB::select(DB::raw(
-            "SELECT replies.created_user_id, replies.id as replyId, replies.content,
-                replies.created_at, replies.photo, replies.feedback_id,
+            "SELECT replies.created_user_id, replies.id as replyId, replies.reply_content,
+                replies.created_at, replies.reply_photo, replies.feedback_id,
                 users.name, users.profile_img, feedbacks.id 
             FROM replies, users, feedbacks
             WHERE users.id = replies.created_user_id
@@ -50,15 +50,15 @@ class ReplyDao implements ReplyDaoInterface
             $replies = DB::table("replies")->get();
             $replyId = count($replies) + 1;
             $reply = new Reply();
-            if ($file = $request->hasFile('photo')) {
-                $file = $request->file('photo');
+            if ($file = $request->hasFile('replies')) {
+                $file = $request->file('replies');
                 $extension = $file->getClientOriginalExtension();
-                $newName = "feedback_" . $replyId . "." . $extension;
+                $newName = "reply_" . $replyId . "." . $extension;
                 $destinationPath = public_path() . '/images/replies/';
                 $file->move($destinationPath, $newName);
-                $reply->photo = $newName;
+                $reply->reply_photo = $newName;
             }
-            $reply->content = $request->content;
+            $reply->reply_content = $request->reply_content;
             $reply->post_id = $post_id;
             $reply->feedback_id = $feedback_id;
             $reply->created_user_id = Auth::user()->id ?? 1;
@@ -78,15 +78,15 @@ class ReplyDao implements ReplyDaoInterface
     {
         return DB::transaction(function () use ($request, $id) {
             $reply = Reply::findOrFail($id);
-            if ($file = $request->hasFile('photo')) {
-                $file = $request->file('photo');
+            if ($file = $request->hasFile('replies')) {
+                $file = $request->file('replies');
                 $extension = $file->getClientOriginalExtension();
-                $newName = "feedback_" . $id . "." . $extension;
+                $newName = "reply_" . $id . "." . $extension;
                 $destinationPath = public_path() . '/images/replies/';
                 $file->move($destinationPath, $newName);
-                $reply->photo = $newName;
+                $reply->reply_photo = $newName;
             }
-            $reply->content = $request->content;
+            $reply->reply_content = $request->reply_content;
             $reply->created_user_id = Auth::user()->id ?? 1;
             $reply->updated_user_id = Auth::user()->id ?? 1;
             $reply->save();

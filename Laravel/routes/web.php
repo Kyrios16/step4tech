@@ -130,7 +130,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
      * Edit reply for feedback 
      */
     Route::get('/show/{id}', [ReplyController::class, 'show']);
-    Route::get('/update/{id}', [ReplyController::class, 'updatedReply'])->name('update.reply');
+    Route::post('/update/{id}', [ReplyController::class, 'updatedReply'])->name('update.reply');
 
     /**
      * Delete reply  

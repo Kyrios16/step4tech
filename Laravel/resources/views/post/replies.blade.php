@@ -9,11 +9,11 @@
       </a>
       <p class="feedback-time">{{$reply->time}}</p>
     </div>
-    <div class="feedback-content">{{$reply->content}}</div>
+    <div class="feedback-content">{{$reply->reply_content}}</div>
 
-    @if($reply->photo != NULL)
+    @if($reply->reply_photo != NULL)
     <div class="feedback-img-container">
-      <img class="feedback-img" class="feedback-img" src="{{ URL::to('/') }}/images/replies/{{ $reply->photo }}" alt=" feedback image">
+      <img class="feedback-img" class="feedback-img" src="{{ URL::to('/') }}/images/replies/{{ $reply->reply_photo }}" alt=" feedback image">
     </div>
     @endif
 
@@ -48,21 +48,16 @@
     <div class="preview-image-container" id="feedback-preImg">
       <img id="preview-image-before-upload" class="preview-img" src="{{ asset('images/image_not_found.gif') }}" alt="preview image">
     </div>
-    <textarea name="content" onkeyup="autoheight(this)" rows="1" class="input-feedback-content @error('content') is-invalid @enderror" placeholder="Enter Your reply..."></textarea>
+    <textarea name="reply_content" onkeyup="autoheight(this)" rows="1" class="input-feedback-content @error('reply_content') is-invalid @enderror" placeholder="Enter Your reply..."></textarea>
     <label class="uploadLabel">
       <i class="fas fa-folder-plus"></i>
-      <input type="file" class="uploadButton @error('photo') is-invalid @enderror" name="photo" id="image" placeholder="Upload Image" />
+      <input type="file" class="uploadButton" name="reply_photo" id="image" placeholder="Upload Image" />
     </label>
     <button class="reply-send" type="submit">
       <i class="fas fa-paper-plane"></i>
     </button>
 
-    @error('content')
-    <span class="form-error">
-      <div>{{ $message }}</div>
-    </span>
-    @enderror
-    @error('photo')
+    @error('reply_content')
     <span class="form-error">
       <div>{{ $message }}</div>
     </span>
@@ -70,6 +65,7 @@
   </form>
   @endauth
 </div>
+
 
 <script>
   /**
@@ -94,10 +90,8 @@
    * @return void
    */
   function update(id) {
-    let photo = $("#photo").val();
-    let content = $("#content").val();
+    let content = $("#reply_content").val();
     let data = {
-      photo: photo,
       content: content,
     };
     $.ajax({
