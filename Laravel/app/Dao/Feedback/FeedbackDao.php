@@ -19,7 +19,7 @@ class FeedbackDao implements FeedbackDaoInterface
      */
     public function getFeedbackbyPostId($Id)
     {
-        $feedbackList = DB::select(DB::raw("SELECT feedbacks.created_user_id,feedbacks.id,feedbacks.content, feedbacks.photo, users.name, users.profile_img,feedbacks.created_at
+        $feedbackList = DB::select(DB::raw("SELECT feedbacks.created_user_id,feedbacks.id,feedbacks.content,feedbacks.green_mark, feedbacks.photo, users.name, users.profile_img,feedbacks.created_at
         FROM feedbacks,users
         WHERE users.id = feedbacks.created_user_id
         AND feedbacks.deleted_at is NULL
@@ -53,6 +53,7 @@ class FeedbackDao implements FeedbackDaoInterface
         }
         $feedback->content = $request->content;
         $feedback->post_id = $id;
+        $feedback->green_mark = false;
         $feedback->created_user_id = Auth::user()->id ?? 1;
         $feedback->updated_user_id = Auth::user()->id ?? 1;
         $feedback->save();
@@ -73,5 +74,28 @@ class FeedbackDao implements FeedbackDaoInterface
         $feedback->save();
 
         return $feedback;
+    }
+    /**
+     * To give green_mark
+     * 
+     * @param Request $request
+     * @return $message 
+     */
+    public function selectGreenmark($feedback_id)
+    {
+
+        $feedback = Feedback::find($feedback_id);
+        if ($feedback->green_mark == true) {
+            Feedback::where('id', $feedback_id)
+                ->update(['green_mark' => false]);
+        } else {
+
+            Feedback::where('id', $feedback_id)
+                ->update(['green_mark' => true]);
+        }
+        Feedback::where('id', '!=', $feedback_id)
+            ->where('post_id', $feedback->post_id)
+            ->update(['green_mark' => false]);
+        return 'Greenmark Approved';
     }
 }

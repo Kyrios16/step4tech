@@ -66,4 +66,14 @@ class FeedbackService implements FeedbackServiceInterface
     {
         return $this->feedbackDao->deleteFeedback($id);
     }
+    /**
+     * To give green_mark
+     * 
+     * @param Request $request 
+     * @return $message 
+     */
+    public function selectGreenmark($feedback_id)
+    {
+        return $this->feedbackDao->selectGreenmark($feedback_id);
+    }
 }
