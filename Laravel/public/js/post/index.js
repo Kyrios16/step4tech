@@ -7,6 +7,9 @@ $(document).ready(function () {
     showPostListInitial();
 });
 
+// For checking data exists or not
+var isPostListExist = false;
+
 /**
  * To show  initial post list
  *
@@ -23,6 +26,7 @@ function showPostListInitial() {
         dataType: "json",
         success: function (data) {
             if (data.length != 0) {
+                isPostListExist = true;
                 //Add post list ordered by date
                 data.forEach((post) => {
                     var created_at = moment(
@@ -111,8 +115,8 @@ function showPostListInitial() {
     });
 }
 
+// Set Default offset for LoadMore Function
 var offset = 0;
-
 
 /**
  * To check window scroll reaches the end 
@@ -120,7 +124,7 @@ var offset = 0;
  * @return void
  */
 $(window).scroll(function () {
-    if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+    if (($(window).scrollTop() + $(window).height() >= $(document).height()) && isPostListExist) {
         offset = offset + 8;
         showPostListForInitialLoadMore();
     }
