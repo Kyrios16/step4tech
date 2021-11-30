@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Reply;
 use App\Http\Controllers\Controller;
 use App\Contracts\Services\Reply\ReplyServiceInterface;
 use App\Http\Requests\ReplyCreateRequest;
-
+use App\Models\Reply;
 
 class ReplyController extends Controller
 {
@@ -28,7 +28,7 @@ class ReplyController extends Controller
     /**
      * To create reply
      * 
-     * @param $request
+     * @param $request from ReplyCreateRequest
      * @param $id
      * @return $reply created new reply
      */
@@ -37,6 +37,32 @@ class ReplyController extends Controller
         $request->validated();
         $this->replyInterface->createReply($request, $post_id, $feedback_id);
         return redirect()->route('detail.post', [$post_id]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $data = Reply::findOrFail($id);
+        return view('post.edit-reply')->with(['data' => $data]);
+    }
+
+    /**
+     * To update reply
+     * 
+     * @param $request from ReplyCreateRequest
+     * @param $id reply id
+     * @return $reply updated reply 
+     */
+    public function updatedReply(ReplyCreateRequest $request, $id)
+    {
+        $request->validated();
+        $reply = $this->replyInterface->updatedReply($request, $id);
+        return response()->json($reply);
     }
 
     /**

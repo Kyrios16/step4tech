@@ -9,17 +9,33 @@
       </a>
       <p class="feedback-time">{{$reply->time}}</p>
     </div>
-    <div class="feedback-content">{{$reply->content}}</div>
+    <div class="feedback-content">{{$reply->reply_content}}</div>
 
-    @if($reply->photo != NULL)
+    @if($reply->reply_photo != NULL)
     <div class="feedback-img-container">
-      <img class="feedback-img" class="feedback-img" src="{{ URL::to('/') }}/images/feedbacks/{{ $feedback->photo }}" alt=" feedback image">
+      <img class="feedback-img" class="feedback-img" src="{{ URL::to('/') }}/images/replies/{{ $reply->reply_photo }}" alt=" feedback image">
     </div>
-
     @endif
+
     @auth
     @if(Auth::user()->id == $reply->created_user_id)
-    <a class="delete-icn" href="{{ route('delete.reply', $reply->replyId) }}"><i class="fas fa-trash-alt"></i></a>
+    <div class="action">
+      <button class="icon-btn-warning" onClick="show({{ $reply->replyId }})"><i class="fas fa-edit"></i></button>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+              <div id="page" class="edit-reply"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="delete-icn" href="{{ route('delete.reply', $reply->replyId) }}"><i class="fas fa-trash-alt"></i></a>
+    </div>
     @endif
     @endauth
   </div>
@@ -27,30 +43,64 @@
   @endforeach
 
   @auth
-  <form class="feedback-txtfield" method="POST" action="/post/{{ $post->id }}/feedback/{{ $feedback->id }}/reply" enctype="multipart/form-data">
+  <form class="reply-txtfield" method="POST" action="/post/{{ $post->id }}/feedback/{{ $feedback->id }}/reply" enctype="multipart/form-data">
     @csrf
-    <div class=" preview-image-container" id="feedback-preImg">
+    <div class="preview-image-container" id="feedback-preImg">
       <img id="preview-image-before-upload" class="preview-img" src="{{ asset('images/image_not_found.gif') }}" alt="preview image">
     </div>
-    <textarea name="content" onkeyup="autoheight(this)" rows="1" class="input-feedback-content @error('content') is-invalid @enderror" placeholder="Enter Your Feedback..."></textarea>
+    <textarea name="reply_content" onkeyup="autoheight(this)" rows="1" class="input-feedback-content @error('reply_content') is-invalid @enderror" placeholder="Enter Your reply..."></textarea>
     <label class="uploadLabel">
       <i class="fas fa-folder-plus"></i>
-      <input type="file" class="uploadButton @error('photo') is-invalid @enderror" name="photo" id="image" placeholder="Upload Image" />
+      <input type="file" class="uploadButton" name="reply_photo" id="image" placeholder="Upload Image" />
     </label>
-    <button class="feedback-send">
+    <button class="reply-send" type="submit">
       <i class="fas fa-paper-plane"></i>
     </button>
-    @error('content')
-    <span class="form-error">
-      <div>{{ $message }}</div>
-    </span>
-    @enderror
-    @error('photo')
+
+    @error('reply_content')
     <span class="form-error">
       <div>{{ $message }}</div>
     </span>
     @enderror
   </form>
   @endauth
-
 </div>
+
+
+<script>
+  /**
+   * To show edit popup model
+   *
+   * @param int $id
+   * @return void
+   */
+  function show(id) {
+    $.get("{{ url('show') }}/" + id, {}, function(data, status) {
+      $("#exampleModalLabel").html("Edit Reply");
+      $("#page").html(data);
+      $("#exampleModal").modal("show");
+      $("#exampleModal").css("margin-top", 100);
+    });
+  }
+
+  /**
+   * To update comments
+   *
+   * @param int $id
+   * @return void
+   */
+  function update(id) {
+    let content = $("#reply_content").val();
+    let data = {
+      content: content,
+    };
+    $.ajax({
+      type: "get",
+      url: "{{ url('update') }}/" + id,
+      data: data,
+      success: function(data) {
+        location.reload();
+      },
+    });
+  }
+</script>

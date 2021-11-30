@@ -43,7 +43,10 @@ body {
 .header-title {
     color: var(--main-text);
     font-weight: 600;
-    margin-bottom: 1rem;
+}
+
+.table-header .header-title {
+    margin-bottom: 1.5rem;
 }
 
 /* button group */
@@ -114,6 +117,11 @@ input[type="text"] {
 
 input:focus::placeholder {
     color: transparent;
+}
+
+.export-btn {
+    float: right;
+    margin-bottom: 0.5rem;
 }
 
 /* aside components */
@@ -298,7 +306,7 @@ main {
 
 .posts-table,
 .cate-table {
-    margin: 1.5rem auto;
+    margin: 1.2rem auto;
     height: 250px;
     overflow-y: scroll;
 }

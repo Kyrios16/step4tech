@@ -23,7 +23,7 @@
       </header>
       <main>
         @include('admin.common.analytics')
-        <div class="table-container">
+        <div class="table-container clearfix">
           <div class="table-header clearfix">
             <h3 class="header-title">Categories Table</h3>
             <div class="new-cate">
@@ -32,7 +32,7 @@
               @enderror
               <form action="{{ route('add.categories') }}" method="POST">
                 {{ csrf_field() }}
-                <input type="text" name="name" class="@error ('name') is-invalid @enderror" placeholder="add new category">
+                <input type="text" name="name" class="@error('name') is-invalid @enderror" placeholder="add new category">
                 <button type="submit" class="btn btn-success" onclick="createBtn()"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New</button>
               </form>
             </div>
@@ -64,7 +64,7 @@
               </tbody>
             </table>
           </div>
-          <a href="{{ route('export.categories') }}" class="btn btn-info">Export&nbsp;&nbsp;<i class="fas fa-file-export"></i></a>
+          <a href="{{ route('export.categories') }}" class="btn btn-info export-btn">Export&nbsp;&nbsp;<i class="fas fa-file-export"></i></a>
         </div>
       </main>
     </div>

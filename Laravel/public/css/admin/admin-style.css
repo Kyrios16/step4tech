@@ -82,6 +82,13 @@
     width: 30%;
 }
 
+.popular-user-card .user-card-ttl {
+    font-size: 25px;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin: 1.5rem 0rem;
+}
+
 .popular-user-card .text {
     display: flex;
     flex-direction: column;
@@ -137,6 +144,7 @@
     width: 30%;
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 1.5rem;
 }
 
 .popular-user-card .links a {

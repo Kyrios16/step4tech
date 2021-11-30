@@ -9,7 +9,46 @@
 <script src="{{ asset('js/post/like-btn.js') }}"></script>
 <script src="{{ asset('js/post/post-detail.js') }}"></script>
 <script src="{{ asset('js/post/post-create.js') }}"></script>
+<script src="{{ asset('js/post/replies-edit.js') }}"></script>
+<script>
+  /**
+   * To show edit popup model
+   *
+   * @param int $id
+   * @return void
+   */
+  function showEditFeedbackModel(id) {
+    $.get("{{ url('feedback/show') }}/" + id, {}, function(data, status) {
+      $("#exampleModalLabel").html("Edit Feedback");
+      $("#page").html(data);
+      $("#exampleModal").modal("show");
+      $("#exampleModal").css("margin-top", 100);
+    });
+  }
 
+  /**
+   * To update feedback
+   *
+   * @param int $id
+   * @return void
+   */
+  function updateFeedback(id) {
+    let photo = $("#photo").val();
+    let content = $("#content").val();
+    let data = {
+      photo: photo,
+      content: content,
+    };
+    $.ajax({
+      type: "get",
+      url: "{{ url('feedback/update') }}/" + id,
+      data: data,
+      success: function(data) {
+        location.reload();
+      },
+    });
+  }
+</script>
 @endsection
 
 @section('content')
@@ -140,7 +179,23 @@
 
                 @auth
                 @if(Auth::user()->id == $feedback->created_user_id)
-                <a class="delete-icn" href="{!! route('feedback.delete', ['id'=>$feedback->id,]) !!}" onclick="return confirm('Are you sure want to delete?')"><i class="fas fa-trash-alt"></i></a>
+                <div class="action">
+                  <button class="icon-btn-warning" onClick="showEditFeedbackModel({{ $feedback->id }})"><i class="fas fa-edit"></i></button>
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="modal-body">
+                          <div id="page" class="edit-feedback"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <a class="delete-icn" href="{!! route('feedback.delete', ['id'=>$feedback->id,]) !!}"><i class="fas fa-trash-alt"></i></a>
+                </div>
                 @endif
                 @endauth
                 <button class="replyBtn" data-id="{{ $feedback->id }}">
@@ -150,7 +205,7 @@
         </div>
         @include('post.replies')
         @endforeach
-    </div>
+      
 </div>
 <div class="likepopup-container">
     <div class="likepopup-content">
