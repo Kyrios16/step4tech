@@ -31,7 +31,7 @@ class AuthDao implements AuthDaoInterface
         } else {
             $user->cover_img = 'cover_default.png';
         }
-        if ($cover_img = $request->hasFile('profile_img')) {
+        if ($profile_img = $request->hasFile('profile_img')) {
             $profile_img = $request->file('profile_img');
             $destinationPath = public_path() . '/images/profile';
             $newProfile = "profile_" . date('YmdHis') . "." . $profile_img->getClientOriginalExtension();
