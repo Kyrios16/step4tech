@@ -1,3 +1,11 @@
+/**
+ * Click Profile Icon to open Profile Dropdown
+ */
+$(document).on("click",".profile-ico", toggleNavProfileDropdown);
+
+/**
+ * Toggle Profile Dropdown
+ */
 function toggleNavProfileDropdown() {
     if ($(".profile-dropdown-content").css("display") == "none") {
         $(".profile-dropdown-content").css("display", "block");

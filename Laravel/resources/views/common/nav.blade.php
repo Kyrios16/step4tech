@@ -9,7 +9,6 @@
       @auth
       <div class="nav-dropdown">
         <img src="{{ asset('images/profile/' . $user->profile_img) }}" class="profile-ico" alt="Profile">
-        <button class="nav-dropdown-btn" onclick="toggleNavProfileDropdown()"><i class="fas fa-caret-down"></i></button>
         <div class="profile-dropdown-content">
           @auth
           @if ($user->role == 0)
