@@ -76,4 +76,15 @@ class FeedbackController extends Controller
         $feedback = $this->feedbackInterface->deleteFeedback($id);
         return back();
     }
+    /**
+     * To give green_mark
+     * 
+     * @param Request $request 
+     * @return $message 
+     */
+    public function selectGreenmark($feedback_id)
+    {
+        $greenmark = $this->feedbackInterface->selectGreenmark($feedback_id);
+        return back();
+    }
 }

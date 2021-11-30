@@ -60,14 +60,13 @@
 }
 
 .setting a {
+    color: #000;
     text-decoration: none;
-    color: #000000;
 }
 
 .name-bio {
     width: 30%;
     text-align: center;
-    font-weight: bold;
     margin: 5% auto;
 }
 
@@ -79,31 +78,40 @@
     font-size: 1rem;
     margin: 2%;
     padding: 5%;
-    box-sizing: border-box;
 }
 
 .dob {
     font-size: 1rem;
+    font-weight: bold;
     margin-top: 10px;
 }
 
 .fa-birthday-cake {
-    color: #663399;
-}
-
-.link-group,
-.data-group {
-    display: block;
-    position: relative;
-    padding-bottom: 5%;
+    color: #34c85b;
 }
 
 .left {
     float: left;
 }
 
-.right {
-    float: right;
+.media {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 2%;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.media a {
+    color: #34c85b;
+    margin: 0 auto;
+    text-decoration: none;
+}
+
+.media i {
+    font-size: 2rem;
 }
 
 i {
@@ -111,18 +119,24 @@ i {
     margin-right: 5px;
 }
 
+.profile-data i {
+    color: #34c85b;
+}
+
+.profile-data a {
+    color: #000000;
+}
+
+.profile-data a:hover {
+    opacity: 1;
+    color: #34c85b;
+}
+
 .profile-data {
     width: 80%;
     margin: 0 auto;
     font-size: 1rem;
-    font-weight: bold;
     margin-bottom: 10px;
-}
-
-.profile-data a {
-    display: block;
-    margin: -27px 0px 0px 30px;
-    font-weight: bold;
 }
 
 .user-postlist-wrapper {

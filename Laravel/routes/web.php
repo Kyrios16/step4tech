@@ -85,51 +85,55 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::post('/post/create', [PostController::class, 'submitPostCreateView'])->name('create.post');
         Route::get('/post/edit/{id}', [PostController::class, 'showPostEditView'])->name('edit.post');
         Route::post('/post/edit/{id}', [PostController::class, 'submitPostEdit'])->name('edit.post');
-    });
 
-    /**
-     * Display Post Detail
-     */
-    Route::get('/post/detail/{id}',  [PostController::class, 'showPostDetailView'])->name('detail.post');
+        /**
+         * Display Post Detail
+         */
+        Route::get('/post/detail/{id}',  [PostController::class, 'showPostDetailView'])->name('detail.post');
 
-    /**
-     * Feedback Create
-     */
-    Route::post('/post/feedback/{id}',  [FeedbackController::class, 'createFeedback'])->name('feedback.post');
+        /**
+         * Feedback Create
+         */
+        Route::post('/post/feedback/{id}',  [FeedbackController::class, 'createFeedback'])->name('feedback.post');
+        /**
+         * Greenmark Create
+         */
+        Route::get('/feedback/greenmark/{feedback_id}',  [FeedbackController::class, 'selectGreenmark'])->name('feedback.greenmark');
+        /**
+         * Feedback Delete
+         */
+        Route::get('/feedback/delete/{id}',  [FeedbackController::class, 'deleteFeedback'])->name('feedback.delete');
 
-    /**
-     * Feedback Delete
-     */
-    Route::get('/feedback/delete/{id}',  [FeedbackController::class, 'deleteFeedback'])->name('feedback.delete');
+        /**
+         * Add to Followed Category List
+         */
+        Route::get('user/favouriteCategory/{categoryid}', [CategoriesController::class, 'AddUserCategory'])->name('user.category');
 
-    /**
-     * Add to Followed Category List
-     */
-    Route::get('user/favouriteCategory/{categoryid}', [CategoriesController::class, 'AddUserCategory'])->name('user.category');
+        /**
+         * Delete From Followed Category List
+         */
+        Route::get('user/favouriteCategory/delete/{categoryid}', [CategoriesController::class, 'DeleteUserCategory'])->name('user.category.delete');
 
-    /**
-     * Delete From Followed Category List
-     */
-    Route::get('user/favouriteCategory/delete/{categoryid}', [CategoriesController::class, 'DeleteUserCategory'])->name('user.category.delete');
+        /**
+         * Create reply for feedback 
+         */
+        Route::post('/post/{post}/feedback/{feedback}/reply',  [ReplyController::class, 'createReply'])->name("create.reply");
 
-    /**
-     * Create reply for feedback 
-     */
-    Route::post('/post/{post}/feedback/{feedback}/reply',  [ReplyController::class, 'createReply'])->name("create.reply");
-
-    /**
-     * Delete reply  
-     */
-    Route::get('/reply/delete/{replyId}',  [ReplyController::class, 'deleteReply'])->name("delete.reply");
+        /**
+         * Delete reply  
+         */
+        Route::get('/reply/delete/{replyId}',  [ReplyController::class, 'deleteReply'])->name("delete.reply");
+    });//End Middleware Auth
 });
 
 /* Export by admin */
+Route::group(['middleware' => ['admin', 'auth']], function () {
+    //Manage Users
+    Route::get('/users/export', [UserController::class, 'export'])->name('export.users');
 
-//Manage Users
-Route::get('/users/export', [UserController::class, 'export'])->name('export.users');
+    //Manage Categories
+    Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
 
-//Manage Categories
-Route::get('categories/export/', [CategoriesController::class, 'export'])->name('export.categories');
-
-//Manage Post
-Route::get('/posts/export', [PostController::class, 'export'])->name('export.posts');
+    //Manage Post
+    Route::get('/posts/export', [PostController::class, 'export'])->name('export.posts');
+});

@@ -31,6 +31,6 @@ class FeedbackMail extends Mailable
     {
         return $this->markdown('emails.FeedbackSendMail')
             ->subject("New Feedback Notification")
-            ->with('feedbackInfo', $this->feedbackInfo);;
+            ->with('feedbackInfo', $this->feedbackInfo);
     }
 }

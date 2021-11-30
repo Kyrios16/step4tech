@@ -29,4 +29,11 @@ interface FeedbackServiceInterface
      * @return $feedback  
      */
     public function deleteFeedback($id);
+    /**
+     * To give green_mark
+     * 
+     * @param Request $request 
+     * @return $message 
+     */
+    public function selectGreenmark($feedback_id);
 }

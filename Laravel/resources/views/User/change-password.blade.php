@@ -41,10 +41,10 @@
           @enderror
         </div>
         <div class="formdata">
-        <div class="button-group clearfix">
-          <input type="submit" class="btn btn-success" name="change" value="Change">
-          <a href="/user/edit" class="btn cancel-btn" name="cancel_btn">Cancel</a>
-        </div>
+          <div class="button-group clearfix">
+            <input type="submit" class="btn btn-success" name="change" value="Change">
+            <a href="/user/edit" class="btn cancel-btn" name="cancel_btn">Cancel</a>
+          </div>
         </div>
       </form>
     </div>
