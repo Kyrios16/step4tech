@@ -77,6 +77,12 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
      */
     Route::get('/post/trash', [PostController::class, 'showDeletedPostList'])->middleware('auth');
 
+
+    /**
+     * Display Post Detail
+     */
+    Route::get('/post/detail/{id}',  [PostController::class, 'showPostDetailView'])->name('detail.post');
+
     /**
      * Post Create and Update
      */
@@ -85,11 +91,6 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::post('/post/create', [PostController::class, 'submitPostCreateView'])->name('create.post');
         Route::get('/post/edit/{id}', [PostController::class, 'showPostEditView'])->name('edit.post');
         Route::post('/post/edit/{id}', [PostController::class, 'submitPostEdit'])->name('edit.post');
-
-        /**
-         * Display Post Detail
-         */
-        Route::get('/post/detail/{id}',  [PostController::class, 'showPostDetailView'])->name('detail.post');
 
         /**
          * Feedback Create
@@ -123,7 +124,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
          * Delete reply  
          */
         Route::get('/reply/delete/{replyId}',  [ReplyController::class, 'deleteReply'])->name("delete.reply");
-    });//End Middleware Auth
+    }); //End Middleware Auth
 });
 
 /* Export by admin */

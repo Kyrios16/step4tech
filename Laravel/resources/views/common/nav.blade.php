@@ -22,7 +22,7 @@
       @else
       <div class="nav-before-login">
         <a href="/login" class="nav-btn btn-outline-secondary">Login</a>
-        <a href="/user/register" class="nav-btn btn-success">Create Account</a>
+        <a href="/user/register" class="nav-btn btn-success">Sign up</a>
       </div>
       @endauth
       @endif

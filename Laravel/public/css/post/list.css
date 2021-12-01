@@ -2,6 +2,7 @@
     width: 78%;
     color: #000000;
     float: right;
+    min-height: 82vh;
 }
 
 .post {
