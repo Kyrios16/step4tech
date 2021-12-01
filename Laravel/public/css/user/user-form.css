@@ -188,8 +188,8 @@
     }
     
     .cancel-btn:hover {
-        border-color: #000000;
-        color: #000000;
+        background-color: #737373;
+        color: #ffffff;
     }
     
     .text {
@@ -220,3 +220,7 @@
         font-weight: bold;
         padding-bottom: 10px;
     }
+    
+    @media screen and (min-width: 641px) and (max-width: 1040px) {}
+    
+    @media screen and (max-width: 64px) {}

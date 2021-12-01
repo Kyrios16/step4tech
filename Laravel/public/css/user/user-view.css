@@ -281,3 +281,7 @@ i {
     border: 2px solid #c62828;
     box-sizing: border-box;
 }
+
+@media screen and (min-width: 641px) and (max-width: 1040px) {}
+
+@media screen and (max-width: 64px) {}

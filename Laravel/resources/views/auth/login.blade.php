@@ -4,7 +4,7 @@
       <div class="circle-btn" align="right">
         <a href="/" class="round-btn"><i class="fas fa-times"></i></a>
       </div>
-      <div class="login-content clearfix">
+      <div class="login-content">
         <div class="content-sec">
           <x-auth-session-status class="mb-4" :status="session('status')" />
           <x-auth-validation-errors class="mb-4" :errors="$errors" />

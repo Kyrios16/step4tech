@@ -96,7 +96,6 @@
         <div class="wrapper">
             @auth
             @if(Auth::user()->id == $post->created_user_id)
-
             <a class="greenmark" href="/feedback/greenmark/{{$feedback->id}}">
                 @if($feedback->green_mark == true)
                 <i class="far fa-check-square green"></i>
@@ -104,18 +103,14 @@
                 <i class="far fa-square grey"></i>
                 @endif
             </a>
-
             @else
-
             <a class="greenmark">
                 @if($feedback->green_mark == true)
                 <i class="far fa-check-square green"></i>
                 @endif
-            </a>
-            
+            </a>            
             @endif
             @else
-
             <a class="greenmark">
                 @if($feedback->green_mark == true)
                 <i class="far fa-check-square green"></i>
