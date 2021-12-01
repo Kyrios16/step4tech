@@ -17,8 +17,8 @@ body {
 
 .round-btn {
     display: inline-block;
-    height: 25px;
-    width: 25px;
+    height: 1.5625em;
+    width: 1.5625em;
     border-radius: 50%;
     border: 1px solid #000;
     text-align: center;
@@ -60,11 +60,11 @@ body {
 
 .ttl {
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 0.625em;
 }
 
 .forgot-text {
-    margin-top: 10px;
+    margin-top: 0.625em;
 }
 
 .link-text {
@@ -75,15 +75,6 @@ body {
 
 .center {
     text-align: center;
-}
-
-.form-input {
-    height: 50px;
-    border-radius: 5px;
-    box-sizing: border-box;
-    color: #707070;
-    margin-top: 10px;
-    padding: 0rem 0.5em;
 }
 
 .btn {
@@ -98,6 +89,30 @@ body {
     background-color: #42af5f;
 }
 
-@media screen and (min-width: 641px) and (max-width: 1040px) {}
 
-@media screen and (max-width: 64px) {}
+/**Ipad**/
+
+@media screen and (min-width: 641px) and (max-width: 1040px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+
+/**Sp**/
+
+@media screen and (max-width: 640px) {
+    html {
+        font-size: 12px;
+    }
+    .container {
+        width: 70%;
+    }
+    .content-sec {
+        width: 100%;
+    }
+    .img-sec,
+    .signin-bannar {
+        display: none;
+    }
+}
