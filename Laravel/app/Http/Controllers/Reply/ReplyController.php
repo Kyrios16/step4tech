@@ -36,7 +36,7 @@ class ReplyController extends Controller
     {
         $request->validated();
         $reply = $this->replyInterface->createReply($request, $post_id, $feedback_id);
-        return redirect()->route('detail.post', [$feedback_id]);
+        return redirect()->route('detail.post', [$post_id]);
     }
 
     /**

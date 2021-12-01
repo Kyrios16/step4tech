@@ -35,7 +35,6 @@
         </div>
       </div>
       <button type="submit" class="delete-icn icon-btn-danger" onclick="deleteReply({{ $reply->replyId }})"><i class="fas fa-trash-alt"></i></button>
-      <!-- <a class="delete-icn" href="{{ route('delete.reply', $reply->replyId) }}"><i class="fas fa-trash-alt"></i></a> -->
     </div>
     @endif
     @endauth
