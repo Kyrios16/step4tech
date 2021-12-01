@@ -1,6 +1,11 @@
 <nav id="nav-bar">
   <div class="nav-wrapper">
     <div class="nav-list">
+      <p class="nav-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </p>
       <h1><a href="/"><img src="{{ asset('images/logo.png') }}" alt="Step4Tech"></a></h1>
       @if(!Request::is('user/register'))
       <div class="search-container">

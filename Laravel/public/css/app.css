@@ -17,6 +17,28 @@ button {
 }
 
 .main-container {
-    width: 90%;
+    width: 92%;
     margin: 1.5% auto;
+}
+
+/*  Ipad  */
+@media screen and (min-width: 641px) and (max-width: 1040px) {
+    html {
+        font-size: clamp(10px, 1.346vw, 14px);
+    }
+    
+    .main-container {
+        width: 95%;
+    }
+}
+
+/*  SP  */
+@media screen and (max-width:640px) {
+    html {
+        font-size: 10px;
+    }
+
+    .main-container {
+        width: 96%;
+    }
 }

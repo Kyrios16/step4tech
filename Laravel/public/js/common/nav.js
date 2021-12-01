@@ -8,8 +8,10 @@ $(document).on("click",".profile-ico", toggleNavProfileDropdown);
  */
 function toggleNavProfileDropdown() {
     if ($(".profile-dropdown-content").css("display") == "none") {
+        $(".profile-ico").addClass("selected");
         $(".profile-dropdown-content").css("display", "block");
     } else {
+        $(".profile-ico").removeClass("selected");
         $(".profile-dropdown-content").css("display", "none");
     }
 }
@@ -22,6 +24,7 @@ function toggleNavProfileDropdown() {
 $(document).on("click", function (event) {
     var $trigger = $(".nav-dropdown");
     if ($trigger != event.target && !$trigger.has(event.target).length) {
+        $(".profile-ico").removeClass("selected");
         $(".profile-dropdown-content").css("display", "none");
     }
 });

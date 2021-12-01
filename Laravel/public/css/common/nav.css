@@ -11,6 +11,10 @@
     width: 90%;
 }
 
+.nav-menu-btn {
+    display: none;
+}
+
 .nav-wrapper h1 {
     display: inline-block;
     margin: 0.25em 0;
@@ -36,7 +40,6 @@ a:hover {
     margin: auto;
     text-align: center;
     flex: 1 1 50%;
-    padding-left: 1em;
 }
 
 .search {
@@ -108,7 +111,11 @@ a:hover {
     width: 2.6em;
     height: 2.6em;
     border-radius: 100%;
-    cursor: pointer;
+    cursor: pointer;   
+}
+
+.selected {
+    box-shadow: 0px 0px 8px 8px rgba(0, 255, 0, 0.4);
 }
 
 .nav-dropdown-btn {
@@ -142,4 +149,72 @@ a:hover {
 .profile-dropdown-content a:hover {
     background-color: #f1f1f1;
     opacity: 1;
+}
+
+/*  Ipad  */
+@media screen and (min-width: 641px) and (max-width: 1040px) {
+    .nav-wrapper {
+        width: 95%;
+    }
+
+    .profile-dropdown-content {
+        min-width: 100px;
+    }
+
+    .nav-wrapper h1 img {
+        width: 110px;
+    }
+}
+
+/*  SP  */
+@media screen and (max-width:640px) {
+    .nav-wrapper {
+        width: 96%;
+    }
+
+    .profile-dropdown-content {
+        min-width: 80px;
+    }
+    .nav-wrapper h1 {
+        flex: 1 1 40%;
+        text-align: center;
+    }
+    .nav-wrapper h1 img {
+        width: 80px;
+    }
+
+    .search-container {
+        display: none;
+    }
+
+    .nav-before-login {
+        flex: 1 1 30%;
+    
+    }
+    .nav-dropdown {
+        flex: 1 1 30%;
+    }
+    
+    .nav-menu-btn {
+        display: inline-block;
+        cursor: pointer;
+        transition: all 400ms;
+        -webkit-transition: all 400ms;
+        flex: 1 1 30%;
+        margin: auto;
+    }
+    
+    .nav-menu-btn span {
+        display: block;
+        width: 12%;
+        border-top: 3px solid #000000;
+        border-radius: 5px;
+        transition: all 400ms;
+        -webkit-transition: all 400ms;
+        margin-bottom: 3px;
+    }
+
+    .nav-menu-btn span:last-of-type {
+        margin-bottom: 0;
+    }
 }
