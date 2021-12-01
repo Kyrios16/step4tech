@@ -104,11 +104,12 @@ class CategoriesDao implements CategoriesDaoInterface
      */
     public function AddUserCategory($categoryid)
     {
-        $userCategory = new UserCategory();
-        $userCategory->user_id = Auth::user()->id ?? 1;
-        $userCategory->category_id = $categoryid;
-        $userCategory->save();
-        return $userCategory;
+        return DB::transaction(function () use ($categoryid) {
+            $userCategory = new UserCategory();
+            $userCategory->user_id = Auth::user()->id ?? 1;
+            $userCategory->category_id = $categoryid;
+            $userCategory->save();
+        });
     }
     /**
      * get user category
@@ -129,14 +130,16 @@ class CategoriesDao implements CategoriesDaoInterface
      */
     public function DeleteUserCategory($categoryid)
     {
-        $userCategoryList = UserCategory::whereNull('deleted_at')
-            ->where('category_id', $categoryid)
-            ->get();
-        foreach ($userCategoryList as $userCategory) {
-            $userCategory->deleted_at = now();
-            $userCategory->save();
-            return $userCategory;
-        }
+        return DB::transaction(function () use ($categoryid) {
+            $userCategoryList = UserCategory::whereNull('deleted_at')
+                ->where('category_id', $categoryid)
+                ->get();
+            foreach ($userCategoryList as $userCategory) {
+                $userCategory->deleted_at = now();
+                $userCategory->save();
+                return $userCategory;
+            }
+        });
     }
 
     /**
