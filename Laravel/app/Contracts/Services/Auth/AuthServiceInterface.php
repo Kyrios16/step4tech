@@ -2,6 +2,8 @@
 
 namespace App\Contracts\Services\Auth;
 
+use Illuminate\Http\Request;
+
 /**
  * Interface of Data Access Object for Authentication
  */
@@ -12,5 +14,5 @@ interface AuthServiceInterface
      * @param Request $request request including inputs
      * @return Object created user object
      */
-    public function saveUser($request);
+    public function saveUser(Request $request);
 }

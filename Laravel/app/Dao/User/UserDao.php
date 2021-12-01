@@ -38,33 +38,32 @@ class UserDao implements UserDaoInterface
 
     public function updateUser($request)
     {
-        $user = User::find(Auth::user()->id);
-        $user->name = $request['name'];
-        $user->email = $request['email'];
-        $user->bio = $request['bio'];
-        $user->github = $request['github'];
-        $user->linkedin = $request['linkedin'];
-        $user->date_of_birth = $request['date_of_birth'];
-        $user->ph_no = $request['ph_no'];
-        $user->position = $request['position'];
-        $user->updated_user_id = Auth::user()->id;
+        return DB::transaction(function () use ($request) {
+            $user = User::find(Auth::user()->id);
+            $user->name = $request['name'];
+            $user->email = $request['email'];
+            $user->bio = $request['bio'];
+            $user->github = $request['github'];
+            $user->linkedin = $request['linkedin'];
+            $user->date_of_birth = $request['date_of_birth'];
+            $user->ph_no = $request['ph_no'];
+            $user->position = $request['position'];
+            $user->updated_user_id = Auth::user()->id;
 
-        if ($cover_img = $request->hasFile('cover_img')) {
-            $cover_img = $request->file('cover_img');
-            $destinationPath = public_path() . '/images/cover';
-            $newcover = "cover_" . date('YmdHis') . "." . $cover_img->getClientOriginalExtension();
-            $cover_img->move($destinationPath, $newcover);
-            $user->cover_img = $newcover;
-        }
-        if ($profile_img = $request->hasFile('profile_img')) {
-            $profile_img = $request->file('profile_img');
-            $destinationPath = public_path() . '/images/profile';
-            $newProfile = "profile_" . date('YmdHis') . "." . $profile_img->getClientOriginalExtension();
-            $profile_img->move($destinationPath, $newProfile);
-            $user->profile_img = $newProfile;
-        }
-        $user->save();
-        return $user;
+            if ($cover_img = $request->hasFile('cover_img')) {
+                $cover_img = $request->file('cover_img');
+                $destinationPath = public_path() . '/images/cover';
+                $cover_img->move($destinationPath, $request->cover_img);
+                $user->cover_img = $request->cover_img;
+            }
+            if ($profile_img = $request->hasFile('profile_img')) {
+                $profile_img = $request->file('profile_img');
+                $destinationPath = public_path() . '/images/profile';
+                $profile_img->move($destinationPath, $request->profile_img);
+                $user->profile_img = $request->profile_img;
+            }
+            $user->save();
+        });
     }
 
     /**

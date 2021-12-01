@@ -74,7 +74,7 @@ class UserController extends Controller
     {
         $validated = $request->validated();
         $user = $this->userInterface->updateUser($request);
-        return redirect('/user/view/' . $user->id);
+        return redirect('/user/view/' . Auth::user()->id);
     }
 
     /**

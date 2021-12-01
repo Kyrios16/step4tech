@@ -52,6 +52,16 @@ class UserService implements UserServiceInterface
      */
     public function updateUser($request)
     {
+        if ($cover_img = $request->hasFile('cover_img')) {
+            $cover_img = $request->file('cover_img');
+            $newcover = "cover_" . date('YmdHis') . "." . $cover_img->getClientOriginalExtension();
+            $request->cover_img = $newcover;
+        }
+        if ($profile_img = $request->hasFile('profile_img')) {
+            $profile_img = $request->file('profile_img');
+            $newProfile = "profile_" . date('YmdHis') . "." . $profile_img->getClientOriginalExtension();
+            $request->profile_img = $newProfile;
+        }
         return $this->userDao->updateUser($request);
     }
 
