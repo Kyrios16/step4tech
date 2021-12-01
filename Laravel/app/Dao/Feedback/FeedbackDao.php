@@ -33,8 +33,7 @@ class FeedbackDao implements FeedbackDaoInterface
         AND feedbacks.deleted_at is NULL
         AND feedbacks.post_id = $Id
         GROUP BY feedbacks.id
-        ORDER BY feedbacks.updated_at DESC"));
-
+        ORDER BY feedbacks.green_mark DESC"));
         return $feedbackList;
     }
 

@@ -26,7 +26,7 @@
       </div>
       @auth
       @if($viewUser->id == Auth::user()->id)
-      <div  class="setting">
+      <div class="setting">
         <a href="{{ route('edit-user') }}">
           <i class="fas fa-cog"></i>
         </a>
@@ -35,9 +35,8 @@
       @endauth
       <div class="name-bio">
         <h1 class="name">{{ $viewUser->name }}</h1>
-        @if( $viewUser->bio == null)
-        <p class="bio">404 Bio Not Found</p>
-        @else <p class="bio">{{ $viewUser->bio }}</p>
+        @if( $viewUser->bio != null)
+        <p class="bio">{{ $viewUser->bio }}</p>
         @endif
         <p class="dob"><i class="fas fa-birthday-cake"></i> {{ $viewUser->dob }}</p>
       </div>
