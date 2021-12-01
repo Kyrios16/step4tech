@@ -107,9 +107,16 @@ function showPostListInitial() {
             }
             if (loggedin) {
                 //Add Create Button
-                $(".postlist-container").append(
-                    `<a href="/post/create" class="post-create-btn"><i class="fas fa-pencil-alt"></i> Create</a>`
-                );
+                var $window = $(window);
+                if ($window.width() <= 640) {
+                    $(".postlist-container").append(
+                        `<a href="/post/create" class="post-create-btn"><i class="fas fa-pencil-alt"></a>`
+                    );
+                } else {
+                    $(".postlist-container").append(
+                        `<a href="/post/create" class="post-create-btn"><i class="fas fa-pencil-alt"></i> Create</a>`
+                    );
+                }
             }
         },
     });
@@ -119,20 +126,22 @@ function showPostListInitial() {
 var offset = 0;
 
 /**
- * To check window scroll reaches the end 
+ * To check window scroll reaches the end
  *
  * @return void
  */
 $(window).scroll(function () {
-    if (($(window).scrollTop() + $(window).height() >= $(document).height()) && isPostListExist) {
+    if (
+        $(window).scrollTop() + $(window).height() >= $(document).height() &&
+        isPostListExist
+    ) {
         offset = offset + 8;
         showPostListForInitialLoadMore();
     }
 });
 
-
 /**
- * To show post list more 
+ * To show post list more
  *
  * @return void
  */
@@ -229,4 +238,27 @@ function showPostListForInitialLoadMore() {
             }
         },
     });
+}
+
+/**
+ * To check window resize for Post Crate Button Design
+ *
+ * @return void
+ */
+$(window).on("resize", function () {
+    checkPostCreateButtonDesign();
+});
+
+/**
+ * To check window size for Post Crate Button Design
+ *
+ * @return void
+ */
+function checkPostCreateButtonDesign() {
+    var $window = $(window);
+    if ($window.width() <= 640) {
+        $(".post-create-btn").html("<i class='fas fa-pencil-alt'></i>");
+    } else {
+        $(".post-create-btn").html("<i class='fas fa-pencil-alt'></i> Create");
+    }
 }

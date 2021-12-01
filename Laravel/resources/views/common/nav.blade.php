@@ -1,8 +1,12 @@
 <nav id="nav-bar">
   <div class="nav-wrapper">
     <div class="nav-list">
-      <p class="nav-menu-btn">
-        <span></span>
+      @if(Request::is('user/view/*'))
+      <p class="nav-menu-btn hidden">      
+      @else
+      <p class="nav-menu-btn">  
+      @endif
+      <span></span>
         <span></span>
         <span></span>
       </p>

@@ -149,11 +149,34 @@
 /*  SP  */
 @media screen and (max-width: 640px) {
     .postbtn-container {
+        border-top: 1px solid #e4e4e4;
+        padding-top: 0.5em;
         display: flex;
         justify-content: space-between;
     }
 
     .post-btn {
         margin-left: 0;
+    }
+
+    .postlist-container {
+        width: 96%;
+        float: none;
+        min-height: 82vh;
+        margin: auto;
+    }
+
+    .post {
+        margin: 0 auto 1.5% auto;
+    }
+
+    .loading {
+        width: 96%;
+        float: none;
+    }
+
+    .post-create-btn {
+        border-radius: 50%;
+        padding: 1.35em;
     }
 }
