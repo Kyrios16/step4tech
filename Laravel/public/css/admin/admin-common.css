@@ -257,6 +257,12 @@ main {
     padding-left: 2rem;
 }
 
+.analytic-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
 .analytic-icon {
     width: 40px;
     height: 40px;
