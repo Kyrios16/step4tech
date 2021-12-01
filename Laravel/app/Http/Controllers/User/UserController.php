@@ -37,9 +37,14 @@ class UserController extends Controller
         if (Auth::check()) {
             $userId = Auth::user()->id;
             $user = $this->userInterface->getUserById($userId);
-            return view('User.user-view', compact('viewUser', 'title', 'user'));
+            return view('User.user-view')
+                ->with('viewUser', $viewUser)
+                ->with('title', $title)
+                ->with('user', $user);
         } else {
-            return view('User.user-view', compact('viewUser', 'title'));
+            return view('User.user-view')
+                ->with('viewUser', $viewUser)
+                ->with('title', $title);
         }
     }
 
@@ -53,7 +58,9 @@ class UserController extends Controller
         $userId = Auth::user()->id;
         $user = $this->userInterface->getUserById($userId);
         $title = "Edit Profile";
-        return view('User.update-user', compact('user', 'title'));
+        return view('User.update-user')
+            ->with('user', $user)
+            ->with('title', $title);
     }
 
     /**
@@ -80,7 +87,9 @@ class UserController extends Controller
         $userId = Auth::user()->id;
         $title = "Change Password";
         $user = $this->userInterface->getUserById($userId);
-        return view('User.change-password', compact('user', 'title'));
+        return view('User.change-password')
+            ->with('user', $user)
+            ->with('title', $title);
     }
 
     /**
@@ -112,7 +121,8 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->userInterface->getUserList();
-        return view('admin.User.users-manage', compact('users'));
+        return view('admin.User.users-manage')
+            ->with('users', $users);
     }
 
     /**
@@ -146,7 +156,8 @@ class UserController extends Controller
     {
         $mostPopularUser = $this->userInterface->getMostPopularUser();
 
-        return view('admin.analytic.analytics-manage', compact('mostPopularUser'));
+        return view('admin.analytic.analytics-manage')
+            ->with('mostPopularUser', $mostPopularUser);
     }
 
     /**
@@ -162,6 +173,7 @@ class UserController extends Controller
     public function showUserProfile($id)
     {
         $user = $this->userInterface->getUserById($id);
-        return view('User.user-view', compact('user'));
+        return view('User.user-view')
+            ->with('user', $user);
     }
 }
