@@ -98,8 +98,6 @@
     display: flex;
     flex-direction: row;
     width: 50%;
-    /* border: 1px dotted #34c85b; */
-    box-shadow: rgba(17, 17, 26, 0.1) 2px 2px 16px;
     box-sizing: border-box;
     padding: 2%;
     margin: 0 auto;
@@ -283,3 +281,7 @@ i {
     border: 2px solid #c62828;
     box-sizing: border-box;
 }
+
+@media screen and (min-width: 641px) and (max-width: 1040px) {}
+
+@media screen and (max-width: 64px) {}

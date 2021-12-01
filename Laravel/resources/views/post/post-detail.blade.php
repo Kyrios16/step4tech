@@ -166,7 +166,6 @@
     </div>
     @include('post.replies')
     @endforeach
-
   </div>
   <div class="likepopup-container">
     <div class="likepopup-content">
