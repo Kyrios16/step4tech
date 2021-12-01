@@ -80,7 +80,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = $this->postServiceInterface->getPostList();
-        return view('admin.post.posts-manage', compact('posts'));
+        return view('admin.post.posts-manage')->with(['posts' => $posts]);
     }
 
     /**
@@ -95,9 +95,20 @@ class PostController extends Controller
         if (Auth::check()) {
             $userId = Auth::user()->id;
             $user = $this->userServiceInterface->getUserById($userId);
-            return view('post.index', compact('title', 'user', 'categories', 'userCategoryList'));
+            return view('post.index')
+                ->with([
+                    'title' => $title,
+                    'user' => $user,
+                    'categories' => $categories,
+                    'userCategoryList' => $userCategoryList
+                ]);
         } else {
-            return view('post.index', compact('title', 'categories', 'userCategoryList'));
+            return view('post.index')
+                ->with([
+                    'title' => $title,
+                    'categories' => $categories,
+                    'userCategoryList' => $userCategoryList
+                ]);
         }
     }
 
@@ -113,7 +124,13 @@ class PostController extends Controller
             $user = $this->userServiceInterface->getUserById($userId);
             $categories = $this->categoryServiceInterface->getCateList();
             $userCategoryList = $this->categoryServiceInterface->getUserCategory();
-            return view('post.like', compact('title', 'user', 'categories', 'userCategoryList'));
+            return view('post.like')
+                ->with([
+                    'title' => $title,
+                    'user' => $user,
+                    'categories' => $categories,
+                    'userCategoryList' => $userCategoryList
+                ]);
         }
     }
 
@@ -129,7 +146,13 @@ class PostController extends Controller
             $user = $this->userServiceInterface->getUserById($userId);
             $categories = $this->categoryServiceInterface->getCateList();
             $userCategoryList = $this->categoryServiceInterface->getUserCategory();
-            return view('post.trash', compact('title', 'user', 'categories', 'userCategoryList'));
+            return view('post.trash')
+                ->with([
+                    'title' => $title,
+                    'user' => $user,
+                    'categories' => $categories,
+                    'userCategoryList' => $userCategoryList
+                ]);
         }
     }
 
@@ -146,9 +169,22 @@ class PostController extends Controller
         if (Auth::check()) {
             $userId = Auth::user()->id;
             $user = $this->userServiceInterface->getUserById($userId);
-            return view('post.search', compact('title', 'user', 'searchValue', 'categories', 'userCategoryList'));
+            return view('post.search')
+                ->with([
+                    'title' => $title,
+                    'user' => $user,
+                    'searchValue' => $searchValue,
+                    'categories' => $categories,
+                    'userCategoryList' => $userCategoryList
+                ]);
         } else {
-            return view('post.search', compact('title', 'searchValue', 'categories', 'userCategoryList'));
+            return view('post.search')
+                ->with([
+                    'title' => $title,
+                    'searchValue' => $searchValue,
+                    'categories' => $categories,
+                    'userCategoryList' => $userCategoryList
+                ]);
         }
     }
 
@@ -164,7 +200,13 @@ class PostController extends Controller
         $userCategoryList = $this->categoryServiceInterface->getUserCategory();
         $id = Auth::user()->id ?? 1;
         $user = $this->userServiceInterface->getUserById($id);
-        return view('post.create',  compact('categories', 'title', 'user', 'userCategoryList'));
+        return view('post.create')
+            ->with([
+                'title' => $title,
+                'user' => $user,
+                'categories' => $categories,
+                'userCategoryList' => $userCategoryList
+            ]);
     }
     /**
      * To check post create form and redirect to confirm page.
@@ -194,7 +236,15 @@ class PostController extends Controller
         $userid = Auth::user()->id ?? 1;
         $user = $this->userServiceInterface->getUserById($userid);
 
-        return view('post.edit', compact('post', 'categories', 'postCategory', 'title', 'user', 'userCategoryList'));
+        return view('post.edit')
+            ->with([
+                'title' => $title,
+                'user' => $user,
+                'post' => $post,
+                'postCategory' => $postCategory,
+                'categories' => $categories,
+                'userCategoryList' => $userCategoryList
+            ]);
     }
 
     /**
@@ -234,9 +284,32 @@ class PostController extends Controller
         if (Auth::check()) {
             $userId = Auth::user()->id;
             $user = $this->userServiceInterface->getUserById($userId);
-            return view('post.post-detail', compact('title', 'post', 'voteList', 'feedbackList', 'postCategory', 'date', 'user', 'categories', 'userCategoryList', 'replies'));
+            return view('post.post-detail')
+                ->with([
+                    'title' => $title,
+                    'post' => $post,
+                    'voteList' => $voteList,
+                    'feedbackList' => $feedbackList,
+                    'postCategory' => $postCategory,
+                    'date' => $date,
+                    'user' => $user,
+                    'categories' => $categories,
+                    'userCategoryList' => $userCategoryList,
+                    'replies' => $replies
+                ]);
         } else {
-            return view('post.post-detail', compact('title', 'post', 'voteList', 'feedbackList', 'postCategory', 'date', 'categories', 'userCategoryList', 'replies'));
+            return view('post.post-detail')
+                ->with([
+                    'title' => $title,
+                    'post' => $post,
+                    'voteList' => $voteList,
+                    'feedbackList' => $feedbackList,
+                    'postCategory' => $postCategory,
+                    'date' => $date,
+                    'categories' => $categories,
+                    'userCategoryList' => $userCategoryList,
+                    'replies' => $replies
+                ]);
         }
     }
 

@@ -19,7 +19,15 @@ class FeedbackDao implements FeedbackDaoInterface
      */
     public function getFeedbackbyPostId($Id)
     {
-        $feedbackList = DB::select(DB::raw("SELECT feedbacks.created_user_id,feedbacks.id,feedbacks.content,feedbacks.green_mark, feedbacks.photo, users.name, users.profile_img,feedbacks.created_at
+        $feedbackList = DB::select(DB::raw("SELECT 
+        feedbacks.created_user_id,
+        feedbacks.id,
+        feedbacks.content,
+        feedbacks.green_mark, 
+        feedbacks.photo, 
+        users.name, 
+        users.profile_img,
+        feedbacks.created_at
         FROM feedbacks,users
         WHERE users.id = feedbacks.created_user_id
         AND feedbacks.deleted_at is NULL
@@ -39,25 +47,21 @@ class FeedbackDao implements FeedbackDaoInterface
      */
     public function createFeedback($request, $id)
     {
-        $feedbackList = DB::table("feedbacks")->get();
-        $feedbackid = count($feedbackList) + 1;
-        $feedback = new Feedback();
-
-        if ($file = $request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $newName = "feedback_" . $feedbackid . "." . $extension;
-            $destinationPath = public_path() . '/images/feedbacks/';
-            $file->move($destinationPath, $newName);
-            $feedback->photo = $newName;
-        }
-        $feedback->content = $request->content;
-        $feedback->post_id = $id;
-        $feedback->green_mark = false;
-        $feedback->created_user_id = Auth::user()->id ?? 1;
-        $feedback->updated_user_id = Auth::user()->id ?? 1;
-        $feedback->save();
-        return $feedback;
+        return DB::transaction(function () use ($request, $id) {
+            $feedback = new Feedback();
+            if ($file = $request->hasFile('photo')) {
+                $file = $request->file('photo');
+                $destinationPath = public_path() . '/images/feedbacks/';
+                $file->move($destinationPath, $request->photo);
+                $feedback->photo = $request->photo;
+            }
+            $feedback->content = $request->content;
+            $feedback->post_id = $id;
+            $feedback->green_mark = false;
+            $feedback->created_user_id = Auth::user()->id ?? 1;
+            $feedback->updated_user_id = Auth::user()->id ?? 1;
+            $feedback->save();
+        });
     }
 
     /**
@@ -68,12 +72,12 @@ class FeedbackDao implements FeedbackDaoInterface
      */
     public function deleteFeedback($id)
     {
-        $feedback = Feedback::find($id);
-        $feedback->deleted_user_id = Auth::user()->id ?? 1;
-        $feedback->deleted_at = now();
-        $feedback->save();
-
-        return $feedback;
+        return DB::transaction(function () use ($id) {
+            $feedback = Feedback::find($id);
+            $feedback->deleted_user_id = Auth::user()->id ?? 1;
+            $feedback->deleted_at = now();
+            $feedback->save();
+        });
     }
     /**
      * To give green_mark
@@ -83,19 +87,19 @@ class FeedbackDao implements FeedbackDaoInterface
      */
     public function selectGreenmark($feedback_id)
     {
+        return DB::transaction(function () use ($feedback_id) {
+            $feedback = Feedback::find($feedback_id);
+            if ($feedback->green_mark == true) {
+                Feedback::where('id', $feedback_id)
+                    ->update(['green_mark' => false]);
+            } else {
 
-        $feedback = Feedback::find($feedback_id);
-        if ($feedback->green_mark == true) {
-            Feedback::where('id', $feedback_id)
+                Feedback::where('id', $feedback_id)
+                    ->update(['green_mark' => true]);
+            }
+            Feedback::where('id', '!=', $feedback_id)
+                ->where('post_id', $feedback->post_id)
                 ->update(['green_mark' => false]);
-        } else {
-
-            Feedback::where('id', $feedback_id)
-                ->update(['green_mark' => true]);
-        }
-        Feedback::where('id', '!=', $feedback_id)
-            ->where('post_id', $feedback->post_id)
-            ->update(['green_mark' => false]);
-        return 'Greenmark Approved';
+        });
     }
 }

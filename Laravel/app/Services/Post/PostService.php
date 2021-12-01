@@ -5,6 +5,7 @@ namespace App\Services\Post;
 use App\Contracts\Dao\Post\PostDaoInterface;
 use Illuminate\Http\Request;
 use App\Contracts\Services\Post\PostServiceInterface;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Service class for post.
@@ -81,6 +82,15 @@ class PostService implements PostServiceInterface
      */
     public function savePost(Request $request)
     {
+        $postList = DB::table("posts")
+            ->get();
+        $postid = count($postList) + 1;
+        if ($file = $request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension();
+            $newName = "image_" . $postid . "." . $extension;
+            $request->photo = $newName;
+        }
         return $this->postDao->savePost($request);
     }
     /**
@@ -101,6 +111,12 @@ class PostService implements PostServiceInterface
      */
     public function updatedPostById(Request $request, $id)
     {
+        if ($file = $request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension();
+            $newName = "image_" . $id . "." . $extension;
+            $request->photo = $newName;
+        }
         return $this->postDao->updatedPostById($request, $id);
     }
     /**
@@ -179,7 +195,8 @@ class PostService implements PostServiceInterface
      * @param string $id post id
      * @return Object $post recovered post
      */
-    public function recoverPostById($id) {
+    public function recoverPostById($id)
+    {
         return $this->postDao->recoverPostById($id);
     }
 }
