@@ -6,6 +6,7 @@ use App\Contracts\Dao\Feedback\FeedbackDaoInterface;
 use App\Contracts\Services\Feedback\FeedbackServiceInterface;
 use Carbon\Carbon;
 use DateTime;
+use Illuminate\Support\Facades\DB;
 
 /**
  * User Service class
@@ -54,6 +55,15 @@ class FeedbackService implements FeedbackServiceInterface
      */
     public function createFeedback($request, $id)
     {
+        $feedbackList = DB::table("feedbacks")->get();
+        $feedbackid = count($feedbackList) + 1;
+
+        if ($file = $request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension();
+            $newName = "feedback_" . $feedbackid . "." . $extension;
+            $request->photo = $newName;
+        }
         return $this->feedbackDao->createFeedback($request, $id);
     }
 
