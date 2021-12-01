@@ -64,6 +64,7 @@
               </tbody>
             </table>
           </div>
+
           <a href="{{ route('export.categories') }}" class="btn btn-info export-btn">Export&nbsp;&nbsp;<i class="fas fa-file-export"></i></a>
         </div>
       </main>

@@ -32,6 +32,10 @@
     box-shadow: var(--shadow);
 }
 
+.popup .header-title {
+    margin-bottom: 1.5rem;
+}
+
 .popup .close-btn {
     cursor: pointer;
     position: absolute;

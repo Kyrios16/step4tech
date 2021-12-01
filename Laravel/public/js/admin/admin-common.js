@@ -14,7 +14,7 @@ $(document).ready(function () {
 
 /**
  * To show alert box when delete post by id in dashboard
- * 
+ *
  * @param int post id
  * @return void
  */
@@ -23,8 +23,7 @@ function deletePost(id) {
         title: "Are you sure want to delete?",
         buttons: true,
         dangerMode: true,
-      })
-      .then((willDelete) => {
+    }).then((willDelete) => {
         if (willDelete) {
             $.ajax({
                 url: `/api/admin/post/delete/${id}`,
@@ -37,24 +36,23 @@ function deletePost(id) {
                 },
             });
         } else {
-          swal("Your post is safe!");
+            swal("Your post is safe!");
         }
-      });
+    });
 }
 
 /**
  * To show alert box when delete user by id in dashboard
- * 
+ *
  * @param int user id
  * @return void
  */
- function deleteUser(id) {
+function deleteUser(id) {
     swal({
         title: "Are you sure want to delete?",
         buttons: true,
         dangerMode: true,
-      })
-      .then((willDelete) => {
+    }).then((willDelete) => {
         if (willDelete) {
             $.ajax({
                 url: `/api/admin/users/${id}`,
@@ -63,11 +61,11 @@ function deletePost(id) {
                     location.reload();
                 },
                 error: function (result) {
-                    alert("Post Deleted Fail");
+                    alert("User Deleted Fail");
                 },
             });
         } else {
-          swal("Your post is safe!");
+            swal("User account is safe!");
         }
-      });
+    });
 }
