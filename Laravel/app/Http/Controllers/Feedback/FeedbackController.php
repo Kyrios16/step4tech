@@ -90,8 +90,8 @@ class FeedbackController extends Controller
     public function updateFeedback(createFeedbackRequest $request, $id)
     {
         $request->validated();
-        $reply = $this->feedbackInterface->updateFeedback($request, $id);
-        return response()->json($reply);
+        $this->feedbackInterface->updateFeedback($request, $id);
+        return back();
     }
 
     /**
@@ -101,7 +101,7 @@ class FeedbackController extends Controller
      */
     public function  deleteFeedback($id)
     {
-        $feedback = $this->feedbackInterface->deleteFeedback($id);
+        $this->feedbackInterface->deleteFeedback($id);
         return back();
     }
     /**

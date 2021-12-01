@@ -45,13 +45,13 @@
   @auth
   <form class="reply-txtfield" method="POST" action="/post/{{ $post->id }}/feedback/{{ $feedback->id }}/reply" enctype="multipart/form-data">
     @csrf
-    <div class="preview-image-container" id="feedback-preImg">
-      <img id="preview-image-before-upload" class="preview-img" src="{{ asset('images/image_not_found.gif') }}" alt="preview image">
+    <div class=" preview-image-container" id="reply-Img">
+      <img id="preview-img" class="preview-img" src="{{ asset('images/image_not_found.gif') }}" alt="preview image">
     </div>
     <textarea name="reply_content" onkeyup="autoheight(this)" rows="1" class="input-feedback-content @error('reply_content') is-invalid @enderror" placeholder="Enter Your reply..."></textarea>
     <label class="uploadLabel">
       <i class="fas fa-folder-plus"></i>
-      <input type="file" class="uploadButton" name="reply_photo" id="image" placeholder="Upload Image" />
+      <input type="file" onchange="showPreview(this);" class="uploadButton @error('reply_photo') is-invalid @enderror" name="reply_photo" id="image" placeholder="Upload Image" />
     </label>
     <button class="reply-send" type="submit">
       <i class="fas fa-paper-plane"></i>
@@ -62,45 +62,11 @@
       <div>{{ $message }}</div>
     </span>
     @enderror
+    @error('reply_photo')
+    <span class="form-error">
+      <div>{{ $message }}</div>
+    </span>
+    @enderror
   </form>
   @endauth
 </div>
-
-
-<script>
-  /**
-   * To show edit popup model
-   *
-   * @param int $id
-   * @return void
-   */
-  function show(id) {
-    $.get("{{ url('show') }}/" + id, {}, function(data, status) {
-      $("#exampleModalLabel").html("Edit Reply");
-      $("#page").html(data);
-      $("#exampleModal").modal("show");
-      $("#exampleModal").css("margin-top", 100);
-    });
-  }
-
-  /**
-   * To update comments
-   *
-   * @param int $id
-   * @return void
-   */
-  function update(id) {
-    let content = $("#reply_content").val();
-    let data = {
-      content: content,
-    };
-    $.ajax({
-      type: "get",
-      url: "{{ url('update') }}/" + id,
-      data: data,
-      success: function(data) {
-        location.reload();
-      },
-    });
-  }
-</script>

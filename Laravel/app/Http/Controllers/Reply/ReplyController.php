@@ -35,8 +35,8 @@ class ReplyController extends Controller
     public function createReply(ReplyCreateRequest $request, $post_id, $feedback_id)
     {
         $request->validated();
-        $this->replyInterface->createReply($request, $post_id, $feedback_id);
-        return redirect()->route('detail.post', [$post_id]);
+        $reply = $this->replyInterface->createReply($request, $post_id, $feedback_id);
+        return redirect()->route('detail.post', [$feedback_id]);
     }
 
     /**
@@ -56,13 +56,13 @@ class ReplyController extends Controller
      * 
      * @param $request from ReplyCreateRequest
      * @param $id reply id
-     * @return $reply updated reply 
+     * @return back()
      */
     public function updatedReply(ReplyCreateRequest $request, $id)
     {
         $request->validated();
-        $reply = $this->replyInterface->updatedReply($request, $id);
-        return response()->json($reply);
+        $this->replyInterface->updatedReply($request, $id);
+        return back();
     }
 
     /**

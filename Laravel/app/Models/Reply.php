@@ -12,8 +12,8 @@ class Reply extends Model
     protected $fillable = [
         'post_id',
         'feedback_id',
-        'content',
-        'photo',
+        'reply_content',
+        'reply_photo',
         'created_user_id',
         'updated_user_id',
         'deleted_user_id'

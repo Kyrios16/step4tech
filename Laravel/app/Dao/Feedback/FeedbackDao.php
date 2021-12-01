@@ -75,7 +75,7 @@ class FeedbackDao implements FeedbackDaoInterface
                 $file = $request->file('photo');
                 $extension = $file->getClientOriginalExtension();
                 $newName = "feedback_" . $id . "." . $extension;
-                $destinationPath = public_path() . '/images/replies/';
+                $destinationPath = public_path() . '/images/feedbacks/';
                 $file->move($destinationPath, $newName);
                 $feedback->photo = $newName;
             }

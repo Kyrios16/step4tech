@@ -188,7 +188,8 @@
 .delete-icn:hover {
     color: #dc3545 !important;
 }
-#feedback-preImg {
+#feedback-preImg,
+#reply-Img {
     display: none;
 }
 
@@ -217,7 +218,7 @@
     justify-content: space-around;
 }
 .greenmark {
-  font-size: 1.875rem;
+    font-size: 1.875rem;
 }
 .green {
     color: #34c85b;

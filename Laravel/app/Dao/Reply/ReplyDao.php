@@ -50,8 +50,8 @@ class ReplyDao implements ReplyDaoInterface
             $replies = DB::table("replies")->get();
             $replyId = count($replies) + 1;
             $reply = new Reply();
-            if ($file = $request->hasFile('replies')) {
-                $file = $request->file('replies');
+            if ($file = $request->hasFile('reply_photo')) {
+                $file = $request->file('reply_photo');
                 $extension = $file->getClientOriginalExtension();
                 $newName = "reply_" . $replyId . "." . $extension;
                 $destinationPath = public_path() . '/images/replies/';
@@ -78,8 +78,8 @@ class ReplyDao implements ReplyDaoInterface
     {
         return DB::transaction(function () use ($request, $id) {
             $reply = Reply::findOrFail($id);
-            if ($file = $request->hasFile('replies')) {
-                $file = $request->file('replies');
+            if ($file = $request->hasFile('reply_photo')) {
+                $file = $request->file('reply_photo');
                 $extension = $file->getClientOriginalExtension();
                 $newName = "reply_" . $id . "." . $extension;
                 $destinationPath = public_path() . '/images/replies/';

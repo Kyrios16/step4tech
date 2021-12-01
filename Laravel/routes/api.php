@@ -7,6 +7,7 @@ use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\ChartDataController;
 use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\Reply\ReplyController;
 
 
 /*
@@ -87,4 +88,3 @@ Route::get('/admin/chart', [ChartDataController::class, 'getDailyPostCount']);
  * To Recover Post
  */
 Route::post('/post/recover/{id}', [PostAPIController::class, 'recoverPostById']);
-

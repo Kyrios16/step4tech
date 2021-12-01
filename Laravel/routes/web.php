@@ -86,26 +86,26 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::get('/post/edit/{id}', [PostController::class, 'showPostEditView'])->name('edit.post');
         Route::post('/post/edit/{id}', [PostController::class, 'submitPostEdit'])->name('edit.post');
 
-    /**
-     * Display Post Detail
-     */
-    Route::get('/post/detail/{id}',  [PostController::class, 'showPostDetailView'])->name('detail.post');
+        /**
+         * Display Post Detail
+         */
+        Route::get('/post/detail/{id}',  [PostController::class, 'showPostDetailView'])->name('detail.post');
 
-    /**
-     * Feedback Create
-     */
-    Route::post('/post/feedback/{id}',  [FeedbackController::class, 'createFeedback'])->name('feedback.post');
+        /**
+         * Feedback Create
+         */
+        Route::post('/post/feedback/{id}',  [FeedbackController::class, 'createFeedback'])->name('feedback.post');
 
-    /**
-     * Feedback Update
-     */
-    Route::get('/feedback/show/{id}', [FeedbackController::class, 'show']);
-    Route::get('/feedback/update/{id}', [FeedbackController::class, 'updateFeedback']);
+        /**
+         * Feedback Update
+         */
+        Route::get('/feedback/show/{id}', [FeedbackController::class, 'show']);
+        Route::post('/feedback/update/{id}', [FeedbackController::class, 'updateFeedback'])->name('feedback.update');
 
-    /**
-     * Feedback Delete
-     */
-    Route::get('/feedback/delete/{id}',  [FeedbackController::class, 'deleteFeedback'])->name('feedback.delete');
+        /**
+         * Feedback Delete
+         */
+        Route::get('/feedback/delete/{id}',  [FeedbackController::class, 'deleteFeedback'])->name('feedback.delete');
 
         /**
          * Display Post Detail
@@ -150,8 +150,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
          * Delete reply  
          */
         Route::get('/reply/delete/{replyId}',  [ReplyController::class, 'deleteReply'])->name("delete.reply");
-        
-    });//End Middleware Auth
+    }); //End Middleware Auth
 });
 
 /* Export by admin */
@@ -165,5 +164,3 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     //Manage Post
     Route::get('/posts/export', [PostController::class, 'export'])->name('export.posts');
 });
-    
-

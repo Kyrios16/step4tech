@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Fonts -->
@@ -22,14 +23,6 @@
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <link rel="stylesheet" href="{{ asset('css/common/sidebar.css') }}">
   @yield('style')
-  <style>
-    footer {
-      background-color: #f5f5f5;
-      padding: 2%;
-      z-index: 400;
-      text-align: center;
-    }
-  </style>
 
   <!-- Script -->
   <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
@@ -60,13 +53,6 @@
       @yield('content')
     </div>
   </div>
-  <footer>
-    <div class="container">
-        <div class="copyRight">
-            &copy;copyright All right reserved by Step4Tech
-        </div>
-    </div>
-</footer>
 </body>
 
 </html>

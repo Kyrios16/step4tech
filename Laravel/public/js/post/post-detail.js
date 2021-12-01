@@ -15,3 +15,18 @@ $(document).ready(function () {
         $(id).toggle();
     });
 });
+
+/**
+ * To show edit popup model
+ *
+ * @param int $id feedback id
+ * @return void
+ */
+function showEditFeedbackModel(id) {
+    $.get("/feedback/show/" + id, {}, function (data, status) {
+        $("#exampleModalLabel").html("Edit Feedback");
+        $("#page").html(data);
+        $("#exampleModal").modal("show");
+        $("#exampleModal").css("margin-top", 100);
+    });
+}
