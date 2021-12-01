@@ -240,31 +240,28 @@ class PostDao implements PostDaoInterface
      */
     public function savePost(Request $request)
     {
-        $postList = DB::table("posts")
-            ->get();
-        $postid = count($postList) + 1;
-        $post = new Post();
 
-        if ($file = $request->hasFile('photo')) {
+        return DB::transaction(function () use ($request) {
+            $postList = DB::table("posts")
+                ->get();
+            $postid = count($postList) + 1;
+            $post = new Post();
             $file = $request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $newName = "image_" . $postid . "." . $extension;
             $destinationPath = public_path() . '/images/posts/';
-            $file->move($destinationPath, $newName);
-            $post->photo = $newName;
-        }
-        $post->title = $request['title'];
-        $post->content = $request['content'];
-        $post->created_user_id = Auth::user()->id ?? 1;
-        $post->updated_user_id = Auth::user()->id ?? 1;
-        $post->save();
-        foreach ($request['category'] as $category) {
-            $postCategory = new PostCategory();
-            $postCategory->post_id = $postid;
-            $postCategory->category_id = $category;
-            $postCategory->save();
-        }
-        return $post;
+            $file->move($destinationPath, $request->photo);
+            $post->photo = $request->photo;
+            $post->title = $request['title'];
+            $post->content = $request['content'];
+            $post->created_user_id = Auth::user()->id ?? 1;
+            $post->updated_user_id = Auth::user()->id ?? 1;
+            $post->save();
+            foreach ($request['category'] as $category) {
+                $postCategory = new PostCategory();
+                $postCategory->post_id = $postid;
+                $postCategory->category_id = $category;
+                $postCategory->save();
+            }
+        });
     }
     /**
      * To get post by id
@@ -289,33 +286,32 @@ class PostDao implements PostDaoInterface
      */
     public function updatedPostById(Request $request, $id)
     {
-        $post = post::find($id);
-        if ($file = $request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $newName = "image_" . $id . "." . $extension;
-            $destinationPath = public_path() . '/images/posts/';
-            $file->move($destinationPath, $newName);
-            $post->photo = $newName;
-        }
-        $post->title = $request['title'];
-        $post->content = $request['content'];
-        $post->created_user_id = Auth::user()->id ?? 1;
-        $post->updated_user_id = Auth::user()->id ?? 1;
-        $post->save();
-
-        $postCateList = PostCategory::where('post_id', $id)->get();
-        if ($postCateList) {
-            foreach ($postCateList as $postCate) {
-                $postCate->save();
-                $postCate->delete();
+        return DB::transaction(function () use ($request, $id) {
+            $post = post::find($id);
+            if ($file = $request->hasFile('photo')) {
+                $file = $request->file('photo');
+                $destinationPath = public_path() . '/images/posts/';
+                $file->move($destinationPath, $request->photo);
+                $post->photo = $request->photo;
             }
-        }
-        foreach ($request['category'] as $category) {
-            DB::insert('INSERT into post_category (post_id, category_id) VALUES (?, ?)', [$id, $category]);
-        }
+            $post->title = $request['title'];
+            $post->content = $request['content'];
+            $post->created_user_id = Auth::user()->id ?? 1;
+            $post->updated_user_id = Auth::user()->id ?? 1;
+            $post->save();
 
-        return $post;
+            $postCateList = PostCategory::where('post_id', $id)->get();
+            if ($postCateList) {
+                foreach ($postCateList as $postCate) {
+                    $postCate->save();
+                    $postCate->delete();
+                }
+            }
+            foreach ($request['category'] as $category) {
+                DB::insert('INSERT into post_category (post_id, category_id) 
+                VALUES (?, ?)', [$id, $category]);
+            }
+        });
     }
     /**
      * To delete post by id
@@ -324,13 +320,14 @@ class PostDao implements PostDaoInterface
      */
     public function deletePostById($id)
     {
-        $post = Post::find($id);
-        if ($post) {
-            $post->deleted_user_id = Auth::user()->id ?? 1;
-            $post->deleted_at = now();
-            $post->save();
-        }
-        return $post;
+        return DB::transaction(function () use ($id) {
+            $post = Post::find($id);
+            if ($post) {
+                $post->deleted_user_id = Auth::user()->id ?? 1;
+                $post->deleted_at = now();
+                $post->save();
+            }
+        });
     }
 
     /**
@@ -379,11 +376,12 @@ class PostDao implements PostDaoInterface
      */
     public function likePost($request)
     {
-        $vote = new Vote();
-        $vote->user_id = $request->userId;
-        $vote->post_id = $request->postId;
-        $vote->save();
-        return $vote;
+        return DB::transaction(function () use ($request) {
+            $vote = new Vote();
+            $vote->user_id = $request->userId;
+            $vote->post_id = $request->postId;
+            $vote->save();
+        });
     }
 
     /**
@@ -393,8 +391,10 @@ class PostDao implements PostDaoInterface
      */
     public function unlikePost($request)
     {
-        $votes = Vote::where('user_id', $request->userId)
-            ->where('post_id', $request->postId)->delete();
+        return DB::transaction(function () use ($request) {
+            Vote::where('user_id', $request->userId)
+                ->where('post_id', $request->postId)->delete();
+        });
     }
 
     /**
@@ -432,6 +432,8 @@ class PostDao implements PostDaoInterface
      */
     public function recoverPostById($id)
     {
-        return Post::withTrashed()->find($id)->restore();
+        return DB::transaction(function () use ($id) {
+            Post::withTrashed()->find($id)->restore();
+        });
     }
 }
