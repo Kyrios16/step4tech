@@ -10,6 +10,7 @@
 <script src="{{ asset('js/post/post-detail.js') }}"></script>
 <script src="{{ asset('js/post/post-create.js') }}"></script>
 <script src="{{ asset('js/post/replies.js') }}"></script>
+<script src="{{ asset('js/lib/sweetalert.min.js') }}"></script>
 @endsection
 
 @section('content')
@@ -154,7 +155,7 @@
               </div>
             </div>
           </div>
-          <a class="delete-icn" href="{!! route('feedback.delete', ['id'=>$feedback->id,]) !!}"><i class="fas fa-trash-alt"></i></a>
+          <button type="submit" class="delete-icn icon-btn-danger" onclick="deleteFeedback({{$feedback->id}})"><i class="fas fa-trash-alt"></i></button>
         </div>
         @endif
         @endauth

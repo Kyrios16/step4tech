@@ -98,12 +98,13 @@ class FeedbackController extends Controller
      * To delete feedback
      * 
      * @param int $id feedback id
+     * @return delete
      */
     public function  deleteFeedback($id)
     {
-        $this->feedbackInterface->deleteFeedback($id);
-        return back();
+        return $this->feedbackInterface->deleteFeedback($id);
     }
+
     /**
      * To give green_mark
      * 

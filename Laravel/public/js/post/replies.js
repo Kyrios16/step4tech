@@ -27,3 +27,32 @@ function show(id) {
         $("#exampleModal").css("margin-top", 100);
     });
 }
+
+/**
+ * To show alert box when delete reply by id
+ *
+ * @param int reply id
+ * @return void
+ */
+function deleteReply(id) {
+    swal({
+        title: "Are you sure want to delete?",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: `/api/reply/delete/${id}`,
+                type: "DELETE",
+                success: function (result) {
+                    location.reload();
+                },
+                error: function (result) {
+                    alert("Reply Deleted Fail");
+                },
+            });
+        } else {
+            swal("Your reply is safe!");
+        }
+    });
+}

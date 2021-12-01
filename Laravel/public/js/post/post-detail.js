@@ -30,3 +30,33 @@ function showEditFeedbackModel(id) {
         $("#exampleModal").css("margin-top", 100);
     });
 }
+
+/**
+ * To show alert box when delete feedback by id
+ *
+ * @param int feedback id
+ * @return void
+ */
+function deleteFeedback(id) {
+    console.log(id);
+    swal({
+        title: "Are you sure want to delete?",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: `/api/feedback/delete/${id}`,
+                type: "DELETE",
+                success: function (result) {
+                    location.reload();
+                },
+                error: function (result) {
+                    alert("Feedback Deleted Fail");
+                },
+            });
+        } else {
+            swal("Your feedback is safe!");
+        }
+    });
+}

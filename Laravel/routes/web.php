@@ -120,10 +120,6 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
          * Greenmark Create
          */
         Route::get('/feedback/greenmark/{feedback_id}',  [FeedbackController::class, 'selectGreenmark'])->name('feedback.greenmark');
-        /**
-         * Feedback Delete
-         */
-        Route::get('/feedback/delete/{id}',  [FeedbackController::class, 'deleteFeedback'])->name('feedback.delete');
 
         /**
          * Add to Followed Category List
@@ -145,11 +141,6 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
          */
         Route::get('/show/{id}', [ReplyController::class, 'show']);
         Route::post('/update/{id}', [ReplyController::class, 'updatedReply'])->name('update.reply');
-
-        /**
-         * Delete reply  
-         */
-        Route::get('/reply/delete/{replyId}',  [ReplyController::class, 'deleteReply'])->name("delete.reply");
     }); //End Middleware Auth
 });
 
