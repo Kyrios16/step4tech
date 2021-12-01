@@ -95,14 +95,26 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
          * Feedback Create
          */
         Route::post('/post/feedback/{id}',  [FeedbackController::class, 'createFeedback'])->name('feedback.post');
+
         /**
-         * Greenmark Create
+         * Feedback Update
          */
-        Route::get('/feedback/greenmark/{feedback_id}',  [FeedbackController::class, 'selectGreenmark'])->name('feedback.greenmark');
+        Route::get('/feedback/show/{id}', [FeedbackController::class, 'show']);
+        Route::post('/feedback/update/{id}', [FeedbackController::class, 'updateFeedback'])->name('feedback.update');
+
         /**
          * Feedback Delete
          */
         Route::get('/feedback/delete/{id}',  [FeedbackController::class, 'deleteFeedback'])->name('feedback.delete');
+
+        /**
+         * Feedback Create
+         */
+        Route::post('/post/feedback/{id}',  [FeedbackController::class, 'createFeedback'])->name('feedback.post');
+        /**
+         * Greenmark Create
+         */
+        Route::get('/feedback/greenmark/{feedback_id}',  [FeedbackController::class, 'selectGreenmark'])->name('feedback.greenmark');
 
         /**
          * Add to Followed Category List
@@ -120,9 +132,10 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::post('/post/{post}/feedback/{feedback}/reply',  [ReplyController::class, 'createReply'])->name("create.reply");
 
         /**
-         * Delete reply  
+         * Edit reply for feedback 
          */
-        Route::get('/reply/delete/{replyId}',  [ReplyController::class, 'deleteReply'])->name("delete.reply");
+        Route::get('/show/{id}', [ReplyController::class, 'show']);
+        Route::post('/update/{id}', [ReplyController::class, 'updatedReply'])->name('update.reply');
     }); //End Middleware Auth
 });
 

@@ -24,8 +24,8 @@ class ReplyCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'required',
-            'photo' => 'image|max:2048',
+            'reply_content' => 'required',
+            'reply_photo' => 'image|max:2048',
         ];
     }
 

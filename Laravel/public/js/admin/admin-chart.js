@@ -17,7 +17,6 @@
             });
 
             request.done(function (res) {
-                console.log(res);
                 charts.createCompletedJobsChart(res);
             });
         },
@@ -28,13 +27,19 @@
         createCompletedJobsChart: function (res) {
             const biggestCount = Math.max(...Object.values(res));
             const remainder = biggestCount / 10;
-            const max = Math.ceil(remainder) * 10;
+            const max = Object.hasOwnProperty(Object.values(res))
+                ? Math.ceil(remainder) * 10
+                : 10;
 
+            let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+            let labels = Object.hasOwnProperty(Object.keys(res))
+                ? Object.keys(res)
+                : days;
             var ctx = document.getElementById("myChart");
             var myChart = new Chart(ctx, {
                 type: "line",
                 data: {
-                    labels: Object.keys(res),
+                    labels: labels,
                     datasets: [
                         {
                             label: "no. of posts",

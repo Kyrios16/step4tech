@@ -25,6 +25,16 @@ interface ReplyServiceInterface
     public function createReply($request, $post_id, $feedback_id);
 
     /**
+     * To update reply
+     * 
+     * @param $request
+     * @param $id reply id
+     * @return $reply updated reply 
+     */
+    public function updatedReply($request, $id);
+
+
+    /**
      * To delete reply
      * 
      * @param $id reply id 

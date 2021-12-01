@@ -17,7 +17,7 @@
       </header>
       <main>
         @include('admin.common.analytics')
-        <div class="table-container">
+        <div class="table-container clearfix">
           <div class="table-header">
             <h3 class="header-title">Users Lists</h3>
           </div>
@@ -32,24 +32,19 @@
                   <p class="user-position">Position:&nbsp;{{ $user->position }}</p>
                   <p class="dob">DOB:&nbsp;{{ $user->date_of_birth }}</p>
                   <div class="links">
-                    <a target="_blank" href="https://codepen.io/l-e-e/"><i class="fab fa-linkedin"></i></a>
-                    <a target="_blank" href="https://github.com/Leena26"><i class="fab fa-github"></i></a>
+                    <a target="_blank" href="{{ $user->linkedin }}"><i class="fab fa-linkedin"></i></a>
+                    <a target="_blank" href="{{ $user->github }}"><i class="fab fa-github"></i></a>
                   </div>
                 </div>
               </div>
               <div class="action">
                 <a href="{{ route('user-view', $user->id) }}" class="icon-btn-info"><i class="far fa-eye"></i></a> |
-                <form action="{{ url('/admin/users/'.$user->id) }}" method="POST" class="deleteBtn">
-                  {{ csrf_field() }}
-                  {{ method_field('DELETE') }}
-                  <button type="submit" class="icon-btn-danger"><i class="fas fa-trash-alt"></i></button>
-                </form>
-
+                <button type="submit" class="icon-btn-danger" onclick="deleteUser({{ $user->id }})"><i class="fas fa-trash-alt"></i></button>
               </div>
             </div>
             @endforeach
           </div>
-          <a href="{{ route('export.users') }}" class="btn btn-info">Export&nbsp;&nbsp;<i class="fas fa-file-export"></i></a>
+          <a href="{{ route('export.users') }}" class="btn btn-info export-btn">Export&nbsp;&nbsp;<i class="fas fa-file-export"></i></a>
         </div>
       </main>
     </div>

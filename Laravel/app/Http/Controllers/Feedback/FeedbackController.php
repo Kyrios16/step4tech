@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Feedback;
 
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 use App\Contracts\Services\Feedback\FeedbackServiceInterface;
 use App\Contracts\Services\Post\PostServiceInterface;
@@ -66,16 +67,44 @@ class FeedbackController extends Controller
         $feedback = $this->feedbackInterface->createFeedback($request, $id);
         return redirect('/post/detail/' . $id);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $data = Feedback::findOrFail($id);
+        return view('post.edit-feedback')->with(['data' => $data]);
+    }
+
+    /**
+     * To update feedback
+     * 
+     * @param $request from createFeedbackRequest
+     * @param int $id feedback id
+     * @return array $feedback updated feedback 
+     */
+    public function updateFeedback(createFeedbackRequest $request, $id)
+    {
+        $request->validated();
+        $this->feedbackInterface->updateFeedback($request, $id);
+        return back();
+    }
+
     /**
      * To delete feedback
      * 
-     * @param feedbackId
+     * @param int $id feedback id
+     * @return delete
      */
     public function  deleteFeedback($id)
     {
-        $feedback = $this->feedbackInterface->deleteFeedback($id);
-        return back();
+        return $this->feedbackInterface->deleteFeedback($id);
     }
+
     /**
      * To give green_mark
      * 
