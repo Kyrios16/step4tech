@@ -1,7 +1,7 @@
 <div class="sidebar">
   <div class="sidebar-container">
     <div class="brand">
-      <h1>
+      <h1 class="logo">
         <a href="/"><img src="{{ asset ('images/logo.png') }}" alt="Logo"></a>
       </h1>
     </div>

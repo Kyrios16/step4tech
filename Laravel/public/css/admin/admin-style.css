@@ -93,7 +93,7 @@
 
 .popular-user-card .user-card-ttl,
 .chart .chart-ttl {
-    font-size: 1.953vw;
+    font-size: 1.563vw;
     font-weight: 700;
     text-transform: capitalize;
 }
@@ -109,13 +109,13 @@
 }
 
 .popular-user-card .text img {
-    height: 7.813vw;
+    height: 5rem;
     border-radius: 50%;
     margin-bottom: 0.781vw;
 }
 
 .popular-user-card .text h3 {
-    font-size: 1.5vw;
+    font-size: 1.125vw;
     font-weight: 400;
     margin-bottom: 1.25vw;
 }
