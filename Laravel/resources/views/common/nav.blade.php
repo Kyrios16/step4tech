@@ -1,6 +1,15 @@
 <nav id="nav-bar">
   <div class="nav-wrapper">
     <div class="nav-list">
+      @if(Request::is('user/view/*') || Request::is('user/register'))
+      <p class="nav-menu-btn hidden">      
+      @else
+      <p class="nav-menu-btn">  
+      @endif
+      <span></span>
+        <span></span>
+        <span></span>
+      </p>
       <h1><a href="/"><img src="{{ asset('images/logo.png') }}" alt="Step4Tech"></a></h1>
       @if(!Request::is('user/register') && !Request::is('forgot-password'))
       <div class="search-container">
@@ -9,7 +18,6 @@
       @auth
       <div class="nav-dropdown">
         <img src="{{ asset('images/profile/' . $user->profile_img) }}" class="profile-ico" alt="Profile">
-        <button class="nav-dropdown-btn" onclick="toggleNavProfileDropdown()"><i class="fas fa-caret-down"></i></button>
         <div class="profile-dropdown-content">
           @auth
           @if ($user->role == 0)
@@ -23,7 +31,7 @@
       @else
       <div class="nav-before-login">
         <a href="/login" class="nav-btn btn-outline-secondary">Login</a>
-        <a href="/user/register" class="nav-btn btn-success">Create Account</a>
+        <a href="/user/register" class="nav-btn btn-success">Sign up</a>
       </div>
       @endauth
       @endif

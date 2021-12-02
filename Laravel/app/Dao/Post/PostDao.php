@@ -240,7 +240,6 @@ class PostDao implements PostDaoInterface
      */
     public function savePost(Request $request)
     {
-
         return DB::transaction(function () use ($request) {
             $postList = DB::table("posts")
                 ->get();

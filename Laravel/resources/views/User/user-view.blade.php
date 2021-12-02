@@ -15,59 +15,58 @@
 @endsection
 
 @section('content')
-<div class="container">
-  <div class="user-view-wrapper">
-    <div class="cover-img">
-      <img src="{{ URL::to('/') }}/images/cover/{{ $viewUser->cover_img }}" class="cover" alt="COVER">
-    </div>
-    <div class="profile-info">
-      <div class="profile-img">
-        <img src="{{ URL::to('/') }}/images/profile/{{ $viewUser->profile_img }}" class="profile" alt="PROFILE">
-      </div>
-      @auth
-      @if($viewUser->id == Auth::user()->id)
-      <div class="setting">
-        <a href="{{ route('edit-user') }}">
-          <i class="fas fa-cog"></i>
-        </a>
-      </div>
-      @endif
-      @endauth
-      <div class="name-bio">
-        <h1 class="name">{{ $viewUser->name }}</h1>
-        @if( $viewUser->bio != null)
-        <p class="bio">{{ $viewUser->bio }}</p>
-        @endif
-        <p class="dob"><i class="fas fa-birthday-cake"></i> {{ $viewUser->dob }}</p>
-      </div>
-      <div class="profile-data">
-        <p><i class="fas fa-briefcase"></i>{{$viewUser->position }}</p>
-        <p><i class="fas fa-envelope"></i><a href="mailto:{{ $viewUser->email }}">{{$viewUser->email }}</a></p>
-      </div>
-      @if( $viewUser->linkedin || $viewUser->github || $viewUser->ph_no != null )
-      <div class="media">
-        @if( $viewUser->linkedin != null )
-        <a href="{{ $viewUser->linkedin }}">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        @endif
-        @if( $viewUser->github != null )
-        <a href="{{ $viewUser->github }}">
-          <i class="fab fa-github-square"></i>
-        </a>
-        @endif
-        @if( $viewUser->ph_no != null )
-        <a href="tel:{{ $viewUser->ph_no }}">
-          <i class="fas fa-phone-square-alt"></i>
-        </a>
-        @endif
-      </div>
-      @endif
-    </div>
+<div class="user-view-wrapper">
+  <div class="cover-img">
+    <img src="{{ URL::to('/') }}/images/cover/{{ $viewUser->cover_img }}" class="cover" alt="COVER">
   </div>
-  <div class="user-postlist-wrapper">
+  <div class="profile-info">
+    <div class="profile-img">
+      <img src="{{ URL::to('/') }}/images/profile/{{ $viewUser->profile_img }}" class="profile" alt="PROFILE">
+    </div>
+    @auth
+    @if($viewUser->id == Auth::user()->id)
+    <div class="setting">
+      <a href="{{ route('edit-user') }}">
+        <i class="fas fa-cog"></i>
+      </a>
+    </div>
+    @endif
+    @endauth
+    <div class="name-bio">
+      <h1 class="name">{{ $viewUser->name }}</h1>
+      @if( $viewUser->bio != null)
+      <p class="bio">{{ $viewUser->bio }}</p>
+      @endif
+      <p class="dob"><i class="fas fa-birthday-cake"></i> {{ $viewUser->dob }}</p>
+    </div>
+    <div class="profile-data">
+      <p><i class="fas fa-briefcase"></i>{{$viewUser->position }}</p>
+      <p><i class="fas fa-envelope"></i><a href="mailto:{{ $viewUser->email }}">{{$viewUser->email }}</a></p>
+    </div>
+    @if( $viewUser->linkedin || $viewUser->github || $viewUser->ph_no != null )
+    <div class="media">
+      @if( $viewUser->linkedin != null )
+      <a href="{{ $viewUser->linkedin }}">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      @endif
+      @if( $viewUser->github != null )
+      <a href="{{ $viewUser->github }}">
+        <i class="fab fa-github-square"></i>
+      </a>
+      @endif
+      @if( $viewUser->ph_no != null )
+      <a href="tel:{{ $viewUser->ph_no }}">
+        <i class="fas fa-phone-square-alt"></i>
+      </a>
+      @endif
+    </div>
+    @endif
   </div>
 </div>
+<div class="user-postlist-wrapper">
+</div>
+
 <div class="likepopup-container">
   <div class="likepopup-content">
     <div class="likepopup-header">

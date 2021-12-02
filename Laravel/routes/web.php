@@ -77,6 +77,12 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
      */
     Route::get('/post/trash', [PostController::class, 'showDeletedPostList'])->middleware('auth');
 
+
+    /**
+     * Display Post Detail
+     */
+    Route::get('/post/detail/{id}',  [PostController::class, 'showPostDetailView'])->name('detail.post');
+
     /**
      * Display Post Detail
      */
