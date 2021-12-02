@@ -1,7 +1,7 @@
 <nav id="nav-bar">
   <div class="nav-wrapper">
     <div class="nav-list">
-      @if(Request::is('user/view/*') || Request::is('user/register'))
+      @if(Request::is('user/view/*') || Request::is('user/register') ||Request::is('forgot-password'))
       <p class="nav-menu-btn hidden">      
       @else
       <p class="nav-menu-btn">  

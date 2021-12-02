@@ -154,29 +154,30 @@ a:hover {
     opacity: 1;
 }
 
+
 /*  Ipad  */
+
 @media screen and (min-width: 641px) and (max-width: 1040px) {
     .nav-wrapper {
         width: 95%;
     }
-
     .profile-dropdown-content {
         min-width: 100px;
         margin-top: 1em;
         right: 2%;
     }
-
     .nav-wrapper h1 img {
         width: 110px;
     }
 }
 
+
 /*  SP  */
+
 @media screen and (max-width: 640px) {
     .nav-wrapper {
         width: 96%;
     }
-
     .profile-dropdown-content {
         position: fixed;
         display: block;
@@ -186,14 +187,12 @@ a:hover {
         background-color: rgba(0, 0, 0, 0.85);
         border-radius: 6px;
     }
-
     .profile-dropdown-content a {
         color: #ffffff;
         padding: 1.5em;
         text-decoration: none;
         display: block;
     }
-    
     .profile-dropdown-content a:hover {
         background-color: rgba(0, 0, 0, 0.3);
         opacity: 1;
@@ -205,18 +204,15 @@ a:hover {
     .nav-wrapper h1 img {
         width: 80px;
     }
-
     .search-container {
         display: none;
     }
-
     .nav-before-login {
         flex: 1 1 30%;
     }
     .nav-dropdown {
         flex: 1 1 30%;
     }
-
     .nav-menu-btn {
         display: inline-block;
         cursor: pointer;
@@ -225,7 +221,6 @@ a:hover {
         flex: 1 1 30%;
         margin: auto;
     }
-
     .nav-menu-btn span {
         display: block;
         width: 22px;
@@ -235,11 +230,9 @@ a:hover {
         -webkit-transition: all 400ms;
         margin-bottom: 3px;
     }
-
     .nav-menu-btn span:last-of-type {
         margin-bottom: 0;
     }
-
     .nav-menu-btn span:nth-of-type(1) {
         animation: menu-bar01 0.5s forwards;
     }
