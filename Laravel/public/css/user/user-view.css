@@ -1,5 +1,4 @@
 @charset "utf-8";
-
 .user-view-wrapper {
     width: 80%;
     margin: 0 auto;
@@ -48,7 +47,7 @@
 
 .setting {
     text-align: right;
-    margin-top: -2.5em;
+    margin-top: -2.3em;
 }
 
 .setting a {
@@ -89,11 +88,10 @@
 .media {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     width: 50%;
-    box-sizing: border-box;
     padding: 2%;
     margin: 0 auto;
-    border-radius: 10px;
 }
 
 .media a {
@@ -103,12 +101,12 @@
 }
 
 .media i {
-    font-size: 2rem;
+    font-size: 2rem !important;
 }
 
 .user-view-wrapper i {
     font-size: 1.5rem;
-    margin-right: 5px;
+    margin-right: 0.3125em;
 }
 
 .profile-data i {
@@ -146,7 +144,7 @@
 }
 
 .option-btn {
-    position: absolute;    
+    position: absolute;
     font-size: 1.2rem;
     right: 16%;
     border: none;
@@ -275,4 +273,8 @@
 
 @media screen and (min-width: 641px) and (max-width: 1040px) {}
 
-@media screen and (max-width: 640px) {}
+@media screen and (max-width: 640px) {
+    .setting {
+        margin-top: -2em;
+    }
+}
