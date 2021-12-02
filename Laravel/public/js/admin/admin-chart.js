@@ -86,7 +86,7 @@
                         ],
                     },
                     title: {
-                        display: true,
+                        display: false,
                         text: "Line Chart Of Daily Posts Count",
                         fontColor: "#000",
                         fontSize: 25,

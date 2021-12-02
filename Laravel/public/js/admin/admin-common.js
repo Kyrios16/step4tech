@@ -10,6 +10,16 @@ $(document).ready(function () {
             $(this).addClass("active");
         }
     });
+
+    $("#menu-toggle").click(function () {
+        $(".sidebar").css("left", "7px");
+        if ($(".sidebar").hasClass("hb-open")) {
+            $(".sidebar").css("left", "-500px");
+            $(".sidebar").removeClass("hb-open");
+        } else {
+            $(".sidebar").addClass("hb-open");
+        }
+    });
 });
 
 /**
