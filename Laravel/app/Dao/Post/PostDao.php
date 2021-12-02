@@ -273,8 +273,11 @@ class PostDao implements PostDaoInterface
             ->whereNull('posts.deleted_at')
             ->where('posts.id', $id)
             ->get(['posts.*', 'users.profile_img', 'users.name']);
-        $post = $postList[0];
-        return $post;
+        if($postList->isEmpty()) {
+            return null;
+        } else {
+            return $postList[0];
+        }
     }
 
     /**
