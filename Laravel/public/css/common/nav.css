@@ -167,7 +167,7 @@ a:hover {
     }
 
     .nav-wrapper h1 img {
-        width: 110px;
+        width: clamp(76px,11.538vw,120px);
     }
 }
 
@@ -245,7 +245,7 @@ a:hover {
     }
     @keyframes menu-bar01 {
         0% {
-            transform: translateY(0.5em) rotate(-45deg);
+            transform: translateY(6px) rotate(-45deg);
         }
         100% {
             transform: translateY(0) rotate(0);
@@ -267,7 +267,7 @@ a:hover {
     }
     @keyframes menu-bar03 {
         0% {
-            transform: translateY(-0.5em) rotate(45deg);
+            transform: translateY(-6px) rotate(45deg);
         }
         100% {
             transform: translateY(0) rotate(0);
@@ -309,7 +309,7 @@ a:hover {
             transform: translateY(0) rotate(0);
         }
         100% {
-            transform: translateY(0.5em) rotate(-45deg);
+            transform: translateY(6px) rotate(-45deg);
         }
     }
     .nav-menu-btn.menu-active span:nth-of-type(2) {
@@ -331,7 +331,7 @@ a:hover {
             transform: translateY(0) rotate(0);
         }
         100% {
-            transform: translateY(-0.5em) rotate(45deg);
+            transform: translateY(-6px) rotate(45deg);
         }
     }
 }

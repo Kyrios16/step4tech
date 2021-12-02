@@ -35,7 +35,7 @@ button {
 /*  SP  */
 @media screen and (max-width:640px) {
     html {
-        font-size: 12px;
+        font-size: clamp(9px, 2.5vw, 12px);
     }
 
     .main-container {
