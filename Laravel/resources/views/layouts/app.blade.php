@@ -19,9 +19,10 @@
   <link rel="stylesheet" href="{{ asset('css/lib/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/lib/bootstrap-select.css') }}">
   <link rel="stylesheet" href="{{ asset('css/lib/simplemde.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/common/nav.css') }}">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/common/sidebar.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/common/nav.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/common/sidebar.css') }}">  
+  <link rel="stylesheet" href="{{ asset('css/common/footer.css') }}">
   @yield('style')
 
   <!-- Script -->
@@ -30,13 +31,13 @@
   <script src="{{ asset('js/lib/bootstrap-select.min.js') }}"></script>
   <script src="{{ asset('js/lib/simplemde.min.js') }}"></script>
   <script src="{{ asset('js/lib/moment.js') }}"></script>
-  <script src="{{ asset('js/common/sidebar.js') }}"></script>
   <script src="{{ asset('js/common/nav.js') }}"></script>
+  <script src="{{ asset('js/common/sidebar.js') }}"></script>
   <script>
     var loggedin = {{ auth()->check() ? 'true' : 'false'}};
     var userId = '';
     @auth
-    userId = {{ Auth::user()->id}};
+    userId = {{ Auth::user()->id }};
     @endauth
   </script>
   @yield('script')
@@ -53,6 +54,7 @@
       @yield('content')
     </div>
   </div>
+  @include('common.footer')
 </body>
 
 </html>

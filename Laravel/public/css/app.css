@@ -1,6 +1,6 @@
 @charset "utf-8";
 body {
-    background-color: #E4E4E4;
+    background-color: #e4e4e4;
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
@@ -17,7 +17,30 @@ button {
 }
 
 .main-container {
-    width: 90%;
+    width: 92%;
     margin: 1.5% auto;
-    position: relative;
+}
+
+
+/*  Ipad  */
+
+@media screen and (min-width: 641px) and (max-width: 1040px) {
+    html {
+        font-size: clamp(10px, 1.346vw, 14px);
+    }
+    .main-container {
+        width: 95%;
+    }
+}
+
+
+/*  SP  */
+
+@media screen and (max-width:640px) {
+    html {
+        font-size: clamp(9px, 2.5vw, 12px);
+    }
+    .main-container {
+        width: 96%;
+    }
 }

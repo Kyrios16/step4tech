@@ -120,7 +120,7 @@
           </div>
         </div>
 
-        <div class="formdata-control">
+        <div class="formdata-group">
           <p class="text">Already have an account? <a href="{{ route('login')}}" class="link-text">Sign In</a>
         </div>
 

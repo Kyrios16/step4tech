@@ -79,7 +79,9 @@ function searchPost() {
                         })"><i class="${thumbFillClass} fa-thumbs-up"></i> ${likeCount} Likes</button>
                                 <a href="/post/detail/${
                                     post.id
-                                }" class="post-btn"><i class="far fa-comment-alt"></i> Feedback</a>
+                                }" class="post-btn"><i class="far fa-comment-alt"></i> ${
+                            post.no_of_feedbacks
+                        } Feedbacks</a>
                             </div>
                         </div>`
                     );

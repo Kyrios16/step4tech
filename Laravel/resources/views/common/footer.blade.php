@@ -1,9 +1,7 @@
-@section('footer')
 <footer>
-    <div class="container">
+    <div class="footer-wrapper">
         <div class="copyRight">
-            &copy;copyright All right reserved by Step4Tech
+            Copyright &copy; {{ now()->year }} <span class="footer-ttl">Step4Tech</span>. All Rights Reserved
         </div>
     </div>
 </footer>
-@endsection
