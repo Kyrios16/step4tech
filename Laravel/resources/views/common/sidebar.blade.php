@@ -1,5 +1,9 @@
 <div class="sidebar-container">
     <div class="sidebar-content">
+        <div class="sidebar-search-container">
+            <input class="sidebar-search" type="text" placeholder="Search . . ." name="search"><i class="fa fa-search search-ico"></i>
+        </div>
+
         <a href="/" class="sidebar-items">
             <span class="{{ Request::is('/') ? 'active': '' }}">
                 <span class="icon"><i class="fas fa-home"></i></span>
