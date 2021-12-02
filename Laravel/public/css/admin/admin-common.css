@@ -22,7 +22,7 @@
 body {
     font-size: 18px;
     background: var(--main-bg);
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .clearfix::after {
@@ -39,6 +39,14 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+.pc {
+    display: block;
+}
+
+.sp {
+    display: none;
 }
 
 .header-title {
@@ -305,16 +313,12 @@ main {
 
 /* table components */
 
-.table-container {
-    margin: 3.125vw auto;
-}
-
 .posts-table,
 .cate-table {
     margin: 1.2rem auto;
-    height: 19.531vw;
     overflow-y: scroll;
 }
+
 .posts-table::-webkit-scrollbar,
 .cate-table::-webkit-scrollbar,
 .users-list::-webkit-scrollbar {

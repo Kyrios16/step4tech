@@ -25,7 +25,7 @@
       <i class="fas fa-thumbs-up"></i>
     </div>
     <div class="analytic-info">
-      <small>Most Popular Post(Total Likes)</small>
+      <small>Popular Post <br>(Total Likes)</small>
       <h2 id="total-likes"></h2>
     </div>
   </div>
@@ -34,7 +34,7 @@
       <i class="fas fa-bookmark"></i>
     </div>
     <div class="analytic-info">
-      <small>Most Followed Category</small>
+      <small>Popular Category</small>
       <h2 id="fav-cate"></h2>
     </div>
   </div>

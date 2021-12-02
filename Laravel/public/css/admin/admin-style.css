@@ -64,7 +64,7 @@
 .analytic-sec {
     display: flex;
     justify-content: space-between;
-    margin: 4rem 0;
+    margin: 4rem 0 1.6rem;
 }
 /* chart components */
 
@@ -172,6 +172,10 @@
 
 /* user management components */
 
+.user-table-container {
+    margin: 3.125vw auto 1.6vw;
+}
+
 .users-list {
     height: 310px;
     overflow-y: auto;
@@ -238,6 +242,14 @@
 
 /* posts management components */
 
+.post-table-container {
+    margin: 3.125vw auto;
+}
+
+.posts-table {
+    height: 19.531vw;
+}
+
 .posts-table .styled-table th,
 .posts-table .styled-table td {
     width: 10rem;
@@ -245,6 +257,14 @@
 }
 
 /* categories management components */
+
+.category-table-container {
+    margin: 3.125vw auto 1vw;
+}
+
+.cate-table {
+    height: 17vw;
+}
 
 #error-msg {
     font-size: 0.875vw;
