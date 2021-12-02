@@ -6,17 +6,23 @@ function showPreview(input, id) {
     const element = document.querySelector('.reply-preview-img');
     console.log(element);
     element.id = idname;
+    const preview = document.querySelector('#reply-Img');
+    preview.className = idname;
     // console.log(element.classList.length);
     console.log(element);
     console.log(id);
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $(".reply-preview-img").attr("src", e.target.result);
+            $('.reply-preview-img').attr("src", e.target.result);
+            // const element = document.getElementById(idname).setAttribute("src", e.target.result);
+            // console.log("with id name");
+            // console.log(element);
         };
 
-        const element = document.querySelector('.reply-preview-img');
-        console.log(element);
+        const preview = document.getElementsByClassName(idname);
+        console.log("for display");
+        console.log(preview);
         $("#reply-Img").css({
             display: "block",
         });

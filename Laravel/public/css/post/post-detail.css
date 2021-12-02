@@ -198,7 +198,7 @@
 }
 #feedback-preImg,
 #reply-Img {
-    display: none;
+    display: block;
 }
 
 .replyBtn {
