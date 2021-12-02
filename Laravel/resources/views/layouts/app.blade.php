@@ -21,7 +21,8 @@
   <link rel="stylesheet" href="{{ asset('css/lib/simplemde.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <link rel="stylesheet" href="{{ asset('css/common/nav.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/common/sidebar.css') }}">  
+  <link rel="stylesheet" href="{{ asset('css/common/sidebar.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/common/loading.css') }}">  
   <link rel="stylesheet" href="{{ asset('css/common/footer.css') }}">
   @yield('style')
 
@@ -33,6 +34,7 @@
   <script src="{{ asset('js/lib/moment.js') }}"></script>
   <script src="{{ asset('js/common/nav.js') }}"></script>
   <script src="{{ asset('js/common/sidebar.js') }}"></script>
+  <script src="{{ asset('js/common/loading.js') }}"></script>
   <script>
     var loggedin = {{ auth()->check() ? 'true' : 'false'}};
     var userId = '';
@@ -54,6 +56,7 @@
       @yield('content')
     </div>
   </div>
+  @include('common.loading')
   @include('common.footer')
 </body>
 
