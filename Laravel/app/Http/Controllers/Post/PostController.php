@@ -271,45 +271,66 @@ class PostController extends Controller
     {
         $title = "Detail";
         $post = $this->postServiceInterface->getPostById($id);
-        $date = $post->created_at;
-        $date = $date->format('M d, Y');
-        $post->created_at = $date;
-        $post->content = Str::markdown($post->content);
-        $feedbackList = $this->feedbackServiceInterface->getFeedbackbyPostId($id);
-        $postCategory = $this->categoryServiceInterface->getCateListwithPostId($id);
-        $voteList = $this->voteServiceInterface->getVoteListwithPostId($id);
         $categories = $this->categoryServiceInterface->getCateList();
         $userCategoryList = $this->categoryServiceInterface->getUserCategory();
-        $replies = $this->replyInterface->getReplyByPostAndFeedbackId($id);
-        if (Auth::check()) {
-            $userId = Auth::user()->id;
-            $user = $this->userServiceInterface->getUserById($userId);
-            return view('post.post-detail')
-                ->with([
-                    'title' => $title,
-                    'post' => $post,
-                    'voteList' => $voteList,
-                    'feedbackList' => $feedbackList,
-                    'postCategory' => $postCategory,
-                    'date' => $date,
-                    'user' => $user,
-                    'categories' => $categories,
-                    'userCategoryList' => $userCategoryList,
-                    'replies' => $replies
-                ]);
+        if ($post != null) {
+            $date = $post->created_at;
+            $date = $date->format('M d, Y');
+            $post->created_at = $date;
+            $post->content = Str::markdown($post->content);
+            $feedbackList = $this->feedbackServiceInterface->getFeedbackbyPostId($id);
+            $postCategory = $this->categoryServiceInterface->getCateListwithPostId($id);
+            $voteList = $this->voteServiceInterface->getVoteListwithPostId($id);
+            $replies = $this->replyInterface->getReplyByPostAndFeedbackId($id);
+            if (Auth::check()) {
+                $userId = Auth::user()->id;
+                $user = $this->userServiceInterface->getUserById($userId);
+                return view('post.post-detail')
+                    ->with([
+                        'title' => $title,
+                        'post' => $post,
+                        'voteList' => $voteList,
+                        'feedbackList' => $feedbackList,
+                        'postCategory' => $postCategory,
+                        'date' => $date,
+                        'user' => $user,
+                        'categories' => $categories,
+                        'userCategoryList' => $userCategoryList,
+                        'replies' => $replies
+                    ]);
+            } else {
+                return view('post.post-detail')
+                    ->with([
+                        'title' => $title,
+                        'post' => $post,
+                        'voteList' => $voteList,
+                        'feedbackList' => $feedbackList,
+                        'postCategory' => $postCategory,
+                        'date' => $date,
+                        'categories' => $categories,
+                        'userCategoryList' => $userCategoryList,
+                        'replies' => $replies
+                    ]);
+            }
         } else {
-            return view('post.post-detail')
-                ->with([
-                    'title' => $title,
-                    'post' => $post,
-                    'voteList' => $voteList,
-                    'feedbackList' => $feedbackList,
-                    'postCategory' => $postCategory,
-                    'date' => $date,
-                    'categories' => $categories,
-                    'userCategoryList' => $userCategoryList,
-                    'replies' => $replies
-                ]);
+            if (Auth::check()) {
+                $userId = Auth::user()->id;
+                $user = $this->userServiceInterface->getUserById($userId);
+                return view('common.error404')
+                    ->with([
+                        'title' => 'Page Not Found',
+                        'categories' => $categories,
+                        'user' => $user,
+                        'userCategoryList' => $userCategoryList,
+                    ]);
+            } else {
+                return view('common.error404')
+                    ->with([
+                        'title' => 'Page Not Found',
+                        'categories' => $categories,
+                        'userCategoryList' => $userCategoryList,
+                    ]);
+            }
         }
     }
 
