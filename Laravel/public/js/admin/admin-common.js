@@ -11,3 +11,61 @@ $(document).ready(function () {
         }
     });
 });
+
+/**
+ * To show alert box when delete post by id in dashboard
+ *
+ * @param int post id
+ * @return void
+ */
+function deletePost(id) {
+    swal({
+        title: "Are you sure want to delete?",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: `/api/admin/post/delete/${id}`,
+                type: "DELETE",
+                success: function (result) {
+                    location.reload();
+                },
+                error: function (result) {
+                    alert("Post Deleted Fail");
+                },
+            });
+        } else {
+            swal("Your post is safe!");
+        }
+    });
+}
+
+/**
+ * To show alert box when delete user by id in dashboard
+ *
+ * @param int user id
+ * @return void
+ */
+function deleteUser(id) {
+    swal({
+        title: "Are you sure want to delete?",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: `/api/admin/users/${id}`,
+                type: "DELETE",
+                success: function (result) {
+                    location.reload();
+                },
+                error: function (result) {
+                    alert("User Deleted Fail");
+                },
+            });
+        } else {
+            swal("User account is safe!");
+        }
+    });
+}

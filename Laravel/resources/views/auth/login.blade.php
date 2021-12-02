@@ -4,7 +4,7 @@
       <div class="circle-btn" align="right">
         <a href="/" class="round-btn"><i class="fas fa-times"></i></a>
       </div>
-      <div class="login-content clearfix">
+      <div class="login-content">
         <div class="content-sec">
           <x-auth-session-status class="mb-4" :status="session('status')" />
           <x-auth-validation-errors class="mb-4" :errors="$errors" />
@@ -32,16 +32,15 @@
               </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center mt-4">
+              <x-button class="btn">
+                {{ __('Log in') }}
+              </x-button>
               @if (Route::has('password.request'))
-              <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+              <a class="ml-5 underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                 {{ __('Forgot your password?') }}
               </a>
               @endif
-
-              <x-button class="ml-3 btn">
-                {{ __('Log in') }}
-              </x-button>
             </div>
           </form>
         </div>

@@ -36,7 +36,7 @@ class UserRegisterRequest extends FormRequest
             'bio' => ['max:255'],
             'date_of_birth' => ['required'],
             'ph_no' => ['max:255'],
-            'position' => ['required', 'max:255'],
+            'position' => 'required|regex:/^[a-zA-Z\s]+$/u|max:255',
         ];
     }
 }

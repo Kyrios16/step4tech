@@ -9,7 +9,7 @@ function categories() {
 }
 
 /**
- * To send search posts view
+ * To send search posts view from sidebar search
  *
  * @return void
  */

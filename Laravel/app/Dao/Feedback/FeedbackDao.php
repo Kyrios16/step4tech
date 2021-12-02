@@ -33,8 +33,7 @@ class FeedbackDao implements FeedbackDaoInterface
         AND feedbacks.deleted_at is NULL
         AND feedbacks.post_id = $Id
         GROUP BY feedbacks.id
-        ORDER BY feedbacks.updated_at DESC"));
-
+        ORDER BY feedbacks.green_mark DESC"));
         return $feedbackList;
     }
 
@@ -58,6 +57,32 @@ class FeedbackDao implements FeedbackDaoInterface
             $feedback->content = $request->content;
             $feedback->post_id = $id;
             $feedback->green_mark = false;
+            $feedback->created_user_id = Auth::user()->id ?? 1;
+            $feedback->updated_user_id = Auth::user()->id ?? 1;
+            $feedback->save();
+        });
+    }
+
+    /**
+     * To update feedback
+     * 
+     * @param $request
+     * @param $id feedback id
+     * @return $feedback updated feedback 
+     */
+    public function updateFeedback($request, $id)
+    {
+        return DB::transaction(function () use ($request, $id) {
+            $feedback = Feedback::findOrFail($id);
+            if ($file = $request->hasFile('photo')) {
+                $file = $request->file('photo');
+                $extension = $file->getClientOriginalExtension();
+                $newName = "feedback_" . $id . "." . $extension;
+                $destinationPath = public_path() . '/images/feedbacks/';
+                $file->move($destinationPath, $newName);
+                $feedback->photo = $newName;
+            }
+            $feedback->content = $request->content;
             $feedback->created_user_id = Auth::user()->id ?? 1;
             $feedback->updated_user_id = Auth::user()->id ?? 1;
             $feedback->save();

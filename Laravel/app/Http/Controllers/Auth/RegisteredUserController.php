@@ -29,8 +29,9 @@ class RegisteredUserController extends Controller
      */
     public function viewRegisterForm()
     {
-        $title = "Register"; 
-        return view('auth.register', compact('title'));
+        $title = "Register";
+        return view('auth.register')
+            ->with('title', $title);
     }
 
     /**
@@ -45,6 +46,8 @@ class RegisteredUserController extends Controller
     {
         $validated = $request->validated();
         $user = $this->authInterface->saveUser($request);
-        return view('auth.login')->with('success', 'Data added successfully');
+        return redirect()
+            ->route('login')
+            ->with('user', $user);
     }
 }

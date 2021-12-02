@@ -1,7 +1,7 @@
 <nav id="nav-bar">
   <div class="nav-wrapper">
     <div class="nav-list">
-      @if(Request::is('user/view/*'))
+      @if(Request::is('user/view/*') || Request::is('user/register'))
       <p class="nav-menu-btn hidden">      
       @else
       <p class="nav-menu-btn">  
@@ -11,7 +11,7 @@
         <span></span>
       </p>
       <h1><a href="/"><img src="{{ asset('images/logo.png') }}" alt="Step4Tech"></a></h1>
-      @if(!Request::is('user/register'))
+      @if(!Request::is('user/register') && !Request::is('forgot-password'))
       <div class="search-container">
         <input class="search" type="text" placeholder="Search . . ." name="search"><i class="fa fa-search search-ico"></i>
       </div>

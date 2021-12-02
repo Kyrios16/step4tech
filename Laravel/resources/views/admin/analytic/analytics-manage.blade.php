@@ -21,6 +21,9 @@
           @include('admin.common.chart')
           @foreach($mostPopularUser as $mostPopularUser)
           <div class="popular-user-card">
+            <h3 class="user-card-ttl">
+              Most Popular User
+            </h3>
             <div class="text">
               <img src="{{ URL::to('/') }}/images/profile/{{ $mostPopularUser->profile_img }}" alt="User Profile">
               <h3>{{ $mostPopularUser->name }}</h3>

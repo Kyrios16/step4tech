@@ -34,9 +34,8 @@
     @endauth
     <div class="name-bio">
       <h1 class="name">{{ $viewUser->name }}</h1>
-      @if( $viewUser->bio == null)
-      <p class="bio">404 Bio Not Found</p>
-      @else <p class="bio">{{ $viewUser->bio }}</p>
+      @if( $viewUser->bio != null)
+      <p class="bio">{{ $viewUser->bio }}</p>
       @endif
       <p class="dob"><i class="fas fa-birthday-cake"></i> {{ $viewUser->dob }}</p>
     </div>
@@ -67,6 +66,7 @@
 </div>
 <div class="user-postlist-wrapper">
 </div>
+
 <div class="likepopup-container">
   <div class="likepopup-content">
     <div class="likepopup-header">

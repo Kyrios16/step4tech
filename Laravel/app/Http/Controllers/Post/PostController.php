@@ -315,14 +315,14 @@ class PostController extends Controller
 
     /**
      * To delete post by id
-     * @param string $id post id
-     * @param string $deletedUserId deleted user id
-     * @return analytics blade
+     * 
+     * @param int $id post id
+     * @return object analytics blade
      */
     public function deletePostById($id)
     {
-        $this->postServiceInterface->deletePostById($id);
-        return redirect()->name('show.postList');
+        $post = $this->postServiceInterface->deletePostById($id);
+        return response()->json($post);
     }
 
     /**

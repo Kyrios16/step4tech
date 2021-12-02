@@ -58,8 +58,8 @@ class CategoriesController extends Controller
     /**
      * To find id for category edit
      * 
-     * @param $id category id
-     * @return Response found category
+     * @param int $id category id
+     * @return object  Response found category
      */
     public function editCate($id)
     {
@@ -72,8 +72,8 @@ class CategoriesController extends Controller
      * To update category
      * 
      * @param Request $request
-     * @param $id found category id
-     * @return Response updated category
+     * @param int $id found category id
+     * @return object Response updated category
      */
     public function updateCate(Request $request, $id)
     {
@@ -90,7 +90,7 @@ class CategoriesController extends Controller
 
     /**
      * To delete category by id
-     * @param $id
+     * @param int $id
      * @return Response message
      */
     public function deleteCate($id)

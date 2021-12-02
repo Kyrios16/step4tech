@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\ChartDataController;
+use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Reply\ReplyController;
+use App\Http\Controllers\Feedback\FeedbackController;
 
 
 /*
@@ -71,6 +73,8 @@ Route::delete('/post/delete/{id}', [PostAPIController::class, 'deletePostById'])
 
 
 /** admin dashboard api routes */
+Route::delete('/admin/users/{id}', [UserController::class, 'deleteUserById'])->name('delete.admin.user');
+Route::delete('/admin/post/delete/{id}', [PostController::class, 'deletePostById'])->name('delete.admin.post');
 Route::post('/admin/categories/update/{categories}',  [CategoriesController::class, 'updateCate'])->name('update.categories');
 Route::get('/admin/categories/list', [CategoriesController::class, 'getCateList'])->name('show.categories');
 Route::get('/admin/categories/edit/{categories}',  [CategoriesController::class, 'editCate'])->name('edit.categories');
@@ -85,3 +89,13 @@ Route::get('/admin/chart', [ChartDataController::class, 'getDailyPostCount']);
  * To Recover Post
  */
 Route::post('/post/recover/{id}', [PostAPIController::class, 'recoverPostById']);
+
+/**
+ * Feedback Delete
+ */
+Route::delete('/feedback/delete/{id}',  [FeedbackController::class, 'deleteFeedback'])->name('feedback.delete');
+
+/**
+ * Delete reply  
+ */
+Route::delete('/reply/delete/{replyId}',  [ReplyController::class, 'deleteReply'])->name("delete.reply");
