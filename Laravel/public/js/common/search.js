@@ -81,7 +81,7 @@ function searchPost() {
                                     post.id
                                 }" class="post-btn"><i class="far fa-comment-alt"></i> ${
                             post.no_of_feedbacks
-                        } Feedback</a>
+                        } Feedbacks</a>
                             </div>
                         </div>`
                     );
