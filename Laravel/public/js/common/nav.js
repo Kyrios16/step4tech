@@ -10,19 +10,19 @@ function toggleNavProfileDropdown() {
     var $window = $(window);
     if ($window.width() > 640) {
         if ($(".profile-dropdown-content").css("display") == "none") {
-            $(".profile-ico").addClass("selected");
+            $(".profile-ico").addClass("nav-selected");
             $(".profile-dropdown-content").css("display", "block");
         } else {
-            $(".profile-ico").removeClass("selected");
+            $(".profile-ico").removeClass("nav-selected");
             $(".profile-dropdown-content").css("display", "none");
         }
     } else {
         var rightVal = 0;
-        if ($(".profile-ico").hasClass("selected")) {
+        if ($(".profile-ico").hasClass("nav-selected")) {
             rightVal = -500;
-            $(".profile-ico").removeClass("selected");
+            $(".profile-ico").removeClass("nav-selected");
         } else {
-            $(".profile-ico").addClass("selected");
+            $(".profile-ico").addClass("nav-selected");
         }
         $(".profile-dropdown-content").stop().animate(
             {
@@ -43,10 +43,10 @@ $(document).on("click", function (event) {
     if ($trigger != event.target && !$trigger.has(event.target).length) {
         var $window = $(window);
         if ($window.width() > 640) {
-            $(".profile-ico").removeClass("selected");
+            $(".profile-ico").removeClass("nav-selected");
             $(".profile-dropdown-content").css("display", "none");
         } else {
-            $(".profile-ico").removeClass("selected");
+            $(".profile-ico").removeClass("nav-selected");
             $(".profile-dropdown-content").stop().animate(
                 {
                     right: -500,
@@ -70,14 +70,14 @@ $(window).on("resize", function () {
         } else {
             $(".profile-dropdown-content").css("right", "2%");
         }
-        if ($(".profile-ico").hasClass("selected")) {
+        if ($(".profile-ico").hasClass("nav-selected")) {
             $(".profile-dropdown-content").css("display", "block");
         } else {
             $(".profile-dropdown-content").css("display", "none");
         }
     } else {
         $(".profile-dropdown-content").css("display", "block");
-        if ($(".profile-ico").hasClass("selected")) {
+        if ($(".profile-ico").hasClass("nav-selected")) {
             $(".profile-dropdown-content").css("right", "0px");
         } else {
             $(".profile-dropdown-content").css("right", "-500px");

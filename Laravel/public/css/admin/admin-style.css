@@ -33,21 +33,21 @@
 }
 
 .popup .header-title {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.875vw;
 }
 
 .popup .close-btn {
     cursor: pointer;
     position: absolute;
-    right: 20px;
-    top: 20px;
-    width: 30px;
-    height: 30px;
+    right: 1.563vw;
+    top: 1.563vw;
+    width: 2.344vw;
+    height: 2.344vw;
     background: #dc3545;
     color: var(--main-accent);
-    font-size: 1.2rem;
+    font-size: 1.5vw;
     font-weight: 600;
-    line-height: 30px;
+    line-height: 2.344vw;
     text-align: center;
     border-radius: 50%;
 }
@@ -71,9 +71,14 @@
 .chart {
     background-color: var(--bg);
     box-shadow: var(--shadow);
-    padding: 1.5rem;
+    padding: 1.875vw;
     width: 65%;
     height: auto;
+}
+
+.chart .chart-ttl {
+    margin-bottom: 1.875vw;
+    text-align: center;
 }
 
 /* most popular user card components */
@@ -86,11 +91,15 @@
     width: 30%;
 }
 
-.popular-user-card .user-card-ttl {
-    font-size: 25px;
+.popular-user-card .user-card-ttl,
+.chart .chart-ttl {
+    font-size: 1.563vw;
     font-weight: 700;
     text-transform: capitalize;
-    margin: 1.5rem 0rem;
+}
+
+.popular-user-card .user-card-ttl {
+    margin: 1.875vw 0rem;
 }
 
 .popular-user-card .text {
@@ -100,33 +109,33 @@
 }
 
 .popular-user-card .text img {
-    height: 100px;
+    height: 5rem;
     border-radius: 50%;
-    margin-bottom: 10px;
+    margin-bottom: 0.781vw;
 }
 
 .popular-user-card .text h3 {
-    font-size: 1.2rem;
+    font-size: 1.125vw;
     font-weight: 400;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25vw;
 }
 
 .popular-user-card .text p {
     color: rgb(35, 182, 219);
-    font-size: 0.8rem;
+    font-size: 1vw;
 }
 
 .popular-user-card .card-info {
-    margin: 10px;
+    margin: 0.781vw;
     width: 90%;
-    font-size: 0.8rem;
-    margin-top: 1rem;
+    font-size: 1vw;
+    margin-top: 1.25vw;
 }
 
 .popular-user-card .card-info .info-title {
-    font-size: 1rem;
+    font-size: 1.25vw;
     text-align: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.625vw;
 }
 
 .popular-user-card .card-info .analytic-card {
@@ -134,26 +143,26 @@
     background-color: #ecf0f1;
     color: var(--main-text);
     border-radius: 5px;
-    padding: 0.5rem 1.5rem;
+    padding: 0.625vw 1.875vw;
 }
 
 .popular-user-card .card-info .popular-icon {
     place-items: center;
-    margin-right: 0.8rem;
+    margin-right: 1vw;
     color: #74b9ff;
-    font-size: 1.5rem;
+    font-size: 1.875vw;
 }
 
 .popular-user-card .links {
     width: 30%;
     display: flex;
     justify-content: space-evenly;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.875vw;
 }
 
 .popular-user-card .links a {
     color: var(--color-main);
-    font-size: 1.2rem;
+    font-size: 1.5vw;
     cursor: pointer;
 }
 
@@ -166,61 +175,61 @@
 .users-list {
     height: 310px;
     overflow-y: auto;
-    margin-bottom: 1.8rem;
+    margin-bottom: 2.25vw;
 }
 
 .user-profile {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0.8rem;
+    padding: 1vw;
     box-shadow: var(--shadow);
     width: 85%;
     margin: 0 auto;
     border-radius: 10px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.875vw;
 }
 
 .user-profile .user-info {
     display: flex;
     flex-direction: row;
-    gap: 1.5rem;
+    gap: 1.875vw;
 }
 
 .user-profile img {
-    width: 50px;
-    height: 50px;
+    width: 3.906vw;
+    height: 3.906vw;
     border-radius: 50%;
     border: 1px solid var(--main-accent);
 }
 
 .user-profile .user-detail .username {
-    font-size: 1.2rem;
+    font-size: 1.5vw;
     text-transform: capitalize;
 }
 
 .user-profile .user-detail .user-contact {
     color: #74b9ff;
-    font-size: 0.8rem;
+    font-size: 1vw;
     font-weight: 400;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25vw;
 }
 
 .user-profile .user-detail .user-position,
 .user-profile .user-detail .dob {
-    font-size: 1rem;
+    font-size: 1.25vw;
     font-weight: 400px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.625vw;
 }
 
 .user-profile .user-detail .links a {
-    margin-right: 0.8rem;
+    margin-right: 1vw;
     color: var(--color-main);
 }
 
 .user-profile .action .icon-btn-info,
 .user-profile .action .icon-btn-danger {
-    font-size: 0.8rem;
+    font-size: 1vw;
 }
 
 .deleteBtn {
@@ -238,7 +247,7 @@
 /* categories management components */
 
 #error-msg {
-    font-size: 0.7rem;
+    font-size: 0.875vw;
     color: #dc3545;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.625vw;
 }
