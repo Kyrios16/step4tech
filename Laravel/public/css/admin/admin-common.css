@@ -120,7 +120,6 @@ input:focus::placeholder {
 
 .export-btn {
     float: right;
-    padding: 0.5rem;
 }
 
 /* aside components */
@@ -229,8 +228,9 @@ input:focus::placeholder {
     align-items: center;
 }
 
-.header-title-container .header-icon {
-    display: block;
+.header-title-container #menu-toggle {
+    border: none;
+    background: none;
     margin-right: 1rem;
     font-size: 1.875vw;
     color: var(--color-main);

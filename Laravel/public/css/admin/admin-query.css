@@ -117,4 +117,166 @@
 
 /* responsive design for small devices maximun 640px */
 @media screen and (max-width: 640px) {
+    /* Basic Setup and reusable components */
+    body {
+        font-size: clamp(9px, 2.5vw, 16px);
+    }
+
+    .container {
+        width: 98%;
+        margin: 0.5rem auto;
+        display: block;
+    }
+
+    .main-container {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .header-title {
+        font-size: 1rem;
+    }
+
+    .header-title-container #menu-toggle {
+        font-size: 0.9rem;
+    }
+
+    .analytics {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1rem 2.5vw;
+    }
+
+    .analytic-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 3vw;
+    }
+
+    .analytic-info small {
+        font-size: 0.6rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .styled-table {
+        width: 90%;
+        font-size: 0.5rem;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 1.563vw;
+    }
+
+    .styled-table tbody {
+        font-size: 1.25vw;
+    }
+
+    .btn {
+        padding: 0.5rem;
+        font-size: 1.406vw;
+    }
+
+    /* aside components */
+    .sidebar {
+        width: 45%;
+        height: auto;
+        top: 90px;
+        left: -500px;
+        bottom: 0;
+        z-index: 100;
+        position: fixed;
+    }
+
+    .sidebar-container {
+        height: auto;
+        width: 100%;
+    }
+
+    /* analytics dashboard screen components */
+    .analytic-sec {
+        display: flex;
+        margin: 4rem 0;
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    .chart {
+        width: 100%;
+    }
+
+    #myChart {
+        display: block;
+        height: auto;
+        width: 300px;
+    }
+
+    .chart .chart-ttl {
+        margin: 2.25vw 0;
+    }
+
+    .popular-user-card {
+        width: 75%;
+        height: auto;
+        margin: 0 auto;
+        padding: 0 1.5rem 1.5rem;
+    }
+
+    .chart .chart-ttl,
+    .popular-user-card .user-card-ttl {
+        font-size: 1rem;
+    }
+
+    .popular-user-card .user-card-ttl {
+        margin: 4vw 0 3.25vw;
+    }
+
+    .popular-user-card .text img {
+        height: 4rem;
+    }
+
+    .popular-user-card .text h3 {
+        font-size: 1rem;
+    }
+
+    .popular-user-card .text p {
+        font-size: 0.8rem;
+    }
+
+    .popular-user-card .card-info .info-title {
+        font-size: 0.9rem;
+    }
+
+    .popular-user-card .card-info .popular-icon {
+        font-size: 1.2rem;
+    }
+
+    .popular-user-card .card-info .analytic-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .popular-user-card .card-info .analytic-card {
+        padding: 1.625vw 3vw;
+    }
+
+    .popular-user-card .card-info .analytic-info small {
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+
+    .popular-user-card .card-info .analytic-info h2,
+    .popular-user-card .links a {
+        font-size: 1rem;
+    }
+
+    .popular-user-card .links {
+        width: 40%;
+        margin: 1.5vw 0;
+    }
 }

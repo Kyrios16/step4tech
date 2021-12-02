@@ -7,7 +7,7 @@
     <header>
       <div class="header-title-container">
         <div class="header-icon">
-          <span class="fas fa-bars"></span>
+          <button id="menu-toggle"><span class="fas fa-bars"></span></button>
         </div>
         <div class="header-title">
           <h2>Posts Management</h2>
