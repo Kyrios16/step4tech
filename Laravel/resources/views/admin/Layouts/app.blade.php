@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{{ asset('css/lib/fontawesome.css') }}">
   <link rel="stylesheet" href="{{ asset('css/admin/admin-style.css') }}">
   <link rel="stylesheet" href="{{ asset('css/admin/admin-common.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/admin/admin-query.css') }}">
   @yield('style')
 
 
@@ -33,7 +34,9 @@
 </head>
 
 <body>
-  @yield('content')
+  <div class="container">
+    @yield('content')
+  </div>
 </body>
 
 </html>

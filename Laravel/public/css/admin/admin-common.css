@@ -34,10 +34,11 @@ body {
 }
 
 .container {
-    width: 98%;
-    margin: 1rem auto;
+    width: 100%;
+    margin: 0.5rem auto;
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .header-title {
@@ -46,7 +47,7 @@ body {
 }
 
 .table-header .header-title {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.875vw;
 }
 
 /* button group */
@@ -56,8 +57,7 @@ body {
 
 .btn {
     display: inline-block;
-    font-size: 1rem;
-    padding: 0.5rem 1.2rem;
+    padding: 0.7rem 1.2rem;
     border: none;
     border-radius: 7px;
     cursor: pointer;
@@ -66,7 +66,6 @@ body {
 
 .btn-info {
     background-color: #6883db;
-    padding: 0.8rem 1.2rem;
 }
 
 .btn-warning {
@@ -111,7 +110,7 @@ body {
 
 input[type="text"] {
     border: 2px solid var(--main-accent);
-    padding: 0.5rem 0.7rem;
+    padding: 0.625vw 0.875vw;
     border-radius: 7px;
 }
 
@@ -121,18 +120,16 @@ input:focus::placeholder {
 
 .export-btn {
     float: right;
-    margin-bottom: 0.5rem;
 }
 
 /* aside components */
 
 .sidebar {
-    width: 25%;
+    width: 28%;
     height: auto;
     top: 0;
     left: 0;
     bottom: 0;
-    padding: 0rem 1rem;
     transition: left 300ms;
 }
 
@@ -142,7 +139,7 @@ input:focus::placeholder {
     background: var(--bg);
     border-radius: 10px;
     box-shadow: var(--shadow);
-    padding: 1.2rem;
+    padding: 1.5vw;
 }
 
 .brand {
@@ -158,6 +155,7 @@ input:focus::placeholder {
     padding: 0.5rem 0.7rem;
     border-radius: 7px;
     margin: 2.5rem 0rem;
+    justify-content: center;
 }
 
 .sidebar-avartar #admin-profile img {
@@ -168,7 +166,7 @@ input:focus::placeholder {
 }
 
 .avartar-text small {
-    font-size: 0.7rem;
+    font-size: 0.875vw;
 }
 
 .sidebar-menu li {
@@ -211,8 +209,8 @@ input:focus::placeholder {
 
 /* main container */
 .main-container {
-    width: 75%;
-    height: 100%;
+    width: 70%;
+    height: auto;
     transition: margin-left 300ms;
 }
 
@@ -230,10 +228,11 @@ input:focus::placeholder {
     align-items: center;
 }
 
-.header-title-container .header-icon {
-    display: block;
+.header-title-container #menu-toggle {
+    border: none;
+    background: none;
     margin-right: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.875vw;
     color: var(--color-main);
 }
 
@@ -246,15 +245,15 @@ main {
 .analytics {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 0rem 2rem;
+    grid-gap: 0rem 2.5vw;
 }
 
 .analytic-card {
     box-shadow: var(--shadow);
-    padding: 1.2rem 0.5rem;
+    padding: 1.5vw 0.625vw;
     border-radius: 10px;
     display: flex;
-    padding-left: 2rem;
+    padding-left: 2.5vw;
 }
 
 .analytic-info {
@@ -264,12 +263,12 @@ main {
 }
 
 .analytic-icon {
-    width: 40px;
-    height: 40px;
+    width: 3.125vw;
+    height: 3.125vw;
     border-radius: 50%;
     display: grid;
     place-items: center;
-    margin-right: 0.8rem;
+    margin-right: 1vw;
 }
 
 .icon-first {
@@ -294,7 +293,7 @@ main {
 
 .analytic-info small {
     display: inline-block;
-    font-size: 0.9rem;
+    font-size: 1.125vw;
     font-weight: 300;
     margin-bottom: 0.8rem;
 }
@@ -307,13 +306,13 @@ main {
 /* table components */
 
 .table-container {
-    margin: 2.5rem auto 3.5rem;
+    margin: 3.125vw auto;
 }
 
 .posts-table,
 .cate-table {
     margin: 1.2rem auto;
-    height: 250px;
+    height: 19.531vw;
     overflow-y: scroll;
 }
 .posts-table::-webkit-scrollbar,
@@ -335,7 +334,7 @@ main {
 .styled-table {
     border-collapse: collapse;
     margin: 1rem auto 0rem;
-    font-size: 0.9em;
+    font-size: 0.9rem;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     text-align: center;
