@@ -54,7 +54,7 @@
 }
 .uploadLabel {
     color: #f5f5f5;
-    width: 22%;
+    width: 24%;
     text-align: center;
     border-radius: 5px;
     display: inline-block;
@@ -104,4 +104,26 @@
 }
 .form-error {
     color: #ff0000;
+}
+/*  Ipad  */
+@media screen and (min-width: 641px) and (max-width: 1040px) {
+.preview-img {
+    max-width: 70%;
+    max-height: 200px;
+}
+}
+
+/*  SP  */
+@media screen and (max-width: 640px) {
+    .postCreate-container {
+        width: 100%;
+    }
+    .uploadLabel {
+        width: 33%;
+    }
+    .preview-img {
+        max-width: 70%;
+        max-height: 150px;
+    }
+
 }
