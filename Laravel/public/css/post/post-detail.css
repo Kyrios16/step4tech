@@ -30,6 +30,7 @@
     text-align: center;
 }
 .detail-img {
+    width: 80%;
     max-height: 430px;
 }
 .detail-time {
