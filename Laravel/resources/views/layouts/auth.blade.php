@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Step4Tech | {{$title}}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,7 @@
     <div class="main-container">
         <div class="clearfix">
             <div class="font-sans text-gray-900 antialiased">
-                {{ $slot }}
+                @yield('content')
             </div>
         </div>
     </div>

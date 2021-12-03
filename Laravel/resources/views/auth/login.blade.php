@@ -1,7 +1,8 @@
-<x-guest-layout>
+@extends('layouts.guest')
+@section('content')
   <div id="sign-in">
     <div class="container">
-      <div class="circle-btn" align="right">
+      <div class="circle-btn">
         <a href="/" class="round-btn"><i class="fas fa-times"></i></a>
       </div>
       <div class="login-content">
@@ -50,4 +51,4 @@
       </div>
     </div>
   </div>
-</x-guest-layout>
+@endsection
