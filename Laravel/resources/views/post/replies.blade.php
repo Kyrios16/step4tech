@@ -43,15 +43,16 @@
     @endforeach
 
     @auth
+    <?php $id = strval($feedback->id); ?>
     <form class="reply-txtfield" method="POST" action="/post/{{ $post->id }}/feedback/{{ $feedback->id }}/reply" enctype="multipart/form-data">
         @csrf
-        <div class=" reply-preview-image-container" id="reply-Img">
-            <img id="reply-preview-img" class="reply-preview-img" src="{{ asset('images/image_not_found.gif') }}" alt="preview image">
+        <div class=" reply-preview-image-container {{$id}}" id="reply-Img_{{$id}}" style="display: none;">
+            <img id="preview_img_{{$id}}" class="reply-preview-img {{$id}}" src="{{ asset('images/image_not_found.gif') }}" alt="preview image">
         </div>
         <textarea name="reply_content" onkeyup="autoheight(this)" rows="1" class="input-feedback-content @error('reply_content') is-invalid @enderror" placeholder="Enter Your reply..."></textarea>
         <label class="uploadLabel">
             <i class="fas fa-folder-plus"></i>
-            <input type="file" onchange="showPreview(this,{{$feedback->id}});" class="uploadButton @error('reply_photo') is-invalid @enderror" name="reply_photo" id="image" placeholder="Upload Image" />
+            <input type="file" onchange="showPreview(this,{{$id}},'preview_img_{{$id}}','reply-Img_{{$id}}');" class="uploadButton @error('reply_photo') is-invalid @enderror" name="reply_photo" id="image" placeholder="Upload Image" />
         </label>
         <button class="reply-send" type="submit">
             <i class="fas fa-paper-plane"></i>
