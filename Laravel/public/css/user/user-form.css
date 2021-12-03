@@ -109,6 +109,7 @@
     height: 100%;
     max-width: 62.5em;
     max-height: 62.5em;
+    object-fit: cover;
 }
 
 .formdata-group {
@@ -210,9 +211,10 @@ hr {
 }
 
 .changepwd-wrapper {
-    padding: 0% 10% 1%;
+    padding: 3% 10%;
     margin: 0 auto;
     width: 50%;
+    min-height: 70vh;
 }
 
 .title {

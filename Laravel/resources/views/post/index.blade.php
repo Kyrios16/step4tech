@@ -18,7 +18,7 @@
   <div class="likepopup-content">
     <div class="likepopup-header">
       <button class="close" onclick="closeLikePopup()">&times;</button>
-      <h2>Like Failed !</h2>
+      <h2>Process Failed !</h2>
     </div>
     <div class="likepopup-body">
       <p>Please log in to continue ...</p>
