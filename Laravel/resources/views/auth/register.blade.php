@@ -72,7 +72,7 @@
         <div class="formdata-group">
           <div class="formdata-control">
             <label for="dob">Date of Birth <span>*</span></label><br>
-            <input type="date" class="form-input @error('date_of_birth') is-invalid @enderror" name="date_of_birth" value="{{ old('dob') }}" autocomplete="date_of_birth">
+            <input type="date" class="form-input @error('date_of_birth') is-invalid @enderror" name="date_of_birth" value="{{ old('date_of_birth') }}" autocomplete="date_of_birth">
             @error('date_of_birth')
             <span role="alert">
               <strong>{{ $message }}</strong>
