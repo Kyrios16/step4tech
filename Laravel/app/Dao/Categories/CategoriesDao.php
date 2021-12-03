@@ -19,7 +19,10 @@ class CategoriesDao implements CategoriesDaoInterface
      */
     public function getCateList()
     {
-        $categories = Categories::orderBy('created_at', 'asc')->get();
+        $categories = Categories::orderBy('created_at', 'asc')
+            ->join('users', 'users.id', '=', 'categories.created_user_id')
+            ->select('categories.*', 'users.name as username', 'users.email')
+            ->get();
         return $categories;
     }
 

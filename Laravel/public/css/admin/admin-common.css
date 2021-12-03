@@ -22,7 +22,7 @@
 body {
     font-size: 18px;
     background: var(--main-bg);
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .clearfix::after {

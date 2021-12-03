@@ -273,7 +273,7 @@ class PostDao implements PostDaoInterface
             ->whereNull('posts.deleted_at')
             ->where('posts.id', $id)
             ->get(['posts.*', 'users.profile_img', 'users.name']);
-        if($postList->isEmpty()) {
+        if ($postList->isEmpty()) {
             return null;
         } else {
             return $postList[0];
@@ -339,7 +339,11 @@ class PostDao implements PostDaoInterface
      */
     public function getPostList()
     {
-        $posts = Post::orderBy('id')->get();
+        $posts =  Post::orderBy('id')
+            ->join('users', 'users.id', '=', 'posts.created_user_id')
+            ->select('posts.*', 'users.name', 'users.email')
+            ->get();
+
         return $posts;
     }
 

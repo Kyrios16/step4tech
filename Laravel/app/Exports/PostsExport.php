@@ -13,7 +13,10 @@ class PostsExport implements FromCollection, WithHeadings
      */
     public function collection()
     {
-        return Post::all();
+        return Post::orderBy('id')
+            ->join('users', 'users.id', '=', 'posts.created_user_id')
+            ->select('posts.*', 'users.name', 'users.email')
+            ->get();
     }
 
     /**
@@ -23,7 +26,7 @@ class PostsExport implements FromCollection, WithHeadings
     {
         return [
             "Id", "title", "content", "photo", "Created User Id", "Updated User Id", "Deleted User Id",
-            "Created_at", "Updated_at"
+            "Created_at", "Updated_at", "Created Username", "Email"
         ];
     }
 }
