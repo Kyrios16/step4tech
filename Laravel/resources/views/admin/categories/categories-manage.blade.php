@@ -12,8 +12,11 @@
   <div class="main-content">
     <header>
       <div class="header-title-container">
-        <div class="header-icon">
+        <div class="header-icon sp">
           <button id="menu-toggle"><span class="fas fa-bars"></span></button>
+        </div>
+        <div class="header-icon pc">
+          <span class="fas fa-bars pc" id="menu-toggle"></span>
         </div>
         <div class="header-title">
           <h2>Categories Management</h2>
@@ -22,7 +25,7 @@
     </header>
     <main>
       @include('admin.common.analytics')
-      <div class="table-container clearfix">
+      <div class="category-table-container clearfix">
         <div class="table-header clearfix">
           <h3 class="header-title">Categories Table</h3>
           <div class="new-cate">

@@ -120,12 +120,25 @@
     /* Basic Setup and reusable components */
     body {
         font-size: clamp(9px, 2.5vw, 16px);
+        overflow-y: auto;
     }
 
     .container {
         width: 98%;
         margin: 0.5rem auto;
         display: block;
+    }
+
+    .pc {
+        display: none;
+    }
+
+    .sp {
+        display: block;
+    }
+
+    .popup .overlay {
+        background: rgba(255, 255, 255, 0.7);
     }
 
     .main-container {
@@ -146,22 +159,28 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 1rem 2.5vw;
+        margin-bottom: 5vh;
     }
 
     .analytic-icon {
-        width: 1.5rem;
-        height: 1.5rem;
-        margin-right: 3vw;
+        width: 2.5rem;
+        height: 2.5rem;
+        margin: 3vw;
+        font-size: 0.8rem;
     }
 
     .analytic-info small {
-        font-size: 0.6rem;
+        font-size: 0.8rem;
         margin-bottom: 0.5rem;
+    }
+
+    .table-header .header-title {
+        margin-bottom: 3vh;
+        text-align: center;
     }
 
     .styled-table {
         width: 90%;
-        font-size: 0.5rem;
     }
 
     .styled-table th,
@@ -169,29 +188,77 @@
         padding: 1.563vw;
     }
 
+    .styled-table thead,
     .styled-table tbody {
-        font-size: 1.25vw;
+        font-size: 0.5rem;
+    }
+
+    .posts-table::-webkit-scrollbar,
+    .cate-table::-webkit-scrollbar,
+    .users-list::-webkit-scrollbar {
+        width: 5px; /* width of the entire scrollbar */
+        height: 5px; /* height of the entire scrollbar */
+    }
+
+    .posts-table::-webkit-scrollbar-thumb,
+    .cate-table::-webkit-scrollbar-thumb,
+    .users-list::-webkit-scrollbar-thumb {
+        background-color: #74b9ff; /* color of the scroll thumb */
+        border-radius: 0.5rem; /* roundness of the scroll thumb */
     }
 
     .btn {
         padding: 0.5rem;
-        font-size: 1.406vw;
+        font-size: 1.875vw;
     }
 
     /* aside components */
     .sidebar {
         width: 45%;
         height: auto;
-        top: 90px;
+        top: 10px;
         left: -500px;
         bottom: 0;
         z-index: 100;
         position: fixed;
+        transition: left 300ms;
     }
 
     .sidebar-container {
         height: auto;
         width: 100%;
+    }
+
+    .brand {
+        margin: 20px auto;
+    }
+
+    .brand .logo img {
+        width: 60%;
+    }
+
+    .sidebar-avartar {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .sidebar-avartar #admin-profile img {
+        width: 55%;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .sidebar-avartar .avartar-text h4 {
+        font-size: 2.5vw;
+    }
+
+    .sidebar-avartar .avartar-text small {
+        font-size: 1.875vw;
+    }
+
+    #sidebar-list .icon-small {
+        font-size: 4vw;
     }
 
     /* analytics dashboard screen components */
@@ -278,5 +345,33 @@
     .popular-user-card .links {
         width: 40%;
         margin: 1.5vw 0;
+    }
+
+    /* Users management screen components */
+    .user-profile {
+        padding: 2vw;
+    }
+
+    .user-profile img {
+        width: 7vw;
+        height: 7vw;
+    }
+
+    .user-profile .user-detail .username {
+        font-size: 2.5vw;
+    }
+
+    .user-profile .user-detail .user-contact,
+    .user-profile .user-detail .user-position,
+    .user-profile .user-detail .dob,
+    .user-profile .action .icon-btn-info,
+    .user-profile .action .icon-btn-danger {
+        font-size: 1.5vw;
+    }
+
+    /* Categories management screen components */
+    .posts-table,
+    .cate-table {
+        height: 45vh;
     }
 }

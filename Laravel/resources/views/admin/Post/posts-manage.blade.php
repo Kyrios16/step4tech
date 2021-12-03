@@ -3,11 +3,17 @@
 @section('content')
 @include('admin.common.aside')
 <div class="main-container">
+  <div class="popup">
+    <div class="overlay"></div>
+  </div>
   <div class="main-content">
     <header>
       <div class="header-title-container">
-        <div class="header-icon">
+        <div class="header-icon sp">
           <button id="menu-toggle"><span class="fas fa-bars"></span></button>
+        </div>
+        <div class="header-icon pc">
+          <span class="fas fa-bars pc" id="menu-toggle"></span>
         </div>
         <div class="header-title">
           <h2>Posts Management</h2>
@@ -16,7 +22,7 @@
     </header>
     <main>
       @include('admin.common.analytics')
-      <div class="table-container clearfix">
+      <div class="post-table-container clearfix">
         <div class="table-header">
           <h3 class="header-title">Posts Table</h3>
         </div>
