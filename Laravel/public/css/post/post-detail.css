@@ -172,10 +172,12 @@
     text-align: left;
     padding-bottom: 2%;
 }
-.preview-img {
+.preview-img,
+.reply-preview-img  {
     max-width: 50%;
     max-height: 250px;
 }
+
 .feedback-time {
     float: right;
     font-size: 0.875rem;
@@ -196,7 +198,7 @@
 }
 #feedback-preImg,
 #reply-Img {
-    display: block;
+    display: none;
 }
 
 .replyBtn {

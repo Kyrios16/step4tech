@@ -11,7 +11,7 @@ $(document).ready(function () {
 var isPostListExist = false;
 
 /**
- * To show  initial post list
+ * To show initial post list
  *
  * @return void
  */
@@ -70,29 +70,23 @@ function showPostListInitial() {
                         `<div class="post">
                             <div class="clearfix">
                                 <div class="img-container">
-                                    <img src="${
-                                        baseUrl + post.profile_img
-                                    }" class="postprofile-ico span-1-of-8" alt="Profile">
+                                    <img src="${baseUrl + post.profile_img
+                        }" class="postprofile-ico span-1-of-8" alt="Profile">
                                 </div>
                                 <div class="post-blog">
-                                    <a href="/user/view/${
-                                        post.userId
-                                    }" class="post-username">${post.name}</a>
+                                    <a href="/user/view/${post.userId
+                        }" class="post-username">${post.name}</a>
                                     <p class="post-date">${created_at}</p>             
-                                    <a class="post-title" href="/post/detail/${
-                                        post.id
-                                    }">${post.title}</a>
+                                    <a class="post-title" href="/post/detail/${post.id
+                        }">${post.title}</a>
                                     ${categoriesHtml}
                                 </div> 
                             </div>
                             <div class="postbtn-container">
-                                <button class="post-btn ${islikedClass}" onclick="togglePostLike(this, ${
-                            post.id
+                                <button class="post-btn ${islikedClass}" onclick="togglePostLike(this, ${post.id
                         })"><i class="${thumbFillClass} fa-thumbs-up"></i> ${likeCount} Likes</button>
-                                <a href="/post/detail/${
-                                    post.id
-                                }" class="post-btn"><i class="far fa-comment-alt"></i> ${
-                            post.no_of_feedbacks
+                                <a href="/post/detail/${post.id
+                        }" class="post-btn"><i class="far fa-comment-alt"></i> ${post.no_of_feedbacks
                         } Feedbacks</a>
                             </div>
                         </div>`
@@ -204,29 +198,23 @@ function showPostListForInitialLoadMore() {
                         `<div class="post">
                             <div class="clearfix">
                                 <div class="img-container">
-                                    <img src="${
-                                        baseUrl + post.profile_img
-                                    }" class="postprofile-ico span-1-of-8" alt="Profile">
+                                    <img src="${baseUrl + post.profile_img
+                        }" class="postprofile-ico span-1-of-8" alt="Profile">
                                 </div>
                                 <div class="post-blog">
-                                    <a href="/user/view/${
-                                        post.userId
-                                    }" class="post-username">${post.name}</a>
+                                    <a href="/user/view/${post.userId
+                        }" class="post-username">${post.name}</a>
                                     <p class="post-date">${created_at}</p>             
-                                    <a class="post-title" href="/post/detail/${
-                                        post.id
-                                    }">${post.title}</a>
+                                    <a class="post-title" href="/post/detail/${post.id
+                        }">${post.title}</a>
                                     ${categoriesHtml}
                                 </div> 
                             </div>
                             <div class="postbtn-container">
-                                <button class="post-btn ${islikedClass}" onclick="togglePostLike(this, ${
-                            post.id
+                                <button class="post-btn ${islikedClass}" onclick="togglePostLike(this, ${post.id
                         })"><i class="${thumbFillClass} fa-thumbs-up"></i> ${likeCount} Likes</button>
-                                <a href="/post/detail/${
-                                    post.id
-                                }" class="post-btn"><i class="far fa-comment-alt"></i> ${
-                            post.no_of_feedbacks
+                                <a href="/post/detail/${post.id
+                        }" class="post-btn"><i class="far fa-comment-alt"></i> ${post.no_of_feedbacks
                         } Feedbacks</a>
                             </div>
                         </div>`

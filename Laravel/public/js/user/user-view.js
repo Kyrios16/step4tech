@@ -1,8 +1,17 @@
+/**
+ * Initial Load
+ *
+ * @return void
+ */
 $(document).ready(function () {
     showPersonalPostList();
 });
 
-//Intial
+/**
+ * To show personal post list
+ *
+ * @return void
+ */
 function showPersonalPostList() {
     var data = {
         userId: viewedUserId,
@@ -67,30 +76,24 @@ function showPersonalPostList() {
                         `<div class="post">
                             <div class="clearfix">
                                 <div class="img-container">
-                                    <img src="${
-                                        baseUrl + post.profile_img
-                                    }" class="postprofile-ico span-1-of-8" alt="Profile">
+                                    <img src="${baseUrl + post.profile_img
+                        }" class="postprofile-ico span-1-of-8" alt="Profile">
                                 </div>
                                 <div class="post-blog">
-                                    <a href="/user/view/${
-                                        post.userId
-                                    }" class="post-username">${post.name}</a>
+                                    <a href="/user/view/${post.userId
+                        }" class="post-username">${post.name}</a>
                                     ${optionBtnHtml}
                                     <p class="post-date">${created_at}</p>             
-                                    <a class="post-title" href="/post/detail/${
-                                        post.id
-                                    }">${post.title}</a>
+                                    <a class="post-title" href="/post/detail/${post.id
+                        }">${post.title}</a>
                                     ${categoriesHtml}
                                 </div> 
                             </div>
                             <div class="postbtn-container">
-                                <button class="post-btn ${islikedClass}" onclick="togglePostLike(this, ${
-                            post.id
+                                <button class="post-btn ${islikedClass}" onclick="togglePostLike(this, ${post.id
                         })"><i class="${thumbFillClass} fa-thumbs-up"></i> ${likeCount} Likes</button>
-                                <a href="/post/detail/${
-                                    post.id
-                                }" class="post-btn"><i class="far fa-comment-alt"></i> ${
-                            post.no_of_feedbacks
+                                <a href="/post/detail/${post.id
+                        }" class="post-btn"><i class="far fa-comment-alt"></i> ${post.no_of_feedbacks
                         } Feedbacks</a>
                             </div>
                         </div>`
@@ -107,6 +110,11 @@ function showPersonalPostList() {
     });
 }
 
+/**
+ * To show personal post list
+ * @param Button clicked button
+ * @return void
+ */
 function togglePersonalPostDropdown(button) {
     if (
         $(button)
@@ -126,7 +134,11 @@ function togglePersonalPostDropdown(button) {
     }
 }
 
-//Close Personal Post Dropdown when click outside of the element
+/**
+ * To Close Personal Post Dropdown when click outside of the element
+ *
+ * @return void
+ */
 $(document).on("click", function (event) {
     var $trigger = $(".option-btn");
     if ($trigger != event.target && !$trigger.has(event.target).length) {
@@ -134,6 +146,11 @@ $(document).on("click", function (event) {
     }
 });
 
+/**
+ * To delete post
+ * @param id post id
+ * @return void
+ */
 function deletePost(id) {
     var data = {
         userId: userId,
@@ -148,14 +165,23 @@ function deletePost(id) {
     });
 }
 
+/**
+ * To open popup for delete post
+ * @param id post id
+ * @return void
+ */
 function openDeletePopup(id) {
     $(".deletepopup-container").css("display", "block");
-    $(".deletepopup-body").html("<p>Are you sure you want to delete this Post?</p>"+
-                                "<div class='clearfix'>"+
-                                "<button class='delete-yes-btn' onclick='deletePost("+ id + ")'>Yes</button>"+
-                                "<button class='delete-no-btn' onclick='closeDeletePopup()'>No</button></div>");
+    $(".deletepopup-body").html("<p>Are you sure you want to delete this Post?</p>" +
+        "<div class='clearfix'>" +
+        "<button class='delete-yes-btn' onclick='deletePost(" + id + ")'>Yes</button>" +
+        "<button class='delete-no-btn' onclick='closeDeletePopup()'>No</button></div>");
 }
 
+/**
+ * To close delete pop up
+ * @return void
+ */
 function closeDeletePopup() {
     $(".deletepopup-container").css("display", "none");
 }
