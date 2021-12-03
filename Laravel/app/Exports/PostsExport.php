@@ -15,7 +15,16 @@ class PostsExport implements FromCollection, WithHeadings
     {
         return Post::orderBy('id')
             ->join('users', 'users.id', '=', 'posts.created_user_id')
-            ->select('posts.*', 'users.name', 'users.email')
+            ->select(
+                'posts.id',
+                'posts.title',
+                'posts.content',
+                'posts.photo',
+                'posts.created_at',
+                'posts.updated_at',
+                'users.name',
+                'users.email'
+            )
             ->get();
     }
 
@@ -25,7 +34,7 @@ class PostsExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            "Id", "title", "content", "photo", "Created User Id", "Updated User Id", "Deleted User Id",
+            "Id", "title", "content", "photo",
             "Created_at", "Updated_at", "Created Username", "Email"
         ];
     }
