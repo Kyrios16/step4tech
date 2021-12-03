@@ -1,5 +1,5 @@
 @extends('admin.Layouts.app')
-
+@section('title', 'Posts Management')
 @section('content')
 @include('admin.common.aside')
 <div class="main-container">
@@ -33,8 +33,8 @@
                 <th scope="col">Title</th>
                 <th scope="col">Content</th>
                 <th scope="col">Photo</th>
-                <th scope="col">Created User Id</th>
-                <th scope="col">Updated User Id</th>
+                <th scope="col">Created Username</th>
+                <th scope="col">Email</th>
                 <th scope="col">Created At</th>
                 <th scope="col">Updated At</th>
                 <th scope="col">Action</th>
@@ -46,8 +46,8 @@
                 <td>{{ $post->title }}</td>
                 <td>{{ $post->content }}</td>
                 <td>{{ $post->photo }}</td>
-                <td>{{ $post->created_user_id }}</td>
-                <td>{{ $post->updated_user_id }}</td>
+                <td>{{ $post->name }}</td>
+                <td>{{ $post->email }}</td>
                 <td>{{ $post->created_at->format('d-m-Y') }}</td>
                 <td>{{ $post->updated_at->format('d-m-Y') }}</td>
                 <td>

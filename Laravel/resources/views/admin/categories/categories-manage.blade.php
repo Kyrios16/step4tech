@@ -1,5 +1,5 @@
 @extends('admin.Layouts.app')
-
+@section('title', 'Categories Management')
 @section('script')
 <script src="{{ asset('js/lib/moment.js') }}"></script>
 <script src="{{ asset('js/admin/admin-cate-script.js') }}"></script>
@@ -55,8 +55,8 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">Created User Id</th>
-                <th scope="col">Updated User Id</th>
+                <th scope="col">Created Username</th>
+                <th scope="col">Email</th>
                 <th scope="col">Created At</th>
                 <th scope="col">Updated At</th>
                 <th scope="col">Action</th>

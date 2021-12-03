@@ -18,8 +18,8 @@ $(document).ready(function () {
                     `<tr>
                         <td>${categories.id}</td>
                         <td>${categories.name}</td>
-                        <td>${categories.created_user_id}</td>
-                        <td>${categories.updated_user_id}</td>
+                        <td>${categories.username}</td>
+                        <td>${categories.email}</td>
                         <td>${created_at}</td>
                         <td>${updated_at}</td>
                         <td>

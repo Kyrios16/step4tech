@@ -1,5 +1,5 @@
 @extends('admin.Layouts.app')
-
+@section('title', 'Analytics Dashboard')
 @section('content')
 @include('admin.common.aside')
 <div class="main-container">

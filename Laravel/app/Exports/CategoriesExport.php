@@ -13,7 +13,10 @@ class CategoriesExport implements FromCollection, WithHeadings
      */
     public function collection()
     {
-        return Categories::all();
+        return Categories::orderBy('created_at', 'asc')
+            ->join('users', 'users.id', '=', 'categories.created_user_id')
+            ->select('categories.*', 'users.name as username', 'users.email')
+            ->get();
     }
 
     /**
@@ -23,7 +26,7 @@ class CategoriesExport implements FromCollection, WithHeadings
     {
         return [
             "Id", "Name", "Created User Id", "Updated User Id", "Deleted User Id",
-            "Created_at", "Updated_at"
+            "Created_at", "Updated_at", "Created Username", "Email"
         ];
     }
 }
