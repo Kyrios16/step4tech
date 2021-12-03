@@ -1,3 +1,7 @@
+/**
+ * To show preview for reply image
+ * @return void
+ */
 function showPreview(input, id, eleId, previewId) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
