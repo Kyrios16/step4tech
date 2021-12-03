@@ -11,13 +11,19 @@ $(document).ready(function () {
         }
     });
 
+    // To show aside
     $("#menu-toggle").click(function () {
         $(".sidebar").css("left", "7px");
+        $(".sidebar").addClass("hb-open");
+        $(".overlay").css("display", "block");
+    });
+
+    // To close aside
+    $(".overlay").on("click", function () {
         if ($(".sidebar").hasClass("hb-open")) {
             $(".sidebar").css("left", "-500px");
+            $(".overlay").css("display", "none");
             $(".sidebar").removeClass("hb-open");
-        } else {
-            $(".sidebar").addClass("hb-open");
         }
     });
 });
