@@ -50,13 +50,12 @@
     width: 3.125em;
     height: 3.125em;
     border-radius: 50%;
-    padding: 0em 0.5em;
+    padding: 0.1em 0.45em;
     margin: 0% 0% 2% 90%;
     opacity: 1;
 }
 
-.cover-img .file-upload::before,
-.profile-img .file-upload::before {
+.file-upload::before {
     margin-top: -0.25em;
 }
 

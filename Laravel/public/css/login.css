@@ -26,8 +26,9 @@ body {
 }
 
 .round-btn i {
+    font-size: 1rem;
     text-align: center;
-    margin: 15% auto;
+    margin: auto;
 }
 
 .login-content {
