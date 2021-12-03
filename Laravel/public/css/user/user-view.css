@@ -1,6 +1,6 @@
 @charset "utf-8";
 .user-view-wrapper {
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -20,6 +20,7 @@
 .profile {
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
 .profile-info {
@@ -130,7 +131,7 @@
 }
 
 .user-postlist-wrapper {
-    width: 80%;
+    width: 70%;
     margin: 1% auto;
     padding: 3% 0;
     border-radius: 1rem;
@@ -146,7 +147,7 @@
 .option-btn {
     position: absolute;
     font-size: 1.2rem;
-    right: 16%;
+    right: 20%;
     border: none;
     background: transparent;
     cursor: pointer;
@@ -155,7 +156,7 @@
 .personal-post-dropdown-content {
     display: none;
     position: absolute;
-    right: 16%;
+    right: 20%;
     background-color: #f9f9f9;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 10;

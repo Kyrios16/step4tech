@@ -18,7 +18,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        return view('auth.login');
+        $title = 'Login';
+        return view('auth.login')
+            ->with('title', $title);
     }
 
     /**
@@ -38,7 +40,7 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
-    
+
     /**
      * Destroy an authenticated session.
      *
