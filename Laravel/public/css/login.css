@@ -101,6 +101,9 @@ body {
     html {
         font-size: clamp(10px, 1.346vw, 14px);
     }
+    #sign-in {
+        padding-top: 20%;
+    }
     .container {
         width: 70%;
     }
@@ -112,6 +115,9 @@ body {
 @media screen and (max-width: 640px) {
     html {
         font-size: clamp(9px, 2.5vw, 12px);
+    }
+    #sign-in {
+        padding-top: 20%;
     }
     .container {
         width: 70%;
