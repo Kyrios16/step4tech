@@ -1,11 +1,15 @@
-function showPreview(input, id) {
-    id = id || "#preview-img";
+/**
+ * To show preview for reply image
+ * @return void
+ */
+function showPreview(input, id, eleId, previewId) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $(id).attr("src", e.target.result).width(200).height(150);
+            $("#" + eleId).attr("src", e.target.result);
         };
-        $("#reply-Img").css({
+
+        $("#" + previewId).css({
             display: "block",
         });
 
