@@ -272,4 +272,8 @@
         .setting {
             margin-top: -2em;
         }
+        .bio {
+            font-size: 0.8rem;
+            width: 60%;
+        }
     }
