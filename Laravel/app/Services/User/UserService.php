@@ -4,6 +4,8 @@ namespace App\Services\User;
 
 use App\Contracts\Dao\User\UserDaoInterface;
 use App\Contracts\Services\User\UserServiceInterface;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -53,16 +55,15 @@ class UserService implements UserServiceInterface
      */
     public function updateUser($request)
     {        
-        $userlist =DB::table("users")->get();
-        $userid = count($userlist) + 1;
+        $id = Auth::user()->id;
         if ($cover_img = $request->hasFile('cover_img')) {
             $cover_img = $request->file('cover_img');
-            $newcover = "cover_" . $userid . "." . $cover_img->getClientOriginalExtension();
+            $newcover = "cover_" . $id . "." . $cover_img->getClientOriginalExtension();
             $request->cover_img = $newcover;
         }
         if ($profile_img = $request->hasFile('profile_img')) {
             $profile_img = $request->file('profile_img');
-            $newProfile = "profile_" . $userid . "." . $profile_img->getClientOriginalExtension();
+            $newProfile = "profile_" . $id . "." . $profile_img->getClientOriginalExtension();
             $request->profile_img = $newProfile;
         }
         return $this->userDao->updateUser($request);
