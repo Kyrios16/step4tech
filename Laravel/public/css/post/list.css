@@ -22,6 +22,7 @@
 .postprofile-ico {
     width: 2em;
     height: 2em;
+    object-fit: cover;
     border-radius: 100%;
     vertical-align: middle;
 }
@@ -139,7 +140,9 @@
     color: #6c757d;
 }
 
+
 /*  Ipad  */
+
 @media screen and (min-width: 641px) and (max-width: 1040px) {
     .post-create-btn {
         right: 2%;
@@ -147,7 +150,9 @@
     }
 }
 
+
 /*  SP  */
+
 @media screen and (max-width: 640px) {
     .postbtn-container {
         border-top: 1px solid #e4e4e4;
@@ -155,27 +160,22 @@
         display: flex;
         justify-content: space-between;
     }
-
     .post-btn {
         margin-left: 0;
     }
-
     .postlist-container {
         width: 96%;
         float: none;
         min-height: 82vh;
         margin: auto;
     }
-
     .post {
         margin: 0 auto 1.5% auto;
     }
-
     .loading {
         width: 96%;
         float: none;
     }
-
     .post-create-btn {
         border-radius: 50%;
         padding: 1.35em;
