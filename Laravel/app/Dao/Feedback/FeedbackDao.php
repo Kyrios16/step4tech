@@ -107,7 +107,7 @@ class FeedbackDao implements FeedbackDaoInterface
     /**
      * To give green_mark
      * 
-     * @param Request $request
+     * @param Request $feedback_id
      * @return $message 
      */
     public function selectGreenmark($feedback_id)

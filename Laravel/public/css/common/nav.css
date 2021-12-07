@@ -114,6 +114,7 @@ a:hover {
     width: 2.6em;
     height: 2.6em;
     border-radius: 100%;
+    object-fit: cover;
     cursor: pointer;
 }
 
@@ -167,7 +168,7 @@ a:hover {
         right: 2%;
     }
     .nav-wrapper h1 img {
-        width: clamp(76px,11.538vw,120px);
+        width: clamp(76px, 11.538vw, 120px);
     }
 }
 
